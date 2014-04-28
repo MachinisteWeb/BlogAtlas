@@ -1,0 +1,21 @@
+{
+	"classLayout": "articles-by-year",
+	"titlePage": "Liste des dates de l'année %year%",
+	"description": "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
+	"breadcrumb": {
+		"title": "Vous êtes ici :",
+		"items": [{
+			"content": "Accueil",
+			"title": "Accueil",
+			"href": "./"
+		}, {
+			"content": "Archives",
+			"title": "Archives",
+			"href": "./archives/"
+		}, {
+			"content": "Rien à cette date",
+			"title": "Rien à cette date",
+			"href": "./archives/%year%/"
+		}]
+	}
+}

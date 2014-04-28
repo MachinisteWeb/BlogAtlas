@@ -1,0 +1,129 @@
+/*------------------------------------*\
+    $SUMMARY
+\*------------------------------------*/
+
+/**
+ * SUMMARY.................It's me !
+ * SERVER FONTS............Font on server.
+ * RESET...................Same render for all browser.
+ * ACCESSIBILITY / SEO.....Hide and non-visible items.
+ * ANIMATIONS..............Dynamically change display of markup.
+ * FONT STYLES.............Use for style font on more one page.
+ *** Markup Fonts
+ *** Component Fonts
+ *** Layout Fonts
+ * MOBILE+ DESIGN..........Use for placement of item on mobiles and higher.
+ *** Markup Fonts
+ *** Component Fonts
+ *** Layout Fonts
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $SERVER FONTS
+\*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+    $RESET
+\*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+    $ACCESSIBILITY / SEO
+\*------------------------------------*/
+
+.errors {
+	display: none;
+}
+
+
+
+/*------------------------------------*\
+    $ANIMATIONS
+\*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+    $FONT STYLES
+\*------------------------------------*/
+
+/** 
+ * CSS property for font style witch have to regroup here are :
+ * - color
+ * - font-family, font-size, font-style, font-variant, font-weight
+ * - letter-spacing
+ * - text-align (only with justify value), text-shadow, text-transform
+ * - word-spacing, writing-mode
+ *
+ * Also style property witch often have to group here are :
+ * - text-indent (if it use for indent text, not for hidden visibility of text)
+ * - line-height (if it use for define vertical spacing between text line return, not for center verticaly a text)
+ * - border-bottom (if it use like a text-decoration underline for dot or dash, not if it use for create a bottom separator)
+ * - border-top (if it use like a text-decoration overline for dot or dash, not if it use for create a bottom separator)
+ *
+ * But style property witch do not have to group here are :
+ * - text-align: center (Because it use for placement like margin: 0 auto)
+ * - text-align: left (Because it use for placement like float: left)
+ * - text-align: right (Because it use for placement like float: right)
+ */
+
+
+
+/****************/
+/* $Markup Fonts */
+/****************/
+
+
+
+/*******************/
+/* $Component Fonts */
+/*******************/
+
+
+
+/****************/
+/* $Layout Fonts */
+/****************/
+
+
+
+
+
+/*------------------------------------*\
+    $MOBILE+ STYLES
+\*------------------------------------*/
+
+
+
+/***************/
+/* $Font Markup */
+/***************/
+
+
+
+/******************/
+/* $Font Component */
+/******************/
+
+
+
+/***************/
+/* $Font Layout */
+/***************/
+
+
+
+

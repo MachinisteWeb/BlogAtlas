@@ -1,0 +1,24 @@
+<% include templates/master-head.htm %>
+
+<% include templates/master-content.htm %>
+
+		<div class="wrap-content">
+			<div id="content" class="content">
+
+				<% include templates/breadcrumb.htm %>
+
+				<section class="about-site">
+					<h1><%- common.aboutSite.title %></h1>
+
+					<p><%- common.aboutSite.content %></p>
+				</section>
+
+				<% include templates/articles.htm %>
+				
+			</div>
+		</div>
+
+<% include templates/header.htm %>
+<% include templates/footer.htm %>
+
+<% include templates/master-foot.htm %>

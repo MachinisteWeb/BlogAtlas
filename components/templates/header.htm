@@ -1,0 +1,24 @@
+		<header id="header" class="header" role="banner">
+
+			<div>
+				<a href="<%= common.logo.href %>" title="<%= common.logo.title %>">
+					<%- common.logo.content %>
+				</a>
+			</div>
+
+			<nav class="main">
+
+				<a href="<%= common.mainMenu.title.href %>" title="<%= common.mainMenu.title.title %>">
+					<%= common.mainMenu.title.content %>
+				</a>
+
+				<ul>
+					<% for (var i = 0; i < common.mainMenu.section.length; i++) { %>
+					<li class="<%= common.mainMenu.section[i].class %>">
+						<a href="<%= common.mainMenu.section[i].href %>" title="<%= common.mainMenu.section[i].title %>"><%= common.mainMenu.section[i].content %></a>
+					</li>
+					<% } %>						
+				</ul>
+			</nav>
+
+		</header>

@@ -1,0 +1,43 @@
+{
+	"classLayout": "login",
+	"titlePage": "Espace membres",
+	"description": "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
+	"breadcrumb": {
+		"title": "Vous êtes ici :",
+		"items": [{
+			"content": "Espace membres",
+			"title": "Espace membres",
+			"href": "./espace-membres/"
+		}]
+	},
+	"title": "Connectez-vous",
+	"titleConnected": "Vous êtes connecté !",
+	"formLogin": {
+		"email": {
+			"label": "Email",
+			"placeHolder": "Email",
+			"errors": {
+				"empty": "Le champ email est vide.",
+				"notEmailFormat": "Le champ email est incorrecte."
+			}
+		},
+		"password": {
+			"label": "Mot de passe",
+			"placeHolder": "Mot de passe",
+			"errors": {
+				"empty": "Le champ password est vide."
+			}
+		},
+		"submit": {
+			"label": "Connexion",
+			"errors": {
+				"badAuth": "Les email/mot de passe sont invalides."
+			}
+		}
+	},
+	"formLogout": {
+		"submit": {
+			"label": "Déconnexion"
+		}
+	}
+}

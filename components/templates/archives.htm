@@ -1,0 +1,21 @@
+				<section class="archives">
+					<h1><%- common.archives.title %></h1>
+
+					<% var currentDate = new Date() %>
+					<% var yearNumber = currentDate.getFullYear() - common.archives.startingYear + 1 %>
+
+					<ul>
+						<% for (var i = 0; i < yearNumber; i++) { %>
+							<li>
+								<h2><a href="<%- common.archives.linkYear.href.replace(/%year%/g, backend.archives[i].year) %>" title="<%- common.archives.linkYear.title.replace(/%year%/g, backend.archives[i].year) %>"><%- backend.archives[i].year %></a></h2>
+								<ul>
+									<% for (var j = backend.archives[i].months.length - 1; j >= 0; j--) { %>
+										<li>
+											<h3><a href="<%- common.archives.linkMonth.href.replace(/%year%/g, backend.archives[i].year).replace(/%month%/g, backend.archives[i].months[j]) %>" title="<%- common.archives.linkMonth.title.replace(/%year%/g, backend.archives[i].year).replace(/%month%/g, common.dates.months[parseInt(backend.archives[i].months[j] - 1, 10)]) %>"><%- common.dates.months[parseInt(backend.archives[i].months[j] - 1, 10)] %></a></h3>
+										</li>
+									<% } %>
+								</ul>
+							</li>
+						<% } %>
+					</ul>
+				</section>

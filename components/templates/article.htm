@@ -1,0 +1,83 @@
+				<!--<form class="form-upload-avatar" action="./upload/" method="POST" enctype="multipart/form-data">
+					<img src="" class="img-upload-avatar" alt="<%= common.articles.uploadAvatar.alt %>">
+					<input type="file" id="file-upload-avatar" name="file-upload-avatar" class="file-upload-avatar">
+					<input type="text" id="file-upload-text" name="file-upload-text" class="file-upload-text" value="Toto">
+					<input type="button" class="button-upload-avatar" value="<%= common.articles.uploadAvatar.button %>">
+				</form>-->
+
+				<% if (backend && backend.article) { %>
+
+					<% if (session.account) { %>
+					<form class="form-account-logout" action="" method="post">
+						<div class="submit">
+							<label><input type="button" class="update-article-button" value="<%= specific.article.updateArticle.button %>"></label>
+						</div>
+					</form>
+					<% } %>
+
+					<article class="article" data-urn="<%= backend.article.urn %>" <% if (backend.article.others.markdown) { %>data-markdown="true"<% } %>>
+						<h1><%- backend.article.title %></h1>
+						<div class="published">
+							<% var minute = backend.article.dates.published.getMinutes() %>
+							<% minute = ((minute.toString().length > 1) ? '' : '0') + minute %>
+
+							<% var hour = backend.article.dates.published.getHours() %>
+							<% hour = ((hour.toString().length > 1) ? '' : '0') + hour %>
+
+							<% var day = backend.article.dates.published.getDate() %>
+							<% day = ((day.toString().length > 1) ? '' : '0') + day %>
+
+							<% var month = backend.article.dates.published.getMonth() + 1 %>
+							<% month = ((month.toString().length > 1) ? '' : '0') + month %>
+
+							<% var fullMonth = common.dates.months[backend.article.dates.published.getMonth()] %>
+							<% var fullYear = backend.article.dates.published.getFullYear() %>
+							<time datetime="<%= fullYear %>-<%= month %>-<%= day %>T<%= hour %>:<%= minute %>">
+								<%- common.dates.toDate %>
+								<%- day %>
+								<%- fullMonth %>
+								<%- fullYear %>
+								<%- common.dates.toHour %>
+								<%- hour %><%- common.dates.unitHours %><%- minute %>
+							</time>
+						</div>
+						<div class="text">
+							<%- backend.article.content %>
+						</div>
+						<div class="comments">
+							<h3><%- common.comments.title %></h3>
+							<%- backend.article.cache.comment.number %> <%- (backend.article.cache.comment.number > 1) ? common.comments.commentMultiple : common.comments.commentSimple %>
+						</div>
+						<% if (backend.article.categories) { %>
+						<div class="categories">
+							<h3><%- common.categories.title %></h3>
+							<% for (var j = 0; j < backend.article.categories.length; j++) { %>
+							<ul>
+								<li><a href="<%- common.categories.link.href.replace(/%urn%/g, backend.article.categories[j].urn) %>" title="<%- common.categories.link.title %> <%- backend.article.categories[j].title %>"><%- backend.article.categories[j].title %></a></li>
+							</ul>
+							<% } %>
+						</div>
+						<% } %>
+					</article>
+
+				<% } else { %>
+
+					<div class="no-article" data-urn="<%= urlPath.match(/([^\/]+)\/?$/g)[0].replace("/","") %>">
+						<%- specific.noArticle.noArticle %>
+
+						<% if (session.account) { %>
+							<form class="form-create-article" action="<%= urlPath %>" method="POST">
+								<div class="field">
+									<label for="create-article-title"><%- specific.noArticle.createArticle.title.label %></label>
+									<input type="text" id="create-article-title" name="create-article-title" class="create-article-title" value="<%= urlPath.match(/([^\/]+)\/$/g)[0].replace("/","").replace(/-/g," ") %>">
+									<div class="errors">
+										<div class="empty"><%- specific.noArticle.createArticle.title.errors.empty %></div>
+									</div>
+								</div>
+								<div class="submit">
+									<input type="button" class="create-article-button" value="<%= specific.noArticle.createArticle.button %>">
+								</div>
+							</form>
+						<% } %>
+					</div>
+				<% } %>

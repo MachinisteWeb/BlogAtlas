@@ -1,0 +1,34 @@
+{
+	"classLayout": "article",
+	"titlePage": "Cette article n'existe pas",
+	"description": "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
+	"breadcrumb": {
+		"title": "Vous êtes ici :",
+		"items": [{
+			"content": "Accueil",
+			"title": "Accueil",
+			"href": "./"
+		}, {
+			"content": "Cette article n'existe pas",
+			"title": "Cette article n'existe pas",
+			"href": "./%urn%/"
+		}]
+	},
+	"noArticle": {
+		"noArticle": "Aucun article à cette adresse.",
+		"createArticle": {
+			"title": {
+				"label": "Titre",
+				"errors": {
+					"empty": "Il manque le titre."
+				}
+			},
+			"button": "Créer"
+		}
+	},
+	"article": {
+		"updateArticle": {
+			"button": "Modifier"
+		}
+	}
+}

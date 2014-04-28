@@ -1,0 +1,26 @@
+<% include templates/master-head.htm %>
+
+<% include templates/master-content.htm %>
+
+		<div class="wrap-content">
+			<div id="content" class="content">
+
+				<% include templates/breadcrumb.htm %>
+
+				<% if (backend && backend.article) { %>
+					<section class="about-author">
+						<h1><%- common.aboutAuthor.title %></h1>
+
+						<p><%- common.aboutAuthor.content %></p>
+					</section>
+				<% } %>
+
+				<% include templates/article.htm %>
+				
+			</div>
+		</div>
+
+<% include templates/header.htm %>
+<% include templates/footer.htm %>
+		<script type="text/javascript" src="javascript/jquery.form.js"></script>
+<% include templates/master-foot.htm %>
