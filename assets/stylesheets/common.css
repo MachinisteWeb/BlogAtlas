@@ -89,7 +89,7 @@ a:visited {
 
 a:visited:hover,
 a:hover {
-	color: #ed1c24;
+	color: #CC0000;
 }
 
 body {
@@ -102,20 +102,11 @@ body {
 	font-weight: 300;
 }
 
-.header .first,
 h1 {
 	font-size: 28px;
 	font-size: 2.8rem;
 }
 
-.header .second {
-	font-size: 16px;
-	font-size: 1.6rem;
-	display: block;
-	text-align: center;
-}
-
-.header .first,
 h1, 
 h2, 
 h3 {
@@ -133,6 +124,12 @@ h6 {
 	font-weight: normal;
 }
 
+h4, 
+h5, 
+h6 {
+	margin: 24px 0 0;
+}
+
 p, 
 ul, 
 ol, 
@@ -140,6 +137,24 @@ table,
 pre, 
 dl {
 	margin: 16px 0 0;	
+}
+
+hr {
+	border: 0;
+	margin-top: 32px;
+	border-top: 1px solid rgba(102,128,153,0.1);
+}
+
+
+.header h1 {
+	margin-top: 0;
+}
+
+.header .second {
+	font-size: 16px;
+	font-size: 1.6rem;
+	display: block;
+	text-align: center;
 }
 
 .header div a {
@@ -181,12 +196,238 @@ dl {
 /* $Component */
 /**************/
 
+.best-practice .content > :first-child,
+.correct-practice .content > :first-child,
+.worst-practice .content :first-child,
+.content section:first-child > :first-child,
+.content article:first-child > :first-child {
+	margin-top: 0;
+}
+
+.articles .categories ul {
+	padding: 0;
+	margin-top: 24px;
+}
+
+.articles .categories h4 {
+	display: none;
+}
+
+.articles .categories li {
+	display: inline-block;
+	margin-right: 8px;
+	margin-top: 8px;
+	padding: 2px 8px;
+	border-radius: 4px;
+	background-color: #EFF2F4;
+	margin-left: -4px;
+}
+
+.published,
+article .comments,
+.articles .comments {
+	display: inline-block;
+	margin-top: 16px;
+	margin-right: 16px;
+	padding-left: 16px;
+	position: relative;
+}
+
+article .comments a:before,
+.articles .comments a:before,
+.published a:before {
+	content: "";
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	background-image: url('../media/images/ui-icon.png');
+	position: absolute;
+	left: 0;
+	top: 3px;
+}
+
+.published a:before {
+	background-position: -80px -112px;
+}
+
+.published a:hover:before {
+	background-position: -80px -352px;
+}
+
+article .comments a:before,
+.articles .comments a:before {
+	background-position: -128px -96px;
+}
+
+article .comments a:hover:before,
+.articles .comments a:hover:before {
+	background-position: -128px -336px;
+}
+
+article .comments h4,
+.articles .comments h4 {
+	display: none;
+}
+
+
+.correct-practice, 
+.best-practice, 
+.worst-practice {
+	margin: 0;
+	margin-top: 12px;
+	padding: 0;
+	border-radius: 4px;
+}
+
+.correct-practice .title, 
+.worst-practice .title, 
+.best-practice .title {
+	margin: 4px;
+	padding: 2px 6px 2px 6px;
+}
+
+.correct-practice .content, 
+.best-practice .content, 
+.worst-practice .content {
+	margin: 4px 4px 4px 4px;
+	padding: 2px 6px 2px 6px;
+}
+
+.correct-practice .title + .content, 
+.best-practice .title + .content, 
+.worst-practice .title + .content {
+	margin: 0 4px 4px 4px;
+}
+
+.best-practice {
+	border: solid 1px #fff;
+	background-color: #E4F8F2;
+}
+
+.best-practice .title {
+	background-color: #C4E4D4;
+}
+
+.best-practice .content {
+	background-color: #ecfaf6;
+	border: dashed 1px #c4e4d4;
+}
+
+.worst-practice {
+	border: solid 1px #fff;
+	background-color: #F8ECE4;
+}
+
+.worst-practice .title {
+	background-color: #EED0CA;
+}
+
+.worst-practice .content {
+	background-color: #FDF4EC;
+	border: dashed 1px #EED0CA;
+}
+
+.correct-practice {
+	border: solid 1px #fff;
+	background-color: #E4ECF8;
+}
+
+.correct-practice .title {
+	background-color: #CAD0EE;
+}
+
+.correct-practice .content {
+	background-color: #F4F8FD;
+	border: dashed 1px #CAD0EE;
+}
+
+.pln { 
+	color: #000;
+}
+
+.str { 
+	color: #800080;
+}
+
+.kwd { 
+	color: #008;
+}
+
+.com { 
+	color: #008000;
+	font-style: italic;
+}
+
+.typ { 
+	color: #606;
+}
+
+.lit { 
+	color: #066;
+}
+
+.pun,
+.opn,
+.clo { 
+	color: #660; 
+}
+.tag {
+	color: #008; 
+}
+
+.atn { 
+	color: #606; 
+}
+
+.atv { 
+	color: #080; 
+ }
+
+.dec, 
+.var { 
+	color: #606; 
+ } 
+
+.fun { 
+	color: red; 
+}
+
+pre.prettyprint { 
+	font-family: monospace;
+	padding: 2px;
+	border: 1px dashed #ccc;
+	overflow-y: auto;
+	background: #fff;
+	cursor: e-resize;
+	font-size: 1.0em;
+}
+
+ol.linenums { 
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 35px;
+}
+
+li.L0,
+li.L2,
+li.L4,
+li.L6,
+li.L8 { 
+	background: #fff;
+	color: #ccc;
+ }
+
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 { 
+	background: #fbfbfb; 	
+	color: #ccc;
+}
+
 
 
 /***********/
 /* $Layout */
 /***********/
-
-
-
-

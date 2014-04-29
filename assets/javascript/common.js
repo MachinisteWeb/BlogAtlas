@@ -35,7 +35,24 @@ var website = {},
     var privates = {};
 
     publics.init = function () {
-
+        if (!Modernizr.touch) {
+            var $sh = $(".prettyprint").css("overflow","hidden");
+            $sh.mousedown(function (e) {
+                $.data(this, "draggable", true);
+                $.data(this, "offset", e.pageX);
+            }).mouseup(function () {
+                $.data(this, "draggable", false);
+                $.data(this, "offset", 0);
+            }).mouseleave(function () {
+                $.data(this, "draggable", false);
+                $.data(this, "offset", 0);
+            }).mousemove(function (e) {
+                if ($(this).data("draggable")) {
+                    $(this).scrollLeft(parseInt($(this).scrollLeft() + ($(this).data("offset") - e.pageX), 10));
+                    $.data(this, "offset", e.pageX);
+                }
+            }).data("draggable", false).data("offset", 0);
+        }
     };
 }(website));
 

@@ -2,21 +2,19 @@
 
 <% include templates/master-content.htm %>
 
-		<div class="wrap-content">
-			<div id="content" class="content">
+		<div id="content" class="content">
 
-				<% if (backend && backend.article) { %>
-					<section class="about-author">
-						<h1><%- common.aboutAuthor.title %></h1>
-
-						<p><%- common.aboutAuthor.content %></p>
-					</section>
-				<% } %>
-
-				<% include templates/article.htm %>
-				
-			</div>
+			<% include templates/article.htm %>
+			
 		</div>
+
+		<% if (backend && backend.article) { %>
+			<div class="about-author">
+				<h2><%- common.aboutAuthor.title %></h2>
+
+				<p><%- common.aboutAuthor.content %></p>
+			</div>
+		<% } %>
 
 <% include templates/header.htm %>
 <% include templates/footer.htm %>

@@ -2,18 +2,17 @@
 
 <% include templates/master-content.htm %>
 
-		<div class="wrap-content">
-			<div id="content" class="content">
+		<div class="about-site">
+			<h2><%- common.aboutSite.title %></h2>
 
-				<section class="about-site">
-					<h1><%- common.aboutSite.title %></h1>
+			<p><%- common.aboutSite.content %></p>
+		</div>
 
-					<p><%- common.aboutSite.content %></p>
-				</section>
+		<div id="content" class="content">
 
-				<% include templates/articles.htm %>
-				
-			</div>
+
+			<% include templates/articles.htm %>
+			
 		</div>
 
 <% include templates/header.htm %>
