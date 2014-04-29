@@ -1,0 +1,85 @@
+/*------------------------------------*\
+    $SUMMARY
+\*------------------------------------*/
+
+/**
+ * DESKTOP+ DESIGN..........Use for placement of item on mobiles and higher.
+ *** Markup
+ *** Component
+ *** Layout
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $DESKTOP+ STYLES
+\*------------------------------------*/
+
+
+
+/***********/
+/* $Markup */
+/***********/
+
+body {
+	padding: 48px;
+}
+
+
+
+/**************/
+/* $Component */
+/**************/
+
+.main {
+	position: fixed;
+	top: 0;
+	right: 16px;
+}
+
+.wrap-header,
+.wrap-content,
+.wrap-footer {
+	width: 968px;
+	margin: 0 auto;
+}
+
+.breadcrumb,
+.header {
+	width: 320px;
+	margin: 0 auto;
+	position: fixed;
+	top: 0;
+}
+
+.header {
+	top: 80px;
+}
+
+.breadcrumb {
+	top: 152px;
+}
+
+.content {
+	width: 560px;
+	margin: 0 auto;
+	float: right;
+}
+
+.footer {
+	width: 320px;
+	margin: 0 auto;
+	position: fixed;
+	bottom: 48px;
+}
+
+
+/***********/
+/* $Layout */
+/***********/
+
+
+
+

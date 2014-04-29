@@ -48,7 +48,9 @@ var website = {};
 			connect = NA.modules.connect,
 			cookie = NA.modules.cookie;
 
-		io.set('authorization', function (data, accept) {
+		io
+			.set('transports', ['xhr-polling'])
+			.set('authorization', function (data, accept) {
 
             // No cookie enable.
             if (!data.headers.cookie) {

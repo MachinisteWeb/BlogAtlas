@@ -1,24 +1,35 @@
+	<div class="wrap-header">
 		<header id="header" class="header" role="banner">
-
 			<div>
 				<a href="<%= common.logo.href %>" title="<%= common.logo.title %>">
 					<%- common.logo.content %>
 				</a>
 			</div>
 
-			<nav class="main">
-
-				<a href="<%= common.mainMenu.title.href %>" title="<%= common.mainMenu.title.title %>">
-					<%= common.mainMenu.title.content %>
-				</a>
-
-				<ul>
-					<% for (var i = 0; i < common.mainMenu.section.length; i++) { %>
-					<li class="<%= common.mainMenu.section[i].class %>">
-						<a href="<%= common.mainMenu.section[i].href %>" title="<%= common.mainMenu.section[i].title %>"><%= common.mainMenu.section[i].content %></a>
-					</li>
-					<% } %>						
-				</ul>
-			</nav>
-
 		</header>
+		
+		<nav class="main">
+			<ul>
+				<% for (var i = 0; i < common.mainMenu.section.length; i++) { %>
+				<li class="<%= common.mainMenu.section[i].class %>">
+					<a href="<%= common.mainMenu.section[i].href %>" title="<%= common.mainMenu.section[i].title %>"><%= common.mainMenu.section[i].content %></a>
+				</li>
+				<% } %>						
+			</ul>
+		</nav>
+
+		<nav class="breadcrumb">
+			<span><%= specific.breadcrumb.title %></span>
+			<ol>
+				<% for (var i = 0; i < specific.breadcrumb.items.length; i++) { %>
+				<li>
+					<% if (specific.breadcrumb.items[i].title !== '') { %>
+						<a href="<%= specific.breadcrumb.items[i].href %>" title="<%= specific.breadcrumb.items[i].title %>"><%= specific.breadcrumb.items[i].content %></a>
+					<% } else { %>
+						<%= specific.breadcrumb.items[i].content %>
+					<% } %>
+				</li>
+				<% } %>
+			</ol>
+		</nav>
+	</div>

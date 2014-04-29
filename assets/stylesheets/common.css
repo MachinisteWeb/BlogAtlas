@@ -8,14 +8,10 @@
  * RESET...................Same render for all browser.
  * ACCESSIBILITY / SEO.....Hide and non-visible items.
  * ANIMATIONS..............Dynamically change display of markup.
- * FONT STYLES.............Use for style font on more one page.
- *** Markup Fonts
- *** Component Fonts
- *** Layout Fonts
  * MOBILE+ DESIGN..........Use for placement of item on mobiles and higher.
- *** Markup Fonts
- *** Component Fonts
- *** Layout Fonts
+ *** Markup
+ *** Component
+ *** Layout
  */
 
 
@@ -25,6 +21,7 @@
 /*------------------------------------*\
     $SERVER FONTS
 \*------------------------------------*/
+
 
 
 
@@ -42,8 +39,17 @@
     $ACCESSIBILITY / SEO
 \*------------------------------------*/
 
+.breadcrumb span,
+.permalink,
+.skip-link,
 .errors {
 	display: none;
+}
+
+.wrap-content:after {
+	clear: both;
+	content: "";
+	display: block;
 }
 
 
@@ -57,72 +63,129 @@
 
 
 /*------------------------------------*\
-    $FONT STYLES
-\*------------------------------------*/
-
-/** 
- * CSS property for font style witch have to regroup here are :
- * - color
- * - font-family, font-size, font-style, font-variant, font-weight
- * - letter-spacing
- * - text-align (only with justify value), text-shadow, text-transform
- * - word-spacing, writing-mode
- *
- * Also style property witch often have to group here are :
- * - text-indent (if it use for indent text, not for hidden visibility of text)
- * - line-height (if it use for define vertical spacing between text line return, not for center verticaly a text)
- * - border-bottom (if it use like a text-decoration underline for dot or dash, not if it use for create a bottom separator)
- * - border-top (if it use like a text-decoration overline for dot or dash, not if it use for create a bottom separator)
- *
- * But style property witch do not have to group here are :
- * - text-align: center (Because it use for placement like margin: 0 auto)
- * - text-align: left (Because it use for placement like float: left)
- * - text-align: right (Because it use for placement like float: right)
- */
-
-
-
-/****************/
-/* $Markup Fonts */
-/****************/
-
-
-
-/*******************/
-/* $Component Fonts */
-/*******************/
-
-
-
-/****************/
-/* $Layout Fonts */
-/****************/
-
-
-
-
-
-/*------------------------------------*\
     $MOBILE+ STYLES
 \*------------------------------------*/
 
 
 
-/***************/
-/* $Font Markup */
-/***************/
+/***********/
+/* $Markup */
+/***********/
+
+html {
+	font-size: 62.5%;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #48739E;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #335271;
+}
+
+a:visited:hover,
+a:hover {
+	color: #ed1c24;
+}
+
+body {
+	margin: 0;
+	font-size: 14px;
+	font-size: 1.4rem;
+	line-height: 21px;
+	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #777;
+	font-weight: 300;
+}
+
+.header .first,
+h1 {
+	font-size: 28px;
+	font-size: 2.8rem;
+}
+
+.header .second {
+	font-size: 16px;
+	font-size: 1.6rem;
+	display: block;
+	text-align: center;
+}
+
+.header .first,
+h1, 
+h2, 
+h3 {
+	line-height: 1.3;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+	color: #222;
+	margin: 32px 0 0;
+	font-weight: normal;
+}
+
+p, 
+ul, 
+ol, 
+table, 
+pre, 
+dl {
+	margin: 16px 0 0;	
+}
+
+.header div a {
+	text-decoration: none;
+}
+
+.breadcrumb ol {
+	margin-top: 0;
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.breadcrumb li {
+	display: inline-block;
+}
+
+.breadcrumb a:before {
+	content: "";
+	display: inline-block;
+	height: 7px;
+	width: 7px;
+	margin-left: 4px;
+	margin-right: 4px;
+	background-image: url('../media/images/horizontal-arrows.png');
+	background-position: -7px 0;
+}
+
+.breadcrumb a:visited:before {
+	background-position: -21px 0;
+}
+
+.breadcrumb a:hover:before,
+.breadcrumb a:visited:hover:before {
+	background-position: -14px 0;
+}
+
+
+/**************/
+/* $Component */
+/**************/
 
 
 
-/******************/
-/* $Font Component */
-/******************/
-
-
-
-/***************/
-/* $Font Layout */
-/***************/
+/***********/
+/* $Layout */
+/***********/
 
 
 
