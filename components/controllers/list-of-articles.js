@@ -1,9 +1,12 @@
 module.exports = function listOfArticles(params, callback) {
 	var categoryId = params.categoryId,
 		marked = params.marked,
+		session = params.session,
 		markdownRender = params.markdownRender,
+		extendedFormatDate = params.extendedFormatDate,
 		Article = params.Article,
 		date = params.date,
+		variation = params.variation,
 		query = {},
 	    min,
 	    max,
@@ -71,17 +74,13 @@ module.exports = function listOfArticles(params, callback) {
 				}
 
 				temp[i].content = temp[i].content.substring(0, temp[i].content.indexOf('<h2'));
+				temp[i].dates.format = extendedFormatDate(temp[i].dates.published, variation.common.dates);
 
-				//console.log(temp[i].dates.published)
-
-				results.push(temp[i]);
+				if (temp[i].others.published || session.account) {
+					results.push(temp[i]);
+				}
 			}
 		}
-
-		//console.log("================");
-
-		//console.log(min);
-		//console.log(max);
 
 		callback(results);
 	});

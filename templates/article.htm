@@ -5,7 +5,12 @@
 		<div id="content" class="content">
 
 			<% include templates/article.htm %>
-			
+
+
+			<% if (backend && backend.article) { %>
+				<div class="disqus" id="disqus_thread"></div>
+			<% } %>
+
 		</div>
 
 		<% if (backend && backend.article) { %>
@@ -14,9 +19,21 @@
 
 				<p><%- common.aboutAuthor.content %></p>
 			</div>
+
+			<% if (backend.article.categories) { %>
+				<div class="categories">
+					<h3><%- common.categories.title2 %></h3>
+					<ul>
+					<% for (var j = 0; j < backend.article.categories.length; j++) { %>
+						<li><a href="<%- common.categories.link.href.replace(/%urn%/g, backend.article.categories[j].urn) %>" title="<%- common.categories.link.title %> <%- backend.article.categories[j].title %>"><%- backend.article.categories[j].title %></a></li>
+					<% } %>
+					</ul>
+				</div>
+			<% } %>
 		<% } %>
+
 
 <% include templates/header.htm %>
 <% include templates/footer.htm %>
-		<script type="text/javascript" src="javascript/jquery.form.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.form.js"></script>
 <% include templates/master-foot.htm %>

@@ -10,6 +10,7 @@ website.article = {};
 
 	publics.oneArticle = require('../components/controllers/article');
 	publics.markdownRender = require('../components/controllers/markdown-render');
+	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -41,7 +42,21 @@ website.article = {};
 					oneArticle.content = website.article.markdownRender(oneArticle.content, marked);
 				}
 
+				oneArticle.dates.format = privates.extendedFormatDate(oneArticle.dates.published, variation.common.dates);
+
 				variation.backend.article = oneArticle;
+
+				console.log(variation.urlRewriting);
+				console.log(variation.pageParameters);
+
+				variation.pageParameters.statusCode = 200;
+
+				if (!session.account && !oneArticle.others.published) {
+					variation.backend.article = undefined;
+					variation.pageParameters.statusCode = 404;
+				}
+			} else {
+				variation.pageParameters.statusCode = 404;
 			}
 			
 			variation.specific.breadcrumb.items[1].href = variation.specific.breadcrumb.items[1].href.replace(/%urn%/g, variation.params.urn);
@@ -64,6 +79,7 @@ website.article = {};
 	publics.asynchrone = function (params) {
 		var io = params.io,
 			mongoose = params.NA.modules.mongoose,
+			common = params.NA.modules.common,
 			marked = params.NA.modules.marked,
 			Article = mongoose.model('article'),
 			renderer = new marked.Renderer();
@@ -74,17 +90,16 @@ website.article = {};
 
 			socket.on('update-article-button', function (data) {
 				if (session.account) {
-
-					console.log(new Date(data.publishedDate));
-
 					Article.update({ 
 						urn: data.urn 
 					}, { 
 						$set: {
 							title: data.title,
-							content: data.content/*,
+							content: data.content,
 							'dates.published': new Date(data.publishedDate),
-							'dates.updated': []*/
+							'dates.updated': [],
+							'others.markdown': data.markdown,
+							'others.published': data.published
 						}
 					}, function (error, numberAffected, raw) {
 						if (error) { throw error; }
@@ -97,7 +112,11 @@ website.article = {};
 					socket.emit('update-article-button');
 					io.sockets.emit('update-article-button-broadcast', {
 						title: data.title,
-						content: data.content
+						content: data.content,
+						markdown: data.markdown,
+						published: data.published,
+						publishedDate: data.publishedDate,
+						variation: common
 					});
 				}
 			});

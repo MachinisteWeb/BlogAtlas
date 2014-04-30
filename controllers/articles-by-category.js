@@ -10,15 +10,19 @@ website.articlesByCategory = {};
 	privates.treeOfCategories = require('../components/controllers/tree-of-categories');
 	privates.listOfArticles = require('../components/controllers/list-of-articles');
 	privates.markdownRender = require('../components/controllers/markdown-render');
+	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
 			mongoose = params.NA.modules.mongoose,
 			marked = params.NA.modules.marked,
 			Article = mongoose.model('article'),
-			Category = mongoose.model('category');
+			Category = mongoose.model('category'),
+			sessionID = params.request.sessionID,
+			session = params.request.session;;
 
 		variation.backend = {};
+		variation.session = session;
 
 		/*console.log(variation.params);
 		console.log(variation.params[0]);*/
@@ -45,7 +49,10 @@ website.articlesByCategory = {};
 				Article: Article,
 				categoryId: categoryId, 
 				marked: marked,
+				session: variation.session,
 				markdownRender: privates.markdownRender,
+				extendedFormatDate: privates.extendedFormatDate,
+				variation: variation
 			}, function (listOfArticles) {
 				if (typeof categoryId !== 'undefined') {
 					variation.backend.articles = listOfArticles;

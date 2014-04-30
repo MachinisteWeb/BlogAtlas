@@ -8,27 +8,12 @@
 								<li>
 									<h2><a href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) %>" title="<%- backend.articles[i].title.replace(/<\/?span>/g, '') %>"><%- backend.articles[i].title %></a></h2>
 									<div class="published">
-										<% var minute = backend.articles[i].dates.published.getMinutes() %>
-										<% minute = ((minute.toString().length > 1) ? '' : '0') + minute %>
-
-										<% var hour = backend.articles[i].dates.published.getHours() %>
-										<% hour = ((hour.toString().length > 1) ? '' : '0') + hour %>
-
-										<% var day = backend.articles[i].dates.published.getDate() %>
-										<% day = ((day.toString().length > 1) ? '' : '0') + day %>
-
 										<% var month = backend.articles[i].dates.published.getMonth() + 1 %>
 										<% month = ((month.toString().length > 1) ? '' : '0') + month %>
-
 										<% var fullMonth = common.dates.months[backend.articles[i].dates.published.getMonth()] %>
 										<% var fullYear = backend.articles[i].dates.published.getFullYear() %>
-										<a href="<%- common.listDate.linkMonth.href.replace(/%year%/g, fullYear).replace(/%month%/g, month) %>" title="<%- common.listDate.linkMonth.title.replace(/%year%/g, fullYear).replace(/%month%/g, fullMonth) %>"><time datetime="<%= fullYear %>-<%= month %>-<%= day %>T<%= hour %>:<%= minute %>">
-											<%- common.dates.toDate %>
-											<%- day %>
-											<%- fullMonth %>
-											<%- fullYear %>
-											<%- common.dates.toHour %>
-											<%- hour %><%- common.dates.unitHours %><%- minute %>
+										<a href="<%- common.listDate.linkMonth.href.replace(/%year%/g, fullYear).replace(/%month%/g, month) %>" title="<%- common.listDate.linkMonth.title.replace(/%year%/g, fullYear).replace(/%month%/g, fullMonth) %>"><time datetime="<%= backend.articles[i].dates.format.time %>">
+											<%- backend.articles[i].dates.format.string %>
 										</time></a>
 									</div>
 									<div class="comments">

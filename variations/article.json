@@ -15,7 +15,7 @@
 		}]
 	},
 	"noArticle": {
-		"noArticle": "Aucun article à cette adresse.",
+		"noArticle": "Aucun article à cette adresse",
 		"createArticle": {
 			"title": {
 				"label": "Titre",

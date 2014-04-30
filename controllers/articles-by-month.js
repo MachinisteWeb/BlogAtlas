@@ -10,14 +10,18 @@ website.articlesByMonth = {};
 	privates.treeOfDates = require('../components/controllers/tree-of-dates');
 	privates.listOfArticles = require('../components/controllers/list-of-articles');
 	privates.markdownRender = require('../components/controllers/markdown-render');
+	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
 			mongoose = params.NA.modules.mongoose,
 			marked = params.NA.modules.marked,
-			Article = mongoose.model('article');
+			Article = mongoose.model('article'),
+			sessionID = params.request.sessionID,
+			session = params.request.session;;
 
 		variation.backend = {};
+		variation.session = session;
 
 		privates.treeOfDates(variation, function (treeOfDates) {
 
@@ -30,7 +34,10 @@ website.articlesByMonth = {};
 					month: variation.params.month 
 				}, 
 				marked: marked,
+				session: variation.session,
 				markdownRender: privates.markdownRender,
+				extendedFormatDate: privates.extendedFormatDate,
+				variation: variation
 			}, function (listOfArticles) {
 
 				variation.backend.articles = listOfArticles;

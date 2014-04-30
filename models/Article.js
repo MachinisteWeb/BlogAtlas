@@ -5,6 +5,10 @@ var mongoose = require('mongoose'),
 		urn: { type : String, match: /^[a-zA-Z0-9-_]+$/ },
 		dates : {
 			published: { type : Date, default : Date.now },
+			format: { 
+				string: String,
+				time: String
+			},
 			updated: [ { type : Date, default : Date.now } ]
 		},
 		categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }],
@@ -15,7 +19,8 @@ var mongoose = require('mongoose'),
 			}
 		},
 		others: {
-			markdown: Boolean
+			markdown: Boolean,
+			published: Boolean
 		}
 	});
 

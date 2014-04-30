@@ -19,7 +19,7 @@
     $%GLOBAL
 \*------------------------------------*/
 
-var website = {},
+var website = website || {},
     $window = $(window),
     $body = $("body"),
     $base = $("base");
@@ -33,6 +33,42 @@ var website = {},
     "use strict";
 
     var privates = {};
+
+    publics.jQueryUiLoading = function (callback) {
+        Modernizr.load({
+            test: $('script[src="javascript/jquery/jquery-ui.js"]').length === 0,
+            yep: [
+                'stylesheets/jquery/jquery-ui.css',
+                'javascript/jquery/jquery-ui.js',
+                'javascript/jquery/jquery.timepicker.js'
+            ],
+            complete: function () {
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            }
+        });
+    };
+
+    publics.disqusLoading = function () {
+        var disqus_shortname = 'lesieur',
+            disqus_identifier = $("article.article").data("urn"),
+            disqus_url = $(".permalink span").text().split("?")[0];
+
+        Modernizr.load({
+            test: $('script[src="//' + disqus_shortname + '.disqus.com/embed.js"]').length === 0,
+            yep: '//' + disqus_shortname + '.disqus.com/embed.js',
+            complete: function () {
+                DISQUS.reset({
+                  reload: true,
+                  config: function () {
+                    this.page.identifier = disqus_identifier;
+                    this.page.url = disqus_url;
+                  }
+                });
+            }
+        });
+    };
 
     publics.init = function () {
         if (!Modernizr.touch) {
@@ -109,9 +145,12 @@ var website = {},
 
 
     privates.updateArticle = function () {
-        var $title = $("h1"),
+        var $title = $(".content h1"),
             $content = $(".text"),
-            $article = $("article.article");
+            $date = $(".published a"),
+            $article = $("article.article"),
+            $fieldPublished,
+            $fieldMarkdown;
 
         socket.on('update-article-load-content', function (data) {
             // Title part.
@@ -119,16 +158,41 @@ var website = {},
                 $('<input type="text" class="field-title like-h1">').val($title.html())
             ).css("display", "none");
 
+            // Published part.
+            $content.after('<input type="checkbox" class="field-published"> Visible ?');
+            $fieldPublished = $(".field-published");
+            $fieldPublished.attr('checked', ($article.attr("data-published") === "true"));
+
+            // Markdown part.
+            $content.after('<input type="checkbox" class="field-markdown"> Markdown ?');
+            $fieldMarkdown = $(".field-markdown");
+            $fieldMarkdown.attr('checked', ($article.attr("data-markdown") === "true"));
+
             // Text part.
             $content.after(
                 $('<textarea class="field-content" cols="30" rows="10"></textarea>').val(data.content)
             ).css("display", "none");
+
+            // Date part.
+            website.jQueryUiLoading(function () {
+                $date.after(
+                    $('<input type="text" class="field-date">').val($date.find("time").attr("datetime"))
+                ).css("display", "none");
+
+                $(".field-date").datetimepicker({
+                    dateFormat: "yy-mm-dd",
+                    timeFormat: "HH:mm:00",
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
         });
 
         $(".update-article-button").click(function () {
             var $this = $(this),
                 $fieldTitle,
-                $fieldContent;
+                $fieldContent,
+                $fieldDate;
 
             if (!$this.data("state")) {
                 $this.data("state", true);
@@ -139,13 +203,15 @@ var website = {},
             } else {
                 $fieldTitle = $(".field-title");
                 $fieldContent = $(".field-content");
+                $fieldDate = $(".field-date");
 
                 socket.emit('update-article-button', {
                     urn: $article.data("urn"),
                     title: $fieldTitle.val(),
                     content: $fieldContent.val(),
-                    publishedDate: $("time").attr("datetime"),
-                    markdown: $article.data("markdown")
+                    publishedDate: $fieldDate.val(),
+                    published: $fieldPublished.prop("checked"),
+                    markdown: $fieldMarkdown.prop("checked")
                 });
 
                 $this.data("state", false);
@@ -160,26 +226,48 @@ var website = {},
     };
 
     privates.listeningUpdateArticle = function () {
-        var $title = $("h1"),
-            $content = $(".text");
+        var $title = $(".content h1"),
+            $content = $(".text"),
+            $article = $("article.article"),
+            $date = $(".published a");
 
         socket.on('update-article-button-broadcast', function (data) {
-            var $fieldTitle = $(".field-title"),
-                $fieldContent = $(".field-content");
-                
+            var date = new Date(data.publishedDate),
+                formatDate = website.module.extendedFormatDate(date, data.variation.dates),
+                month = date.getMonth() + 1,
+                newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
+                newDateHref;
+
+            month = ((month.toString().length > 1) ? '' : '0') + month;
+            newDateHref = data.variation.listDate.linkMonth.href.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, month);
+
             $title.html(data.title);
             $content.html(data.content);
+            $date.find("time").html(formatDate.string);
+            $date.find("time").attr("datetime", formatDate.time);
+            $date.attr("title", newDateTitle);
+            $date.attr("href", newDateHref);
+            $article.attr("data-markdown", data.markdown);
         });
 
         socket.on('update-article-button', function () {
             var $fieldTitle = $(".field-title"),
-                $fieldContent = $(".field-content");
+                $fieldContent = $(".field-content"),
+                $fieldDate = $(".field-date"),
+                $fieldMarkdown = $(".field-markdown");
 
             $title.css("display", "");
             $content.css("display", "");
+            $date.css("display", "");
             $fieldTitle.remove();
+            $fieldDate.remove();
             $fieldContent.remove();
+            $fieldMarkdown.remove();
         });
+    };
+
+    privates.initDisqus = function () {
+
     };
 
     publics.init = function () {
@@ -188,6 +276,8 @@ var website = {},
         privates.updateArticle();
         privates.listeningUpdateArticle();
         //privates.uploadImage();
+
+        website.disqusLoading();
     };
 }(website.article = {}));
 
@@ -266,6 +356,6 @@ $(function () {
     if (website[specific] !== undefined) {
         website[specific].init();
     } else {
-        console.log('No JavaScript for ' + specific);
+        //console.log('No JavaScript for ' + specific);
     }
 });
