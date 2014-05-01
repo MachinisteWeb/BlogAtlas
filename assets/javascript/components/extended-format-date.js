@@ -27,7 +27,7 @@ website.module.extendedFormatDate = function (date, variation) {
 		minute;
 
 	format.time = 
-		fullYear + "-" + month + "-" + day + " " + hour + ":" + minute + ":00";
+		fullYear + "-" + month + "-" + day + "T" + hour + ":" + minute + ":00.000";
 
 	return format;
 };

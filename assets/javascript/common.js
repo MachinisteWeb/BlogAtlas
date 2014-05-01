@@ -50,6 +50,28 @@ var website = website || {},
         });
     };
 
+     publics.prettifyLoad = function () {
+        prettyPrint();
+        if (!Modernizr.touch) {
+            var $sh = $(".prettyprint").css("overflow","hidden");
+            $sh.mousedown(function (e) {
+                $.data(this, "draggable", true);
+                $.data(this, "offset", e.pageX);
+            }).mouseup(function () {
+                $.data(this, "draggable", false);
+                $.data(this, "offset", 0);
+            }).mouseleave(function () {
+                $.data(this, "draggable", false);
+                $.data(this, "offset", 0);
+            }).mousemove(function (e) {
+                if ($(this).data("draggable")) {
+                    $(this).scrollLeft(parseInt($(this).scrollLeft() + ($(this).data("offset") - e.pageX), 10));
+                    $.data(this, "offset", e.pageX);
+                }
+            }).data("draggable", false).data("offset", 0);
+        }
+    };
+
     publics.disqusLoading = function () {
         var disqus_shortname = 'lesieur',
             disqus_identifier = $("article.article").data("urn"),
@@ -71,24 +93,7 @@ var website = website || {},
     };
 
     publics.init = function () {
-        if (!Modernizr.touch) {
-            var $sh = $(".prettyprint").css("overflow","hidden");
-            $sh.mousedown(function (e) {
-                $.data(this, "draggable", true);
-                $.data(this, "offset", e.pageX);
-            }).mouseup(function () {
-                $.data(this, "draggable", false);
-                $.data(this, "offset", 0);
-            }).mouseleave(function () {
-                $.data(this, "draggable", false);
-                $.data(this, "offset", 0);
-            }).mousemove(function (e) {
-                if ($(this).data("draggable")) {
-                    $(this).scrollLeft(parseInt($(this).scrollLeft() + ($(this).data("offset") - e.pageX), 10));
-                    $.data(this, "offset", e.pageX);
-                }
-            }).data("draggable", false).data("offset", 0);
-        }
+
     };
 }(website));
 
@@ -132,6 +137,7 @@ var website = website || {},
             });    
          });
     };
+
     privates.createArticle = function () {
         $(".create-article-button").click(function () {
             var $this = $(this);
@@ -159,13 +165,13 @@ var website = website || {},
             ).css("display", "none");
 
             // Published part.
-            $content.after('<input type="checkbox" class="field-published"> Visible ?');
-            $fieldPublished = $(".field-published");
+            $content.after('<span class="field-published"><input type="checkbox"> Visible ?</span>');
+            $fieldPublished = $(".field-published input");
             $fieldPublished.attr('checked', ($article.attr("data-published") === "true"));
 
             // Markdown part.
-            $content.after('<input type="checkbox" class="field-markdown"> Markdown ?');
-            $fieldMarkdown = $(".field-markdown");
+            $content.after('<span class="field-markdown"><input type="checkbox"> Markdown ?</span>');
+            $fieldMarkdown = $(".field-markdown input");
             $fieldMarkdown.attr('checked', ($article.attr("data-markdown") === "true"));
 
             // Text part.
@@ -176,7 +182,7 @@ var website = website || {},
             // Date part.
             website.jQueryUiLoading(function () {
                 $date.after(
-                    $('<input type="text" class="field-date">').val($date.find("time").attr("datetime"))
+                    $('<input type="text" class="field-date">').val($date.find("time").attr("datetime").replace("T"," ").replace(".000", ""))
                 ).css("display", "none");
 
                 $(".field-date").datetimepicker({
@@ -227,20 +233,25 @@ var website = website || {},
 
     privates.listeningUpdateArticle = function () {
         var $title = $(".content h1"),
+            $titlePage = $("title"),
             $content = $(".text"),
             $article = $("article.article"),
             $date = $(".published a");
 
         socket.on('update-article-button-broadcast', function (data) {
-            var date = new Date(data.publishedDate),
+            var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+01:00"),
                 formatDate = website.module.extendedFormatDate(date, data.variation.dates),
                 month = date.getMonth() + 1,
                 newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
                 newDateHref;
 
+
+            console.log(date);
+
             month = ((month.toString().length > 1) ? '' : '0') + month;
             newDateHref = data.variation.listDate.linkMonth.href.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, month);
 
+            $titlePage.text(data.title.replace(/<\/?span>/g, ""));
             $title.html(data.title);
             $content.html(data.content);
             $date.find("time").html(formatDate.string);
@@ -248,20 +259,24 @@ var website = website || {},
             $date.attr("title", newDateTitle);
             $date.attr("href", newDateHref);
             $article.attr("data-markdown", data.markdown);
+
+            website.prettifyLoad();
         });
 
         socket.on('update-article-button', function () {
             var $fieldTitle = $(".field-title"),
                 $fieldContent = $(".field-content"),
                 $fieldDate = $(".field-date"),
-                $fieldMarkdown = $(".field-markdown");
+                $fieldMarkdown = $(".field-markdown"),
+                $fieldPublished = $(".field-published");
 
             $title.css("display", "");
             $content.css("display", "");
             $date.css("display", "");
             $fieldTitle.remove();
-            $fieldDate.remove();
             $fieldContent.remove();
+            $fieldDate.remove();
+            $fieldPublished.remove();
             $fieldMarkdown.remove();
         });
     };
