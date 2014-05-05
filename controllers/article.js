@@ -46,9 +46,6 @@ website.article = {};
 
 				variation.backend.article = oneArticle;
 
-				console.log(variation.urlRewriting);
-				console.log(variation.pageParameters);
-
 				variation.pageParameters.statusCode = 200;
 
 				if (!session.account && !oneArticle.others.published) {
@@ -110,7 +107,10 @@ website.article = {};
 					}
 
 					socket.emit('update-article-button');
-					io.sockets.emit('update-article-button-broadcast', {
+					socket.broadcast.emit('update-article-button-others', {
+						published: data.published
+					});
+					io.sockets.emit('update-article-button-all', {
 						title: data.title,
 						content: data.content,
 						markdown: data.markdown,
@@ -136,6 +136,10 @@ website.article = {};
 					_id: mongoose.Types.ObjectId(),
 					title: data.title,
 					urn: data.urn,
+					'dates.updated': [],
+					'others.markdown': false,
+					'cache.comment.number': 0,
+					'others.published': false
 				});
 
 				if (session.account) {
@@ -145,6 +149,18 @@ website.article = {};
 						}
 
 						io.sockets.emit('create-article-button', data);
+					});
+				}
+			});
+
+			socket.on('delete-article-button', function (data) {
+				if (session.account) {
+					Article.find({ urn: data.urn }).remove(function (error, documents) {
+						if (error) { 
+							throw error;
+						}
+
+						io.sockets.emit('delete-article-button', data);
 					});
 				}
 			});

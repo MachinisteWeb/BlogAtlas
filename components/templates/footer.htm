@@ -15,9 +15,14 @@
 		<% } %>
 	</code>-->
 
-	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700">
 
+	<script type="text/javascript" src="/socket.io/socket.io.v0.9.16.js"></script>
+	<% if (webconfig._minified) { %>
+	<script type="text/javascript" src="javascript/framework.min.js"></script>
+	<% } else { %>
+	<script type="text/javascript" src="javascript/modernizr.js"></script>
 	<script type="text/javascript" src="javascript/jquery.js"></script>
-
 	<script type="text/javascript" src="javascript/prettify.js"></script>
 	<script type="text/javascript" src="javascript/prettify/run_prettify.js"></script>
+	<% } %>

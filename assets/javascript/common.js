@@ -21,6 +21,7 @@
 
 var website = website || {},
     $window = $(window),
+    $html = $("html"),
     $body = $("body"),
     $base = $("base");
 
@@ -32,15 +33,17 @@ var website = website || {},
 (function (publics) {
     "use strict";
 
+    publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
+
     var privates = {};
 
     publics.jQueryUiLoading = function (callback) {
         Modernizr.load({
-            test: $('script[src="javascript/jquery/jquery-ui.js"]').length === 0,
+            test: $('script[src="javascript/jquery/jquery-ui' + publics.minified + '.js"]').length === 0,
             yep: [
-                'stylesheets/jquery/jquery-ui.css',
-                'javascript/jquery/jquery-ui.js',
-                'javascript/jquery/jquery.timepicker.js'
+                'stylesheets/jquery/jquery-ui' + publics.minified + '.css',
+                'javascript/jquery/jquery-ui' + publics.minified + '.js',
+                'javascript/jquery/jquery.timepicker' + publics.minified + '.js'
             ],
             complete: function () {
                 if (typeof callback === 'function') {
@@ -77,19 +80,21 @@ var website = website || {},
             disqus_identifier = $("article.article").data("urn"),
             disqus_url = $(".permalink span").text().split("?")[0];
 
-        Modernizr.load({
-            test: $('script[src="//' + disqus_shortname + '.disqus.com/embed.js"]').length === 0,
-            yep: '//' + disqus_shortname + '.disqus.com/embed.js',
-            complete: function () {
-                DISQUS.reset({
-                  reload: true,
-                  config: function () {
-                    this.page.identifier = disqus_identifier;
-                    this.page.url = disqus_url;
-                  }
-                });
-            }
-        });
+        if ($("article.article").length !== 0) {   
+            Modernizr.load({
+                test: $('script[src="//' + disqus_shortname + '.disqus.com/embed.js"]').length === 0,
+                yep: '//' + disqus_shortname + '.disqus.com/embed.js',
+                complete: function () {
+                    DISQUS.reset({
+                      reload: true,
+                      config: function () {
+                        this.page.identifier = disqus_identifier;
+                        this.page.url = disqus_url;
+                      }
+                    });
+                }
+            });
+        }
     };
 
     publics.init = function () {
@@ -149,6 +154,24 @@ var website = website || {},
         });
     };
 
+    privates.deleteArticle = function () {
+        var deleteButton = $(".delete-article-button");
+
+        deleteButton.click(function () {
+
+            var prompt = window.prompt(deleteButton.data("prompt"), "");
+
+            socket.emit('delete-article-button', {
+                urn: $("article.article").data("urn")
+            });
+        });
+    };
+
+    privates.listeningDeleteArticle = function () {
+        socket.on('delete-article-button', function (data) {
+            location.href = $base.attr("href") + data.urn + "/";
+        });
+    };
 
     privates.updateArticle = function () {
         var $title = $(".content h1"),
@@ -238,29 +261,44 @@ var website = website || {},
             $article = $("article.article"),
             $date = $(".published a");
 
-        socket.on('update-article-button-broadcast', function (data) {
+        socket.on('update-article-button-all', function (data) {
             var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+01:00"),
                 formatDate = website.module.extendedFormatDate(date, data.variation.dates),
                 month = date.getMonth() + 1,
                 newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
                 newDateHref;
 
-
-            console.log(date);
-
             month = ((month.toString().length > 1) ? '' : '0') + month;
             newDateHref = data.variation.listDate.linkMonth.href.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, month);
 
-            $titlePage.text(data.title.replace(/<\/?span>/g, ""));
-            $title.html(data.title);
-            $content.html(data.content);
+            if ($article.length !== 0) {
+                $titlePage.text(data.title.replace(/<\/?span>/g, ""));
+                $title.html(data.title);
+                $content.html(data.content);
+            }
+
             $date.find("time").html(formatDate.string);
             $date.find("time").attr("datetime", formatDate.time);
             $date.attr("title", newDateTitle);
             $date.attr("href", newDateHref);
             $article.attr("data-markdown", data.markdown);
+            $article.attr("data-published", data.published);
 
             website.prettifyLoad();
+        });
+
+        socket.on('update-article-button-others', function (data) {
+            var $article = $("article.article");
+
+            if ($article.length !== 0) {
+                if (data.published.toString() !== $article.attr("data-published").toString()) {
+                    location.reload();
+                }
+            } else {
+                if (data.published) {
+                    location.reload();
+                }
+            }
         });
 
         socket.on('update-article-button', function () {
@@ -281,15 +319,13 @@ var website = website || {},
         });
     };
 
-    privates.initDisqus = function () {
-
-    };
-
     publics.init = function () {
         privates.createArticle();
         privates.listeningCreateArticle();
         privates.updateArticle();
         privates.listeningUpdateArticle();
+        privates.deleteArticle();
+        privates.listeningDeleteArticle();
         //privates.uploadImage();
 
         website.disqusLoading();

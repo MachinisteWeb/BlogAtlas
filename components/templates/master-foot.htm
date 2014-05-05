@@ -1,5 +1,8 @@
+		<% if (webconfig._minified) { %>
+		<script type="text/javascript" src="javascript/common.min.js"></script>
+		<% } else { %>
 		<script type="text/javascript" src="javascript/components/extended-format-date.js"></script>		
-
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<% } %>
 	</body>
 </html>

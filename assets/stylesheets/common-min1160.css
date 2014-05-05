@@ -1,0 +1,83 @@
+@media (min-width: 1160px) {
+/*------------------------------------*\
+    $SUMMARY
+\*------------------------------------*/
+
+/**
+ * DESKTOP+ DESIGN..........Use for placement of item on mobiles and higher.
+ *** Markup
+ *** Component
+ *** Layout
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $DESKTOP+ STYLES
+\*------------------------------------*/
+
+
+
+/***********/
+/* $Markup */
+/***********/
+
+
+
+/**************/
+/* $Component */
+/**************/
+
+body {
+	padding: 48px 8px;
+}
+
+.header {
+	padding-top: 48px;
+}
+
+.breadcrumb {
+	top: 104px;
+}
+
+.about-author,
+.about-site {
+	margin-top: 120px;	
+}
+
+.main {
+	right: 16px;
+	width: auto;
+}
+
+.main li {
+	display: block;
+	padding-right: 0;	
+}
+
+.wrap-content {
+	width: 968px;
+	margin: 0 auto;
+}
+
+.wrap-content > .comment,
+.wrap-content > .content {
+	width: 560px;
+}
+
+.footer {
+	padding-bottom: 48px;
+}
+
+
+
+/***********/
+/* $Layout */
+/***********/
+
+
+
+
+}

@@ -12,10 +12,10 @@
 		}, {
 			"content": "Allez au menu de navigation",
 			"title": "Allez au menu de navigation",
-			"href": "#header"
+			"href": "#menu"
 		}, {
-			"content": "Allez au menu annexe",
-			"title": "Allez au menu annexe",
+			"content": "Allez au crédits",
+			"title": "Allez au au crédits",
 			"href": "#footer"
 		}]
 	},

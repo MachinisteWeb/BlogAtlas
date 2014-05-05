@@ -1,4 +1,3 @@
-		<script type="text/javascript" src="javascript/modernizr.js"></script>
 	</head>
 	<body class="<%= specific.classLayout %>">
 		<noscript>
@@ -14,7 +13,7 @@
 			<ul>
 				<% for (var i = 0; i < common.skipLink.items.length; i++) { %>				
 				<li>
-					<a href="<%= common.skipLink.items[i].href %>" title="<%= common.skipLink.items[i].title %>"><%= common.skipLink.items[i].content %></a>
+					<a href="<%= urlPath %><%= common.skipLink.items[i].href %>" title="<%= common.skipLink.items[i].title %>"><%= common.skipLink.items[i].content %></a>
 				</li>
 				<% } %>								
 			</ul>

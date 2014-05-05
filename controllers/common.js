@@ -49,9 +49,15 @@ var website = {};
 			connect = NA.modules.connect,
 			cookie = NA.modules.cookie;
 
-		io
-			.set('transports', ['xhr-polling'])
-			.set('authorization', function (data, accept) {
+		io.enable('browser client minification');
+		if (NA.webconfig._ioGzip) {
+			io.enable('browser client gzip');
+		}
+		io.set('log level', 1);   
+		io.enable('browser client cache');
+		io.set('browser client expires', 86400000 * 30);
+		io.enable('browser client etag');
+		io.set('authorization', function (data, accept) {
 
             // No cookie enable.
             if (!data.headers.cookie) {

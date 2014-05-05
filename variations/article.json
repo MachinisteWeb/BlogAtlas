@@ -28,7 +28,9 @@
 	},
 	"article": {
 		"updateArticle": {
-			"button": "Modifier"
+			"button": "Modifier",
+			"delete": "Supprimer",
+			"prompt": "Oui pour confirmer"
 		}
 	}
 }

@@ -4,7 +4,7 @@
  	"commonVariation": "common.json",
  	"commonController": "common.js",
  	"controllersRelativePath": "controllers/",
- 	"pageNotFound": "/page-inexistante/?",
+ 	"pageNotFound": "/page-inexistante/",
 	"urlRewriting": {
 		"/categories/:category/": {
 			"template": "articles-by-category.htm",
@@ -68,11 +68,10 @@
 			"redirect": "/upload/",
 			"statusCode": 301
 		},
-		"/page-inexistante/?": {
+		"/page-inexistante/": {
 			"template": "error.htm",
 			"controller": "error.js",
 			"variation": "error.json",
-			"regExp": true,
 			"statusCode": 404
 		},
 		"/:urn/": {
@@ -90,6 +89,7 @@
 			"variation": "index.json"
 		}
 	},
+	"_minified": "",
 	"_needModulePath": true,
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
 	"_passwordAccountAuth": "bépo"

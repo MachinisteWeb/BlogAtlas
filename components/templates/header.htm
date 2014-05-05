@@ -1,13 +1,15 @@
 		<header id="header" class="header" role="banner">
-			<h1>
+			<% var tag = (specific.classLayout === "home") ? "h1" : "div" %>
+			<<%= tag %>>
 				<a href="<%= common.logo.href %>" title="<%= common.logo.title %>">
 					<%- common.logo.content %>
 				</a>
-			</h1>
-
+			</<%= tag %>>
 		</header>
 		
-		<nav class="main">
+		<nav class="main" id="menu">
+			<h3>Menu</h3>
+			<a class="menu" href="<%= urlPath %>#menu"></a>
 			<ul>
 				<% for (var i = 0; i < common.mainMenu.section.length; i++) { %>
 				<li class="<%= common.mainMenu.section[i].class %>">
@@ -18,7 +20,6 @@
 		</nav>
 
 		<nav class="breadcrumb">
-			<span><%= specific.breadcrumb.title %></span>
 			<ol>
 				<% for (var i = 0; i < specific.breadcrumb.items.length; i++) { %>
 				<li>

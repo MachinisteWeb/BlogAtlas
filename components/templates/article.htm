@@ -11,11 +11,12 @@
 					<form class="form-account-logout" action="" method="post">
 						<div class="submit">
 							<label><input type="button" class="update-article-button" value="<%= specific.article.updateArticle.button %>"></label>
+							<label><input data-prompt="<%= specific.article.updateArticle.prompt %>" type="button" class="delete-article-button" value="<%= specific.article.updateArticle.delete %>"></label>
 						</div>
 					</form>
 					<% } %>
 
-					<article class="article" data-urn="<%= backend.article.urn %>" <% if (backend.article.others.markdown) { %>data-markdown="true"<% } %> <% if (backend.article.others.published) { %>data-published="true"<% } %>>
+					<article class="article" data-urn="<%= backend.article.urn %>" <% if (backend.article.others.markdown) { %>data-markdown="true"<% } %> data-published="<%= (backend.article.others.published) ? "true" : "false" %>">
 						<h1><%- backend.article.title %></h1>
 						<div class="published">
 							<% var month = backend.article.dates.published.getMonth() + 1 %>
