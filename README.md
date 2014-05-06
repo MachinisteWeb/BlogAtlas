@@ -1,6 +1,6 @@
 # BlogAtlas #
 
-Version : 0.9.0 (Beta)
+Version : 0.9.1 (Beta)
 
 
 
@@ -49,4 +49,4 @@ Le site sera accessible ici :
 
 ## Exemple en ligne ##
 
-Vous pouvez voir fonctionner ce repository ê l'adresse : [http://blog.lesieur.name/](http://blog.lesieur.name/).
+Vous pouvez voir fonctionner ce repository à l'adresse : [http://blog.lesieur.name/](http://blog.lesieur.name/).
