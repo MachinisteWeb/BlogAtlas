@@ -79,6 +79,7 @@ website.article = {};
 			common = params.NA.modules.common,
 			marked = params.NA.modules.marked,
 			Article = mongoose.model('article'),
+			Category = mongoose.model('category'),
 			renderer = new marked.Renderer();
 
 		io.sockets.on('connection', function (socket) {
@@ -87,19 +88,43 @@ website.article = {};
 
 			socket.on('update-article-button', function (data) {
 				if (session.account) {
-					Article.update({ 
+
+					Article.update({
 						urn: data.urn 
 					}, { 
 						$set: {
 							title: data.title,
 							content: data.content,
+							script: data.script,
+							stylesheet: data.stylesheet,
 							'dates.published': new Date(data.publishedDate),
 							'dates.updated': [],
+							'categories': [],
 							'others.markdown': data.markdown,
 							'others.published': data.published
 						}
 					}, function (error, numberAffected, raw) {
 						if (error) { throw error; }
+
+						for (var i = 0; i < data.categories.length; i++) {
+							Category.findOne({
+								urn: data.categories[i]
+							}, function (error, document) {
+						  		if (error) {
+						  			throw error;
+						  		}
+
+								Article.update({ 
+									urn: data.urn 
+								}, { 
+									$addToSet: {
+										'categories': document._id	
+									}
+								}, function (error, numberAffected, raw) {
+									if (error) { throw error; }
+								});
+							})
+						}	
 					});
 
 					if (data.markdown) {
@@ -114,6 +139,8 @@ website.article = {};
 						title: data.title,
 						content: data.content,
 						markdown: data.markdown,
+						script: data.script,
+						stylesheet: data.stylesheet,
 						published: data.published,
 						publishedDate: data.publishedDate,
 						variation: common
@@ -124,9 +151,20 @@ website.article = {};
 			socket.on('update-article-load-content', function (data) {
 				if (session.account) {
 					website.article.oneArticle(Article, data.urn, function (oneArticle) {
-						socket.emit('update-article-load-content', {
-							content: oneArticle.content
-						});
+
+						Category
+							.find()
+							.sort({ 'urn': 1 })
+							.exec(function (error, categories) {
+								if (error) { 
+									throw error;
+								}
+
+								socket.emit('update-article-load-content', {
+									content: oneArticle.content,
+									categories: categories
+								});
+							});
 					});
 				}
 			});

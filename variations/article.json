@@ -9,8 +9,8 @@
 			"title": "Accueil",
 			"href": "./"
 		}, {
-			"content": "Cette article n'existe pas",
-			"title": "Cette article n'existe pas",
+			"content": "Cet article n'existe pas",
+			"title": "Cet article n'existe pas",
 			"href": "./%urn%/"
 		}]
 	},

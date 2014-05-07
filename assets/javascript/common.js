@@ -176,15 +176,38 @@ var website = website || {},
     privates.updateArticle = function () {
         var $title = $(".content h1"),
             $content = $(".text"),
+            $categoriesTitle = $(".categories h3"),
+            $categoriesList = $(".categories li"),
             $date = $(".published a"),
             $article = $("article.article"),
+            $script = $(".script"),
+            $stylesheet = $(".stylesheet"),
             $fieldPublished,
-            $fieldMarkdown;
+            $fieldMarkdown,
+            $select = $('<select class="field-categories">'),
+            $categorieDelete,
+            $categoriesAdd,
+            categoriesSelector = ".categories select option",
+            $categoryUl = $(".categories ul");
+
+        function deleteCategory ($item) {
+            $item.parents("li:first").remove();
+        }
 
         socket.on('update-article-load-content', function (data) {
             // Title part.
             $title.after(
                 $('<input type="text" class="field-title like-h1">').val($title.html())
+            ).css("display", "none");
+
+            // Script part.
+            $content.after(
+                $('<textarea class="field-script" cols="30" rows="10" placeholder="Script">Script</textarea>').val($script.html())
+            ).css("display", "none");
+
+            // Stylesheet part.
+            $content.after(
+                $('<textarea class="field-stylesheet" cols="30" rows="10" placeholder="Stylesheet"></textarea>').val($stylesheet.html())
             ).css("display", "none");
 
             // Published part.
@@ -199,7 +222,71 @@ var website = website || {},
 
             // Text part.
             $content.after(
-                $('<textarea class="field-content" cols="30" rows="10"></textarea>').val(data.content)
+                $('<textarea class="field-content" cols="30" rows="30"></textarea>').val(data.content)
+            ).css("display", "none");
+
+
+
+
+
+            // Categories Part
+            $select.append(
+                $('<option value="">').text("----")
+            )
+
+            for (var i = 0; i < data.categories.length; i++) {
+                $select.append(
+                    $('<option value="' + data.categories[i].urn + '">').text(data.categories[i].title)
+                )
+            }
+            $categoriesTitle.append($select);
+
+            $select.change(function () {
+                var passed = false;
+
+                $(categoriesSelector + ":selected").each(function() {
+                    var $this = $(this),
+                        passed = false,
+                        $checkCategory = $(".categories li");
+
+                    if ($this.val() !== "") {
+
+                        passed = true;
+
+                        $checkCategory.each(function (j) {
+                            if ($checkCategory.eq(j).data("urn") === $this.val())
+                            passed = false
+                        });
+
+                        if (passed) {
+                            $categoriesAdd = $('<li data-urn="' + $this.val() + '">')
+                                .html('<a href="' + $categoryUl.data("url").replace(/%urn%/g, $this.val()) + '" title="' + $categoryUl.data("title") + " " + $this.text() + '">' + $this.text() + '</a><strong> X</strong></li>');
+
+                            $categoryUl.append( $categoriesAdd );
+
+                            $categoriesAdd.find("strong").click(function () {
+                                deleteCategory($(this));
+                            });
+                        }
+
+                        $(categoriesSelector).removeAttr("selected");
+                        $(categoriesSelector + '[value=""]').attr("selected", "selected");
+                    }
+                });
+            });
+
+            $categoriesList.append(
+                $("<strong>").text(" X")
+            );
+
+            $categorieDelete = $(".categories li strong");
+
+            $categorieDelete.click(function () {
+                deleteCategory($(this));
+            });
+
+            $content.after(
+                $('<textarea class="field-content" cols="30" rows="30"></textarea>').val(data.content)
             ).css("display", "none");
 
             // Date part.
@@ -207,6 +294,8 @@ var website = website || {},
                 $date.after(
                     $('<input type="text" class="field-date">').val($date.find("time").attr("datetime").replace("T"," ").replace(".000", ""))
                 ).css("display", "none");
+
+                $categoryUl.sortable();
 
                 $(".field-date").datetimepicker({
                     dateFormat: "yy-mm-dd",
@@ -221,7 +310,11 @@ var website = website || {},
             var $this = $(this),
                 $fieldTitle,
                 $fieldContent,
-                $fieldDate;
+                $fieldDate,
+                $fieldScript,
+                $fieldStylesheet,
+                fieldsCategory = [],
+                $categories = $(".categories li");
 
             if (!$this.data("state")) {
                 $this.data("state", true);
@@ -233,12 +326,21 @@ var website = website || {},
                 $fieldTitle = $(".field-title");
                 $fieldContent = $(".field-content");
                 $fieldDate = $(".field-date");
+                $fieldScript = $(".field-script");
+                $fieldStylesheet = $(".field-stylesheet");
+
+                $categories.each(function (i) {
+                    fieldsCategory.push($categories.eq(i).data("urn"));
+                });
 
                 socket.emit('update-article-button', {
                     urn: $article.data("urn"),
                     title: $fieldTitle.val(),
                     content: $fieldContent.val(),
+                    script: $fieldScript.val(),
+                    stylesheet: $fieldStylesheet.val(),
                     publishedDate: $fieldDate.val(),
+                    categories: fieldsCategory,
                     published: $fieldPublished.prop("checked"),
                     markdown: $fieldMarkdown.prop("checked")
                 });
@@ -258,6 +360,8 @@ var website = website || {},
         var $title = $(".content h1"),
             $titlePage = $("title"),
             $content = $(".text"),
+            $script = $(".script"),
+            $stylesheet = $(".stylesheet"),
             $article = $("article.article"),
             $date = $(".published a");
 
@@ -283,6 +387,15 @@ var website = website || {},
             $date.attr("href", newDateHref);
             $article.attr("data-markdown", data.markdown);
             $article.attr("data-published", data.published);
+            $stylesheet.html(data.stylesheet);
+            $script.html(data.script);
+
+            if (data.script) {
+                $script.after(
+                    $('<script class="script" type="text/javascript">').html(data.script)
+                );
+                $script.remove();
+            }
 
             website.prettifyLoad();
         });
@@ -306,7 +419,11 @@ var website = website || {},
                 $fieldContent = $(".field-content"),
                 $fieldDate = $(".field-date"),
                 $fieldMarkdown = $(".field-markdown"),
-                $fieldPublished = $(".field-published");
+                $fieldPublished = $(".field-published"),
+                $fieldScript = $(".field-script"),
+                $fieldStylesheet = $(".field-stylesheet"),
+                $categoriesTitle = $(".field-categories"),
+                $categoriesList = $(".categories li strong");
 
             $title.css("display", "");
             $content.css("display", "");
@@ -315,6 +432,10 @@ var website = website || {},
             $fieldContent.remove();
             $fieldDate.remove();
             $fieldPublished.remove();
+            $fieldScript.remove();
+            $fieldStylesheet.remove();
+            $categoriesTitle.remove();
+            $categoriesList.remove();
             $fieldMarkdown.remove();
         });
     };

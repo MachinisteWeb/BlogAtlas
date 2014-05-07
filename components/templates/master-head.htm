@@ -24,4 +24,8 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/common-min1160.css" media="screen and (min-width: 1160px)" />
 		<% } %>
 
+		<% if ((typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) || session.account) { %>
+			<style class="stylesheet" type="text/css"><%- (typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) ? backend.article.stylesheet : "" %></style>
+		<% } %>
+
 		<!-- <link rel="stylesheet" type="text/css" media="print" href="stylesheets/common-print.css" /> -->

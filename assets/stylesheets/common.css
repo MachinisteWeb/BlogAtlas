@@ -208,6 +208,7 @@ h6 {
 	margin: 24px 0 0;
 }
 
+img,
 p, 
 blockquote,
 ul, 
@@ -410,6 +411,10 @@ article .comments a:hover:before,
 article .comments h4,
 .articles .comments h4 {
 	display: none;
+}
+
+.categories strong {
+	cursor: pointer;
 }
 
 .correct-practice, 
