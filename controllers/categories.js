@@ -12,9 +12,12 @@ website.categories = {};
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
 			mongoose = params.NA.modules.mongoose,
-			Category = mongoose.model('category');
+			Category = mongoose.model('category'),
+			sessionID = params.request.sessionID,
+			session = params.request.session;
 
 		variation.backend = {};
+		variation.session = session;
 
 		privates.treeOfCategories(Category, function (treeOfCategories) {
 

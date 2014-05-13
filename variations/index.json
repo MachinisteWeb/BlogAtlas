@@ -9,5 +9,9 @@
 			"title": "Accueil",
 			"href": "./"
 		}]
+	},
+	"articles": {
+		"title": "Liste des derniers articles",
+		"noArticle": "Aucun article."
 	}
 }

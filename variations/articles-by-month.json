@@ -21,5 +21,9 @@
 			"title": "Rien à cette date",
 			"href": "./archives/%year%/%month%/"
 		}]
+	},
+	"articles": {
+		"title": "Tous les articles pour %month% %year%",
+		"noArticle": "Aucun article ce mois."
 	}
 }

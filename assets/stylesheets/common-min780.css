@@ -132,6 +132,8 @@ header h1 {
 	float: right;
 }
 
+.articles-by-month .archives,
+.articles-by-year .archives,
 .wrap-content > .categories,
 .summary,
 .about-author,
@@ -140,16 +142,24 @@ header h1 {
 	width: 320px;
 }
 
+.articles-by-month .archives,
+.articles-by-year .archives,
+.articles-by-category .categories,
 .about-author,
 .about-site {
 	margin-top: 72px;	
 }
 
+.articles-by-month .archives,
+.articles-by-year .archives,
+.articles-by-category .categories,
 .about-site,
 .wrap-content > .summary {
-	margin-bottom: 80px;	
+	margin-bottom: 96px;	
 }
 
+.articles-by-month .archives,
+.articles-by-year .archives,
 .wrap-content > .summary,
 .wrap-content > .categories {
 	clear: left;

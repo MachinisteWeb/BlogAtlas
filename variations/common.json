@@ -1,6 +1,6 @@
 {
 	"placename": "Annecy, Haute-Savoie, France",
-	"indexFollow": "noindex, nofollow",
+	"indexFollow": "index, follow",
 	"javascriptDisable": "Votre JavaScript est désactivé aussi toutes les fonctionalités de ce site ne seront pas disponibles.",
 	"permalink": "Permalien :",
 	"skipLink": {
@@ -100,7 +100,7 @@
 		"commentSentence": "Aller aux commentaires"
 	},
 	"categories": {
-		"title": "Liste de toutes les categories",
+		"title": "Toutes les categories",
 		"title2": "Catégorisé dans",
 		"link": {
 			"title": "Tous les articles de la categorie",
@@ -111,8 +111,7 @@
 		"title": "Dans cette article"
 	},
 	"archives": {
-		"title": "Liste de toutes les dates",
-		"noArticleForDate": "Aucun article pour cette période.",
+		"title": "Toutes les dates",
 		"startingYear": 2012,
 		"startingMonth": 11,
 		"linkYear": {
@@ -125,8 +124,6 @@
 		}
 	},
 	"articles": {
-		"title": "Liste de tous les articles",
-		"noArticleForCategory": "Aucun article pour cette catégorie.",
 		"updateArticle": "Modifier l'article",
 		"uploadAvatar": {
 			"button": "Uploader Avatar",

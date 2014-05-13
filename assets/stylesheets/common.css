@@ -244,6 +244,10 @@ textarea {
 	margin: 16px 0 0 0;
 }
 
+.articles-by-category .categories h2 {
+	
+}
+
 header div,
 .header h1 {
 	margin-top: 0;
@@ -338,7 +342,10 @@ header div,
 }
 
 @media (max-width: 779px) {
-	.home .content section:first-child > :first-child {
+	.home .content section:first-child > :first-child,
+	.articles-by-year .content section:first-child > :first-child,
+	.articles-by-month .content section:first-child > :first-child,
+	.articles-by-category .content section:first-child > :first-child {
 		margin-top: 32px;
 	}
 }
@@ -599,6 +606,7 @@ li.L9 {
 
 .summary ul li {
 	font-size: 16px;
+	margin-top: 4px;
 }
 
 .summary ul li > ul li {
@@ -628,4 +636,88 @@ li.L9 {
 /***********/
 
 
+.articles-by-year .archives ul,
+.articles-by-month .archives ul,
+.articles-by-category .categories ul {
+	list-style-type: circle;
+}
 
+.articles-by-year .archives h1,
+.articles-by-month .archives h1,
+.articles-by-category .categories h1 {
+	font-size: 21px;
+	font-size: 2.1rem;
+}
+
+.articles-by-year .archives h2,
+.articles-by-month .archives h2,
+.articles-by-category .categories h2 {
+	font-size: 16px;
+	font-size: 1.6rem;
+}
+
+.articles-by-year .archives h3,
+.articles-by-month .archives h3,
+.articles-by-category .categories h3,
+.articles-by-category .categories h3 {
+	font-size: 15px;
+	font-size: 1.5rem;
+}
+
+.articles-by-category .categories h4 {
+	font-size: 14px;
+	font-size: 1.4rem;
+}
+
+.articles-by-year .archives ul,
+.articles-by-year .archives h2,
+.articles-by-year .archives h3,
+.articles-by-year .archives h4,
+.articles-by-month .archives ul,
+.articles-by-month .archives h2,
+.articles-by-month .archives h3,
+.articles-by-month .archives h4,
+.articles-by-category .categories ul,
+.articles-by-category .categories h2,
+.articles-by-category .categories h3,
+.articles-by-category .categories h4 {
+	margin-top: 0;
+}
+
+.articles-by-year .archives li,
+.articles-by-month .archives li,
+.articles-by-category .categories li {
+	margin-top: 4px;
+}
+
+.articles-by-year .archives li,
+.articles-by-month .archives li {
+	display: inline-block;
+}
+
+.articles-by-year .archives ul ul li a:after,
+.articles-by-month .archives ul ul li a:after {
+	content: "/";
+	display: inline-block;
+	margin-left: 6px;
+	margin-right: 4px;
+}
+
+.articles-by-year .archives ul ul li:last-child a:after,
+.articles-by-month .archives ul ul li:last-child a:after {
+	content: "";
+}
+
+.articles-by-year .archives > :nth-child(2),
+.articles-by-month .archives > :nth-child(2),
+.articles-by-category .categories > :nth-child(2) {
+	margin-top: 16px;
+}
+
+.articles-by-month .archives ul ul,
+.articles-by-year .archives ul ul {
+	padding-left: 24px;	
+}
+.articles-by-category .categories ul ul {
+	padding-left: 16px;
+}

@@ -49,12 +49,14 @@ var website = {};
 
 				    	//console.log(data);
 
-				    	var interestingPart = data.match(/\"counts\":\[(.+)\]/g)[0],
-							json = JSON.parse("{" + interestingPart + "}");
+				    	var interestingPart = data.match(/\"counts\":\[(.+)\]/g),
+				    		json;
 
-				        //console.log(json);
-
-				        socket.emit('update-comment-number', json);
+				    	if (interestingPart && interestingPart[0]) {
+							json = JSON.parse("{" + interestingPart[0] + "}");
+				        	//console.log(json);
+				        	socket.emit('update-comment-number', json);
+				    	}
 				    });
 				});
 

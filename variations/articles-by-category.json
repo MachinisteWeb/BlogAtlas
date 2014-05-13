@@ -17,5 +17,10 @@
 			"title": "Cette catégorie n'existe pas",
 			"href": "./categories/%urn%/"
 		}]
+	},
+	"articles": {
+		"title": "Tous les articles pour %title%",
+		"titleNoCategory": "Cette catégorie n'existe pas",
+		"noArticle": "Aucun article pour cette catégorie."
 	}
 }

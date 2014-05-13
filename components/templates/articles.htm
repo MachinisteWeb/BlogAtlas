@@ -1,5 +1,5 @@
 				<section class="articles">
-					<h1><%- common.articles.title %></h1>
+					<h1><%- specific.articles.title %></h1>
 
 					<% if (typeof backend.articles !== 'undefined') { %>
 					<% if (backend.articles.length > 0) { %>
@@ -41,9 +41,9 @@
 								<% } %>
 							</ul>
 						<% } else { %>
-							<div class="no-article"><%- common.archives.noArticleForDate %></div>
+							<p class="no-article"><%- specific.articles.noArticle %></p>
 						<% } %>
 					<% } else { %>
-						<div class="no-article"><%- common.articles.noArticleForCategory %></div>
+						<p class="no-article"><%- specific.articles.noArticle %></p>
 					<% } %>
 				</section>

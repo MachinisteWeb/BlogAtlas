@@ -40,6 +40,7 @@ website.articlesByYear = {};
 				variation.backend.articles = listOfArticles;
 
 				variation.specific.titlePage = variation.specific.titlePage.replace(/%year%/g, variation.params.year);
+				variation.specific.articles.title = variation.specific.articles.title.replace(/%year%/g, variation.params.year);
 				variation.specific.breadcrumb.items[2].content = variation.params.year;
 				variation.specific.breadcrumb.items[2].title = variation.params.year;
 				variation.specific.breadcrumb.items[2].href = variation.specific.breadcrumb.items[2].href.replace(/%year%/g, variation.params.year);

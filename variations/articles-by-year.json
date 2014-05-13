@@ -17,5 +17,9 @@
 			"title": "Rien à cette date",
 			"href": "./archives/%year%/"
 		}]
+	},
+	"articles": {
+		"title": "Tous les articles pour %year%",
+		"noArticle": "Aucun article cette année."
 	}
 }
