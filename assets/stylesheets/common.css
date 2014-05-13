@@ -312,6 +312,10 @@ header div,
 /* $Component */
 /**************/
 
+.comments ins {
+	text-decoration: none;
+}
+
 .engine {
 	margin-top: 8px;
 }
@@ -584,6 +588,44 @@ li.L9 {
 }
 
 
+.summary ul  {
+	margin-top: 0;
+	list-style-type: circle;
+}
+
+.summary > ul:nth-child(2)  {
+	margin-top: 16px;
+}
+
+.summary ul li {
+	font-size: 16px;
+}
+
+.summary ul li > ul li {
+	font-size: 15px;
+}
+
+.summary ul li > ul li > ul li {
+	font-size: 14px;
+}
+
+.summary ul li > ul li  > ul li > ul li {
+	font-size: 13px;
+}
+
+
+.summary ul li > ul li  > ul li > ul li > ul li {
+	font-size: 12px;
+}
+
+.summary ul ul {
+	padding-left: 16px;
+}
+
+
 /***********/
 /* $Layout */
 /***********/
+
+
+

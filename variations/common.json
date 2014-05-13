@@ -95,8 +95,9 @@
 	},
 	"comments": {
 		"title": "Nombre de commentaires",
-		"commentSimple": "commentaire",
-		"commentMultiple": "commentaires"
+		"commentSimple": "commentaire<ins data-ins=\"s\"></ins>",
+		"commentMultiple": "commentaire<ins data-ins=\"s\">s</ins>",
+		"commentSentence": "Aller aux commentaires"
 	},
 	"categories": {
 		"title": "Liste de toutes les categories",
@@ -105,6 +106,9 @@
 			"title": "Tous les articles de la categorie",
 			"href": "./categories/%urn%/"
 		}
+	},
+	"summary": {
+		"title": "Dans cette article"
 	},
 	"archives": {
 		"title": "Liste de toutes les dates",

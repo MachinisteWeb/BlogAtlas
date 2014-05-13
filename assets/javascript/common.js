@@ -33,9 +33,10 @@ var website = website || {},
 (function (publics) {
     "use strict";
 
-    publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
+    var privates = {},
+        socket = io.connect();
 
-    var privates = {};
+    publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
 
     publics.jQueryUiLoading = function (callback) {
         Modernizr.load({
@@ -97,8 +98,43 @@ var website = website || {},
         }
     };
 
-    publics.init = function () {
+    publics.disqusNumberLoading = function () {
+        var add = "&1=",
+            chaine = "/count-data.js",
+            $listOfArticles = $("a[data-disqus-identifier]"),
+            options;
 
+        if ($listOfArticles.length > 0) {
+            $listOfArticles.each(function () {
+                chaine = chaine + add + $(this).data("disqus-identifier")
+            });
+                
+            options = {
+                host: 'lesieur.disqus.com',
+                path: chaine.replace(/^\/count-data.js&/g,"/count-data.js?") + "&random=" + (Math.random() * 10000)
+            }
+
+            //console.log('http://' + options.host + chaine.replace(/^\/count-data.js&/g,"/count-data.js?"));
+
+            socket.emit('update-comment-number', options);
+
+            socket.on('update-comment-number', function (data) {
+                for (var i = 0; i < data.counts.length; i++) {
+                    $("a[data-disqus-identifier=" + data.counts[i].id + "]").each(function () {
+                        $(this).find("span").text(data.counts[i].comments);
+                        if (data.counts[i].comments > 1) {
+                            $(this).find("ins").text($(this).find("ins").data("ins"));
+                        } else {
+                            $(this).find("ins").text("");
+                        }
+                    });
+                }
+            });
+        }
+    };
+
+    publics.init = function () {
+        publics.disqusNumberLoading();
     };
 }(website));
 
@@ -285,10 +321,6 @@ var website = website || {},
                 deleteCategory($(this));
             });
 
-            $content.after(
-                $('<textarea class="field-content" cols="30" rows="30"></textarea>').val(data.content)
-            ).css("display", "none");
-
             // Date part.
             website.jQueryUiLoading(function () {
                 $date.after(
@@ -440,6 +472,88 @@ var website = website || {},
         });
     };
 
+    privates.treeOfHeaders = function (elements, level) {
+        var groups = [],
+            j = -1;
+
+        function nextDepth() {
+            if (typeof groups[j] !== 'undefined' &&
+                typeof groups[j].headers !== 'undefined') 
+            {
+                groups[j].headers = privates.treeOfHeaders(groups[j].headers, level + 1);
+            }
+        }
+
+        for (var i = 0; i < elements.length; i++) {
+            
+            if (elements[i][0].nodeName === "H" + level) {
+
+                nextDepth();
+
+                // Passage à l'élément suivant.
+                j++;
+
+                if (typeof groups[j] === 'undefined') {
+
+                    groups[j] = {};
+                }
+
+                groups[j].header = elements[i];                    
+
+            }
+
+            if (typeof groups[j] !== 'undefined' &&
+                elements[i][0].nodeName !== "H" + level) 
+            {
+
+                if (typeof groups[j].headers === 'undefined') {
+                    groups[j].headers = [];
+                }
+
+                groups[j].headers.push(elements[i]);
+            }
+        }
+
+        nextDepth();
+
+        return groups;
+    };
+
+    privates.constructSummary = function (headers, $appendTo) {
+        var $ul, $li, $a;
+
+        for (var i = 0; i < headers.length; i++) {
+            $a = $('<a>');
+            $li = $('<li>');
+            $ul = $('<ul>');
+
+            $a.text(headers[i].header.text());
+            $a.attr("title", headers[i].header.text());
+            if (headers[i].header[0].nodeName !== "H1") {
+                $a.attr("href", $(".permalink span").text() + "#" + headers[i].header.attr("id"));
+            } else {
+                $a.attr("href", $(".permalink span").text() + "#content");
+            }
+
+            $li.append($a);
+            $ul.append($li);
+            $appendTo.append($ul);
+
+            if (headers[i].headers) {
+                privates.constructSummary(headers[i].headers, $li);
+            }
+        }
+    };
+
+    privates.summary = function () {
+        var array = [];
+        $("article h1, article h2, article h3, article h4, article h5, article h6").each(function () {
+            array.push($(this));
+        });
+    
+        privates.constructSummary(privates.treeOfHeaders(array, 1), $('.summary'));
+    };
+
     publics.init = function () {
         privates.createArticle();
         privates.listeningCreateArticle();
@@ -448,6 +562,8 @@ var website = website || {},
         privates.deleteArticle();
         privates.listeningDeleteArticle();
         //privates.uploadImage();
+
+        privates.summary();
 
         website.disqusLoading();
     };

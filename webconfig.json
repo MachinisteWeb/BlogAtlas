@@ -79,9 +79,10 @@
 			"controller": "article.js",
 			"variation": "article.json"
 		},
-		"/:urn": {
-			"redirect": "/:urn/",
-			"statusCode": 301
+		"\/((?!javascript|stylesheets|media)[^.\/]+)$": {
+			"redirect": "/$0$/",
+			"statusCode": 301,
+			"regExp": true
 		},
 		"/": {
 			"template": "index.htm",

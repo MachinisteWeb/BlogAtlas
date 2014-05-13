@@ -26,7 +26,7 @@ website.article = {};
 		/*console.log(variation.params);
 		console.log(variation.params[0]);*/
 
-		/*if (variation.params && variation.params[0]) { variation.params.urn = variation.params[0]; }*/
+		if (variation.params && variation.params[0]) { variation.params.urn = variation.params[0]; }
 
 		website.article.oneArticle(Article, variation.params.urn, function (oneArticle) {
 			var title;

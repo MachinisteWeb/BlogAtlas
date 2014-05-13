@@ -28,9 +28,7 @@
 							</time></a>
 						</div>
 						<div class="comments">
-							<a href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.article.urn) %>" title="<%- backend.article.title.replace(/<\/?span>/g, '') %>">
-								<%- backend.article.cache.comment.number %> <%- (backend.article.cache.comment.number > 1) ? common.comments.commentMultiple : common.comments.commentSimple %>
-							</a>
+							<a href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.article.urn) %>#disqus_thread" title="<%- backend.article.title.replace(/<\/?span>/g, '') %>"><%- common.comments.commentSentence %></a>
 						</div>
 						<div class="text">
 							<%- backend.article.content %>

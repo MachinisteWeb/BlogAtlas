@@ -19,6 +19,59 @@ var website = {};
 
 }(website));
 
+
+
+// Asynchrone
+(function (publics) {
+	"use strict";
+
+	var privates = {};
+
+	publics.asynchrone = function (params) {
+		var io = params.io;
+
+		io.sockets.on('connection', function (socket) {
+			var sessionID = socket.handshake.sessionID,
+				session = socket.handshake.session;
+
+			socket.on('update-comment-number', function (options) {
+				var http = require('http'),
+					request;
+
+				request = http.request(options, function (response) {
+				    var data = '';
+
+				    response.on('data', function (chunk) {
+				        data += chunk;
+				    });
+
+				    response.on('end', function () {
+
+				    	//console.log(data);
+
+				    	var interestingPart = data.match(/\"counts\":\[(.+)\]/g)[0],
+							json = JSON.parse("{" + interestingPart + "}");
+
+				        //console.log(json);
+
+				        socket.emit('update-comment-number', json);
+				    });
+				});
+
+				request.on('error', function (e) {
+				    console.log(e.message);
+				});
+
+				request.end();
+			});
+
+		});
+	};
+
+}(website));
+
+
+
 // Set configuration for this website.
 (function (publics) {
 	"use strict";
@@ -119,6 +172,7 @@ var website = {};
 		params.io = io;
 		params.NA = NA;
 
+		website.asynchrone(params);
 		require('./article').asynchrone(params);
 		require('./login').asynchrone(params);
 	};
@@ -164,6 +218,7 @@ var website = {};
 	};
 
 }(website));
+
 
 exports.loadModules = website.loadModules;
 exports.setConfigurations = website.setConfigurations;

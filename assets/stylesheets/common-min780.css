@@ -133,6 +133,7 @@ header h1 {
 }
 
 .wrap-content > .categories,
+.summary,
 .about-author,
 .about-site {
 	float: left;
@@ -145,10 +146,11 @@ header h1 {
 }
 
 .about-site,
-.wrap-content > .categories {
+.wrap-content > .summary {
 	margin-bottom: 80px;	
 }
 
+.wrap-content > .summary,
 .wrap-content > .categories {
 	clear: left;
 }
