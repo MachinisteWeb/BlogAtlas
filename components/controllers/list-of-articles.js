@@ -73,7 +73,9 @@ module.exports = function listOfArticles(params, callback) {
 					temp[i].content = markdownRender(temp[i].content, marked);
 				}
 
-				temp[i].content = temp[i].content.substring(0, temp[i].content.indexOf('<h2'));
+				if (temp[i].content) {
+					temp[i].content = temp[i].content.substring(0, temp[i].content.indexOf('<h2'));
+				}
 				temp[i].dates.format = extendedFormatDate(temp[i].dates.published, variation.common.dates);
 
 				if (temp[i].others.published || session.account) {

@@ -142,17 +142,17 @@ header h1 {
 	width: 320px;
 }
 
-.articles-by-month .archives,
-.articles-by-year .archives,
-.articles-by-category .categories,
+.articles-by-month .wrap-content > .archives,
+.articles-by-year .wrap-content > .archives,
+.articles-by-category .wrap-content > .categories,
 .about-author,
 .about-site {
 	margin-top: 72px;	
 }
 
-.articles-by-month .archives,
-.articles-by-year .archives,
-.articles-by-category .categories,
+.articles-by-month .wrap-content > .archives,
+.articles-by-year .wrap-content > .archives,
+.articles-by-category .wrap-content > .categories,
 .about-site,
 .wrap-content > .summary {
 	margin-bottom: 96px;	

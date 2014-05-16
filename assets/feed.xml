@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Quelques #ID et beaucoup de .CLASS]]></title>
+        <description><![CDATA[Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.]]></description>
+        <link>http://localhost:7777/</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Fri, 16 May 2014 13:18:40 GMT</lastBuildDate>
+        <atom:link href="http://localhost:7777/feed.xml" rel="self" type="application/rss+xml"/>
+        <author><![CDATA[Bruno Lesieur]]></author>
+        <pubDate>Fri, 16 May 2014 13:18:40 GMT</pubDate>
+        <copyright><![CDATA[2012-2014 Bruno Lesieur]]></copyright>
+        <language><![CDATA[fr]]></language>
+        <managingEditor><![CDATA[Bruno Lesieur]]></managingEditor>
+        <webMaster><![CDATA[Bruno Lesieur]]></webMaster>
+        <ttl>60</ttl>
+        <item>
+            <title><![CDATA[<span>Structurer</span> le <span>JavaScript</span> d'un site sans <span>Framework</span>]]></title>
+            <description><![CDATA[On me demande souvent quelle est la structure JavaScript que j'utilise pour développer mes sites web. C'est une question à laquelle je ne sais jamais si un simple « [jQuery] » suffit ou si l'on s'attend à m'entendre répondre « [MooTools] », « [jQuery UI] », « [Backbone] », « [Knockout] », « [AngularJs] » ou je ne sais quelle autre composant/librairie/framework JavaScript Front-end extraordinaire !
+
+Au delà du fait que l'utilisation de ses ressources précédemment citées dépend du fait que l'on souhaite réaliser un site web ou un outil web ou une application web etc. je finis toujours par expliquer que j'utilise ma propre architecture JavaScript à travers toutes les différentes pages d'un site web.
+
+Je vais donc vous livrer à travers cet article l'architecture JavaScript que j'ai adopté. Afin de la comprendre pas à pas, j'utiliserai comme fil conducteur la réalisation d'un site vitrine. Ma façon de structurer le JavaScript client n'est pas absolue mais elle vous permettra de comprendre la logique derrière mes différents sites dont vous trouverrez les sources sur GitHub ou même du moteur [NodeAtlas].
+
+
+
+
+
+## Architecture JavaScript d'un site web ##
+
+Pour commencer, j'estime qu'il y a quatre zones de JavaScript par page que je nomme **Boot**, **Framework**, **Common** et **Specific**. Aucune ligne JavaScript ne doit se trouver en dehors de ces quatre zones. Ces quatre zones, dans un site en production sont matérialisées par quatre (au maximum) fichiers.
+
+En voici l'exemple sur une page d'accueil :
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>La page d'accueil</title>
+		<!-- Meta / Feuilles de style -->
+		<script type="text/javascript" src="javascript/boot.min.js"></script>
+	</head>
+	<body class="home">
+		<!-- Contenu de la page -->
+		<script type="text/javascript" src="javascript/framework.min.js"></script>
+		<script type="text/javascript" src="javascript/home.min.js"></script>
+		<script type="text/javascript" src="javascript/common.min.js"></script>
+	</body>
+</html>
+```
+
+
+
+
+### La zone de Boot ###
+
+Cette zone est facultative. Elle est la seule à ralentir le chargement de la page car les fichiers JavaScript de cette zone sont chargés et exécutés avant le rendu visuel final de la page, avant même que la balise `body` ne soit chargée. C'est pour cela que les bonnes pratiques demandent au maximum de charger les fichiers en pied de page et que ce qui sera chargé dans le `head` fasse un poids minimal en taille de fichier et en temps d'exécution JavaScript. Le type de script qui se trouve ici est celui qui va modifier la structure HTML au dessus du `body` à savoir sur l'élément html ou dans le `head`. Cela en vu d'éviter le phénomène de [FOUC].
+
+On retrouve donc ici, avant minification et rassemblement des JS, des scripts comme [Modernizr] ou [HTMLShiv] qui vont impacter le rendu des balises avec les feuilles CSS. C'est ici qu'on laissera une ligne de code pour injecter par exemple une classe `js` dans la balise `html` afin d'avertir les futurs scripts ou les sélecteurs CSS que JavaScript est activé. Si aucun de ces scripts ne vous interessent pour votre site, la zone de **Boot** peut donc être ignorée.
+
+
+
+
+### La zone de Framework ###
+
+C'est ici que vont se trouver le chargement de toutes vos librairies/frameworks JavaScript. Vous chargerez également des plugins pour vos librairies ou même vos propres fonctions JavaScript. Bref, ici c'est tout ce que vous utilisez Cross-site.
+
+Cela peut ressembler à ça dans un environnement de développement :
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<!-- Titre / Meta / Feuilles de style -->
+	</head>
+	<body class="home">
+		<!-- Contenu de la page -->
+		<script type="text/javascript" src="javascript/jquery/date.js"></script>
+		<script type="text/javascript" src="javascript/jquery/string.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.ba-hashchange.js"></script>
+		<script type="text/javascript" src="javascript/jquery-ui/jquery-ui-1.10.4.js"></script>
+		
+		<script type="text/javascript" src="javascript/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="javascript/ckeditor/config.js"></script>
+		<script type="text/javascript" src="javascript/ckeditor/lang/fr.js"></script>
+		<!-- Autres JavaScript -->
+	</body>
+</html>
+```
+
+
+
+
+### La zone Common ###
+
+C'est la première des deux zones que nous allons décortiquer plus bas dans cette article (les zones précédentes étant dans 95% des cas du code générique). Ici, tout va être dédié à l'interaction des scripts de la zone Framework avec le DOM du site. Cependant, ce fichier unique en version de développement (dans la majorité des cas) comme en version de production sera chargé sur toutes les pages du site comme les deux premières zones. Ne sera donc réfférencé ici que les fonctions qui seront appelées sur plus d'une page.
+
+
+
+
+### La zone Specific ###
+
+Cette dernière zone est _facultative_ et spécifique à chaque page. Elle se matérialise par un fichier portant le nom du template de page associé à lui. Sur la page d'accueil ce fichier est donc `home.js` tandis que sur la page de contact il s'appelle `contact-us.js`. Il ne doit contenir **que** du code unique à la page courante.
+
+Si le code de cette zone pour un template spécifique donne un fichier bien trop petit en poids pour qu'il soit négligeable à côté du `common.js`, il peut être interessant de mettre quelques lignes normalement spécifique dans la partie **Common**. Nous verrons cela plus loin.
+
+
+
+
+
+## Site web de fil rouge ##
+
+Pour commencer, nous allons imaginer un petit site web embarquant diverses zones HTML (des composants) qui auront chacune des fonctions JavaScript propres à travers différentes pages. Voici sans plus attendre les différents types de pages embarquant nos divers composants :
+
+
+
+
+### Liste des templates de page ###
+
+
+
+#### La page d'accueil ####
+
+- Le composant _Menu principal_
+- Le composant _Aperçu des pages_
+- Le composant _Aperçu des produits_
+- Le composant _Formulaire d'inscription à la newsletter_
+- Le composant _Retour en haut de page_
+
+_Contenu de **home.htm**_
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>La page d'accueil</title>
+	</head>
+	<body class="home">
+		<nav class="main-nav"><!-- Zone Menu principal --></nav>
+		<nav class="page-overview"><!-- Zone Aperçu des pages --></nav>
+		<nav class="product-overview"><!-- Zone Aperçu des produits --></nav>
+		<form class="newsletter-form"><!-- Zone Formulaire d'inscription à la newsletter --></form>
+		<nav class="back-to-top"><!-- Zone Retour en haut de page --></nav>
+	</body>
+</html>
+```
+
+
+
+#### Les pages de produits ####
+
+- Le composant _Menu principal_
+- Le composant _Aperçu des produits_
+- Le composant _Description d'un produit_
+
+_Contenu de **products/[name-of-product].htm**_
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>La page de produit</title>
+	</head>
+	<body class="product">
+		<nav class="main-nav"><!-- Zone Menu principal --></nav>
+		<nav class="product-overview"><!-- Zone Aperçu des produits --></nav>
+		<article class="product-content"><!-- Zone Description d'un produit --></article>
+	</body>
+</html>
+```
+
+
+
+#### Les page d'articles ####
+
+- Le composant _Menu principal_
+- Le composant _Aperçu des articles_
+- Le composant _Contenu d'un article_
+- Le composant _Retour en haut de page_
+
+_Contenu de **articles/[title-of-article].htm**_
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>La page d'article</title>
+	</head>
+	<body class="article">
+		<nav class="main-nav"><!-- Zone Menu principal --></nav>
+		<nav class="article-overview"><!-- Zone Aperçu des articles --></nav>
+		<article class="article-content"><!-- Zone Contenu d'un article --></article>
+		<nav class="back-to-top"><!-- Zone Retour en haut de page --></nav>
+	</body>
+</html>
+```
+
+
+
+#### La page F.A.Q. ####
+
+- Le composant _Menu principal_
+- Le composant _Liste de Question/Réponse_
+- Le composant _Retour en haut de page_
+
+_Contenu de **faq.htm**_
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>La page de la faq</title>
+	</head>
+	<body class="faq">
+		<nav class="main-nav"><!-- Zone Menu principal --></nav>
+		<section class="questions-answers-list"><!-- Zone Liste de Question/Réponse --></section>
+		<nav class="back-to-top"><!-- Zone Retour en haut de page --></nav>
+	</body>
+</html>
+```
+
+
+
+#### La page de contact ####
+
+- Le composant _Menu principal_
+- Le composant _Formulaire d'envoi d'un email_
+
+_Contenu de **contact-us**.htm_
+
+```html
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>La page de contact</title>
+	</head>
+	<body class="contact-us">
+		<nav class="main-nav"><!-- Zone Menu principal --></nav>
+		<form class="contact-us-form"><!-- Zone Formulaire d'envoi d'un email --></form>
+	</body>
+</html>
+```
+
+
+
+
+### Liste des composants ###
+
+On peut donc repérer un certain nombre de composant sur lesquels nous allons appliquer des intéractions JavaScript.
+
+Le composant _Menu principal_
+
+- Celui-ci à des sous-menus qui ne s'affichent qu'avec des interactions par clique qui vont nécésiter du JavaScript. Il dispose également d'une barre de recherche pour trouver une page dans le site qui nécessitera également du JavaScript.
+
+Le composant _Aperçu des pages_
+
+- Celui-ci sera un slider complet (flèches, swipe tactile, barre de progression) avec effets de transition qui va nécésiter du JavaScript.
+
+Le composant _Aperçu des produits_
+
+- Celui-ci sera un slider affichant une liste d'éléments en ligne qui partent en overflow horizontal. Ceci va nécésiter du JavaScript.
+
+Le composant _Formulaire d'inscription à la newsletter_
+
+- Celui-ci collectera les informations du formulaire pour ensuite les envoyer en AJAX si il passe les tests de validation. Ceci va nécessiter du JavaScript.
+
+Le composant _Retour en haut de page_
+
+- Celui-ci renverra en haut de page avec un effet de défilement doux qui nécessitera du JavaScript.
+
+Le composant _Description d'un produit_
+
+- Celui-ci sera découpé en trois parties, chacunes cachées derrière des onglets. Passer d'une partie à l'autre nécessitera du JavaScript.
+
+Le composant _Aperçu des articles_
+
+- Même comportement que pour Aperçu des produits.
+
+Le composant _Contenu d'un article_
+
+- Pas de JavaScript prévu pour ce composant.
+
+Le composant _Liste de Question/Réponse_
+
+- Celui-ci comportera une liste de question/réponse dont la réponse sera initialement cachée. Afficher les réponses nécessitera du JavaScript.
+
+Le composant _Formulaire d'envoi d'un email_
+
+- Celui-ci collectera les informations du formulaire pour ensuite les envoyer en AJAX s'il passe les tests de validation. Ceci va nécésiter du JavaScript.
+
+
+
+
+
+## Amennager le fichier Common et les fichiers Specific ##
+
+Le plus simple en terme de structure serait de faire un fichier à plat contenant l'intégralité de notre JavaScript. Il nous faudra de quoi parcourir le DOM aisément aussi j'utiliserai jQuery (ce qui pour la structure final n'est pas obligatoire, mais aidera à la compréhension tout au long de l'article).
+
+Cette structure ne tiendra pas la route si le site doit grandir, mais c'est une base que je vais vous exposer pour vous expliquer la suite.
+
+_Contenu de **javascript/common.js**_
+
+```javascript
+var temp;
+var timer;
+
+function openMenu() { /* Code... */ }
+
+function launchSearch() { /* Code... */ }
+
+$(".main-nav" /* handler */).bind(/* event */, function () {
+	openMenu();
+	/* ... */
+});
+
+$(".main-nav" /* handler */).bind(/* event */, function () { 
+	launchSearch();
+	/* ... */
+});
+
+/* ... */
+
+/* Aperçu des page */
+
+function createSlider() { /* ... */ }
+function changeStepSlider() { /* ... */ }
+function startAutoSlider() { /* ... */ }
+
+createSlider();
+changeStepSlider();
+startAutoSlider();
+
+/* ... */
+
+```
+
+~~Mistaken text.~~
+
+coucou_ces_moi_que_vla
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -------------:|
+| col 3 is      | some wordy text |         $1600 |
+| col 2 is      | centered        |           $12 |
+| zebra stripes | are neat        |            $1 |
+
+
+
+
+ [jQuery]: http://jquery.com/ (jQuery JavaScript Library)
+ [MooTools]: http://mootools.net/ (MooTools JavaScript Framework)
+ [jQuery UI]: https://jqueryui.com/ (jQuery UI JavaScript Components)
+ [Backbone]: http://backbonejs.org/ (Backbone JavaScript Framework)
+ [Knockout]: http://knockoutjs.com/ (Knockout JavaScript Framework)
+ [AngularJs]: https://angularjs.org/ (AngularJs JavaScript Framework)
+ [NodeAtlas]: https://haeresis.github.com/NodeAtlas/ (Créer et maintenir des Assets HTML ou sites multilingues simplement en Node.js)
+ [FOUC]: http://fr.wikipedia.org/wiki/FOUC (Flash Of Unstyled Content)
+ [Modernizr]: http://modernizr.com/ (An indispensable tool)
+ [HTMLShiv]: https://code.google.com/p/html5shiv/ (HTML5 IE enabling script)]]></description>
+            <link>http://localhost:7777/structurer-le-javascript-d-un-site-sans-framework/</link>
+            <guid isPermaLink="false">535699ec2e3a607c06f9a51d</guid>
+            <category><![CDATA[CSS3]]></category>
+            <category><![CDATA[Concept]]></category>
+            <category><![CDATA[Bonnes pratiques]]></category>
+            <dc:creator><![CDATA[Bruno Lesieur]]></dc:creator>
+            <pubDate>Tue, 15 Apr 2014 23:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Comment <span>cibler</span> un <span>id</span> qui contient un point]]></title>
+            <description><![CDATA[<p>
+	En CSS, tout comme avec le librairie JavaScript jQuery, il faut <span class="eye-catching">utiliser des sélecteurs</span> pour <span class="eye-catching">cibler une balise</span> ou un ensemble de balise :
+</p>
+<ul>
+	<li>on utilise le <span class="highlighting">sélecteur #</span> si l'on désire accéder à l'élément par la valeur de son <span class="eye-catching">attribut id</span> ou,</li>
+	<li>on utilise le <span class="highlighting">sélecteur .</span> si on désire accéder à l'élément par une des valeurs de son <span class="eye-catching">attribut class</span>.</li>
+</ul>
+<p>
+	En combinant les deux sélecteurs précédent on peut sélectionner une balise par son <span class="eye-catching">attribut id</span> <span class="highlighting">et</span> son <span class="eye-catching">attribut class</span>.
+</p>
+
+<p>
+	On peut donc cibler la balise HTML suivante
+</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div id="main" class="example"&gt;&lt;/div&gt;
+</pre>
+
+<p>
+	avec le <span class="eye-catching">sélecteur CSS</span> suivant
+</p>
+
+<pre class="prettyprint linenums lang-css">
+div#main.example { /* ... */ }
+</pre>
+
+<h2>
+	Comment sélectionner l'id d'une balise si celui-ci contient un point ?
+</h2>
+
+<p>
+	Il n'est a première vue pas possible de sélectionner une balise par la valeur de son <span class="eye-catching">attribut id</span> si celui-ci contient un point.
+</p>
+
+> Standard !
+
+aa
+
+> _`Ne faites pas :`_ On ne peut pas cibler la balise HTML.
+
+aa
+
+> **`Faites :`** On ne peut pas cibler la balise HTML.
+
+aa
+
+> **_Menu :_** Liste des liens.
+
+<div class="worst-practice">
+	<div class="title">Cibler une balise HTML par son id s'il contient un point est impossible</div>
+	<div class="content">
+		<p>
+			On ne peut pas cibler la balise HTML suivante
+		</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div id="main" class="example"&gt;...&lt;/div&gt;
+</pre>
+
+		<p>
+			avec le sélecteur CSS suivant
+		</p>
+
+
+<pre class="prettyprint linenums lang-css">
+div#main.example { /* ... */ }
+</pre>
+
+		<p>
+			parce que la partie située après le point, à savoir <span class="eye-catching">example</span>, est interprétée non pas comme la suite du nom de l'id, mais comme une valeur d'attribut class.
+		</p>
+
+	</div>
+</div>
+
+<h2>
+	La solution pour les id contenant des points sont le \ et le \\
+</h2>
+
+<p>
+	La solution pour cibler un id ou une classe contenant le caractère <span class="highlighting">.</span> est simple, il suffit de l'<span class="highlighting">échapper avec le caractère \</span> en CSS et <span class="highlighting">les caractères \\</span> avec jQuery.
+</p>
+
+<div class="best-practice">
+	<div class="title">Cibler une balise HTML par son id s'il contient un point est possible avec le BackSlash</div>
+	<div class="content">
+		<p>
+			On peut cibler la balise HTML suivante
+		</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div id="main" class="example"&gt;...&lt;/div&gt;
+</pre>
+
+		<p>
+			avec le sélecteur CSS suivant
+		</p>
+
+		<p>
+			ou le sélecteur jQuery suivant 
+		</p>
+
+<pre class="prettyprint linenums lang-javascript">
+$("div#main\\.example");
+</pre>
+
+	</div>
+</div>
+
+<p>
+	Notez bien qu'en CSS on utilise un BackSlash <span class="eye-catching">\</span> alors qu'avec jQuery il faut également échapper le caractère échappement d'où deux BackSlash <span class="highlighting">\\</span>.
+</p>]]></description>
+            <link>http://localhost:7777/comment-cibler-un-id-qui-contient-un-point/</link>
+            <guid isPermaLink="false">530afe7a31a27642989254ec</guid>
+            <category><![CDATA[HTML5]]></category>
+            <category><![CDATA[CSS]]></category>
+            <dc:creator><![CDATA[Bruno Lesieur]]></dc:creator>
+            <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

@@ -61,9 +61,11 @@ website.articlesByCategory = {};
 					variation.specific.titlePage = variation.specific.titlePage.replace(/%title%/g, categoryTitle);
 					variation.specific.breadcrumb.items[2].href = variation.specific.breadcrumb.items[2].href.replace(/%urn%/g, categoryUrn);
 					variation.specific.articles.title = variation.specific.articles.title.replace(/%title%/g, categoryTitle);
+					variation.specific.description = variation.specific.description.replace(/%title%/g, categoryTitle);
 				} else {
 					variation.specific.breadcrumb.items[2].href = variation.specific.breadcrumb.items[2].href.replace(/%urn%/g, variation.params.category);
 					variation.specific.articles.title = variation.specific.articles.titleNoCategory;
+					variation.specific.description = variation.specific.articles.titleNoCategory;
 				}
 
 				

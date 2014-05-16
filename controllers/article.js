@@ -35,6 +35,7 @@ website.article = {};
 				title = oneArticle.title.replace(/<\/?span>/g, '');
 
 				variation.specific.titlePage = variation.specific.titlePage = title;
+				variation.specific.description = title;
 				variation.specific.breadcrumb.items[1].content = title;
 				variation.specific.breadcrumb.items[1].title = title;
 
@@ -74,20 +75,97 @@ website.article = {};
 	var privates = {};
 
 	publics.asynchrone = function (params) {
-		var io = params.io,
+		var privates = {},
+			io = params.io,
+			fs = require('fs'),
 			mongoose = params.NA.modules.mongoose,
 			common = params.NA.modules.common,
 			marked = params.NA.modules.marked,
 			Article = mongoose.model('article'),
 			Category = mongoose.model('category'),
-			renderer = new marked.Renderer();
+			renderer = new marked.Renderer(),
+			Rss = params.NA.modules.rss;
 
 		io.sockets.on('connection', function (socket) {
 			var sessionID = socket.handshake.sessionID,
 				session = socket.handshake.session;
 
 			socket.on('update-article-button', function (data) {
+
+				var feed,
+					feedHeader;
+
 				if (session.account) {
+
+
+
+					/*** Flux RSS Start ***/
+
+					feedHeader = {
+						title: common.rss.title,
+						description: common.rss.description,
+						feed_url: params.NA.webconfig.urlWithoutFileName + common.rss.feedUrl,
+						site_url: params.NA.webconfig.urlWithoutFileName,
+						author: common.rss.author,
+						managingEditor: common.rss.author,
+					    webMaster: common.rss.author,
+					    copyright: common.rss.copyright + ' ' + common.rss.author,
+					    language: common.rss.language,
+					    pubDate: new Date(),
+					    ttl: '60'
+					};
+
+					feed = new Rss(feedHeader);
+
+					Article
+					.find({
+						'others.published': true
+					})
+					.sort({ 'dates.published': -1 })
+					.limit(20)
+					.populate('categories')
+					.exec(function (error, articles) {
+						var item,
+							categories;
+
+						for (var i = 0; i < articles.length; i++) {
+							categories = []; 
+
+							if (articles[i].categories) {
+								for (var j = 0; j < articles[i].categories.length; j++) {
+									categories.push(articles[i].categories[j].title);
+								}
+							}
+
+							item = {
+							    title: articles[i].title,
+							    description: articles[i].content,
+							    url: params.NA.webconfig.urlWithoutFileName + common.rss.url.replace(/%urn%/g, articles[i].urn),
+							    guid: articles[i]._id.toString(),
+							    categories: categories,
+							    author: common.rss.author,
+							    date: articles[i].dates.published
+							}
+
+							feed.item(item);
+						}
+
+						fs.writeFile(params.NA.websitePhysicalPath + params.NA.webconfig.assetsRelativePath + "feed.xml", feed.xml("    ")); 
+					});
+
+					/*** Flux RSS - End ***/
+
+
+
+
+
+
+
+
+
+
+
+
 
 					Article.update({
 						urn: data.urn 
@@ -173,6 +251,7 @@ website.article = {};
 				var article = new Article({
 					_id: mongoose.Types.ObjectId(),
 					title: data.title,
+					content: "",
 					urn: data.urn,
 					'dates.updated': [],
 					'others.markdown': false,

@@ -12,6 +12,7 @@ var website = {};
 		NA.modules.marked = require(modulePath + 'marked');
 		NA.modules.mongoose = require(modulePath + 'mongoose');
 		NA.modules.socketio = require(modulePath + 'socket.io');
+		NA.modules.rss = require(modulePath + 'rss');
 		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
 
 		return NA;

@@ -42,9 +42,9 @@ body {
 	top: 104px;
 }
 
-.articles-by-month .archives,
-.articles-by-year .archives,
-.articles-by-category .categories,
+.articles-by-month .wrap-content > .archives,
+.articles-by-year .wrap-content > .archives,
+.articles-by-category .wrap-content > .categories,
 .about-author,
 .about-site {
 	margin-top: 120px;	

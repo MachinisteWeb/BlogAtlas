@@ -1,7 +1,7 @@
 {
 	"classLayout": "archives",
 	"titlePage": "Liste des dates",
-	"description": "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
+	"description": "Chaque année d'existance du site sont listée ici afin d'y retrouver des articles anciens.",
 	"breadcrumb": {
 		"title": "Vous êtes ici :",
 		"items": [{

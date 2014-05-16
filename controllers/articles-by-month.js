@@ -44,6 +44,7 @@ website.articlesByMonth = {};
 
 				variation.specific.titlePage = variation.specific.titlePage.replace(/%year%/g, variation.params.year).replace(/%month%/g, variation.params.month);
 				variation.specific.articles.title = variation.specific.articles.title.replace(/%year%/g, variation.params.year).replace(/%month%/g, variation.common.dates.months[variation.params.month - 1]);
+				variation.specific.description = variation.specific.description.replace(/%year%/g, variation.params.year).replace(/%month%/g, variation.common.dates.months[variation.params.month - 1]);
 				variation.specific.breadcrumb.items[2].content = variation.params.year;
 				variation.specific.breadcrumb.items[2].title = variation.params.year;
 				variation.specific.breadcrumb.items[2].href = variation.specific.breadcrumb.items[2].href.replace(/%year%/g, variation.params.year);

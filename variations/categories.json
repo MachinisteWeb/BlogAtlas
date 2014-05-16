@@ -1,7 +1,7 @@
 {
 	"classLayout": "categories",
 	"titlePage": "Liste des catégories",
-	"description": "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
+	"description": "Liste de toutes les catégories utilisées pour les articles de ce blog.",
 	"breadcrumb": {
 		"title": "Vous êtes ici :",
 		"items": [{
