@@ -137,7 +137,7 @@
 	"rss": {
 		"title": "Quelques #ID et beaucoup de .CLASS",
 		"description" : "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
-		"feedUrl": "feed.xml",
+		"feedUrl": "rss.xml",
 		"author": "Bruno Lesieur",
 		"copyright": "2012-2014",
 		"language": "fr",

@@ -90,82 +90,71 @@ website.article = {};
 			var sessionID = socket.handshake.sessionID,
 				session = socket.handshake.session;
 
-			socket.on('update-article-button', function (data) {
-
+			function rss() {
 				var feed,
 					feedHeader;
 
-				if (session.account) {
+				feedHeader = {
+					title: common.rss.title,
+					description: common.rss.description,
+					feed_url: params.NA.webconfig.urlWithoutFileName + common.rss.feedUrl,
+					site_url: params.NA.webconfig.urlWithoutFileName,
+					author: common.rss.author,
+					managingEditor: common.rss.author,
+				    webMaster: common.rss.author,
+				    copyright: common.rss.copyright + ' ' + common.rss.author,
+				    language: common.rss.language,
+				    pubDate: new Date(),
+				    ttl: '60'
+				};
 
+				feed = new Rss(feedHeader);
 
+				Article
+				.find({
+					'others.published': true
+				})
+				.sort({ 'dates.published': -1 })
+				.limit(20)
+				.populate('categories')
+				.exec(function (error, articles) {
+					var item,
+						categories,
+						content;
 
-					/*** Flux RSS Start ***/
+					for (var i = 0; i < articles.length; i++) {
+						categories = []; 
 
-					feedHeader = {
-						title: common.rss.title,
-						description: common.rss.description,
-						feed_url: params.NA.webconfig.urlWithoutFileName + common.rss.feedUrl,
-						site_url: params.NA.webconfig.urlWithoutFileName,
-						author: common.rss.author,
-						managingEditor: common.rss.author,
-					    webMaster: common.rss.author,
-					    copyright: common.rss.copyright + ' ' + common.rss.author,
-					    language: common.rss.language,
-					    pubDate: new Date(),
-					    ttl: '60'
-					};
-
-					feed = new Rss(feedHeader);
-
-					Article
-					.find({
-						'others.published': true
-					})
-					.sort({ 'dates.published': -1 })
-					.limit(20)
-					.populate('categories')
-					.exec(function (error, articles) {
-						var item,
-							categories;
-
-						for (var i = 0; i < articles.length; i++) {
-							categories = []; 
-
-							if (articles[i].categories) {
-								for (var j = 0; j < articles[i].categories.length; j++) {
-									categories.push(articles[i].categories[j].title);
-								}
+						if (articles[i].categories) {
+							for (var j = 0; j < articles[i].categories.length; j++) {
+								categories.push(articles[i].categories[j].title);
 							}
-
-							item = {
-							    title: articles[i].title,
-							    description: articles[i].content,
-							    url: params.NA.webconfig.urlWithoutFileName + common.rss.url.replace(/%urn%/g, articles[i].urn),
-							    guid: articles[i]._id.toString(),
-							    categories: categories,
-							    author: common.rss.author,
-							    date: articles[i].dates.published
-							}
-
-							feed.item(item);
 						}
 
-						fs.writeFile(params.NA.websitePhysicalPath + params.NA.webconfig.assetsRelativePath + "feed.xml", feed.xml("    ")); 
-					});
+						content = articles[i].content;
+						if (articles[i].others && articles[i].others.markdown) {
+							content = website.article.markdownRender(articles[i].content, marked);
+						}
 
-					/*** Flux RSS - End ***/
+						item = {
+						    title: articles[i].title,
+						    description: content,
+						    url: params.NA.webconfig.urlWithoutFileName + common.rss.url.replace(/%urn%/g, articles[i].urn),
+						    guid: articles[i]._id.toString(),
+						    categories: categories,
+						    author: common.rss.author,
+						    date: articles[i].dates.published
+						}
 
+						feed.item(item);
+					}
 
+					fs.writeFile(params.NA.websitePhysicalPath + params.NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    ")); 
+				});
+			}
 
-
-
-
-
-
-
-
-
-
+			socket.on('update-article-button', function (data) {
+				if (session.account) {
 
 					Article.update({
 						urn: data.urn 
@@ -208,6 +197,8 @@ website.article = {};
 					if (data.markdown) {
 						data.content = website.article.markdownRender(data.content, marked);
 					}
+
+				 	rss();
 
 					socket.emit('update-article-button');
 					socket.broadcast.emit('update-article-button-others', {
