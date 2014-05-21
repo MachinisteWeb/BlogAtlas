@@ -10,7 +10,7 @@ BlogAtlas est un exemple de site web Node.js développé avec [NodeAtlas](http:/
 
 Il peut vous servir d'inspiration pour créer vos propres sites !
 
-Pour mieux comprendre son architecture JavaScript, [vous pouvez lire cette article](http://blog.lesieur.name/structurer-le-javascript-de-son-site-avec-ou-sans-framework/).
+Pour mieux comprendre l'architecture JavaScript du site, [vous pouvez lire cet article](http://blog.lesieur.name/structurer-le-javascript-de-son-site-avec-ou-sans-framework/).
 
 
 
