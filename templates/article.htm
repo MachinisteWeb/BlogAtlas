@@ -10,6 +10,8 @@
 
 		<% if (backend && backend.article) { %>
 			<div class="about-author">
+				<figure><img src="<%- common.aboutAuthor.image.src %>" width="<%- common.aboutAuthor.image.width %>" height="<%- common.aboutAuthor.image.height %>" alt="<%- common.aboutAuthor.image.alt %>"></figure>
+
 				<h2><%- common.aboutAuthor.title %></h2>
 
 				<p><%- common.aboutAuthor.content %></p>

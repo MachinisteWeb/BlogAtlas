@@ -23,12 +23,12 @@
 							<% month = ((month.toString().length > 1) ? '' : '0') + month %>
 							<% var fullMonth = common.dates.months[backend.article.dates.published.getMonth()] %>
 							<% var fullYear = backend.article.dates.published.getFullYear() %>
-							<a href="<%- common.listDate.linkMonth.href.replace(/%year%/g, fullYear).replace(/%month%/g, month) %>" title="<%- common.listDate.linkMonth.title.replace(/%year%/g, fullYear).replace(/%month%/g, fullMonth) %>"><time datetime="<%= backend.article.dates.format.time %>">
+							<a href="<%- common.listDate.linkMonth.href.replace(/%year%/g, fullYear).replace(/%month%/g, month) %>" title="<%- common.listDate.linkMonth.title.replace(/%year%/g, fullYear).replace(/%month%/g, fullMonth) %>"><ins class="icon time"></ins><time datetime="<%= backend.article.dates.format.time %>">
 								<%- backend.article.dates.format.string %>
 							</time></a>
 						</div>
 						<div class="comments">
-							<a href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.article.urn) %>#disqus_thread" title="<%- backend.article.title.replace(/<\/?span>/g, '') %>"><%- common.comments.commentSentence %></a>
+							<a href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.article.urn) %>#disqus_thread" title="<%- backend.article.title.replace(/<\/?span>/g, '') %>"><ins class="icon comment"></ins><%- common.comments.commentSentence %></a>
 						</div>
 						<div class="text">
 							<%- backend.article.content %>

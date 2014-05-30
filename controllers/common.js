@@ -109,7 +109,7 @@ var website = {};
 		if (NA.webconfig._ioGzip) {
 			io.enable('browser client gzip');
 		}
-		io.set('log level', 1);   
+		io.set('log level', 1);
 		io.enable('browser client cache');
 		io.set('browser client expires', 86400000 * 30);
 		io.enable('browser client etag');

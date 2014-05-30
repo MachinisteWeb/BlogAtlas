@@ -6,7 +6,7 @@
  * SUMMARY.................It's me !
  * SERVER FONTS............Font on server.
  * RESET...................Same render for all browser.
- * ACCESSIBILITY / SEO.....Hide and non-visible items.
+ * COMMONS.................Common and useful behaviors.
  * ANIMATIONS..............Dynamically change display of markup.
  * MOBILE+ DESIGN..........Use for placement of item on mobiles and higher.
  *** Markup
@@ -22,6 +22,22 @@
     $SERVER FONTS
 \*------------------------------------*/
 
+@font-face {
+	font-family: 'Icons';
+ 	src: url('../media/fonts/icons.eot');
+	src:
+		url('../media/fonts/icons.eot?#iefix') format('embedded-opentype'),
+		url('../media/fonts/icons.svg#icons') format('svg'),
+		url('../media/fonts/icons.woff') format('woff'),
+		url('../media/fonts/icons.ttf') format('truetype')
+	;
+
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-decoration: inherit;
+	text-transform: none;
+}
 
 
 
@@ -36,7 +52,7 @@
 
 
 /*------------------------------------*\
-    $ACCESSIBILITY / SEO
+    $COMMONS
 \*------------------------------------*/
 
 .permalink,
@@ -49,6 +65,39 @@
 	clear: both;
 	content: "";
 	display: block;
+}
+
+.icon {
+	display: inline-block;
+	margin: 0 .25em 0 0;
+	width: 1.23em;
+	height: 1em;
+	font-family: Icons;
+	opacity: 0.75;
+	font-style: normal;
+	line-height: 1;
+	font-weight: 400;
+	text-decoration: inherit;
+	text-align: center;
+	speak: none;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	        box-sizing: border-box;
+    -moz-osx-font-smoothing: grayscale;
+	 -webkit-font-smoothing: antialiased;
+}
+
+.icon.time:before {
+	content: "\f017";
+}
+
+.icon.double.angle.right:before {
+	content: "\f101";
+}
+
+.icon.comment:before {
+	content: "\f075";
 }
 
 
@@ -87,7 +136,7 @@ blockquote :first-child > strong > em {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(202, 208, 238, 0.4);
+	background-color: rgba(202, 208, 238, 0.3);
 	text-indent: -7777px;
 }
 
@@ -100,7 +149,7 @@ blockquote :first-child > strong > samp {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(196, 228, 212, 0.4);
+	background-color: rgba(196, 228, 212, 0.3);
 	text-indent: -7777px;
 }
 
@@ -113,7 +162,7 @@ blockquote :first-child > em > samp {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(238, 208, 202, 0.4);
+	background-color: rgba(238, 208, 202, 0.3);
 	text-indent: -7777px;
 }
 
@@ -222,7 +271,7 @@ dl {
 blockquote {
 	padding: 8px;
 	border-left: dashed 1px #c4e4d4;
-	background-color: rgba(240, 240, 240, 0.2);
+	background-color: rgba(240, 240, 240, 0.5);
 	position: relative;	
 }
 
@@ -280,26 +329,6 @@ header div,
 
 .breadcrumb li {
 	display: inline-block;
-}
-
-.breadcrumb a:before {
-	content: "";
-	display: inline-block;
-	height: 7px;
-	width: 7px;
-	margin-left: 4px;
-	margin-right: 4px;
-	background-image: url('../media/images/horizontal-arrows.png');
-	background-position: -7px 0;
-}
-
-.breadcrumb a:visited:before {
-	background-position: -21px 0;
-}
-
-.breadcrumb a:hover:before,
-.breadcrumb a:visited:hover:before {
-	background-position: -14px 0;
 }
 
 .wrap-content {
@@ -382,37 +411,6 @@ article .comments,
 	margin-right: 16px;
 	padding-left: 16px;
 	position: relative;
-}
-
-article .comments a:before,
-.articles .comments a:before,
-.published a:before {
-	content: "";
-	display: inline-block;
-	height: 16px;
-	width: 16px;
-	background-image: url('../media/images/ui-icon.png');
-	position: absolute;
-	left: 0;
-	top: 3px;
-}
-
-.published a:before {
-	background-position: -80px -112px;
-}
-
-.published a:hover:before {
-	background-position: -80px -352px;
-}
-
-article .comments a:before,
-.articles .comments a:before {
-	background-position: -128px -96px;
-}
-
-article .comments a:hover:before,
-.articles .comments a:hover:before {
-	background-position: -128px -336px;
 }
 
 article .comments h4,
@@ -716,4 +714,15 @@ li.L9 {
 }
 .articles-by-category .categories ul ul {
 	padding-left: 16px;
+}
+
+.about-author figure {
+	float: left;
+	margin: 0;
+	margin-top: 4px;
+	margin-right: 8px;
+}
+
+.about-author img {
+	margin: 0;
 }

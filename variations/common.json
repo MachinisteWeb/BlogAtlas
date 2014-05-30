@@ -26,10 +26,16 @@
 	},
 	"aboutSite": {
 		"title": "Bienvenue",
-		"content": "Ce blog est majoritairement consacré au JavaScript que ce soit côté Front-end ou côté Back-end. Côté Front, on parle d'astuces et réflexions autour des bonnes pratiques HTML5, CSS3, et JavaScript. Côté serveur, on parle de Node.js. Il traite également de tous types d'articles touchant de près ou de loin à la webosphère."
+		"content": "Ce blog est majoritairement consacré au JavaScript que ce soit côté Front-end ou côté Back-end. Côté Front, on parle d'astuces et réflexions autour des bonnes pratiques HTML5, CSS3, et JavaScript. Côté serveur, on parle de Node.js. Le site traite également de tous types d'articles touchant de près ou de loin à la webosphère."
 	},
 	"aboutAuthor": {
-		"title": "A propos de l'auteur",
+		"title": "À propos de l'auteur",
+		"image": {
+			"src": "./media/images/bw-author.png",
+			"alt": "Bruno Lesieur",
+			"width": 96,
+			"height": 96
+		},
 		"content": "Bonjour, je suis Bruno Lesieur, architecte web basé sur Annecy. Intégrateur HTML5, CSS3 et JavaScript ou encore développeur Front-End ; appelez moi comme vous le voulez mais sachez que je suis très friand de performance web, de Responsive Web Design, d'accessibilité web, de bonnes pratiques, de techniques et d'outils de gestion web, de factorisation et d'automatisation, de partage et casse-tête en tout genre ainsi que de boissons gazeuses."
 	},
 	"mainMenu": {
@@ -52,6 +58,11 @@
 			"content": "À propos",
 			"title": "À propos du site et de l'auteur",
 			"href": "http://www.haeresis.fr/",
+			"class": "about"
+		}, {
+			"content": "RSS",
+			"title": "Suivre le flux RSS",
+			"href": "./rss.xml",
 			"class": "about"
 		}]
 	},

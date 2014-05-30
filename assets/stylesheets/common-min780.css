@@ -46,7 +46,7 @@ body {
 	margin: 0 auto;
 	position: fixed;
 	top: 0;
-	z-index: 2;
+	z-index: 3;
 }
 
 .header {
@@ -147,7 +147,7 @@ header h1 {
 .articles-by-category .wrap-content > .categories,
 .about-author,
 .about-site {
-	margin-top: 72px;	
+	margin-top: 88px;	
 }
 
 .articles-by-month .wrap-content > .archives,
@@ -173,6 +173,7 @@ header h1 {
 	padding-bottom: 16px;
 	padding-top: 8px;
 	background-color: #FFF;
+	z-index: 2;
 }
 
 .footer:before {
@@ -187,12 +188,17 @@ header h1 {
 	
 }
 
+.about-author figure {
+	float: right;
+	margin-top: 2em;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
 
 /***********/
 /* $Layout */
 /***********/
-
-
 
 
 }
