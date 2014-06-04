@@ -140,12 +140,67 @@ var website = website || {},
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
           ga('create', 'UA-51063761-1', 'lesieur.name');
+          ga('require', 'displayfeatures');
           ga('send', 'pageview');
     };
 
     publics.init = function () {
         publics.googleAnalytics();
         publics.disqusNumberLoading();
+
+
+
+        /* function info () {
+            var bottomLimit = $("footer").offset().top - 48;
+            var bottom = $(".about-site").offset().top + $(".about-site").height();
+
+            console.log( bottomLimit );
+            console.log(bottom);
+
+            $(".about-site").css("z-index", 1);
+            $(".about-site").css("position", "fixed");
+            $(".about-site").css("top", "");
+
+            if (bottomLimit > bottom) {
+                $(".about-site").css("position", "fixed");
+                $(".about-site").css("top", $(".about-site").position().top);
+            } else {
+
+
+        
+                if ((120 + 48) <= $(".about-site").offset().top) {
+
+
+                    $(".about-site").css("position", "absolute");
+                    $(".about-site").css("top", "auto");
+                    $(".about-site").css("top", $(document).scrollTop() + 48 - $(".about-site").height());
+
+
+                }
+
+
+
+
+
+
+
+            }
+
+        }
+
+        info();
+
+        $window.scroll(function () {
+            info();
+        });
+
+        $window.resize(function () {
+            info();
+        }); */
+
+
+
+
     };
 }(website));
 
