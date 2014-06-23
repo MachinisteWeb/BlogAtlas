@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if lte 8]><html lang="fr" class="old-ie"><![endif]-->
 <!--[if IE 9]><html lang="fr" class="ie9"><![endif]-->
-<!--[if gt IE 9]><!--><html lang="fr" class="<%= webconfig._minified.replace(".", "") %>"><!--<![endif]-->
+<!--[if gt IE 9]><!--><html lang="fr" class="<%= (webconfig.bundles) ? "min" : "" %>"><!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
 		<title><%= specific.titlePage %></title>
@@ -13,12 +13,12 @@
 		
 		<meta name="robots" content="<%= common.indexFollow %>" />
 		
-		<!--[if IE]><meta name="viewport" content="width=device-width, user-scalable=no" /><![endif]-->
-		<!--[if !IE]><!--><meta name="viewport" content="initial-scale=1.0, user-scalable=no" /><!--<![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700">
-		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<%= urlBasePath %>rss.xml" /> 
-		<% if (webconfig._minified) { %>
+		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<%= urlBasePath %>rss.xml" />
+
+		<% if (webconfig.bundles) { %>
 		<link rel="stylesheet" type="text/css" href="stylesheets/common.min.css" />
 		<% } else { %>
 		<link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
@@ -29,5 +29,3 @@
 		<% if ((typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) || session.account) { %>
 			<style class="stylesheet" type="text/css"><%- (typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) ? backend.article.stylesheet : "" %></style>
 		<% } %>
-
-		<!-- <link rel="stylesheet" type="text/css" media="print" href="stylesheets/common-print.css" /> -->

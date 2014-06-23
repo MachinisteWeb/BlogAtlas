@@ -5,6 +5,30 @@
  	"commonController": "common.js",
  	"controllersRelativePath": "controllers/",
  	"pageNotFound": "/page-inexistante/",
+ 	"bundles": {
+		"javascript": {
+			"files": {
+				"javascript/framework.min.js": [
+					"javascript/modernizr.js",
+					"javascript/jquery.js",
+					"javascript/prettify.js",
+					"javascript/prettify/run_prettify.js"
+				],
+				"javascript/common.min.js": [
+					"javascript/common.js"
+				]
+			}
+		},
+		"stylesheets": {
+			"files": {
+				"stylesheets/common.min.css": [
+					"stylesheets/common.css",
+					"stylesheets/common-min780.css",
+					"stylesheets/common-min1160.css"
+				]
+			}
+		}
+	},
 	"urlRewriting": {
 		"/categories/:category/": {
 			"template": "articles-by-category.htm",
@@ -90,7 +114,6 @@
 			"variation": "index.json"
 		}
 	},
-	"_minified": "",
 	"_needModulePath": true,
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
 	"_passwordAccountAuth": "bépo"
