@@ -15,6 +15,7 @@
 					"javascript/prettify/run_prettify.js"
 				],
 				"javascript/common.min.js": [
+					"javascript/components/extended-format-date.js",
 					"javascript/common.js"
 				]
 			}

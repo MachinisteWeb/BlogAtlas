@@ -464,7 +464,7 @@ var website = website || {},
             $date = $(".published a");
 
         socket.on('update-article-button-all', function (data) {
-            var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+01:00"),
+            var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+02:00"),
                 formatDate = website.module.extendedFormatDate(date, data.variation.dates),
                 month = date.getMonth() + 1,
                 newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
