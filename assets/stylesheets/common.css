@@ -206,7 +206,7 @@ h1 {
 
 header div,
 header h1 {
-	width: 320px;
+	width: 300px;
 	position: absolute;
 	top: 8px;
 	left: 8px;
@@ -725,4 +725,16 @@ li.L9 {
 
 .about-author img {
 	margin: 0;
+}
+
+figure {
+	text-align: center;
+	margin-left:0;
+	margin-right:0;
+}
+figure img {
+	max-width: 100%;
+}
+figure figcaption {
+	font-style: italic;
 }
