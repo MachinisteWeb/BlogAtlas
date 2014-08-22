@@ -136,7 +136,7 @@ blockquote :first-child > strong > em {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(202, 208, 238, 0.3);
+	background-color: #E4ECF8;
 	text-indent: -7777px;
 }
 
@@ -149,7 +149,7 @@ blockquote :first-child > strong > samp {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(196, 228, 212, 0.3);
+	background-color: #ECFAF6;
 	text-indent: -7777px;
 }
 
@@ -162,7 +162,7 @@ blockquote :first-child > em > samp {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(238, 208, 202, 0.3);
+	background-color: #FDF4EC;
 	text-indent: -7777px;
 }
 
@@ -173,7 +173,7 @@ a {
 }
 
 a:visited {
-	color: #335271;
+	color: #48739E;
 }
 
 .delete-article-button:hover,
@@ -270,9 +270,19 @@ dl {
 
 blockquote {
 	padding: 8px;
-	border-left: dashed 1px #c4e4d4;
-	background-color: rgba(240, 240, 240, 0.5);
 	position: relative;	
+}
+blockquote:before {
+	content: "";
+	display: block;
+	position: absolute;	
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	background-color: #F7F7F7;
+	text-indent: -7777px;
 }
 
 blockquote :first-child {
