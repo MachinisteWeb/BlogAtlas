@@ -20,7 +20,8 @@
     "cookie": "0.1.x",
     "marked": "0.3.x",
     "mongoose": "3.8.x",
-    "socket.io": "0.9.x"
+    "socket.io": "0.9.x",
+    "rss": "0.3.x"
   },
   "engines": {
     "node": ">=0.10.10"
