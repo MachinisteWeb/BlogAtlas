@@ -130,7 +130,7 @@ var website = {};
             data.sessionID = data.cookie[NA.webconfig.session.key];
 
 			// Accept cookie.
-            NA.webconfig.session.sessionStore.load(data.sessionID, function (error, session) {
+            NA.sessionStore.load(data.sessionID, function (error, session) {
                 if (error || !session) {
                     accept("Error", false);
                 } else {
