@@ -12,6 +12,7 @@ var website = {};
 		NA.modules.marked = require(modulePath + 'marked');
 		NA.modules.mongoose = require(modulePath + 'mongoose');
 		NA.modules.socketio = require(modulePath + 'socket.io');
+		NA.modules.RedisStore = require(modulePath + 'connect-redis');
 		NA.modules.rss = require(modulePath + 'rss');
 		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
 
@@ -47,15 +48,11 @@ var website = {};
 				    });
 
 				    response.on('end', function () {
-
-				    	//console.log(data);
-
 				    	var interestingPart = data.match(/\"counts\":\[(.+)\]/g),
 				    		json;
 
 				    	if (interestingPart && interestingPart[0]) {
 							json = JSON.parse("{" + interestingPart[0] + "}");
-				        	//console.log(json);
 				        	socket.emit('update-comment-number', json);
 				    	}
 				    });
@@ -81,10 +78,18 @@ var website = {};
 
 	var privates = {};
 
+	publics.setSessions = function (NA, callback) {
+        var session = NA.modules.session,
+        	RedisStore = NA.modules.RedisStore(session);
+        
+        NA.sessionStore = new RedisStore();
+
+		callback(NA);
+	};	
+
 	publics.setConfigurations = function (NA, callback) {
 		var mongoose = NA.modules.mongoose,
-			socketio = NA.modules.socketio,
-			connect = NA.modules.connect;
+			socketio = NA.modules.socketio;
 
 		privates.mongooseInitialization(mongoose, function (mongoose) {
 
@@ -224,6 +229,7 @@ var website = {};
 
 
 exports.loadModules = website.loadModules;
+exports.setSessions = website.setSessions;
 exports.setConfigurations = website.setConfigurations;
 exports.preRender = website.preRender;
 exports.render = website.render;

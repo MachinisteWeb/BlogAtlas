@@ -1,7 +1,7 @@
 # BlogAtlas #
 
-Version : 0.9.3 (Beta)
-NodeAtlas Version : 0.18.x
+Version : 0.10.0 (Beta)
+NodeAtlas Version : 0.19.x
 
 
 
@@ -23,7 +23,9 @@ Pour mieux comprendre l'architecture JavaScript du site, [vous pouvez lire cet a
 
 Pour faire tourner le site en local, il vous faudra installer [NodeAtlas](http://haeresis.github.io/NodeAtlas/) sur votre poste de développement.
 
-Vous devrez également installer une base de donnée MongoDB.
+Vous devrez également installer :
+- une base de donnée MongoDB sur le serveur de l'application.
+- une base de donnée Redis sur le serveur de l'application.
 
 Ensuite remplissez la base de donnée MongoDB local avec les commandes suivantes :
 

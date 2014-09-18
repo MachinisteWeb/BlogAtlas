@@ -1,6 +1,6 @@
 {
   "name": "blog-atlas",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "author": "Bruno Lesieur <bruno.lesieur@gmail.com>",
   "description": "Exemple de développement de site Node.js.",
   "private": false,
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "connect": "2.12.x",
+    "connect-redis": "2.1.x",
     "cookie": "0.1.x",
     "marked": "0.3.x",
     "mongoose": "3.8.x",
