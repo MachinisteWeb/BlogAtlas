@@ -332,6 +332,7 @@ var website = website || {},
 
 
             // Categories Part
+            $select.find("option").remove();
             $select.append(
                 $('<option value="">').text("----")
             )
