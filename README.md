@@ -2,7 +2,7 @@
 
 Version : 0.10.1 (Beta)
 
-NodeAtlas Version minimale : 0.19.x
+NodeAtlas Version minimale : 0.20.x
 
 
 
