@@ -25,6 +25,6 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/common-min1160.css" media="screen and (min-width: 1160px)" />
 		<% } %>
 
-		<% if ((typeof backend !== 'undefined' && backend.article && backend.article.script) || (typeof session !== 'undefined' && session.account)) { %>
+		<% if ((typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) || (typeof session !== 'undefined' && session.account)) { %>
 			<style class="stylesheet" type="text/css"><%- (typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) ? backend.article.stylesheet : "" %></style>
 		<% } %>
