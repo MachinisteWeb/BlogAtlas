@@ -1,0 +1,92 @@
+{
+	"/rss.xml": {
+		"redirect": "/feeds/articles.xml",
+		"statusCode": 301
+	},
+	"/categories/:category/": {
+		"template": "articles-by-category.htm",
+		"controller": "articles-by-category.js",
+		"variation": "articles-by-category.json"
+	},
+	"/categories/:category": {
+		"redirect": "/categories/:category/",
+		"statusCode": 301
+	},
+	"/categories/": {
+		"template": "categories.htm",
+		"controller": "categories.js",
+		"variation": "categories.json"
+	},
+	"/categories": {
+		"redirect": "/categories/",
+		"statusCode": 301
+	},
+	"/archives/:year/:month/": {
+		"template": "articles-by-month.htm",
+		"controller": "articles-by-month.js",
+		"variation": "articles-by-month.json"
+	},
+	"/archives/:year/:month": {
+		"redirect": "/archives/:year/:month/",
+		"statusCode": 301
+	},
+	"/archives/:year/": {
+		"template": "articles-by-year.htm",
+		"controller": "articles-by-year.js",
+		"variation": "articles-by-year.json"
+	},
+	"/archives/:year": {
+		"redirect": "/archives/:year/",
+		"statusCode": 301
+	},
+	"/archives/": {
+		"template": "archives.htm",
+		"controller": "archives.js",
+		"variation": "archives.json"
+	},
+	"/archives": {
+		"redirect": "/archives/",
+		"statusCode": 301
+	},
+	"/espace-membres/": {
+		"template": "login.htm",
+		"controller": "login.js",
+		"variation": "login.json"
+	},
+	"/espace-membres": {
+		"redirect": "/espace-membres/",
+		"statusCode": 301
+	},
+	"/upload/": {
+		"template": "json.htm",
+		"controller": "upload.js"
+	},
+	"/upload": {
+		"redirect": "/upload/",
+		"statusCode": 301
+	},
+	"/page-inexistante/": {
+		"template": "error.htm",
+		"controller": "error.js",
+		"variation": "error.json",
+		"statusCode": 404
+	},
+	"/:urn/": {
+		"template": "article.htm",
+		"controller": "article.js",
+		"variation": "article.json"
+	},
+	"/:urn": {
+		"redirect": "/:urn/",
+		"statusCode": 301
+	},
+	"/": {
+		"template": "index.htm",
+		"controller": "index.js",
+		"variation": "index.json"
+	},
+	"": {
+		"redirect": "/",
+		"statusCode": 301
+	}
+}
