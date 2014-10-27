@@ -150,25 +150,27 @@ var website = {};
 	};
 
 	privates.mongooseInitialization = function (mongoose, callback) {
-		mongoose.connect('mongodb://127.0.0.1:27017/blog', function (error) {
+		var mongoDbAddress = 'mongodb://127.0.0.1:27017/blog';
+		mongoose.connect(mongoDbAddress, function (error) {
   			if (error) {
-				throw error;
+				console.log("La base '" + mongoDbAddress + "' n'est pas accessible.");
+				process.kill(process.pid);
   			};
 
   			callback(mongoose);
 		});
 		
 		mongoose.connection.on('error', function (error) {
-	  		console.log('Mongoose default connection error: ' + error);
+	  		console.log('Erreur pour la connexion par défaut à Mongoose: ' + error);
 		});
 
 		mongoose.connection.on('disconnected', function () {
-			console.log('Mongoose default connection disconnected');
+			console.log('Connexion par défaut à Mongoose déconnectée.');
 		});
 
 		process.on('SIGINT', function (error) {
 			mongoose.connection.close(function () {
-				console.log('Mongoose default connection disconnected through app termination');
+				console.log('Connexion par défaut à Mongoose déconnectée en raison de l\'arrêt de l\'app termination');
 				process.exit(0);
 			});
 		});
