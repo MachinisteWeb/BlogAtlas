@@ -4,6 +4,8 @@ var website = {};
 (function (publics) {
 	"use strict";
 
+	var privates = {};
+
 	publics.loadModules = function (NA) {
 		var modulePath = (NA.webconfig._needModulePath) ? NA.nodeModulesPath : '';
 		
@@ -16,7 +18,49 @@ var website = {};
 		NA.modules.rss = require(modulePath + 'rss');
 		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
 
+		NA.modules.ejs = privates.setFilters(NA.modules.ejs, NA);
+
 		return NA;
+	};
+
+	privates.setFilters = function (templateEngine, NA) {
+		templateEngine.filters.editText = function (obj, arr) {
+			var markup = "span",
+        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1];
+
+        	if (arr[2]) { markup = "div"; }
+
+            if (arr[1]) {
+                return '<' + markup + ' data-edit="true" data-edit-type="text" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+            } else {
+                return obj;
+            }
+        };
+
+        templateEngine.filters.editHtml = function (obj, arr) {
+        	var markup = "div",
+        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1];
+
+        	if (arr[2]) { markup = "span"; }
+
+            if (arr[1]) {
+                return '<' + markup + ' data-edit="true" data-edit-type="html" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+            } else {
+                return obj;
+            }
+        };
+
+        templateEngine.filters.editAttr = function (obj, arr) {
+        	var file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1];
+
+            if (arr[1]) {
+                return obj + '" data-edit="true" data-edit-attr="true" data-edit-attr-name-' + arr[2] + '="true" data-edit-attr-path-' + arr[2] + '="' + arr[0] + '" data-edit-attr-file-' + arr[2] + '="' + file;
+            } else {
+                return obj;
+            }
+        };
+
+		return templateEngine;
 	};
 
 }(website));
@@ -29,12 +73,75 @@ var website = {};
 
 	var privates = {};
 
+	privates.setLookup = function (obj, key, val) {
+		var fields = key.split('.'),
+			result = obj;
+
+	  	for (var i = 0, n = fields.length; i < n && result !== undefined; i++) {
+	    	var field = fields[i];
+
+	    	if (i === n - 1) {
+  				result[field] = val;
+	    	} else {
+	      		if (typeof result[field] === 'undefined' || !((typeof result[field] == "object") && (result[field] !== null))) {
+	        		result[field] = {};
+	      		}
+	      		result = result[field];
+	    	}
+	  	}
+	};
+
+	privates.getLookup = function (obj, key) {
+		var type = typeof key;
+
+		if (type == 'string' || type == "number") {
+			key = ("" + key).replace(/\[(.*?)\]/, function (m, key) {
+				return '.' + key;
+			}).split('.');
+		}
+		for (var i = 0, l = key.length, currentkey; i < l; i++) {
+		 	if (obj.hasOwnProperty(key[i])) {
+		 		obj = obj[key[i]];
+		 	} else { 
+		 		return undefined;
+	 		}
+		}
+
+		return obj;
+	};
+
 	publics.asynchrone = function (params) {
-		var io = params.io;
+		var io = params.io,
+			NA = params.NA;
 
 		io.sockets.on('connection', function (socket) {
 			var sessionID = socket.handshake.sessionID,
 				session = socket.handshake.session;
+
+			socket.on('update-variation', function (options) {
+				if (session.account) {
+					console.log(options);
+				}
+				/*if (options && options.path && options.file && options.value) {
+					var object, key;
+					
+					try {
+						object = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + options.file);
+
+						if (object) {
+							key = options.path.split('.').slice(1).join('.');
+
+							if (privates.getLookup(object, key)) {
+								privates.setLookup(object, key, options.value);
+
+								console.log(object);
+							}
+						}
+					} catch (exception) {
+						console.log(exception);
+					}
+				}*/
+			});
 
 			socket.on('update-comment-number', function (options) {
 				var http = require('http'),
@@ -204,7 +311,13 @@ var website = {};
 	"use strict";
 
 	publics.preRender = function (params, mainCallback) {
-		var variation = params.variation;
+		var variation = params.variation,
+			session = params.request.session;
+
+		variation.edit = false;
+		if (session.account) {
+			variation.edit = variation.pageParameters.variation;
+		}
 
 		// Ici on modifie les variables de variations.
 		//console.log(params.variation);

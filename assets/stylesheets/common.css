@@ -735,6 +735,10 @@ li.L9 {
 	margin: 0;
 }
 
+.popup {
+	display: none;
+}
+
 figure {
 	text-align: center;
 	margin-left:0;

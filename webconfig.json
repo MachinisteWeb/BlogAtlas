@@ -5,7 +5,7 @@
  	"commonController": "common.js",
  	"controllersRelativePath": "controllers/",
  	"pageNotFound": "/page-inexistante/",
- 	"bundles": "bundles.json",
+	"bundles": "bundles.json",
 	"routes": "routes.json",
 	"_needModulePath": true,
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",

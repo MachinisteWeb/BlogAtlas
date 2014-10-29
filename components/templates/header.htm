@@ -1,8 +1,8 @@
 		<header id="header" class="header" role="banner">
 			<% var tag = (specific.classLayout === "home") ? "h1" : "div" %>
 			<<%= tag %>>
-				<a href="<%= common.logo.href %>" title="<%= common.logo.title %>">
-					<%- common.logo.content %>
+				<a href="<%-: common.logo.href | editAttr: ['common.logo.href', edit, 'href'] %>" title="<%-: common.logo.title | editAttr: ['common.logo.title', edit, 'title'] %>">
+					<%-: common.logo.content | editHtml: ['common.logo.content', edit, true] %>
 				</a>
 			</<%= tag %>>
 		</header>
@@ -32,3 +32,27 @@
 				<% } %>
 			</ol>
 		</nav>
+
+		<% if (typeof session !== 'undefined' && session.account) { %>
+		<div class="popup">
+			<section class="popup-content">
+				<div class="close"><input type="button" class="next-variation-change" value="Fermer"></div>
+				<h1>Zone d'édition de contenu</h1>
+				<div class="template html">
+					<hr>
+					<label>Label</label>
+					<textarea cols="30" rows="10"></textarea>
+				</div>
+				<div class="template text">
+					<hr>
+					<label>Label</label>
+					<input type="text">
+				</div>
+				<div class="insert"></div>
+				<div class="submit">
+					<label><input type="button" class="next-variation-change" value="Continuer avant d'envoyer"></label>
+					<label><input type="button" class="update-variation-change" value="Modifier"></label>
+				</div>
+			</section>
+		</div>
+		<% } %>

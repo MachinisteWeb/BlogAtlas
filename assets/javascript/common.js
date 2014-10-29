@@ -38,6 +38,167 @@ var website = website || {},
 
     publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
 
+    publics.editContent = function () {
+        var ctrlIsPressed = false,
+            editedObjects = [],
+            $popup = $(".popup");
+
+        function clone(obj) {
+            if (null == obj || "object" != typeof obj) return obj;
+            var copy = obj.constructor();
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+            }
+            return copy;
+        }
+
+        // Ctrl is currently press ?
+        $(document).keyup(function(e) {
+            ctrlIsPressed = e.ctrlKey;
+        }).keydown(function(e) {
+            ctrlIsPressed = e.ctrlKey;
+        });
+
+        $(".popup .update-variation-change").click(function () {
+            var options = [],
+                currentOptions,
+                name;
+
+            for (var i = 0, l = editedObjects.length; i < l; i++) {
+                if (editedObjects[i].data('edit-type') === 'html') {
+                    currentOptions = {};
+
+                    currentOptions.file = editedObjects[i].data("edit-file");
+                    currentOptions.path = editedObjects[i].data("edit-path");
+                    currentOptions.value = editedObjects[i].html().trim();
+                    options.push(currentOptions);
+                }
+
+                if (editedObjects[i].data('edit-type') === 'text') {
+                    currentOptions = {};
+
+                    currentOptions.file = editedObjects[i].data("edit-file");
+                    currentOptions.path = editedObjects[i].data("edit-path");
+                    currentOptions.value = editedObjects[i].text().trim();
+                    options.push(currentOptions);
+                }
+
+                if (editedObjects[i].data('edit-attr') === true) {
+                    for (var j in editedObjects[i].data()) {
+                        if (j.indexOf('editAttrName') !== -1) {
+                            name = j.replace('editAttrName', '').toLowerCase();
+
+                            currentOptions = {};
+
+                            currentOptions.file = editedObjects[i].data("edit-attr-file-" + name);
+                            currentOptions.path = editedObjects[i].data("edit-attr-path-" + name);
+                            currentOptions.value = editedObjects[i].attr(name).trim();
+                            options.push(currentOptions);
+                        }
+                    }
+                }
+            }
+
+            publics.sendContent(options);
+
+            editedObjects = [];
+            $(".popup .html:not(.template)").remove();
+            $(".popup .text:not(.template)").remove();
+
+            $popup.removeClass("opened");
+        });
+
+        $(".popup .next-variation-change").click(function () {
+            $popup.removeClass("opened");
+        });
+
+        $("[data-edit=true]").each(function (i) {
+            var $currentDataEdit = $(this);
+
+            $currentDataEdit.click(function (e) {
+                var $editedObject = $(this),
+                    options = {},
+                    $template,
+                    $clone,
+                    content,
+                    name,
+                    accept = false;
+
+                if (ctrlIsPressed) {
+                    e.preventDefault();
+
+                    $popup.addClass("opened");
+
+                    if ($editedObject.data("edit-type") === "html" &&
+                        $popup.find("." + $editedObject.data('edit-path').replace(/\./g, "--")).length === 0) 
+                    {
+                        $template = $(".popup .template.html");
+                        $clone = $template.clone();
+                        $popup.find(".insert").before($clone.removeClass("template"));
+                        $clone.find("label")
+                            .addClass($editedObject.data('edit-path').replace(/\./g, "--"))
+                            .text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
+                        $clone.find("textarea").val($editedObject.html().trim());
+                        $clone.find("textarea").keyup(function () {
+                            $editedObject.html($clone.find("textarea").val());
+                        });
+                        editedObjects.push($editedObject);
+                    }
+
+                    if ($editedObject.data("edit-type") === "text" &&
+                        $popup.find("." + $editedObject.data('edit-path').replace(/\./g, "--")).length === 0) 
+                    {
+                        $template = $(".popup .template.text");
+                        $clone = $template.clone();
+                        $popup.find(".insert").before($clone.removeClass("template"));
+                        $clone.find("label")
+                            .addClass($editedObject.data('edit-path').replace(/\./g, "--"))
+                            .text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
+                        $clone.find("input").val($editedObject.text().trim());
+                        $clone.find("input").keyup(function () {
+                            $editedObject.text($clone.find("input").val());
+                        });
+                        editedObjects.push($editedObject);
+                    }
+
+                    if ($editedObject.data("edit-attr") === true) {
+                        for (var i in $editedObject.data()) {
+                            (function () {
+                                var name;
+                                if (i.indexOf('editAttrName') !== -1) {
+                                    name = i.replace('editAttrName', '').toLowerCase();
+
+                                    if ($popup.find("." + $editedObject.data('edit-attr-path-' + name).replace(/\./g, "--")).length === 0) {
+                                        accept = true;
+                                        $template = $(".popup .template.text");
+                                        $clone = $template.clone();
+                                        $popup.find(".insert").before($clone.removeClass("template"));
+                                        $clone.find("label")
+                                            .addClass($editedObject.data('edit-attr-path-' + name).replace(/\./g, "--"))
+                                            .text($editedObject.data('edit-attr-file-' + name) + " > " + $editedObject.data('edit-attr-path-' + name));
+                                        $clone.find("input").val($editedObject.attr(name).trim());
+                                        $clone.find("input").keyup(function () {
+                                            var currentName = currentName || clone(name);
+                                            $editedObject.attr(currentName, $(this).val());
+                                        });
+                                    }
+                                }
+                            }())
+                        }
+                        if (accept) {
+                            editedObjects.push($editedObject);
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    publics.sendContent = function (options) {
+        console.log(options);
+        socket.emit('update-variation', options);
+    };
+
     publics.jQueryUiLoading = function (callback) {
         Modernizr.load({
             test: $('script[src="javascript/jquery/jquery-ui' + publics.minified + '.js"]').length === 0,
@@ -147,6 +308,7 @@ var website = website || {},
     publics.init = function () {
         publics.googleAnalytics();
         publics.disqusNumberLoading();
+        publics.editContent();
 
 
 

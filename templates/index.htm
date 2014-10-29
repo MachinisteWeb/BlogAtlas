@@ -3,9 +3,9 @@
 <% include templates/master-content.htm %>
 
 		<div class="about-site">
-			<h2><%- common.aboutSite.title %></h2>
+			<h2><%-: common.aboutSite.title | editText: ['common.aboutSite.title', edit] %></h2>
 
-			<p><%- common.aboutSite.content %></p>
+			<p><%-: common.aboutSite.content | editHtml: ['common.aboutSite.content', edit, true] %></p>
 		</div>
 
 		<div id="content" class="content">
