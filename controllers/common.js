@@ -110,37 +110,60 @@ var website = {};
 		return obj;
 	};
 
+	privates.orderByFile = function (options) {
+		var files = {},
+			next;
+
+		for (var i = 0, l = options.length; i < l; i++) {
+			next = false;
+			for (var file in files) {
+				if (file === options[i].file) {
+					files[options[i].file].push(options[i]);
+					next = true;
+				}
+			}
+			if (!next) {
+				files[options[i].file] = [];
+				files[options[i].file].push(options[i]);
+			}
+		}
+
+		return files;
+	};
+
 	publics.asynchrone = function (params) {
 		var io = params.io,
-			NA = params.NA;
+			NA = params.NA,
+			fs = NA.modules.fs;
 
 		io.sockets.on('connection', function (socket) {
 			var sessionID = socket.handshake.sessionID,
 				session = socket.handshake.session;
 
 			socket.on('update-variation', function (options) {
+				var files, object, key;
+
 				if (session.account) {
-					console.log(options);
-				}
-				/*if (options && options.path && options.file && options.value) {
-					var object, key;
+					files = privates.orderByFile(options);
 					
-					try {
-						object = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + options.file);
+					for (var file in files) {
+						try {
+							object = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + file);
+							if (object) {
+								for (var i = 0, l = files[file].length; i < l; i++) {
+									key = files[file][i].path.split('.').slice(1).join('.');
 
-						if (object) {
-							key = options.path.split('.').slice(1).join('.');
-
-							if (privates.getLookup(object, key)) {
-								privates.setLookup(object, key, options.value);
-
-								console.log(object);
+									if (privates.getLookup(object, key)) {
+										privates.setLookup(object, key, files[file][i].value);
+									}
+								}
 							}
+							fs.writeFileSync(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + file, JSON.stringify(object, undefined, "    "));
+						} catch (exception) {
+							console.log(exception);
 						}
-					} catch (exception) {
-						console.log(exception);
-					}
-				}*/
+					}	
+				}
 			});
 
 			socket.on('update-comment-number', function (options) {

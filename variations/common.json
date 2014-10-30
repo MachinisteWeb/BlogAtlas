@@ -1,157 +1,173 @@
 {
-	"placename": "Annecy, Haute-Savoie, France",
-	"indexFollow": "index, follow",
-	"javascriptDisable": "Votre JavaScript est désactivé aussi toutes les fonctionalités de ce site ne seront pas disponibles.",
-	"permalink": "Permalien :",
-	"skipLink": {
-		"title": "Accès aux sections",
-		"items": [{
-			"content": "Allez en corps de page",
-			"title": "Allez en corps de page",
-			"href": "#content"
-		}, {
-			"content": "Allez au menu de navigation",
-			"title": "Allez au menu de navigation",
-			"href": "#menu"
-		}, {
-			"content": "Allez au crédits",
-			"title": "Allez au au crédits",
-			"href": "#footer"
-		}]
-	},
-	"logo": {
-		"content": "<span class=\"first\">Quelques #ID</span> <span class=\"second\">et beaucoup de .CLASS</span>",
-		"title": "Quelques #ID et beaucoup de .CLASS",
-		"href": "./"
-	},
-	"aboutSite": {
-		"title": "Bienvenue",
-		"content": "Ce blog est majoritairement consacré au JavaScript que ce soit côté Front-end ou côté Back-end. Côté Front, on parle d'astuces et réflexions autour des bonnes pratiques HTML5, CSS3, et JavaScript. Côté serveur, on parle de Node.js. Le site traite également de tous types d'articles touchant de près ou de loin à la webosphère."
-	},
-	"aboutAuthor": {
-		"title": "À propos de l'auteur",
-		"image": {
-			"src": "./media/images/bw-author.png",
-			"alt": "Bruno Lesieur",
-			"width": 96,
-			"height": 96
-		},
-		"content": "Bonjour, je suis Bruno Lesieur, architecte web basé sur Annecy. Intégrateur HTML5, CSS3 et JavaScript ou encore développeur Front-End ; appelez moi comme vous le voulez mais sachez que je suis très friand de performance web, de Responsive Web Design, d'accessibilité web, de bonnes pratiques, de techniques et d'outils de gestion web, de factorisation et d'automatisation, de partage et casse-tête en tout genre ainsi que de boissons gazeuses."
-	},
-	"mainMenu": {
-		"title": {
-			"content": "Accueil",
-			"title": "Accueil du site",
-			"href": "./"
-		},
-		"section": [{
-			"content": "Catégories",
-			"title": "Tous les billets par catégories",
-			"href": "./categories/",
-			"class": "category"
-		}, {
-			"content": "Archives",
-			"title": "Tous les billets par année",
-			"href": "./archives/",
-			"class": "archive"
-		}, {
-			"content": "À propos",
-			"title": "À propos du site et de l'auteur",
-			"href": "http://www.haeresis.fr/",
-			"class": "about"
-		}, {
-			"content": "RSS",
-			"title": "Suivre le flux RSS",
-			"href": "./feeds/articles.xml",
-			"class": "rss"
-		}]
-	},
-	"error404": {
-		"title": "Erreur 404",
-		"content": "Cette page n'existe pas."
-	},
-	"copyright": "©2012-2014 <a href=\"http://www.lesieur.name/\" title=\"Site de Bruno Lesieur, Développeur web spécialiste Front-End / Node.js\">Lesieur.name</a>",
-	"engine": "Site développé en <a href=\"http://nodejs.org/\" title=\"node.js, le moteur JavaScript côté serveur\">node.js</a> avec <a href=\"https://haeresis.github.io/NodeAtlas/\" title=\"Le Framework node.js NodeAtlas\">NodeAtlas</a>",
-	"listDate": {
-		"startingYear": "2012",
-		"titleYear": "Année",
-		"titleMonth": "Mois",
-		"linkYear": {
-			"href": "./archives/%year%",
-			"title": "Archives de l'année %year%"
-		},
-		"linkMonth": {
-			"href": "./archives/%year%/%month%/",
-			"title": "Archives du mois de %month% de l'année %year%"
-		}
-	},
-	"dates": {
-		"toHour": "à",
-		"toDate": "Le",
-		"unitHours": "h",
-		"months": [
-			"Janvier",
-			"Février",
-			"Mars",
-			"Avril",
-			"Mai",
-			"Juin",
-			"Juillet",
-			"Août",
-			"Septembre",
-			"Octobre",
-			"Novembre",
-			"Décembre"
-		]
-	},
-	"comments": {
-		"title": "Nombre de commentaires",
-		"commentSimple": "commentaire<ins data-ins=\"s\"></ins>",
-		"commentMultiple": "commentaire<ins data-ins=\"s\">s</ins>",
-		"commentSentence": "Aller aux commentaires"
-	},
-	"categories": {
-		"title": "Toutes les categories",
-		"title2": "Catégorisé dans",
-		"link": {
-			"title": "Tous les articles de la categorie",
-			"href": "./categories/%urn%/"
-		}
-	},
-	"summary": {
-		"title": "Dans cette article"
-	},
-	"archives": {
-		"title": "Toutes les dates",
-		"startingYear": 2012,
-		"startingMonth": 11,
-		"linkYear": {
-			"title": "Tous les articles de l'année %year%",
-			"href": "./archives/%year%/"
-		}, 
-		"linkMonth": {
-			"title": "Tous les articles du mois de %month% de l'année %year%",
-			"href": "./archives/%year%/%month%/"
-		}
-	},
-	"articles": {
-		"updateArticle": "Modifier l'article",
-		"uploadAvatar": {
-			"button": "Uploader Avatar",
-			"alt": "Avatar"
-		},
-		"readMore": {
-			"href": "./%urn%/",
-			"content": "Lire la suite"
-		}
-	},
-	"rss": {
-		"title": "Quelques #ID et beaucoup de .CLASS",
-		"description" : "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
-		"feedUrl": "/feeds/articles.xml",
-		"author": "Bruno Lesieur",
-		"copyright": "2012-2014",
-		"language": "fr",
-		"url": "%urn%/"
-	}
+    "placename": "Annecy, Haute-Savoie, France",
+    "indexFollow": "index, follow",
+    "javascriptDisable": "Votre JavaScript est désactivé aussi toutes les fonctionalités de ce site ne seront pas disponibles.",
+    "permalink": "Permalien :",
+    "skipLink": {
+        "title": "Accès aux sections",
+        "items": [
+            {
+                "content": "Allez en corps de page",
+                "title": "Allez en corps de page",
+                "href": "#content"
+            },
+            {
+                "content": "Allez au menu de navigation",
+                "title": "Allez au menu de navigation",
+                "href": "#menu"
+            },
+            {
+                "content": "Allez au crédits",
+                "title": "Allez au au crédits",
+                "href": "#footer"
+            }
+        ]
+    },
+    "logo": {
+        "content": "<span class=\"first\">Quelques #ID</span> <span class=\"second\">et beaucoup de .CLASS</span>",
+        "title": "Quelques #ID et beaucoup de .CLASS",
+        "href": "./"
+    },
+    "aboutSite": {
+        "title": "Bienvenue",
+        "content": "Ce blog est majoritairement consacré au JavaScript que ce soit côté Front-end ou côté Back-end. Côté Front, on parle d'astuces et réflexions autour des bonnes pratiques HTML5, CSS3, et JavaScript. Côté serveur, on parle de Node.js. Le site traite également de tous types d'articles touchant de près ou de loin à la webosphère."
+    },
+    "aboutAuthor": {
+        "title": "À propos de l'auteur",
+        "image": {
+            "src": "./media/images/bw-author.png",
+            "alt": "Bruno Lesieur",
+            "width": 96,
+            "height": 96
+        },
+        "content": "Bonjour, je suis Bruno Lesieur, architecte web basé sur Annecy. Intégrateur HTML5, CSS3 et JavaScript ou encore développeur Front-End ; appelez moi comme vous le voulez mais sachez que je suis très friand de performance web, de Responsive Web Design, d'accessibilité web, de bonnes pratiques, de techniques et d'outils de gestion web, de factorisation et d'automatisation, de partage et casse-tête en tout genre ainsi que de boissons gazeuses."
+    },
+    "editableArea": {
+        "close": "Fermer",
+        "htmlInfo": "(HTML activé)",
+        "title": "Zone d'édition de contenu",
+        "next": "Continuer avant d'envoyer",
+        "submit": "Modifier"
+    },
+    "mainMenu": {
+        "title": {
+            "content": "Accueil",
+            "title": "Accueil du site",
+            "href": "./"
+        },
+        "section": [
+            {
+                "content": "Catégories",
+                "title": "Tous les billets par catégories",
+                "href": "./categories/",
+                "class": "category"
+            },
+            {
+                "content": "Archives",
+                "title": "Tous les billets par année",
+                "href": "./archives/",
+                "class": "archive"
+            },
+            {
+                "content": "À propos",
+                "title": "À propos du site et de l'auteur",
+                "href": "http://www.haeresis.fr/",
+                "class": "about"
+            },
+            {
+                "content": "RSS",
+                "title": "Suivre le flux RSS",
+                "href": "./feeds/articles.xml",
+                "class": "rss"
+            }
+        ]
+    },
+    "error404": {
+        "title": "Erreur 404",
+        "content": "Cette page n'existe pas."
+    },
+    "copyright": "©2012-2014 <a href=\"http://www.lesieur.name/\" title=\"Site de Bruno Lesieur, Développeur web spécialiste Front-End / Node.js\">Lesieur.name</a>",
+    "engine": "Site développé en <a href=\"http://nodejs.org/\" title=\"node.js, le moteur JavaScript côté serveur\">node.js</a> avec <a href=\"https://haeresis.github.io/NodeAtlas/\" title=\"Le Framework node.js NodeAtlas\">NodeAtlas</a>",
+    "listDate": {
+        "startingYear": "2012",
+        "titleYear": "Année",
+        "titleMonth": "Mois",
+        "linkYear": {
+            "href": "./archives/%year%",
+            "title": "Archives de l'année %year%"
+        },
+        "linkMonth": {
+            "href": "./archives/%year%/%month%/",
+            "title": "Archives du mois de %month% de l'année %year%"
+        }
+    },
+    "dates": {
+        "toHour": "à",
+        "toDate": "Le",
+        "unitHours": "h",
+        "months": [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ]
+    },
+    "comments": {
+        "title": "Nombre de commentaires",
+        "commentSimple": "commentaire<ins data-ins=\"s\"></ins>",
+        "commentMultiple": "commentaire<ins data-ins=\"s\">s</ins>",
+        "commentSentence": "Aller aux commentaires"
+    },
+    "categories": {
+        "title": "Toutes les categories",
+        "title2": "Catégorisé dans",
+        "link": {
+            "title": "Tous les articles de la categorie",
+            "href": "./categories/%urn%/"
+        }
+    },
+    "summary": {
+        "title": "Dans cette article"
+    },
+    "archives": {
+        "title": "Toutes les dates",
+        "startingYear": 2012,
+        "startingMonth": 11,
+        "linkYear": {
+            "title": "Tous les articles de l'année %year%",
+            "href": "./archives/%year%/"
+        },
+        "linkMonth": {
+            "title": "Tous les articles du mois de %month% de l'année %year%",
+            "href": "./archives/%year%/%month%/"
+        }
+    },
+    "articles": {
+        "updateArticle": "Modifier l'article",
+        "uploadAvatar": {
+            "button": "Uploader Avatar",
+            "alt": "Avatar"
+        },
+        "readMore": {
+            "href": "./%urn%/",
+            "content": "Lire la suite"
+        }
+    },
+    "rss": {
+        "title": "Quelques #ID et beaucoup de .CLASS",
+        "description": "Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.",
+        "feedUrl": "/feeds/articles.xml",
+        "author": "Bruno Lesieur",
+        "copyright": "2012-2014",
+        "language": "fr",
+        "url": "%urn%/"
+    }
 }

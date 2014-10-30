@@ -36,22 +36,22 @@
 		<% if (typeof session !== 'undefined' && session.account) { %>
 		<div class="popup">
 			<section class="popup-content">
-				<div class="close"><input type="button" class="next-variation-change" value="Fermer"></div>
-				<h1>Zone d'édition de contenu</h1>
+				<div class="close"><input type="button" class="next-variation-change" value="<%-: common.editableArea.close | editAttr: ['common.editableArea.close', edit, 'value'] %>"></div>
+				<h1><%-: common.editableArea.title | editText: ['common.editableArea.title', edit] %></h1>
 				<div class="template html">
 					<hr>
-					<label>Label</label>
+					<label><span class="info"></span> <%-: common.editableArea.htmlInfo | editText: ['common.editableArea.htmlInfo', edit] %></label>
 					<textarea cols="30" rows="10"></textarea>
 				</div>
 				<div class="template text">
 					<hr>
-					<label>Label</label>
+					<label><span class="info"></span></label>
 					<input type="text">
 				</div>
 				<div class="insert"></div>
 				<div class="submit">
-					<label><input type="button" class="next-variation-change" value="Continuer avant d'envoyer"></label>
-					<label><input type="button" class="update-variation-change" value="Modifier"></label>
+					<label><input type="button" class="next-variation-change" value="<%-: common.editableArea.next | editAttr: ['common.editableArea.next', edit, 'value'] %>"></label>
+					<label><input type="button" class="update-variation-change" value="<%-: common.editableArea.submit | editAttr: ['common.editableArea.submit', edit, 'value'] %>"></label>
 				</div>
 			</section>
 		</div>

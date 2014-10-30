@@ -266,6 +266,14 @@ header h1 {
 	float: right;
 }
 
+.is-editable [data-edit=true][data-edit-targeted=true] {
+	background-color: #E4ECF8;
+	cursor: crosshair;
+}
+.is-editable img[data-edit-attr=true][data-edit-targeted=true] {
+	border: 3px solid #E4ECF8;
+	margin: -3px;
+}
 
 /***********/
 /* $Layout */
