@@ -45,6 +45,7 @@
     "editableArea": {
         "close": "Fermer",
         "htmlInfo": "(HTML activé)",
+        "sourceInfo": "Cette valeur provenant du serveur, elle ne sera pas auto-rechargée.",
         "title": "Zone d'édition de contenu",
         "next": "Continuer avant d'envoyer",
         "submit": "Modifier"
@@ -55,6 +56,7 @@
             "title": "Accueil du site",
             "href": "./"
         },
+        "mainTitle": "Menu",
         "section": [
             {
                 "content": "Catégories",

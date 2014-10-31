@@ -26,37 +26,58 @@ var website = {};
 	privates.setFilters = function (templateEngine, NA) {
 		templateEngine.filters.editText = function (obj, arr) {
 			var markup = "span",
-        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1];
+        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1],
+        		claimSource = " ";
+
+        	if (!obj) { obj = " "; }
+
+        	if (arr[3]) {
+    			claimSource = ' data-edit-source="true" ';
+        	}
 
         	if (arr[2]) { markup = "div"; }
 
             if (arr[1]) {
-                return '<' + markup + ' data-edit="true" data-edit-type="text" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+                return '<' + markup + claimSource + 'data-edit="true" data-edit-type="text" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
             } else {
-                return obj;
+                return '<' + markup + ' data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
             }
         };
 
         templateEngine.filters.editHtml = function (obj, arr) {
         	var markup = "div",
-        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1];
+        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1],
+        		claimSource = " ";
+
+        	if (!obj) { obj = " "; }
 
         	if (arr[2]) { markup = "span"; }
 
+        	if (arr[3]) {
+    			claimSource = ' data-edit-source="true" ';
+        	}
+
             if (arr[1]) {
-                return '<' + markup + ' data-edit="true" data-edit-type="html" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+                return '<' + markup + claimSource  + ' data-edit="true" data-edit-type="html" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
             } else {
-                return obj;
+                return '<' + markup + ' data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
             }
         };
 
         templateEngine.filters.editAttr = function (obj, arr) {
-        	var file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1];
+        	var file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1],
+        		claimSource = " ";
+
+        	if (!obj) { obj = " "; }
+
+        	if (arr[3]) {
+    			claimSource = ' data-edit-attr-source-' + arr[2] + '="true" ';
+        	}
 
             if (arr[1]) {
-                return obj + '" data-edit="true" data-edit-attr="true" data-edit-attr-name-' + arr[2] + '="true" data-edit-attr-path-' + arr[2] + '="' + arr[0] + '" data-edit-attr-file-' + arr[2] + '="' + file;
+                return obj + '" data-edit="true"' + claimSource + 'data-edit-attr="true" data-edit-attr-name-' + arr[2] + '="true" data-edit-attr-path-' + arr[2] + '="' + arr[0] + '" data-edit-attr-file-' + arr[2] + '="' + file;
             } else {
-                return obj;
+                return obj + '" data-edit-attr-path-' + arr[2] + '="' + arr[0];
             }
         };
 
@@ -74,8 +95,15 @@ var website = {};
 	var privates = {};
 
 	privates.setLookup = function (obj, key, val) {
-		var fields = key.split('.'),
+		var fields,
+			type = typeof key,
 			result = obj;
+
+		if (type == 'string' || type == "number") {
+			fields = ("" + key).replace(/\[(.*?)\]/, function (m, key) {
+				return '.' + key;
+			}).split('.');
+		}
 
 	  	for (var i = 0, n = fields.length; i < n && result !== undefined; i++) {
 	    	var field = fields[i];
@@ -153,8 +181,16 @@ var website = {};
 								for (var i = 0, l = files[file].length; i < l; i++) {
 									key = files[file][i].path.split('.').slice(1).join('.');
 
-									if (privates.getLookup(object, key)) {
+									if (privates.getLookup(object, key) || privates.getLookup(object, key) === "") {
 										privates.setLookup(object, key, files[file][i].value);
+										if (files[file][i].source) {										
+											socket.broadcast.emit('update-variation', {
+												path: files[file][i].path,
+												value: files[file][i].value,
+												type: files[file][i].type,
+												attrName: files[file][i].attrName
+											});
+										}
 									}
 								}
 							}
@@ -162,6 +198,26 @@ var website = {};
 						} catch (exception) {
 							console.log(exception);
 						}
+					}	
+				}
+			});
+
+			socket.on('source-variation', function (options) {
+				var object, key;
+
+				if (session.account) {
+					try {
+						object = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + options.file);
+						if (object) {
+							key = options.path.split('.').slice(1).join('.');
+
+							socket.emit('source-variation', {
+								value: privates.getLookup(object, key),
+								path: options.path
+							});
+						}
+					} catch (exception) {
+						console.log(exception);
 					}	
 				}
 			});

@@ -77,37 +77,51 @@ var website = website || {},
                     $popup.addClass("opened");
 
                     if ($editedObject.data("edit-type") === "html" &&
-                        $popup.find("." + $editedObject.data('edit-path').replace(/\./g, "\\\.")).length === 0) 
+                        $popup.find("." + $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).length === 0) 
                     {
                         $template = $(".popup .template.html");
                         $clone = $template.clone().removeClass("template");
                         $clone = publics.cleanDataEdit($clone);
                         $popup.find(".insert").before($clone);
-                        $clone.find("label .info")
-                            .addClass($editedObject.data('edit-path'))
-                            .text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
-                        $clone.find("textarea").val($editedObject.html().trim());
-                        $clone.find("textarea").keyup(function () {
-                            $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.") + ']').html($clone.find("textarea").val());
-                        });
+                        $clone.find("label").addClass($editedObject.data('edit-path'));
+                        $clone.find("label .info").text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
+                        if ($editedObject.data('edit-source')) {
+                        	$clone.find("textarea").hide();
+							socket.emit('source-variation', {
+								path: $editedObject.data('edit-path'),
+								file: $editedObject.data('edit-file')
+							});
+                        } else {
+                        	$clone.find("textarea").val($editedObject.html().trim());
+	                        $clone.find("textarea").keyup(function () {
+	                            $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html($clone.find("textarea").val());
+	                        });
+                        }
                         privates.editedObjects.push($editedObject);
                         publics.targetDataEdit();
                     }
 
                     if ($editedObject.data("edit-type") === "text" &&
-                        $popup.find("." + $editedObject.data('edit-path').replace(/\./g, "\\\.")).length === 0) 
+                        $popup.find("." + $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).length === 0) 
                     {
                         $template = $(".popup .template.text");
                         $clone = $template.clone().removeClass("template");
                         $clone = publics.cleanDataEdit($clone);
                         $popup.find(".insert").before($clone);
-                        $clone.find("label .info")
-                            .addClass($editedObject.data('edit-path'))
-                            .text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
-                        $clone.find("input").val($editedObject.text().trim());
-                        $clone.find("input").keyup(function () {
-                            $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.") + ']').html($clone.find("input").val());
-                        });
+                        $clone.find("label").addClass($editedObject.data('edit-path'));
+                        $clone.find("label .info").text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
+                        if ($editedObject.data('edit-source')) {
+							$clone.find("input").hide();
+							socket.emit('source-variation', {
+								path: $editedObject.data('edit-path'),
+								file: $editedObject.data('edit-file')
+							});
+                        } else {
+                        	$clone.find("input").val($editedObject.text().trim());
+	                        $clone.find("input").keyup(function () {
+	                            $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html($clone.find("input").val());
+	                        });
+                        }
                         privates.editedObjects.push($editedObject);
                         publics.targetDataEdit();
                     }
@@ -119,20 +133,27 @@ var website = website || {},
                                 if (i.indexOf('editAttrName') !== -1) {
                                     name = i.replace('editAttrName', '').toLowerCase();
 
-                                    if ($popup.find("." + $editedObject.data('edit-attr-path-' + name).replace(/\./g, "--")).length === 0) {
+                                    if ($popup.find("." + $editedObject.data('edit-attr-path-' + name).replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).length === 0) {
                                         accept = true;
                                         $template = $(".popup .template.text");
                                         $clone = $template.clone().removeClass("template");
                                         $clone = publics.cleanDataEdit($clone);
                                         $popup.find(".insert").before($clone);
-                                        $clone.find("label .info")
-                                            .addClass($editedObject.data('edit-attr-path-' + name).replace(/\./g, "--"))
-                                            .text($editedObject.data('edit-attr-file-' + name) + " > " + $editedObject.data('edit-attr-path-' + name));
-                                        $clone.find("input").val($editedObject.attr(name).trim());
-                                        $clone.find("input").keyup(function () {
-                                            var currentName = currentName || clone(name);
-                                            $('[data-edit-attr-path-' + currentName + '='+ $editedObject.data('edit-attr-path-' + currentName).replace(/\./g, "\\\.") + ']').attr(currentName, $(this).val());
-                                        });
+                                        $clone.find("label").addClass($editedObject.data('edit-attr-path-' + name));
+                                        $clone.find("label .info").text($editedObject.data('edit-attr-file-' + name) + " > " + $editedObject.data('edit-attr-path-' + name));
+                                        if ($editedObject.data('edit-attr-source-' + name)) {
+											$clone.find("input").hide();
+											socket.emit('source-variation', {
+												path: $editedObject.data('edit-attr-path-' + name),
+												file: $editedObject.data('edit-attr-file-' + name)
+											});
+				                        } else {
+		                        	 		$clone.find("input").val($editedObject.attr(name).trim());
+	                                        $clone.find("input").keyup(function () {
+	                                            var currentName = currentName || clone(name);
+	                                            $('[data-edit-attr-path-' + currentName + '='+ $editedObject.data('edit-attr-path-' + currentName).replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').attr(currentName, $(this).val());
+	                                        });
+				                        }
                                     }
                                 }
                             }())
@@ -181,7 +202,9 @@ var website = website || {},
 
                         currentOptions.file = privates.editedObjects[i].data("edit-file");
                         currentOptions.path = privates.editedObjects[i].data("edit-path");
-                        currentOptions.value = privates.editedObjects[i].html().trim();
+                        currentOptions.source = privates.editedObjects[i].data("edit-source");
+                        currentOptions.type = 'html';
+                        currentOptions.value = $(".popup ." + privates.editedObjects[i].data("edit-path").replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next().val().trim();
                         options.push(currentOptions);
                     }
 
@@ -190,7 +213,9 @@ var website = website || {},
 
                         currentOptions.file = privates.editedObjects[i].data("edit-file");
                         currentOptions.path = privates.editedObjects[i].data("edit-path");
-                        currentOptions.value = privates.editedObjects[i].text().trim();
+                        currentOptions.source = privates.editedObjects[i].data("edit-source");
+                        currentOptions.type = 'text';
+                        currentOptions.value = $(".popup ." + privates.editedObjects[i].data("edit-path").replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next().val().trim();
                         options.push(currentOptions);
                     }
 
@@ -203,7 +228,10 @@ var website = website || {},
 
                                 currentOptions.file = privates.editedObjects[i].data("edit-attr-file-" + name);
                                 currentOptions.path = privates.editedObjects[i].data("edit-attr-path-" + name);
-                                currentOptions.value = privates.editedObjects[i].attr(name).trim();
+                                currentOptions.type = 'attr';
+                                currentOptions.source = privates.editedObjects[i].data("edit-attr-source-" + name);
+                                currentOptions.attrName = name;
+                                currentOptions.value = $(".popup ." + privates.editedObjects[i].data("edit-attr-path-" + name).replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next().val().trim();
                                 options.push(currentOptions);
                             }
                         }
@@ -228,8 +256,30 @@ var website = website || {},
     };
 
     publics.sendContent = function (options) {
-        console.log(options);
         socket.emit('update-variation', options);
+    };
+
+    publics.sourceContent = function (options) {
+		socket.on('source-variation', function (data) {
+			var area = $(".popup ." + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next();
+			area.show();
+			area.val(data.value);
+			area.next().show();
+		});
+    };
+
+    publics.broadcastContent = function (options) {
+        socket.on('update-variation', function (data) {
+            if (data.type === 'html') {
+                $('[data-edit-path=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html(data.value);
+            } 
+            if (data.type === 'text') {
+                $('[data-edit-path=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').text(data.value);
+            }
+            if (data.type === 'attr') {
+                $('[data-edit-attr-path-' + data.attrName + '=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').attr(data.attrName, data.value);
+            }
+        });
     };
 
     publics.jQueryUiLoading = function (callback) {
@@ -249,25 +299,27 @@ var website = website || {},
     };
 
      publics.prettifyLoad = function () {
+        var $sh = $(".prettyprint");
+
         prettyPrint();
-        if (!Modernizr.touch) {
-            var $sh = $(".prettyprint").css("overflow","hidden");
-            $sh.mousedown(function (e) {
-                $.data(this, "draggable", true);
+
+        $sh.mouseleave(function () {
+        	$.data(this, "draggable", false);
+            $.data(this, "offset", 0);
+        }).mousedown(function (e) {
+        	$.data(this, "draggable", true);
+            $.data(this, "offset", e.pageX);
+        }).mouseup(function () {
+            $.data(this, "draggable", false);
+            $.data(this, "offset", 0);
+        }).mousemove(function (e) {
+            if ($(this).data("draggable")) {
+            	console.log($(this).data("draggable"));
+            	console.log($(this).data("offset"));
+                $(this).scrollLeft(parseInt($(this).scrollLeft() + ($(this).data("offset") - e.pageX), 10));
                 $.data(this, "offset", e.pageX);
-            }).mouseup(function () {
-                $.data(this, "draggable", false);
-                $.data(this, "offset", 0);
-            }).mouseleave(function () {
-                $.data(this, "draggable", false);
-                $.data(this, "offset", 0);
-            }).mousemove(function (e) {
-                if ($(this).data("draggable")) {
-                    $(this).scrollLeft(parseInt($(this).scrollLeft() + ($(this).data("offset") - e.pageX), 10));
-                    $.data(this, "offset", e.pageX);
-                }
-            }).data("draggable", false).data("offset", 0);
-        }
+            }
+        }).data("draggable", false).data("offset", 0);
     };
 
     publics.disqusLoading = function () {
@@ -308,18 +360,16 @@ var website = website || {},
                 path: chaine.replace(/^\/count-data.js&/g,"/count-data.js?") + "&random=" + (Math.random() * 10000)
             }
 
-            //console.log('http://' + options.host + chaine.replace(/^\/count-data.js&/g,"/count-data.js?"));
-
             socket.emit('update-comment-number', options);
 
             socket.on('update-comment-number', function (data) {
                 for (var i = 0; i < data.counts.length; i++) {
                     $("a[data-disqus-identifier=" + data.counts[i].id + "]").each(function () {
-                        $(this).find("span").text(data.counts[i].comments);
+                        $(this).find(".set-number").text(data.counts[i].comments);
                         if (data.counts[i].comments > 1) {
-                            $(this).find("ins").text($(this).find("ins").data("ins"));
+                            $(this).find("[data-ins]").text($(this).find("[data-ins]").data("ins"));
                         } else {
-                            $(this).find("ins").text("");
+                            $(this).find("[data-ins]").text("");
                         }
                     });
                 }
@@ -342,8 +392,8 @@ var website = website || {},
         publics.googleAnalytics();
         publics.disqusNumberLoading();
         publics.editContent();
-
-
+        publics.broadcastContent();
+        publics.sourceContent();
 
         /* function info () {
             var bottomLimit = $("footer").offset().top - 48;
@@ -823,7 +873,7 @@ var website = website || {},
         privates.listeningUpdateArticle();
         privates.deleteArticle();
         privates.listeningDeleteArticle();
-        //privates.uploadImage();
+        website.prettifyLoad();
 
         privates.summary();
 
