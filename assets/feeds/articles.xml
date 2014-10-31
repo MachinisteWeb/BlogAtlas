@@ -5,10 +5,10 @@
         <description><![CDATA[Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.]]></description>
         <link>http://localhost:7777/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 01 Oct 2014 12:07:52 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 31 Oct 2014 16:11:54 GMT</lastBuildDate>
         <atom:link href="http://localhost:7777//feeds/articles.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Bruno Lesieur]]></author>
-        <pubDate>Wed, 01 Oct 2014 12:07:52 GMT</pubDate>
+        <pubDate>Fri, 31 Oct 2014 16:11:54 GMT</pubDate>
         <copyright><![CDATA[2012-2014 Bruno Lesieur]]></copyright>
         <language><![CDATA[fr]]></language>
         <managingEditor><![CDATA[Bruno Lesieur]]></managingEditor>
@@ -16,112 +16,14 @@
         <ttl>60</ttl>
         <item>
             <title><![CDATA[Centrer verticalement n'importe quel élément en quelques lignes CSS]]></title>
-            <description><![CDATA[<p>Une solution rapide et qui fonctionne sur tous les navigateurs à partir de IE9 est le centrage vertical avec la valeur CSS3 <samp>translateY</samp> de la propriété <samp>transform</samp>.</p>
-<p>Pour mettre cela en place, trois simples propriétés :</p>
-<ol>
-<li><p>On place l&#39;élément en relatif pour le repositionner par rapport à son élément parent avec <samp>position: relative;</samp>.</p>
-</li>
-<li><p>On déplace l&#39;élément de la moitié de la hauteur de l&#39;élément parent avec <samp>top: 50%;</samp>, la référence de déplacement étant actuellement son bord haut.</p>
-</li>
-<li><p>On re-centre l&#39;élément non plus à partir de son bord haut mais de son centre vertical avec <samp>transform: translateY(-50%);</samp></p>
-</li>
-</ol>
-<p>Et voilà !</p>
-<h2 id="exemple-de-code-minimal">Exemple de code minimal</h2>
-<p>Voici ce que cela donne avec les préfixes propriétaires :</p>
-<pre class="prettyprint linenums"><code class="this.options.langPrefixcss">.vertical-align {
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-}
-</code></pre>
-<p><em>Note : si votre élément est de type inline, il faudra ajouter la propriété <samp>display: inline-block;</samp> pour que la transformation soit valide dans tous les cas de figures sur tous les navigateurs supportant <samp>translateY</samp> :</em></p>
-<pre class="prettyprint linenums"><code class="this.options.langPrefixcss">.inline-block {
-    display: inline-block
-}
-</code></pre>
-<p><em>Note : si le centrage affiche l&#39;élément sur un demi-pixel, celui-ci peut paraître flou. Pour empêcher cela, il suffit de munir un élément parent de <samp>transform-style: preserve-3d;</samp> :</em></p>
-<pre class="prettyprint linenums"><code class="this.options.langPrefixcss">.preserve-3d {
-    -webkit-transform-style: preserve-3d;
-       -moz-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-}
-</code></pre>
-<h2 id="exemple-concret-d-utilisation">Exemple concret d&#39;utilisation</h2>
-<p><em>Passez votre souris sur l&#39;image :</em></p>
-<div class="example">
-    <img src="http://blog.haeresis.fr/upload/image/the_moment_by_dzsurnik.jpg" alt="The Moment by Dzsurnik">
-    <a href="http://blog.haeresis.fr/upload/image/the_moment_by_dzsurnik.jpg" target="_blank">
-        <span>Voir l&#39;image en grand format</span>
-    </a>
-</div>
-
-<p><em>Note : Vous pouvez retailler la fenêtre pour voir le résultat en Responsive Web Design</em></p>
-<p><em>HTML</em></p>
-<pre class="prettyprint linenums"><code class="this.options.langPrefixhtml">&lt;div class=&quot;example&quot;&gt;
-    &lt;img src=&quot;http://fc08.deviantart.net/fs70/i/2012/309/9/1/the_moment_by_dzsurnik-d5k2le2.jpg&quot; alt=&quot;The Moment by Dzsurnik&quot;&gt;
-    &lt;a href=&quot;http://fc08.deviantart.net/fs70/i/2012/309/9/1/the_moment_by_dzsurnik-d5k2le2.jpg&quot; target=&quot;_blank&quot;&gt;
-        &lt;span&gt;Voir l&#39;image en grand format&lt;/span&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
-<hr>
-<p><em>CSS</em></p>
-<pre class="prettyprint linenums"><code class="this.options.langPrefixcss">.example {
-    /* Permettre à `a` d&#39;être bien placer en absolue */
-    position: relative;
-    /* Éviter les rendus floux */
-    -webkit-transform-style: preserve-3d;
-       -moz-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-}
-.example img {
-    /* Rendre l&#39;image Responsive */
-    display: block;
-    max-width: 100%;
-    /* Centrer l&#39;image */
-    margin-left: auto;
-    margin-right: auto;
-}
-.example a {
-    /* Cacher le lien si la zone n&#39;est pas survolée */
-    display: none;
-    /* Couvrir l&#39;intégralité de `.example` */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Être transparent pour voir l&#39;image */
-    background-color: rgba(255, 255, 255, 0.8);
-    /* Centrer horizontalement le texte */    
-    text-align: center;
-    /* Styler le texte */
-    font-weight: bold;
-    font-size: 1.6em;
-    line-height: 1.3;
-}
-.example a:hover {
-    /* Désactiver visuellement le comportement :hover sur le lien */
-    color: #48739E;
-    text-decoration: none;
-}
-.example:hover a {
-    /* Afficher `a` au survole de `.example` */
-    display: block;
-}
-.example span {
-    /* Centrage vertical automatique pour le texte */
-    position: relative;
-    display: inline-block;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-}
-</code></pre>
+            <description><![CDATA[<h2 id="aaaaaaa">aaaaaaa</h2>
+<p>ieu
+ui
+eui
+ei
+ue
+ui
+eui</p>
 ]]></description>
             <link>http://localhost:7777/centrer-verticalement-n-importe-quel-element-en-quelques-lignes-css/</link>
             <guid isPermaLink="false">542bee6b2f9da5ac1f27f2e5</guid>

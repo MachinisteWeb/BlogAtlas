@@ -154,6 +154,8 @@ website.article = {};
 			}
 
 			socket.on('update-article-button', function (data) {
+				console.log(data);
+
 				if (session.account) {
 
 					Article.update({

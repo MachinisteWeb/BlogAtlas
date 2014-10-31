@@ -394,58 +394,6 @@ var website = website || {},
         publics.editContent();
         publics.broadcastContent();
         publics.sourceContent();
-
-        /* function info () {
-            var bottomLimit = $("footer").offset().top - 48;
-            var bottom = $(".about-site").offset().top + $(".about-site").height();
-
-            console.log( bottomLimit );
-            console.log(bottom);
-
-            $(".about-site").css("z-index", 1);
-            $(".about-site").css("position", "fixed");
-            $(".about-site").css("top", "");
-
-            if (bottomLimit > bottom) {
-                $(".about-site").css("position", "fixed");
-                $(".about-site").css("top", $(".about-site").position().top);
-            } else {
-
-
-        
-                if ((120 + 48) <= $(".about-site").offset().top) {
-
-
-                    $(".about-site").css("position", "absolute");
-                    $(".about-site").css("top", "auto");
-                    $(".about-site").css("top", $(document).scrollTop() + 48 - $(".about-site").height());
-
-
-                }
-
-
-
-
-
-
-
-            }
-
-        }
-
-        info();
-
-        $window.scroll(function () {
-            info();
-        });
-
-        $window.resize(function () {
-            info();
-        }); */
-
-
-
-
     };
 }(website));
 
@@ -549,13 +497,15 @@ var website = website || {},
 
             // Script part.
             $content.after(
-                $('<textarea class="field-script" cols="30" rows="10" placeholder="Script">Script</textarea>').val($script.html())
+                $('<textarea class="field-script" cols="30" rows="10" placeholder="Script">')
             ).css("display", "none");
+            $(".field-script").val($script.html());
 
             // Stylesheet part.
             $content.after(
-                $('<textarea class="field-stylesheet" cols="30" rows="10" placeholder="Stylesheet"></textarea>').val($stylesheet.html())
+                $('<textarea class="field-stylesheet" cols="30" rows="10" placeholder="Stylesheet">')
             ).css("display", "none");
+            $(".field-stylesheet").val($stylesheet.html());
 
             // Published part.
             $content.after('<span class="field-published"><input type="checkbox"> Visible ?</span>');
@@ -569,12 +519,9 @@ var website = website || {},
 
             // Text part.
             $content.after(
-                $('<textarea class="field-content" cols="30" rows="30"></textarea>').val(data.content)
+                $('<textarea class="field-content" cols="30" rows="30">')
             ).css("display", "none");
-
-
-
-
+            $(".field-content").val(data.content)
 
             // Categories Part
             $select.find("option").remove();
