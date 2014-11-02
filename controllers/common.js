@@ -183,7 +183,7 @@ var website = {};
 
 									if (privates.getLookup(object, key) || privates.getLookup(object, key) === "") {
 										privates.setLookup(object, key, files[file][i].value);
-										if (files[file][i].source) {										
+										if (!files[file][i].source) {										
 											socket.broadcast.emit('update-variation', {
 												path: files[file][i].path,
 												value: files[file][i].value,

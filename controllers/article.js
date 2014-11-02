@@ -97,7 +97,7 @@ website.article = {};
 				feedHeader = {
 					title: common.rss.title,
 					description: common.rss.description,
-					feed_url: params.NA.webconfig.urlWithoutFileName + common.rss.feedUrl,
+					feed_url: params.NA.webconfig.urlWithoutFileName + common.rss.feedUrl.replace(/^\//g, ""),
 					site_url: params.NA.webconfig.urlWithoutFileName,
 					author: common.rss.author,
 					managingEditor: common.rss.author,
@@ -154,8 +154,6 @@ website.article = {};
 			}
 
 			socket.on('update-article-button', function (data) {
-				console.log(data);
-
 				if (session.account) {
 
 					Article.update({
