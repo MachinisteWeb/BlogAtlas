@@ -12,8 +12,8 @@
 			<a class="menu" href="<%= urlPath %>#menu"></a>
 			<ul>
 				<% for (var i = 0; i < common.mainMenu.section.length; i++) { %>
-				<li class="<%-: common.mainMenu.section[i].class | editAttr: ['common.mainMenu.section[' + i + '].class', edit, 'class', true] %>">
-					<a href="<%-: common.mainMenu.section[i].href | editAttr: ['common.mainMenu.section[' + i + '].href', edit, 'href', true] %>" title="<%-: common.mainMenu.section[i].title | editAttr: ['common.mainMenu.section[' + i + '].title', edit, 'title', true] %>"><%-: common.mainMenu.section[i].content | editText: ['common.mainMenu.section[' + i + '].content', edit, 'content', true] %></a>
+				<li class="<%-: common.mainMenu.section[i].class | editAttr: ['common.mainMenu.section[' + i + '].class', edit, 'class'] %>">
+					<a href="<%-: common.mainMenu.section[i].href | editAttr: ['common.mainMenu.section[' + i + '].href', edit, 'href'] %>" title="<%-: common.mainMenu.section[i].title | editAttr: ['common.mainMenu.section[' + i + '].title', edit, 'title'] %>"><%-: common.mainMenu.section[i].content | editText: ['common.mainMenu.section[' + i + '].content', edit, 'content'] %></a>
 				</li>
 				<% } %>						
 			</ul>
