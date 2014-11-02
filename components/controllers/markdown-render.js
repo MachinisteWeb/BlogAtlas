@@ -26,7 +26,7 @@ module.exports = function markdownRender(data, marked) {
 	  }
 
 	  return '<pre class="prettyprint linenums"><code class="'
-	    + "this.options.langPrefix"
+	    + this.options.langPrefix
 	    + escape(lang, true)
 	    + '">'
 	    + (escaped ? code : escape(code, true))

@@ -5,10 +5,10 @@
         <description><![CDATA[Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.]]></description>
         <link>http://localhost:7777/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 31 Oct 2014 16:43:43 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 02 Nov 2014 20:19:38 GMT</lastBuildDate>
         <atom:link href="http://localhost:7777/feeds/articles.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Bruno Lesieur]]></author>
-        <pubDate>Fri, 31 Oct 2014 16:43:43 GMT</pubDate>
+        <pubDate>Sun, 02 Nov 2014 20:19:38 GMT</pubDate>
         <copyright><![CDATA[2012-2014 Bruno Lesieur]]></copyright>
         <language><![CDATA[fr]]></language>
         <managingEditor><![CDATA[Bruno Lesieur]]></managingEditor>
@@ -27,6 +27,8 @@ eui</p>
 ]]></description>
             <link>http://localhost:7777/centrer-verticalement-n-importe-quel-element-en-quelques-lignes-css/</link>
             <guid isPermaLink="false">542bee6b2f9da5ac1f27f2e5</guid>
+            <category><![CDATA[jQuery]]></category>
+            <category><![CDATA[Internet Explorer]]></category>
             <dc:creator><![CDATA[Bruno Lesieur]]></dc:creator>
             <pubDate>Wed, 01 Oct 2014 12:07:00 GMT</pubDate>
         </item>
