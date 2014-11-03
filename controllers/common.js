@@ -38,9 +38,9 @@ var website = {};
         	if (arr[2]) { markup = "div"; }
 
             if (arr[1]) {
-                return '<' + markup + claimSource + 'data-edit="true" data-edit-type="text" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+                return '<' + markup + claimSource + 'data-edit="true" data-edit-type="text" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj + "</" + markup + ">";
             } else {
-                return '<' + markup + ' data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+                return '<' + markup + ' data-edit-path="' + arr[0] + '">' +  obj + "</" + markup + ">";
             }
         };
 
@@ -58,9 +58,9 @@ var website = {};
         	}
 
             if (arr[1]) {
-                return '<' + markup + claimSource  + ' data-edit="true" data-edit-type="html" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+                return '<' + markup + claimSource  + ' data-edit="true" data-edit-type="html" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj + "</" + markup + ">";
             } else {
-                return '<' + markup + ' data-edit-path="' + arr[0] + '">' +  obj; + "</" + markup + ">";
+                return '<' + markup + ' data-edit-path="' + arr[0] + '">' +  obj + "</" + markup + ">";
             }
         };
 
