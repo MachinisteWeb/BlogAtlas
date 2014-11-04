@@ -17,7 +17,7 @@
 										</time></a>
 									</div>
 									<div class="comments">
-										<a data-disqus-identifier="<%= backend.articles[i].urn %>" href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) %>#disqus_thread" title="<%- backend.articles[i].title.replace(/<\/?span>/g, '') %>"><ins class="icon comment"></ins><span class="set-number"><%- backend.articles[i].cache.comment.number %></span> <%-: common.comments.commentSimple | editText: ['common.comments.commentSimple', edit, undefined, true] %></a>
+										<a data-disqus-identifier="<%= backend.articles[i].urn %>" href="<%- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) %>#disqus_thread" title="<%- backend.articles[i].title.replace(/<\/?span>/g, '') %>"><ins class="icon comment"></ins><span class="set-number"><%- backend.articles[i].cache.comment.number %></span> <%-: common.comments.commentSimple | editText: ['common.comments.commentSimple', edit, true] %></a>
 									</div>
 									<div class="text">
 										<%- backend.articles[i].content %>

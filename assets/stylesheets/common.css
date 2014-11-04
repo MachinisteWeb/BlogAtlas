@@ -817,6 +817,11 @@ figure figcaption {
 .template {
 	display: none;
 }
+.popup .templates {
+	max-height: 400px;
+	-ms-overflow-y: auto;
+	    overflow-y: auto;
+}
 .popup h1 {
 	margin-top: 0;
 }

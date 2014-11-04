@@ -86,16 +86,21 @@ var website = website || {},
                         $clone.find("label").addClass($editedObject.data('edit-path'));
                         $clone.find("label .info").text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
                         if ($editedObject.data('edit-source')) {
-                        	$clone.find("textarea").hide();
-							socket.emit('source-variation', {
-								path: $editedObject.data('edit-path'),
-								file: $editedObject.data('edit-file')
-							});
+                            $clone.find("textarea").hide();
+                            socket.emit('source-variation', {
+                                path: $editedObject.data('edit-path'),
+                                file: $editedObject.data('edit-file')
+                            });
                         } else {
-                        	$clone.find("textarea").val($editedObject.html().trim());
-	                        $clone.find("textarea").keyup(function () {
-	                            $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html($clone.find("textarea").val());
-	                        });
+                            $clone.find("textarea").val($editedObject.html().trim());
+                        }
+                        if (!$editedObject.data('edit-source') || typeof $editedObject.data('edit-source') === 'string') {
+                            $clone.find("textarea").keyup(function () {
+                                $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html($clone.find("textarea").val());
+                                if (typeof $editedObject.data('edit-source') === 'string') {
+                                    eval($editedObject.data('edit-source'));
+                                }
+                            });
                         }
                         privates.editedObjects.push($editedObject);
                         publics.targetDataEdit();
@@ -111,16 +116,21 @@ var website = website || {},
                         $clone.find("label").addClass($editedObject.data('edit-path'));
                         $clone.find("label .info").text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
                         if ($editedObject.data('edit-source')) {
-							$clone.find("input").hide();
-							socket.emit('source-variation', {
-								path: $editedObject.data('edit-path'),
-								file: $editedObject.data('edit-file')
-							});
+                            $clone.find("input").hide();
+                            socket.emit('source-variation', {
+                                path: $editedObject.data('edit-path'),
+                                file: $editedObject.data('edit-file')
+                            });
                         } else {
-                        	$clone.find("input").val($editedObject.text().trim());
-	                        $clone.find("input").keyup(function () {
-	                            $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html($clone.find("input").val());
-	                        });
+                            $clone.find("input").val($editedObject.html().trim());
+                        }
+                        if (!$editedObject.data('edit-source') || typeof $editedObject.data('edit-source') === 'string') {
+                            $clone.find("input").keyup(function () {
+                                $('[data-edit-path='+ $editedObject.data('edit-path').replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html($clone.find("input").val());
+                                if (typeof $editedObject.data('edit-source') === 'string') {
+                                    eval($editedObject.data('edit-source'));
+                                }
+                            });
                         }
                         privates.editedObjects.push($editedObject);
                         publics.targetDataEdit();
@@ -142,18 +152,23 @@ var website = website || {},
                                         $clone.find("label").addClass($editedObject.data('edit-attr-path-' + name));
                                         $clone.find("label .info").text($editedObject.data('edit-attr-file-' + name) + " > " + $editedObject.data('edit-attr-path-' + name));
                                         if ($editedObject.data('edit-attr-source-' + name)) {
-											$clone.find("input").hide();
-											socket.emit('source-variation', {
-												path: $editedObject.data('edit-attr-path-' + name),
-												file: $editedObject.data('edit-attr-file-' + name)
-											});
-				                        } else {
-		                        	 		$clone.find("input").val($editedObject.attr(name).trim());
-	                                        $clone.find("input").keyup(function () {
-	                                            var currentName = currentName || clone(name);
-	                                            $('[data-edit-attr-path-' + currentName + '='+ $editedObject.data('edit-attr-path-' + currentName).replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').attr(currentName, $(this).val());
-	                                        });
-				                        }
+                                            $clone.find("input").hide();
+                                            socket.emit('source-variation', {
+                                                path: $editedObject.data('edit-attr-path-' + name),
+                                                file: $editedObject.data('edit-attr-file-' + name)
+                                            });
+                                        } else {
+                                            $clone.find("input").val($editedObject.attr(name).trim());
+                                        }
+                                        if (!$editedObject.data('edit-attr-source-' + name) || typeof $editedObject.data('edit-attr-source-' + name) === 'string') {
+                                            $clone.find("input").keyup(function () {
+                                                var currentName = currentName || clone(name);
+                                                $('[data-edit-attr-path-' + currentName + '='+ $editedObject.data('edit-attr-path-' + currentName).replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').attr(currentName, $(this).val());
+                                                if (typeof $editedObject.data('edit-attr-source-' + name) === 'string') {
+                                                    eval($editedObject.data('edit-attr-source-' + name));
+                                                }
+                                            });
+                                        }
                                     }
                                 }
                             }())
@@ -260,24 +275,27 @@ var website = website || {},
     };
 
     publics.sourceContent = function (options) {
-		socket.on('source-variation', function (data) {
-			var area = $(".popup ." + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next();
-			area.show();
-			area.val(data.value);
-			area.next().show();
-		});
+        socket.on('source-variation', function (data) {
+            var area = $(".popup ." + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next();
+            area.show();
+            area.val(data.value);
+            area.next().show();
+        });
     };
 
     publics.broadcastContent = function (options) {
         socket.on('update-variation', function (data) {
             if (data.type === 'html') {
                 $('[data-edit-path=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html(data.value);
+                eval(data.source);
             } 
             if (data.type === 'text') {
-                $('[data-edit-path=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').text(data.value);
+                $('[data-edit-path=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html(data.value);
+                eval(data.source);
             }
             if (data.type === 'attr') {
                 $('[data-edit-attr-path-' + data.attrName + '=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').attr(data.attrName, data.value);
+                eval(data.source);
             }
         });
     };

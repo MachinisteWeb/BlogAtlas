@@ -24,18 +24,34 @@ var website = {};
 	};
 
 	privates.setFilters = function (templateEngine, NA) {
-		templateEngine.filters.editText = function (obj, arr) {
+		templateEngine.filters.et = templateEngine.filters.editText = function (obj, arr) {
 			var markup = "span",
-        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1],
+        		file,
         		claimSource = " ";
+
+        	if (typeof obj === 'string') {
+	        	if (arr[0].split(".")[0] === "specific") {
+	        		file = arr[1];
+	        	} else {
+	        		file = NA.webconfig.commonVariation;
+	        	}
+        	} else {
+        		file = arr[1];
+        		obj = publics.getLookup(obj, arr[0]);
+        		if (file === NA.webconfig.commonVariation) {
+        			arr[0] = 'common.' + arr[0];
+        		} else {
+        			arr[0] = 'specific.' + arr[0];
+        		}
+        	}
 
         	if (!obj) { obj = " "; }
 
-        	if (arr[3]) {
-    			claimSource = ' data-edit-source="true" ';
+        	//if (arr[2]) { markup = "div"; }
+        	
+        	if (arr[2]) {
+    			claimSource = ' data-edit-source="' + arr[2] + '" ';
         	}
-
-        	if (arr[2]) { markup = "div"; }
 
             if (arr[1]) {
                 return '<' + markup + claimSource + 'data-edit="true" data-edit-type="text" data-edit-file="' + file + '" data-edit-path="' + arr[0] + '">' +  obj + "</" + markup + ">";
@@ -44,17 +60,33 @@ var website = {};
             }
         };
 
-        templateEngine.filters.editHtml = function (obj, arr) {
+        templateEngine.filters.eh = templateEngine.filters.editHtml = function (obj, arr) {
         	var markup = "div",
-        		file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1],
+        		file,
         		claimSource = " ";
+
+        	if (typeof obj === 'string') {
+	        	if (arr[0].split(".")[0] === "specific") {
+	        		file = arr[1];
+	        	} else {
+	        		file = NA.webconfig.commonVariation;
+	        	}
+        	} else {
+        		file = arr[1];
+        		obj = publics.getLookup(obj, arr[0]);
+        		if (file === NA.webconfig.commonVariation) {
+        			arr[0] = 'common.' + arr[0];
+        		} else {
+        			arr[0] = 'specific.' + arr[0];
+        		}
+        	}
 
         	if (!obj) { obj = " "; }
 
-        	if (arr[2]) { markup = "span"; }
+        	//if (arr[2]) { markup = "span"; }
 
-        	if (arr[3]) {
-    			claimSource = ' data-edit-source="true" ';
+        	if (arr[2]) {
+    			claimSource = ' data-edit-source="' + arr[2] + '" ';
         	}
 
             if (arr[1]) {
@@ -64,14 +96,30 @@ var website = {};
             }
         };
 
-        templateEngine.filters.editAttr = function (obj, arr) {
-        	var file = (arr[0].split(".")[0] === "common") ? NA.webconfig.commonVariation : arr[1],
+        templateEngine.filters.ea = templateEngine.filters.editAttr = function (obj, arr) {
+        	var file,
         		claimSource = " ";
+
+        	if (typeof obj === 'string') {
+	        	if (arr[0].split(".")[0] === "specific") {
+	        		file = arr[1];
+	        	} else {
+	        		file = NA.webconfig.commonVariation;
+	        	}
+        	} else {
+        		file = arr[1];
+        		obj = publics.getLookup(obj, arr[0]);
+        		if (file === NA.webconfig.commonVariation) {
+        			arr[0] = 'common.' + arr[0];
+        		} else {
+        			arr[0] = 'specific.' + arr[0];
+        		}
+        	}
 
         	if (!obj) { obj = " "; }
 
         	if (arr[3]) {
-    			claimSource = ' data-edit-attr-source-' + arr[2] + '="true" ';
+    			claimSource = ' data-edit-attr-source-' + arr[2] + '="' + arr[3] + '" ';
         	}
 
             if (arr[1]) {
@@ -119,7 +167,7 @@ var website = {};
 	  	}
 	};
 
-	privates.getLookup = function (obj, key) {
+	publics.getLookup = function (obj, key) {
 		var type = typeof key;
 
 		if (type == 'string' || type == "number") {
@@ -181,12 +229,14 @@ var website = {};
 								for (var i = 0, l = files[file].length; i < l; i++) {
 									key = files[file][i].path.split('.').slice(1).join('.');
 
-									if (privates.getLookup(object, key) || privates.getLookup(object, key) === "") {
+									if (publics.getLookup(object, key) || publics.getLookup(object, key) === "") {
 										privates.setLookup(object, key, files[file][i].value);
-										if (!files[file][i].source) {										
+
+										if (!files[file][i].source || typeof files[file][i].source === 'string') {
 											socket.broadcast.emit('update-variation', {
 												path: files[file][i].path,
 												value: files[file][i].value,
+												source: files[file][i].source,
 												type: files[file][i].type,
 												attrName: files[file][i].attrName
 											});
@@ -212,7 +262,7 @@ var website = {};
 							key = options.path.split('.').slice(1).join('.');
 
 							socket.emit('source-variation', {
-								value: privates.getLookup(object, key),
+								value: publics.getLookup(object, key),
 								path: options.path
 							});
 						}
@@ -394,8 +444,12 @@ var website = {};
 			session = params.request.session;
 
 		variation.edit = false;
+		variation.fs = false;
+		variation.fc = false;
 		if (session.account) {
 			variation.edit = variation.pageParameters.variation;
+			variation.fs = variation.edit;
+			variation.fc = variation.webconfig.commonVariation;
 		}
 
 		// Ici on modifie les variables de variations.
