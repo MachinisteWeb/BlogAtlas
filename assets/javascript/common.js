@@ -56,10 +56,13 @@ var website = website || {},
             $.data(this, "offset-y", 0);
             $(this).css("cursor", "");
         }).mousedown(function (e) {
-            $.data(this, "draggable", true);
-            $.data(this, "offset-x", e.pageX);
-            $.data(this, "offset-y", e.pageY);
-            $(this).css("cursor", "all-scroll");
+            e.stopPropagation();
+            if ($(event.target).hasClass('popup-content')) {
+                $.data(this, "draggable", true);
+                $.data(this, "offset-x", e.pageX);
+                $.data(this, "offset-y", e.pageY);
+                $(this).css("cursor", "all-scroll");
+            }
         }).mouseup(function () {
             $.data(this, "draggable", false);
             $.data(this, "offset-x", 0);
