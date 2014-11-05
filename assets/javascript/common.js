@@ -332,8 +332,6 @@ var website = website || {},
             $.data(this, "offset", 0);
         }).mousemove(function (e) {
             if ($(this).data("draggable")) {
-            	console.log($(this).data("draggable"));
-            	console.log($(this).data("offset"));
                 $(this).scrollLeft(parseInt($(this).scrollLeft() + ($(this).data("offset") - e.pageX), 10));
                 $.data(this, "offset", e.pageX);
             }
