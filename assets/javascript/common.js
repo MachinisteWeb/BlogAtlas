@@ -65,7 +65,7 @@ var website = website || {},
             $(this).css("cursor", "");
         }).mousedown(function (e) {
             e.stopPropagation();
-            if ($(event.target).hasClass('popup-content')) {
+            if ($(e.target).hasClass('popup-content')) {
                 $.data(this, "draggable", true);
                 $.data(this, "offset-x", e.pageX);
                 $.data(this, "offset-y", e.pageY);
