@@ -342,7 +342,8 @@ var website = {};
 	};			
 
 	privates.socketIoInitialisation = function (socketio, NA, callback) {
-		var io = socketio.listen(NA.server),
+		var optionIo = (NA.webconfig.urlRelativeSubPath) ? { resource: NA.webconfig.urlRelativeSubPath + '/socket.io' } : undefined,
+			io = socketio.listen(NA.server, optionIo),
 			connect = NA.modules.connect,
 			cookie = NA.modules.cookie;
 

@@ -34,7 +34,15 @@ var website = website || {},
     "use strict";
 
     var privates = {},
-        socket = io.connect();
+        optionsSocket;
+
+    if ($body.data('hostname') !== 'localhost') {
+        optionsSocket = {
+          resource: $body.data('subpath') + (($body.data('subpath')) ? "/" : "") + 'socket.io'
+        }
+    }
+
+    publics.socket = io.connect(($body.data('hostname') === 'localhost') ? undefined : $body.data('hostname'), optionsSocket);
 
     publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
 
@@ -134,7 +142,7 @@ var website = website || {},
                         $clone.find("label .info").text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
                         if ($editedObject.data('edit-source')) {
                             $clone.find("textarea").hide();
-                            socket.emit('source-variation', {
+                            website.socket.emit('source-variation', {
                                 path: $editedObject.data('edit-path'),
                                 file: $editedObject.data('edit-file')
                             });
@@ -164,7 +172,7 @@ var website = website || {},
                         $clone.find("label .info").text($editedObject.data('edit-file') + " > " + $editedObject.data('edit-path'));
                         if ($editedObject.data('edit-source')) {
                             $clone.find("input").hide();
-                            socket.emit('source-variation', {
+                            website.socket.emit('source-variation', {
                                 path: $editedObject.data('edit-path'),
                                 file: $editedObject.data('edit-file')
                             });
@@ -200,7 +208,7 @@ var website = website || {},
                                         $clone.find("label .info").text($editedObject.data('edit-attr-file-' + name) + " > " + $editedObject.data('edit-attr-path-' + name));
                                         if ($editedObject.data('edit-attr-source-' + name)) {
                                             $clone.find("input").hide();
-                                            socket.emit('source-variation', {
+                                            website.socket.emit('source-variation', {
                                                 path: $editedObject.data('edit-attr-path-' + name),
                                                 file: $editedObject.data('edit-attr-file-' + name)
                                             });
@@ -318,11 +326,11 @@ var website = website || {},
     };
 
     publics.sendContent = function (options) {
-        socket.emit('update-variation', options);
+        website.socket.emit('update-variation', options);
     };
 
     publics.sourceContent = function (options) {
-        socket.on('source-variation', function (data) {
+        website.socket.on('source-variation', function (data) {
             var area = $(".popup ." + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]")).next();
             area.show();
             area.val(data.value);
@@ -331,7 +339,7 @@ var website = website || {},
     };
 
     publics.broadcastContent = function (options) {
-        socket.on('update-variation', function (data) {
+        website.socket.on('update-variation', function (data) {
             if (data.type === 'html') {
                 $('[data-edit-path=' + data.path.replace(/\./g, "\\\.").replace(/\[/g, "\\\[").replace(/\]/g, "\\\]") + ']').html(data.value);
                 eval(data.source);
@@ -423,9 +431,9 @@ var website = website || {},
                 path: chaine.replace(/^\/count-data.js&/g,"/count-data.js?") + "&random=" + (Math.random() * 10000)
             }
 
-            socket.emit('update-comment-number', options);
+            website.socket.emit('update-comment-number', options);
 
-            socket.on('update-comment-number', function (data) {
+            website.socket.on('update-comment-number', function (data) {
                 for (var i = 0; i < data.counts.length; i++) {
                     $("a[data-disqus-identifier=" + data.counts[i].id + "]").each(function () {
                         $(this).find(".set-number").text(data.counts[i].comments);
@@ -472,8 +480,7 @@ var website = website || {},
 (function (publics) {
     "use strict";
 
-    var privates = {},
-        socket = io.connect();
+    var privates = {};
 
     privates.uploadImage = function () {
         var $formAvatar = $(".form-upload-avatar"),
@@ -506,7 +513,7 @@ var website = website || {},
         $(".create-article-button").click(function () {
             var $this = $(this);
 
-            socket.emit('create-article-button', {
+            website.socket.emit('create-article-button', {
                 title: $("#create-article-title").val(),
                 urn: $(".no-article").data("urn")
             });
@@ -520,14 +527,14 @@ var website = website || {},
 
             var prompt = window.prompt(deleteButton.data("prompt"), "");
 
-            socket.emit('delete-article-button', {
+            website.socket.emit('delete-article-button', {
                 urn: $("article.article").data("urn")
             });
         });
     };
 
     privates.listeningDeleteArticle = function () {
-        socket.on('delete-article-button', function (data) {
+        website.socket.on('delete-article-button', function (data) {
             location.href = $base.attr("href") + data.urn + "/";
         });
     };
@@ -553,7 +560,7 @@ var website = website || {},
             $item.parents("li:first").remove();
         }
 
-        socket.on('update-article-load-content', function (data) {
+        website.socket.on('update-article-load-content', function (data) {
             // Title part.
             $title.after(
                 $('<input type="text" class="field-title like-h1">').val($title.html())
@@ -674,7 +681,7 @@ var website = website || {},
             if (!$this.data("state")) {
                 $this.data("state", true);
 
-                socket.emit('update-article-load-content', {
+                website.socket.emit('update-article-load-content', {
                     urn: $article.data("urn")
                 });
             } else {
@@ -688,7 +695,7 @@ var website = website || {},
                     fieldsCategory.push($categories.eq(i).data("urn"));
                 });
 
-                socket.emit('update-article-button', {
+                website.socket.emit('update-article-button', {
                     urn: $article.data("urn"),
                     title: $fieldTitle.val(),
                     content: $fieldContent.val(),
@@ -706,7 +713,7 @@ var website = website || {},
     };
 
     privates.listeningCreateArticle = function () {
-        socket.on('create-article-button', function (data) {
+        website.socket.on('create-article-button', function (data) {
             location.href = $base.attr("href") + data.urn + "/";
         });
     };
@@ -720,7 +727,7 @@ var website = website || {},
             $article = $("article.article"),
             $date = $(".published a");
 
-        socket.on('update-article-button-all', function (data) {
+        website.socket.on('update-article-button-all', function (data) {
             var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+02:00"),
                 formatDate = website.module.extendedFormatDate(date, data.variation.dates),
                 month = date.getMonth() + 1,
@@ -755,7 +762,7 @@ var website = website || {},
             website.prettifyLoad();
         });
 
-        socket.on('update-article-button-others', function (data) {
+        website.socket.on('update-article-button-others', function (data) {
             var $article = $("article.article");
 
             if ($article.length !== 0) {
@@ -769,7 +776,7 @@ var website = website || {},
             }
         });
 
-        socket.on('update-article-button', function () {
+        website.socket.on('update-article-button', function () {
             var $fieldTitle = $(".field-title"),
                 $fieldContent = $(".field-content"),
                 $fieldDate = $(".field-date"),
@@ -903,8 +910,7 @@ var website = website || {},
 (function (publics) {
     "use strict";
 
-    var privates = {},
-        socket = io.connect();
+    var privates = {};
 
     privates.accountLogin = function () {
         $(".account-login-button").click(function () {
@@ -913,12 +919,12 @@ var website = website || {},
                 password: $("#account-login-password").val()
             }
 
-            socket.emit('account-login', data);
+            website.socket.emit('account-login', data);
         });
     };
 
     privates.listeningAccountLogin = function () {
-        socket.on('account-login', function (data) {
+        website.socket.on('account-login', function (data) {
             if (data.authSuccess) {
                 location.reload();
             } else {
@@ -930,13 +936,13 @@ var website = website || {},
     privates.accountLogout = function () {
         $(".account-logout-button").click(function () {
             if (!website.isEditable) {
-                socket.emit('account-logout', {});
+                website.socket.emit('account-logout', {});
             }
         });
     };
 
     privates.listeningAccountLogout = function () {
-        socket.on('account-logout', function (data) {
+        website.socket.on('account-logout', function (data) {
             location.reload();
         });
     };
