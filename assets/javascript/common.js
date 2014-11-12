@@ -38,7 +38,7 @@ var website = website || {},
 
     optionsSocket = ($body.data('subpath') !== '') ? { path: '/' + $body.data('subpath') + (($body.data('subpath')) ? "/" : "") + 'socket.io' } : undefined;
 
-    publics.socket = io.connect(($body.data('hostname') === 'localhost') ? undefined : $body.data('hostname'), optionsSocket);
+    publics.socket = io.connect(($body.data('subpath') !== '') ? $body.data('hostname') : undefined, optionsSocket);
 
     publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
 

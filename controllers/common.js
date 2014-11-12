@@ -12,7 +12,7 @@ var website = {};
 		NA.modules.cookie = require(modulePath + 'cookie');
 		NA.modules.marked = require(modulePath + 'marked');
 		NA.modules.mongoose = require(modulePath + 'mongoose');
-		NA.modules.io = require(modulePath + 'socket.io');
+		NA.modules.socketio = require(modulePath + 'socket.io');
 		NA.modules.RedisStore = require(modulePath + 'connect-redis');
 		NA.modules.rss = require(modulePath + 'rss');
 		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
@@ -207,11 +207,11 @@ var website = {};
 	};
 
 	publics.asynchrone = function (params) {
-		var io = params.io,
+		var socketio = params.socketio,
 			NA = params.NA,
 			fs = NA.modules.fs;
 
-		io.sockets.on('connection', function (socket) {
+		socketio.sockets.on('connection', function (socket) {
 			var sessionID = socket.request.sessionID,
 				session = socket.request.session;
 
@@ -324,15 +324,15 @@ var website = {};
 
 	publics.setConfigurations = function (NA, callback) {
 		var mongoose = NA.modules.mongoose,
-			io = NA.modules.io;
+			socketio = NA.modules.socketio;
 
 		privates.mongooseInitialization(mongoose, function (mongoose) {
 
 			privates.mongooseShemas(mongoose);
 
-			privates.socketIoInitialisation(io, NA, function (io) {
+			privates.socketIoInitialisation(socketio, NA, function (socketio) {
 
-				privates.socketIoEvents(io, NA);
+				privates.socketIoEvents(socketio, NA);
 
 				callback(NA);					
 			});
@@ -340,15 +340,13 @@ var website = {};
 
 	};			
 
-	privates.socketIoInitialisation = function (io, NA, callback) {
-		var optionIo = (NA.webconfig.urlRelativeSubPath) ? { path: '/' + NA.webconfig.urlRelativeSubPath + '/socket.io' } : undefined,
-			io = io(NA.server, optionIo),
+	privates.socketIoInitialisation = function (socketio, NA, callback) {
+		var optionIo = (NA.webconfig.urlRelativeSubPath) ? { path: NA.webconfig.urlRelativeSubPath + '/socket.io' } : undefined,
+			socketio = socketio(NA.server, optionIo),
 			cookie = NA.modules.cookie,
 			cookieParser = NA.modules.cookieParser;
 
-		console.log(optionIo);
-
-		io.use(function(socket, next) {
+		socketio.use(function(socket, next) {
 			var handshakeData = socket.request;
 
 			if (!handshakeData.headers.cookie) {
@@ -369,7 +367,7 @@ var website = {};
             });
 		});
 
-    	callback(io);
+    	callback(socketio);
 	};
 
 	privates.mongooseInitialization = function (mongoose, callback) {
@@ -399,10 +397,10 @@ var website = {};
 		});
 	};
 
-	privates.socketIoEvents = function (io, NA) {
+	privates.socketIoEvents = function (socketio, NA) {
 		var params = {};
 
-		params.io = io;
+		params.socketio = socketio;
 		params.NA = NA;
 
 		website.asynchrone(params);

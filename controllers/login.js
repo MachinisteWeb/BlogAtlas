@@ -37,10 +37,10 @@ website.login = {};
 	var privates = {};
 
 	publics.asynchrone = function (params) {
-		var io = params.io,
+		var socketio = params.socketio,
 			NA = params.NA;
 
-		io.sockets.on('connection', function (socket) {
+		socketio.sockets.on('connection', function (socket) {
 			var sessionID = socket.request.sessionID,
 				session = socket.request.session;
 

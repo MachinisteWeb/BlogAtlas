@@ -76,7 +76,7 @@ website.article = {};
 
 	publics.asynchrone = function (params) {
 		var privates = {},
-			io = params.io,
+			socketio = params.socketio,
 			fs = require('fs'),
 			mongoose = params.NA.modules.mongoose,
 			common = params.NA.modules.common,
@@ -86,7 +86,7 @@ website.article = {};
 			renderer = new marked.Renderer(),
 			Rss = params.NA.modules.rss;
 
-		io.sockets.on('connection', function (socket) {
+		socketio.sockets.on('connection', function (socket) {
 			var sessionID = socket.request.sessionID,
 				session = socket.request.session;
 
@@ -204,7 +204,7 @@ website.article = {};
 					socket.broadcast.emit('update-article-button-others', {
 						published: data.published
 					});
-					io.sockets.emit('update-article-button-all', {
+					socketio.sockets.emit('update-article-button-all', {
 						title: data.title,
 						content: data.content,
 						markdown: data.markdown,
@@ -256,7 +256,7 @@ website.article = {};
 							throw error;
 						}
 
-						io.sockets.emit('create-article-button', data);
+						socketio.sockets.emit('create-article-button', data);
 					});
 				}
 			});
@@ -268,7 +268,7 @@ website.article = {};
 							throw error;
 						}
 
-						io.sockets.emit('delete-article-button', data);
+						socketio.sockets.emit('delete-article-button', data);
 					});
 				}
 			});
