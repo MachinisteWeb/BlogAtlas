@@ -10,10 +10,9 @@ var website = {};
 		var modulePath = (NA.webconfig._needModulePath) ? NA.nodeModulesPath : '';
 		
 		NA.modules.cookie = require(modulePath + 'cookie');
-		NA.modules.connect = require(modulePath + 'connect');
 		NA.modules.marked = require(modulePath + 'marked');
 		NA.modules.mongoose = require(modulePath + 'mongoose');
-		NA.modules.socketio = require(modulePath + 'socket.io');
+		NA.modules.io = require(modulePath + 'socket.io');
 		NA.modules.RedisStore = require(modulePath + 'connect-redis');
 		NA.modules.rss = require(modulePath + 'rss');
 		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
@@ -213,8 +212,8 @@ var website = {};
 			fs = NA.modules.fs;
 
 		io.sockets.on('connection', function (socket) {
-			var sessionID = socket.handshake.sessionID,
-				session = socket.handshake.session;
+			var sessionID = socket.request.sessionID,
+				session = socket.request.session;
 
 			socket.on('update-variation', function (options) {
 				var files, object, key;
@@ -325,13 +324,13 @@ var website = {};
 
 	publics.setConfigurations = function (NA, callback) {
 		var mongoose = NA.modules.mongoose,
-			socketio = NA.modules.socketio;
+			io = NA.modules.io;
 
 		privates.mongooseInitialization(mongoose, function (mongoose) {
 
 			privates.mongooseShemas(mongoose);
 
-			privates.socketIoInitialisation(socketio, NA, function (io) {
+			privates.socketIoInitialisation(io, NA, function (io) {
 
 				privates.socketIoEvents(io, NA);
 
@@ -341,49 +340,36 @@ var website = {};
 
 	};			
 
-	privates.socketIoInitialisation = function (socketio, NA, callback) {
-		var optionIo = (NA.webconfig.urlRelativeSubPath) ? { resource: NA.webconfig.urlRelativeSubPath + '/socket.io' } : undefined,
-			io = socketio.listen(NA.server, optionIo),
-			connect = NA.modules.connect,
-			cookie = NA.modules.cookie;
+	privates.socketIoInitialisation = function (io, NA, callback) {
+		var optionIo = (NA.webconfig.urlRelativeSubPath) ? { path: '/' + NA.webconfig.urlRelativeSubPath + '/socket.io' } : undefined,
+			io = io(NA.server, optionIo),
+			cookie = NA.modules.cookie,
+			cookieParser = NA.modules.cookieParser;
 
-		io.enable('browser client minification');
-		if (NA.webconfig._ioGzip) {
-			io.enable('browser client gzip');
-		}
-		io.set('log level', 1);
-		io.enable('browser client cache');
-		io.set('browser client expires', 86400000 * 30);
-		io.enable('browser client etag');
-		io.set('authorization', function (data, accept) {
+		console.log(optionIo);
 
-            // No cookie enable.
-            if (!data.headers.cookie) {
-                return accept('Session cookie required.', false);
+		io.use(function(socket, next) {
+			var handshakeData = socket.request;
+
+			if (!handshakeData.headers.cookie) {
+                return next(new Error('Cookie de session requis.'));
             }
 
-            // First parse the cookies into a half-formed object.
-            data.cookie = cookie.parse(data.headers.cookie);
+            handshakeData.cookie = cookie.parse(handshakeData.headers.cookie);
+            handshakeData.cookie = cookieParser.signedCookies(handshakeData.cookie, NA.webconfig.session.secret);
+    		handshakeData.sessionID = handshakeData.cookie[NA.webconfig.session.key];
 
-            // Next, verify the signature of the session cookie.
-            data.cookie = connect.utils.parseSignedCookies(data.cookie, NA.webconfig.session.secret);
-             
-            // save ourselves a copy of the sessionID.
-            data.sessionID = data.cookie[NA.webconfig.session.key];
-
-			// Accept cookie.
-            NA.sessionStore.load(data.sessionID, function (error, session) {
+			NA.sessionStore.load(handshakeData.sessionID, function (error, session) {
                 if (error || !session) {
-                    accept("Error", false);
+                	return next(new Error('Aucune session récupérée.'));
                 } else {
-                    data.session = session;
-                    accept(null, true);
+                    handshakeData.session = session;           			
+                    next();
                 }
             });
+		});
 
-        });
-
-    	callback(io);		
+    	callback(io);
 	};
 
 	privates.mongooseInitialization = function (mongoose, callback) {

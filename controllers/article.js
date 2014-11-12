@@ -87,8 +87,8 @@ website.article = {};
 			Rss = params.NA.modules.rss;
 
 		io.sockets.on('connection', function (socket) {
-			var sessionID = socket.handshake.sessionID,
-				session = socket.handshake.session;
+			var sessionID = socket.request.sessionID,
+				session = socket.request.session;
 
 			function rss() {
 				var feed,

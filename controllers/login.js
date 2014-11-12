@@ -13,9 +13,9 @@ website.login = {};
 			sessionID = params.request.sessionID,
 			session = params.request.session;
 
-		/*console.log("preRender");
-		console.log(sessionID);
-		console.log(session);*/
+		//console.log("preRender");
+		//console.log(sessionID);
+		//console.log(session);
 
 		/*if (session.account) {
 			console.log("Loggué !");
@@ -41,19 +41,12 @@ website.login = {};
 			NA = params.NA;
 
 		io.sockets.on('connection', function (socket) {
-			var sessionID = socket.handshake.sessionID,
-				session = socket.handshake.session;
-
-			/*console.log("Socket");
-			console.log(sessionID);
-			console.log(session);*/
+			var sessionID = socket.request.sessionID,
+				session = socket.request.session;
 
 			socket.on('account-login', function (data) {
 				var dataResponse = {};
 
-				/*console.log("Event");
-				console.log(sessionID);
-				console.log(session);*/
 				if (!session.account) {
 					if (data.email === NA.webconfig._emailAccountAuth &&
 						data.password === NA.webconfig._passwordAccountAuth)
