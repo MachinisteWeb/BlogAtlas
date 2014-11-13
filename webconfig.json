@@ -7,7 +7,6 @@
  	"pageNotFound": "/page-inexistante/",
 	"bundles": "bundles.json",
 	"routes": "routes.json",
-	"_needModulePath": true,
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
 	"_passwordAccountAuth": "bépo"
 }

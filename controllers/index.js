@@ -40,20 +40,4 @@ website.index = {};
 
 }(website.index));
 
-// Render
-(function (publics) {
-	"use strict";
-	
-	publics.render = function (params, mainCallback) {
-		var data = params.data;
-
-		// Ici on peut manipuler le DOM côté serveur avant retour client.
-		//console.log(params.data);
-
-		mainCallback(data);
-	};
-
-}(website.index));
-
 exports.preRender = website.index.preRender;
-exports.render = website.index.render;

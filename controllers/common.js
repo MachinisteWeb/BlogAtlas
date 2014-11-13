@@ -420,6 +420,8 @@ var website = {};
 
 }(website));
 
+
+
 // PreRender
 (function (publics) {
 	"use strict";
@@ -445,24 +447,9 @@ var website = {};
 
 }(website));
 
-// Render
-(function (publics) {
-	"use strict";
-
-	publics.render = function (params, mainCallback) {
-		var data = params.data;
-
-		// Ici on peut manipuler le DOM côté serveur avant retour client.
-		//console.log(params.data);
-
-		mainCallback(data);
-	};
-
-}(website));
 
 
 exports.loadModules = website.loadModules;
 exports.setSessions = website.setSessions;
 exports.setConfigurations = website.setConfigurations;
 exports.preRender = website.preRender;
-exports.render = website.render;
