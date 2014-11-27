@@ -1,12 +1,7 @@
 var website = {};
 
-website.error = {};
-
-// PreRender
 (function (publics) {
 	"use strict";
-	
-	var privates = {};
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation;
@@ -14,6 +9,6 @@ website.error = {};
 		mainCallback(variation);
 	};
 
-}(website.error));
+}(website));
 
-exports.preRender = website.error.preRender;
+exports.preRender = website.preRender;

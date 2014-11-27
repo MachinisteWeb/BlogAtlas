@@ -1,16 +1,14 @@
 var website = {};
 
-website.articlesByYear = {};
+website.components = {};
 
 (function (publics) {
 	"use strict";
-	
-	var privates = {};
 
-	privates.treeOfDates = require('../components/controllers/tree-of-dates');
-	privates.listOfArticles = require('../components/controllers/list-of-articles');
-	privates.markdownRender = require('../components/controllers/markdown-render');
-	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
+	website.components.treeOfDates = require('../components/controllers/tree-of-dates');
+	website.components.listOfArticles = require('../components/controllers/list-of-articles');
+	website.components.markdownRender = require('../components/controllers/markdown-render');
+	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -23,17 +21,17 @@ website.articlesByYear = {};
 		variation.backend = {};
 		variation.session = session;
 
-		privates.treeOfDates(variation, function (treeOfDates) {
+		website.components.treeOfDates(variation, function (treeOfDates) {
 
 			variation.backend.archives = treeOfDates;
 
-			privates.listOfArticles({
+			website.components.listOfArticles({
 				Article: Article,
 				date: { year: variation.params.year }, 
 				marked: marked,
 				session: variation.session,
-				markdownRender: privates.markdownRender,
-				extendedFormatDate: privates.extendedFormatDate,
+				markdownRender: website.components.markdownRender,
+				extendedFormatDate: website.components.extendedFormatDate,
 				variation: variation
 			}, function (listOfArticles) {
 
@@ -52,6 +50,6 @@ website.articlesByYear = {};
 		});
 	};
 
-}(website.articlesByYear));
+}(website));
 
-exports.preRender = website.articlesByYear.preRender;
+exports.preRender = website.preRender;

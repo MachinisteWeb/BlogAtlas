@@ -1,13 +1,11 @@
 var website = {};
 
-website.categories = {};
+website.components = {};
 
 (function (publics) {
 	"use strict";
-	
-	var privates = {};
 
-	privates.treeOfCategories = require('../components/controllers/tree-of-categories');
+	website.components.treeOfCategories = require('../components/controllers/tree-of-categories');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -19,7 +17,7 @@ website.categories = {};
 		variation.backend = {};
 		variation.session = session;
 
-		privates.treeOfCategories(Category, function (treeOfCategories) {
+		website.components.treeOfCategories(Category, function (treeOfCategories) {
 
 			variation.backend.categories = treeOfCategories;
 
@@ -27,6 +25,6 @@ website.categories = {};
 		});
 	};
 
-}(website.categories));
+}(website));
 
-exports.preRender = website.categories.preRender;
+exports.preRender = website.preRender;

@@ -1,12 +1,7 @@
 var website = {};
 
-website.login = {};
-
-// PreRender
 (function (publics) {
 	"use strict";
-
-	var privates = {};
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -28,15 +23,7 @@ website.login = {};
 		mainCallback(variation);
 	};
 
-}(website.login));
-
-// Asynchrone
-(function (publics) {
-	"use strict";
-
-	var privates = {};
-
-	publics.asynchrone = function (params) {
+	publics.asynchrones = function (params) {
 		var socketio = params.socketio,
 			NA = params.NA;
 
@@ -74,7 +61,7 @@ website.login = {};
   		});
 	};
 
-}(website.login));
+}(website));
 
-exports.preRender = website.login.preRender;
-exports.asynchrone = website.login.asynchrone;
+exports.preRender = website.preRender;
+exports.asynchrones = website.asynchrones;

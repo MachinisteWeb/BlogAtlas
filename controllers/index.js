@@ -1,16 +1,13 @@
 var website = {};
 
-website.index = {};
+website.components = {};
 
-// PreRender
 (function (publics) {
 	"use strict";
 
-	var privates = {};
-
-	privates.listOfArticles = require('../components/controllers/list-of-articles');
-	privates.markdownRender = require('../components/controllers/markdown-render');
-	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
+	website.components.listOfArticles = require('../components/controllers/list-of-articles');
+	website.components.markdownRender = require('../components/controllers/markdown-render');
+	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -23,12 +20,12 @@ website.index = {};
 		variation.backend = {};
 		variation.session = session;
 
-		privates.listOfArticles({ 
+		website.components.listOfArticles({ 
 			Article: Article, 
 			marked: marked,
-			markdownRender: privates.markdownRender,
+			markdownRender: website.components.markdownRender,
 			session: variation.session,
-			extendedFormatDate: privates.extendedFormatDate,
+			extendedFormatDate: website.components.extendedFormatDate,
 			variation: variation
 		}, function (listOfArticles) {
 
@@ -38,6 +35,6 @@ website.index = {};
 		});
 	};
 
-}(website.index));
+}(website));
 
-exports.preRender = website.index.preRender;
+exports.preRender = website.preRender;

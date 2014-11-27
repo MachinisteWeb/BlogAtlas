@@ -1,13 +1,11 @@
 var website = {};
 
-website.archives = {};
+website.components = {};
 
 (function (publics) {
 	"use strict";
 
-	var privates = {};
-
-	privates.treeOfDates = require('../components/controllers/tree-of-dates');
+	website.components.treeOfDates = require('../components/controllers/tree-of-dates');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -17,7 +15,7 @@ website.archives = {};
 		variation.backend = {};
 		variation.session = session;
 
-		privates.treeOfDates(variation, function (treeOfDates) {
+		website.components.treeOfDates(variation, function (treeOfDates) {
 
 			variation.backend.archives = treeOfDates;
 
@@ -25,6 +23,6 @@ website.archives = {};
 		});
 	};
 
-}(website.archives));
+}(website));
 
-exports.preRender = website.archives.preRender;
+exports.preRender = website.preRender;

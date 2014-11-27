@@ -1,16 +1,14 @@
 var website = {};
 
-website.articlesByCategory = {};
+website.components = {};
 
 (function (publics) {
 	"use strict";
-	
-	var privates = {};
 
-	privates.treeOfCategories = require('../components/controllers/tree-of-categories');
-	privates.listOfArticles = require('../components/controllers/list-of-articles');
-	privates.markdownRender = require('../components/controllers/markdown-render');
-	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
+	website.components.treeOfCategories = require('../components/controllers/tree-of-categories');
+	website.components.listOfArticles = require('../components/controllers/list-of-articles');
+	website.components.markdownRender = require('../components/controllers/markdown-render');
+	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -29,7 +27,7 @@ website.articlesByCategory = {};
 
 		/*if (variation.params && variation.params[0]) { variation.params.category = variation.params[0]; }*/
 
-		privates.treeOfCategories(Category, function (treeOfCategories, listOfCategories) {
+		website.components.treeOfCategories(Category, function (treeOfCategories, listOfCategories) {
 			var categoryId,
 				categoryUrn,
 				categoryTitle;
@@ -45,13 +43,13 @@ website.articlesByCategory = {};
 				}
 			}
 
-			privates.listOfArticles({
+			website.components.listOfArticles({
 				Article: Article,
 				categoryId: categoryId, 
 				marked: marked,
 				session: variation.session,
-				markdownRender: privates.markdownRender,
-				extendedFormatDate: privates.extendedFormatDate,
+				markdownRender: website.components.markdownRender,
+				extendedFormatDate: website.components.extendedFormatDate,
 				variation: variation
 			}, function (listOfArticles) {
 				if (typeof categoryId !== 'undefined') {
@@ -74,6 +72,6 @@ website.articlesByCategory = {};
 		});
 	};
 
-}(website.articlesByCategory));
+}(website));
 
-exports.preRender = website.articlesByCategory.preRender;
+exports.preRender = website.preRender;

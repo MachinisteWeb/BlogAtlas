@@ -1,8 +1,5 @@
 var website = {};
 
-website.upload = {};
-
-// PreRender
 (function (publics) {
 	"use strict";
 
@@ -32,6 +29,6 @@ website.upload = {};
 		mainCallback(variation);
 	};
 
-}(website.upload));
+}(website));
 
-exports.preRender = website.upload.preRender;
+exports.preRender = website.preRender;

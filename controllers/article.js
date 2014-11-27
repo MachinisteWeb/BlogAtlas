@@ -1,16 +1,13 @@
 var website = {};
 
-website.article = {};
+website.components = {};
 
-// PreRender
 (function (publics) {
 	"use strict";
-	
-	var privates = {};
 
-	publics.oneArticle = require('../components/controllers/article');
-	publics.markdownRender = require('../components/controllers/markdown-render');
-	privates.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
+	website.components.oneArticle = require('../components/controllers/article');
+	website.components.markdownRender = require('../components/controllers/markdown-render');
+	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.preRender = function (params, mainCallback) {
 		var variation = params.variation,
@@ -28,7 +25,7 @@ website.article = {};
 
 		if (variation.params && variation.params[0]) { variation.params.urn = variation.params[0]; }
 
-		website.article.oneArticle(Article, variation.params.urn, function (oneArticle) {
+		website.components.oneArticle(Article, variation.params.urn, function (oneArticle) {
 			var title;
 
 			if (oneArticle) {
@@ -40,10 +37,10 @@ website.article = {};
 				variation.specific.breadcrumb.items[1].title = title;
 
 				if (oneArticle.others && oneArticle.others.markdown) {
-					oneArticle.content = website.article.markdownRender(oneArticle.content, marked);
+					oneArticle.content = website.components.markdownRender(oneArticle.content, marked);
 				}
 
-				oneArticle.dates.format = privates.extendedFormatDate(oneArticle.dates.published, variation.common.dates);
+				oneArticle.dates.format = website.components.extendedFormatDate(oneArticle.dates.published, variation.common.dates);
 
 				variation.backend.article = oneArticle;
 
@@ -64,18 +61,8 @@ website.article = {};
 
 	};
 
-}(website.article));
-
-
-
-// Asynchrone
-(function (publics) {
-	"use strict";
-
-	var privates = {};
-
-	publics.asynchrone = function (params) {
-		var privates = {},
+	publics.asynchrones = function (params) {
+		var publics = {},
 			socketio = params.socketio,
 			fs = require('fs'),
 			mongoose = params.NA.modules.mongoose,
@@ -133,7 +120,7 @@ website.article = {};
 
 						content = articles[i].content;
 						if (articles[i].others && articles[i].others.markdown) {
-							content = website.article.markdownRender(articles[i].content, marked);
+							content = website.components.markdownRender(articles[i].content, marked);
 						}
 
 						item = {
@@ -195,7 +182,7 @@ website.article = {};
 					});
 
 					if (data.markdown) {
-						data.content = website.article.markdownRender(data.content, marked);
+						data.content = website.components.markdownRender(data.content, marked);
 					}
 
 				 	rss();
@@ -219,7 +206,7 @@ website.article = {};
 
 			socket.on('update-article-load-content', function (data) {
 				if (session.account) {
-					website.article.oneArticle(Article, data.urn, function (oneArticle) {
+					website.components.oneArticle(Article, data.urn, function (oneArticle) {
 
 						Category
 							.find()
@@ -275,7 +262,7 @@ website.article = {};
   		});
 	};
 
-}(website.article));
+}(website));
 
-exports.preRender = website.article.preRender;
-exports.asynchrone = website.article.asynchrone;
+exports.preRender = website.preRender;
+exports.asynchrones = website.asynchrones;
