@@ -29,7 +29,7 @@ website.components = {};
 
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
 
-			publics.shemas(mongoose);
+			publics.mongooseShemas(mongoose);
 
 			website.components.socketio.initialisation(socketio, NA, function (socketio, NA) {
 				website.components.socketio.events(socketio, NA, function (params) {
@@ -45,7 +45,7 @@ website.components = {};
 
 	};
 
-	publics.shemas = function (mongoose) {
+	publics.mongooseShemas = function (mongoose) {
 		publics.shemas = {};
 
 		publics.shemas.article = require('../models/Article');
