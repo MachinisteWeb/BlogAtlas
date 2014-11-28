@@ -44,14 +44,14 @@ website.components = {};
 
 				variation.backend.article = oneArticle;
 
-				variation.pageParameters.statusCode = 200;
+				variation.currentRouteParameters.statusCode = 200;
 
 				if (!session.account && !oneArticle.others.published) {
 					variation.backend.article = undefined;
-					variation.pageParameters.statusCode = 404;
+					variation.currentRouteParameters.statusCode = 404;
 				}
 			} else {
-				variation.pageParameters.statusCode = 404;
+				variation.currentRouteParameters.statusCode = 404;
 			}
 			
 			variation.specific.breadcrumb.items[1].href = variation.specific.breadcrumb.items[1].href.replace(/%urn%/g, variation.params.urn);

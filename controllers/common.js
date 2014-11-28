@@ -115,7 +115,7 @@ website.components = {};
 		variation.fs = false;
 		variation.fc = false;
 		if (session.account) {
-			variation.edit = variation.pageParameters.variation;
+			variation.edit = variation.currentRouteParameters.variation;
 			variation.fs = variation.edit;
 			variation.fc = variation.webconfig.commonVariation;
 		}
