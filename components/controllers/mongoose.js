@@ -14,16 +14,16 @@ var website = {};
         });
         
         mongoose.connection.on('error', function (error) {
-            console.log('Erreur pour la connexion par défaut à Mongoose: ' + error);
+            console.log('Erreur pour la connexion par défaut à Mongoose : ' + error);
         });
 
         mongoose.connection.on('disconnected', function () {
-            console.log('Connexion par défaut à Mongoose déconnectée.');
+            console.log('Déconnexion de Mongoose.');
         });
 
         process.on('SIGINT', function (error) {
             mongoose.connection.close(function () {
-                console.log('Connexion par défaut à Mongoose déconnectée en raison de l\'arrêt de l\'app termination');
+                console.log('Déconnexion de Mongoose en raison de l\'arrêt de l\'app.');
                 process.exit(0);
             });
         });

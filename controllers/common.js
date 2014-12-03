@@ -29,7 +29,7 @@ website.components = {};
 
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
 
-			publics.mongooseShemas(mongoose);
+			publics.mongooseSchemas(mongoose);
 
 			website.components.socketio.initialisation(socketio, NA, function (socketio, NA) {
 				website.components.socketio.events(socketio, NA, function (params) {
@@ -45,14 +45,14 @@ website.components = {};
 
 	};
 
-	publics.mongooseShemas = function (mongoose) {
-		publics.shemas = {};
+	publics.mongooseSchemas = function (mongoose) {
+		publics.schemas = {};
 
-		publics.shemas.article = require('../models/Article');
-		publics.shemas.category = require('../models/Category');
+		publics.schemas.article = require('../models/Article');
+		publics.schemas.category = require('../models/Category');
 
-		mongoose.model('article', website.shemas.article, 'article');
-		mongoose.model('category', website.shemas.category, 'category');
+		mongoose.model('article', website.schemas.article, 'article');
+		mongoose.model('category', website.schemas.category, 'category');
 	};
 
 	publics.setSessions = function (NA, callback) {
