@@ -4,7 +4,7 @@ Version : 0.14.0 (Beta)
 
 NodeAtlas Version minimale : 0.25.x
 
-
+**For an international version of this README.md, [see below](#international-version).**
 
 
 
@@ -15,8 +15,6 @@ BlogAtlas est un exemple de site web Node.js développé avec [NodeAtlas](http:/
 Il peut vous servir d'inspiration pour créer vos propres sites !
 
 Pour mieux comprendre l'architecture JavaScript du site, [vous pouvez lire cet article](http://blog.lesieur.name/structurer-le-javascript-de-son-site-avec-ou-sans-framework/).
-
-
 
 
 
@@ -62,8 +60,68 @@ Le site sera accessible ici :
 
 
 
-
-
 ## Exemple en ligne ##
 
 Vous pouvez voir fonctionner ce repository à l'adresse : [http://blog.lesieur.name/](http://blog.lesieur.name/).
+
+
+-----
+
+
+## International Version ##
+
+### Overview ###
+
+BlogAtlas is an example of Node.js website running with [NodeAtlas](http://haeresis.github.io/NodeAtlas/).
+
+It used as inspiration to create your own website!
+
+To better understand the JavaScript site architecture, [you can read this article](http://blog.lesieur.name/structurer-le-javascript-de-son-site-avec-ou-sans-framework/) (Fr).
+
+
+
+### Run the website in local server ###
+
+To run the website in local, you must install [NodeAtlas](http://haeresis.github.io/NodeAtlas/) on your development machine.
+
+You will also need to install:
+- a MongoDB database on the application server.
+- a Redis database on the application server.
+
+Then fill the local MongoDB database with the following commands:
+
+```
+\> mongoimport -d blog -c article --file </path/to/blog>/databases/article.json
+```
+
+```
+\> mongoimport -d blog -c category --file </path/to/blog>/databases/category.json
+```
+
+Then you move into the folder:
+
+
+```
+\> cd </path/to/blog>
+```
+
+and use the command:
+
+```
+\> node </path/to/>node-atlas/node-atlas.js --run
+```
+
+or run `app.na` by double clicking and:
+- explaining your OS that `.na` files are run by default with `node`,
+- Having installed `node-atlas` via `npm install -g node-atlas`
+- Being on your environment variable `NODE_PATH` is pointing to the global `node_modules` folder.
+
+The website will be to:
+
+- *http://localhost:7777/*
+
+
+
+### Online Example ###
+
+You can see this repository running at: [http://blog.lesieur.name/](http://blog.lesieur.name/).
