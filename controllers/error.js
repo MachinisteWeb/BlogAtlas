@@ -3,7 +3,7 @@ var website = {};
 (function (publics) {
 	"use strict";
 
-	publics.preRender = function (params, mainCallback) {
+	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation;
 
 		mainCallback(variation);
@@ -11,4 +11,4 @@ var website = {};
 
 }(website));
 
-exports.preRender = website.preRender;
+exports.changeVariation = website.changeVariation;

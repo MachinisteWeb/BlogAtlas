@@ -7,7 +7,7 @@ website.components = {};
 
 	website.components.treeOfDates = require('../components/controllers/tree-of-dates');
 
-	publics.preRender = function (params, mainCallback) {
+	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
 			sessionID = params.request.sessionID,
 			session = params.request.session;
@@ -25,4 +25,4 @@ website.components = {};
 
 }(website));
 
-exports.preRender = website.preRender;
+exports.changeVariation = website.changeVariation;

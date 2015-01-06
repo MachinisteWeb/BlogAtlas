@@ -9,7 +9,7 @@ website.components = {};
 	website.components.markdownRender = require('../components/controllers/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
-	publics.preRender = function (params, mainCallback) {
+	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
 			mongoose = params.NA.modules.mongoose,
 			marked = params.NA.modules.marked,
@@ -37,4 +37,4 @@ website.components = {};
 
 }(website));
 
-exports.preRender = website.preRender;
+exports.changeVariation = website.changeVariation;

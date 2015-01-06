@@ -7,7 +7,7 @@ website.components = {};
 
 	website.components.treeOfCategories = require('../components/controllers/tree-of-categories');
 
-	publics.preRender = function (params, mainCallback) {
+	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
 			mongoose = params.NA.modules.mongoose,
 			Category = mongoose.model('category'),
@@ -27,4 +27,4 @@ website.components = {};
 
 }(website));
 
-exports.preRender = website.preRender;
+exports.changeVariation = website.changeVariation;

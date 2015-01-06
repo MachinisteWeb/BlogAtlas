@@ -107,7 +107,7 @@ website.components = {};
 		});
 	};
 
-	publics.preRender = function (params, mainCallback) {
+	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
 			session = params.request.session;
 
@@ -130,4 +130,4 @@ website.components = {};
 exports.loadModules = website.loadModules;
 exports.setSessions = website.setSessions;
 exports.setConfigurations = website.setConfigurations;
-exports.preRender = website.preRender;
+exports.changeVariation = website.changeVariation;

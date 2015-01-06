@@ -3,12 +3,12 @@ var website = {};
 (function (publics) {
 	"use strict";
 
-	publics.preRender = function (params, mainCallback) {
+	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
 			sessionID = params.request.sessionID,
 			session = params.request.session;
 
-		//console.log("preRender");
+		//console.log("changeVariation");
 		//console.log(sessionID);
 		//console.log(session);
 
@@ -63,5 +63,5 @@ var website = {};
 
 }(website));
 
-exports.preRender = website.preRender;
+exports.changeVariation = website.changeVariation;
 exports.asynchrones = website.asynchrones;
