@@ -1,5 +1,3 @@
-var nodeAtlas = require('node-atlas');
-
-nodeAtlas.config({
-	run: true
-}).init();
+require('node-atlas').run({
+	browse: true
+});
