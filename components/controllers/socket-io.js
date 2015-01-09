@@ -13,7 +13,7 @@ var website = {};
     };
 
     publics.initialisation = function (socketio, NA, callback) {
-        var optionIo = (NA.webconfig.urlRelativeSubPath) ? { path: NA.webconfig.urlRelativeSubPath + '/socket.io' } : undefined,
+        var optionIo = (NA.webconfig.urlRelativeSubPath) ? { path: NA.webconfig.urlRelativeSubPath + '/socket.io', secure: ((NA.webconfig.httpSecure) ? true : false) } : undefined,
             socketio = socketio(NA.server, optionIo),
             cookie = NA.modules.cookie,
             cookieParser = NA.modules.cookieParser;

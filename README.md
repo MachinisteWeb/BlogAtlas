@@ -1,8 +1,8 @@
 # BlogAtlas #
 
-Version : 0.16.0 (Beta)
+Version : 0.17.0 (Beta)
 
-NodeAtlas Version minimale : 0.32.x
+NodeAtlas Version minimale : 0.34.x
 
 **For an international version of this README.md, [see below](#international-version).**
 
@@ -65,6 +65,19 @@ Le site sera accessible ici :
 Vous pouvez voir fonctionner ce repository à l'adresse : [http://blog.lesieur.name/](http://blog.lesieur.name/).
 
 
+
+## Tester en HTTPs ##
+
+Pour tester la version HTTPs du site, lancer la commande suivante :
+
+```
+\> node </path/to/>node-atlas/node-atlas.js --browse --webconfig webconfig.https.json
+```
+
+Quand « PEM pass phrase: » s'affiche, tapez « jaime ». Votre navigateur vous dira que votre site local n'est pas sur, ignorez le message !
+
+
+
 -----
 
 
@@ -125,3 +138,15 @@ The website will be to:
 ### Online Example ###
 
 You can see this repository running at: [http://blog.lesieur.name/](http://blog.lesieur.name/).
+
+
+
+## Test with HTTPs ##
+
+For test HTTPs version of website, run the following command :
+
+```
+\> node </path/to/>node-atlas/node-atlas.js --browse --webconfig webconfig.https.json
+```
+
+When « PEM pass phrase: » is displayed, enter « jaime ». Your browser will say the local website is not safe, ignore this message !

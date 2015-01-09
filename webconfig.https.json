@@ -1,0 +1,13 @@
+{
+	"httpPort": 7777,
+	"httpSecure": "security/server",
+	"autoGenerate": false,
+ 	"commonVariation": "common.json",
+ 	"commonController": "common.js",
+ 	"controllersRelativePath": "controllers/",
+ 	"pageNotFound": "/page-inexistante/",
+	"bundles": "bundles.json",
+	"routes": "routes.json",
+	"_emailAccountAuth": "bruno.lesieur@gmail.com",
+	"_passwordAccountAuth": "bépo"
+}
