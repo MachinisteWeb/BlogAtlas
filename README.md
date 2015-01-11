@@ -1,6 +1,6 @@
 # BlogAtlas #
 
-Version : 0.17.0 (Beta)
+Version : 0.17.1 (Beta)
 
 NodeAtlas Version minimale : 0.34.x
 

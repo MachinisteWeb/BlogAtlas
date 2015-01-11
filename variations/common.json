@@ -37,8 +37,8 @@
         "image": {
             "src": "./media/images/bw-author.png",
             "alt": "Bruno Lesieur",
-            "width": 96,
-            "height": 96
+            "width": "96",
+            "height": "96"
         },
         "content": "Bonjour, je suis Bruno Lesieur, architecte web basé sur Annecy. Intégrateur HTML5, CSS3 et JavaScript ou encore développeur Front-End ; appelez moi comme vous le voulez mais sachez que je suis très friand de performance web, de Responsive Web Design, d'accessibilité web, de bonnes pratiques, de techniques et d'outils de gestion web, de factorisation et d'automatisation, de partage et casse-tête en tout genre ainsi que de boissons gazeuses."
     },

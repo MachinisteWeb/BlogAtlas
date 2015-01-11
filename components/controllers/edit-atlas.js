@@ -161,7 +161,7 @@ var website = {};
         		}
         	}
 
-        	if (!obj) { obj = " "; }
+        	if (!obj) { obj = ""; }
 
         	if (arr[3]) {
     			claimSource = ' data-edit-attr-source-' + arr[2] + '="' + arr[3] + '" ';
@@ -194,7 +194,7 @@ var website = {};
                                 key = files[file][i].path.split('.').slice(1).join('.');
 
                                 if (publics.getLookup(object, key) || publics.getLookup(object, key) === "") {
-                                    publics.setLookup(object, key, files[file][i].value);
+                                    publics.setLookup(object, key, String(files[file][i].value).toString());
 
                                     if (!files[file][i].source || typeof files[file][i].source === 'string') {
                                         socket.broadcast.emit('update-variation', {
