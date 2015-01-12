@@ -1,7 +1,6 @@
 {
 	"httpPort": 7777,
 	"httpSecure": "security/server",
-	"autoGenerate": false,
  	"commonVariation": "common.json",
  	"commonController": "common.js",
  	"controllersRelativePath": "controllers/",
