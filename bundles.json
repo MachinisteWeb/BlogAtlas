@@ -1,25 +1,21 @@
 {
 	"javascript": {
-		"files": {
-			"javascript/framework.min.js": [
-				"javascript/modernizr.js",
-				"javascript/jquery.js",
-				"javascript/prettify.js",
-				"javascript/prettify/run_prettify.js"
-			],
-			"javascript/common.min.js": [
-				"javascript/components/extended-format-date.js",
-				"javascript/common.js"
-			]
-		}
+		"javascript/framework.min.js": [
+			"javascript/modernizr.js",
+			"javascript/jquery.js",
+			"javascript/prettify.js",
+			"javascript/prettify/run_prettify.js"
+		],
+		"javascript/common.min.js": [
+			"javascript/components/extended-format-date.js",
+			"javascript/common.js"
+		]
 	},
 	"stylesheets": {
-		"files": {
-			"stylesheets/common.min.css": [
-				"stylesheets/common.css",
-				"stylesheets/common-min780.css",
-				"stylesheets/common-min1160.css"
-			]
-		}
+		"stylesheets/common.min.css": [
+			"stylesheets/common.css",
+			"stylesheets/common-min780.css",
+			"stylesheets/common-min1160.css"
+		]
 	}
 }
