@@ -3,9 +3,10 @@
 <% include templates/master-content.htm %>
 
 		<div class="about-site">
-			<h2><%-: common.aboutSite.title | editText: ['common.aboutSite.title', edit] %></h2>
+			<div class="dynamic-aside"></div>
+			<h2><%- common.aboutSite.title %></h2>
 
-			<p><%-: common.aboutSite.content | editText: ['common.aboutSite.content', edit] %></p>
+			<p><%- common.aboutSite.content %></p>
 		</div>
 
 		<div id="content" class="content">

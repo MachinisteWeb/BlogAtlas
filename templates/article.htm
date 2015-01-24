@@ -10,11 +10,12 @@
 
 		<% if (backend && backend.article) { %>
 			<div class="about-author">
-				<figure><img src="<%-: common.aboutAuthor.image.src | editAttr: ['common.aboutAuthor.image.src', edit, 'src'] %>" width="<%-: common.aboutAuthor.image.width | editAttr: ['common.aboutAuthor.image.width', edit, 'width'] %>" height="<%-: common.aboutAuthor.image.height | editAttr: ['common.aboutAuthor.image.height', edit, 'height'] %>" alt="<%-: common.aboutAuthor.image.alt | editAttr: ['common.aboutAuthor.image.alt', edit, 'alt'] %>"></figure>
+				<div class="dynamic-aside"></div>
+				<figure><img src="<%- common.aboutAuthor.image.src %>" width="<%- common.aboutAuthor.image.width %>" height="<%- common.aboutAuthor.image.height %>" alt="<%- common.aboutAuthor.image.alt %>"></figure>
 
-				<h2><%-: common.aboutAuthor.title | editText: ['common.aboutAuthor.title', edit] %></h2>
+				<h2><%- common.aboutAuthor.title %></h2>
 
-				<p><%-: common.aboutAuthor.content | editText: ['common.aboutAuthor.content', edit] %></p>
+				<p><%- common.aboutAuthor.content %></p>
 			</div>
 
 			<% if (backend.article.categories) { %>

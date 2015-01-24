@@ -5,7 +5,6 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.editAtlas = require('../components/controllers/edit-atlas');
 	website.components.socketio = require('../components/controllers/socket-io');
 	website.components.mongoose = require('../components/controllers/mongoose');
 
@@ -17,8 +16,6 @@ website.components = {};
 		NA.modules.RedisStore = require('connect-redis');
 		NA.modules.rss = require('rss');
 		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
-
-		NA.modules.ejs = website.components.editAtlas.setFilters(NA.modules.ejs, NA);
 
 		return NA;
 	};
@@ -72,8 +69,6 @@ website.components = {};
 		socketio.sockets.on('connection', function (socket) {
 			var sessionID = socket.request.sessionID,
 				session = socket.request.session;
-
-			website.components.editAtlas.sockets(socket, NA, session.account);
 
 			socket.on('update-comment-number', function (options) {
 				var http = require('http'),
