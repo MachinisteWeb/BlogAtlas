@@ -21,6 +21,7 @@
 
 var website = website || {},
     $window = $(window),
+    $document = $(document),
     $html = $("html"),
     $body = $("body"),
     $base = $("base");
@@ -146,9 +147,22 @@ var website = website || {},
           ga('send', 'pageview');
     };
 
+    privates.lastScrollValue = 0;
+
+    publics.scrollAsideSynchonisation = function () {
+        $document.scroll(function () {
+            var $toKnow = $(".to-know");
+            
+            $toKnow.scrollTop($toKnow.scrollTop() + ($document.scrollTop() - privates.lastScrollValue) / 2);
+
+            privates.lastScrollValue = $document.scrollTop();
+        });
+    };
+
     publics.init = function () {
         publics.googleAnalytics();
         publics.disqusNumberLoading();
+        publics.scrollAsideSynchonisation();
     };
 }(website));
 

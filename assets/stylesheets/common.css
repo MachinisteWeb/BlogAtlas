@@ -662,24 +662,24 @@ li.L9 {
 	font-size: 1.4rem;
 }
 
-.articles-by-year .wrap-content > .archives ul,
-.articles-by-year .wrap-content > .archives h2,
-.articles-by-year .wrap-content > .archives h3,
-.articles-by-year .wrap-content > .archives h4,
-.articles-by-month .wrap-content > .archives ul,
-.articles-by-month .wrap-content > .archives h2,
-.articles-by-month .wrap-content > .archives h3,
-.articles-by-month .wrap-content > .archives h4,
-.articles-by-category .wrap-content > .categories ul,
-.articles-by-category .wrap-content > .categories h2,
-.articles-by-category .wrap-content > .categories h3,
-.articles-by-category .wrap-content > .categories h4 {
+.articles-by-year .to-know .archives ul,
+.articles-by-year .to-know .archives h2,
+.articles-by-year .to-know .archives h3,
+.articles-by-year .to-know .archives h4,
+.articles-by-month .to-know .archives ul,
+.articles-by-month .to-know .archives h2,
+.articles-by-month .to-know .archives h3,
+.articles-by-month .to-know .archives h4,
+.articles-by-category .to-know .categories ul,
+.articles-by-category .to-know .categories h2,
+.articles-by-category .to-know .categories h3,
+.articles-by-category .to-know .categories h4 {
 	margin-top: 0;
 }
 
-.articles-by-year .wrap-content > .archives li,
-.articles-by-month .wrap-content > .archives li,
-.articles-by-category .wrap-content > .categories li {
+.articles-by-year .to-know .archives li,
+.articles-by-month .to-know .archives li,
+.articles-by-category .to-know .categories li {
 	margin-top: 4px;
 }
 
@@ -701,9 +701,9 @@ li.L9 {
 	content: "";
 }
 
-.articles-by-year .wrap-content > .archives > :nth-child(2),
-.articles-by-month .wrap-content > .archives > :nth-child(2),
-.articles-by-category .wrap-content > .categories > :nth-child(2) {
+.articles-by-year .to-know .archives > :nth-child(2),
+.articles-by-month .to-know .archives > :nth-child(2),
+.articles-by-category .to-know .categories > :nth-child(2) {
 	margin-top: 16px;
 }
 

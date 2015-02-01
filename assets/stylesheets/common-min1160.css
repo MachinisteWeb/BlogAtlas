@@ -42,9 +42,9 @@ body {
 	top: 104px;
 }
 
-.articles-by-month .wrap-content > .archives,
-.articles-by-year .wrap-content > .archives,
-.articles-by-category .wrap-content > .categories,
+.articles-by-month .to-know .archives,
+.articles-by-year .to-know .archives,
+.articles-by-category .to-know .categories,
 .about-author,
 .about-site {
 	margin-top: 136px;	
@@ -72,6 +72,10 @@ body {
 
 .footer {
 	padding-bottom: 48px;
+}
+
+.to-know {
+	bottom: 144px;
 }
 
 
