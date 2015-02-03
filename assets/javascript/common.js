@@ -604,6 +604,10 @@ var website = website || {},
         privates.summary();
 
         website.disqusLoading();
+
+        if (website.script) {
+            website.script();
+        }
     };
 }(website.article = {}));
 
