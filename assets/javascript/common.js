@@ -159,10 +159,20 @@ var website = website || {},
         });
     };
 
+    publics.autoTarget = function () {
+        $(document.links).filter(function() {
+            return !this.target;
+        }).filter(function() {
+            return this.hostname !== window.location.hostname ||
+                /\.([a-z]{0,3}|[a-zt]{0,4})$/.test(this.pathname);
+        }).attr('target', '_blank');
+    };
+
     publics.init = function () {
         publics.googleAnalytics();
         publics.disqusNumberLoading();
         publics.scrollAsideSynchonisation();
+        publics.autoTarget();
     };
 }(website));
 
@@ -457,6 +467,7 @@ var website = website || {},
             }
 
             website.prettifyLoad();
+            website.autoTarget();
         });
 
         website.socket.on('update-article-button-others', function (data) {
