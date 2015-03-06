@@ -80,7 +80,7 @@
         "title": "Erreur 404",
         "content": "Cette page n'existe pas."
     },
-    "copyright": "©2012-2014 <a href=\"http://www.lesieur.name/\" title=\"Site de Bruno Lesieur, Développeur web spécialiste Front-End / Node.js\">Lesieur.name</a>",
+    "copyright": "©2012-2015 <a href=\"http://www.lesieur.name/\" title=\"Site de Bruno Lesieur, Développeur web spécialiste Front-End / Node.js\">Lesieur.name</a>",
     "engine": "Site développé en <a href=\"http://nodejs.org/\" title=\"node.js, le moteur JavaScript côté serveur\">node.js</a> avec <a href=\"https://haeresis.github.io/NodeAtlas/\" title=\"Le Framework node.js NodeAtlas\">NodeAtlas</a>",
     "listDate": {
         "startingYear": "2012",
@@ -129,7 +129,7 @@
         }
     },
     "summary": {
-        "title": "Dans cette article"
+        "title": "Dans cet article"
     },
     "archives": {
         "title": "Toutes les dates",
