@@ -217,8 +217,12 @@ var website = website || {},
     };
 
     privates.createArticle = function () {
-        $(".create-article-button").click(function () {
+        $(".create-article-button").click(function (e) {
+            e.preventDefault();
+
             var $this = $(this);
+
+            $this.addClass("loading");
 
             website.socket.emit('create-article-button', {
                 title: $("#create-article-title").val(),
@@ -228,15 +232,20 @@ var website = website || {},
     };
 
     privates.deleteArticle = function () {
-        var deleteButton = $(".delete-article-button");
 
-        deleteButton.click(function () {
+        var $deleteButton = $(".delete-article-button");
 
-            var prompt = window.prompt(deleteButton.data("prompt"), "");
+        $deleteButton.click(function (e) {
+            e.preventDefault();
 
-            website.socket.emit('delete-article-button', {
-                urn: $("article.article").data("urn")
-            });
+            var prompt = window.prompt($deleteButton.data("prompt"), "Oui");
+
+            if (prompt.toLowerCase() === 'oui') {
+                $deleteButton.addClass("loading");        
+                website.socket.emit('delete-article-button', {
+                    urn: $("article.article").data("urn")
+                });
+            }
         });
     };
 
@@ -270,7 +279,7 @@ var website = website || {},
         website.socket.on('update-article-load-content', function (data) {
             // Title part.
             $title.after(
-                $('<input type="text" class="field-title like-h1">').val($title.html())
+                $('<input type="text" class="field-title like-h1" placeholder="Titre">').val($title.html())
             ).css("display", "none");
 
             // Script part.
@@ -286,18 +295,39 @@ var website = website || {},
             $(".field-stylesheet").val($stylesheet.html());
 
             // Published part.
-            $content.after('<span class="field-published"><input type="checkbox"> Visible ?</span>');
+            $content.after('<span class="field-published"><input type="checkbox"><label> Visible ?</label></span>');
             $fieldPublished = $(".field-published input");
             $fieldPublished.attr('checked', ($article.attr("data-published") === "true"));
 
             // Markdown part.
-            $content.after('<span class="field-markdown"><input type="checkbox"> Markdown ?</span>');
+            $content.after('<span class="field-markdown"><input type="checkbox"><label> Markdown ?</label></span>');
             $fieldMarkdown = $(".field-markdown input");
             $fieldMarkdown.attr('checked', ($article.attr("data-markdown") === "true"));
 
+            $(".field-markdown, .field-published").each(function () {
+                var $this = $(this);
+
+                if ($this.hasClass("field-markdown") && $article.attr("data-markdown") === "true") {
+                    $this.addClass('checked');
+                }
+                if ($this.hasClass("field-published") && $article.attr("data-published") === "true") {
+                    $this.addClass('checked');
+                }
+            }).click(function () {
+                var $this = $(this);
+
+                if (!$this.hasClass("checked")) {
+                    $this.addClass("checked");
+                    $this.find("input").prop("checked", true);
+                } else {
+                    $this.removeClass("checked");
+                    $this.find("input").prop("checked", false);
+                }
+            });
+
             // Text part.
             $content.after(
-                $('<textarea class="field-content" cols="30" rows="30">')
+                $('<textarea class="field-content" cols="30" rows="30" placeholder="Article">')
             ).css("display", "none");
             $(".field-content").val(data.content)
 
@@ -361,7 +391,7 @@ var website = website || {},
             // Date part.
             website.jQueryUiLoading(function () {
                 $date.after(
-                    $('<input type="text" class="field-date">').val($date.find("time").attr("datetime").replace("T"," ").replace(".000", ""))
+                    $('<input type="text" class="field-date" placeholder="Date">').val($date.find("time").attr("datetime").replace("T"," ").replace(".000", ""))
                 ).css("display", "none");
 
                 $categoryUl.sortable();
@@ -372,10 +402,14 @@ var website = website || {},
                     changeMonth: true,
                     changeYear: true
                 });
+
+                $(".update-article-button").removeClass("loading");
             });
         });
 
-        $(".update-article-button").click(function () {
+        $(".update-article-button").click(function (e) {
+            e.preventDefault();
+
             var $this = $(this),
                 $fieldTitle,
                 $fieldContent,
@@ -384,6 +418,8 @@ var website = website || {},
                 $fieldStylesheet,
                 fieldsCategory = [],
                 $categories = $(".categories li");
+
+            $this.addClass("loading");
 
             if (!$this.data("state")) {
                 $this.data("state", true);
@@ -507,6 +543,8 @@ var website = website || {},
             $categoriesTitle.remove();
             $categoriesList.remove();
             $fieldMarkdown.remove();
+
+            $(".update-article-button").removeClass("loading");
         });
     };
 
@@ -625,7 +663,11 @@ var website = website || {},
     var privates = {};
 
     privates.accountLogin = function () {
-        $(".account-login-button").click(function () {
+        $(".account-login-button").click(function (e) {
+            e.preventDefault();
+
+            $(this).addClass("loading");
+
             var data = {
                 email: $("#account-login-email").val(),
                 password: $("#account-login-password").val()
@@ -640,14 +682,19 @@ var website = website || {},
             if (data.authSuccess) {
                 location.reload();
             } else {
+                $(".account-login-button").removeClass("loading");
                 $(".submit .errors ").show();
             }
         });
     };
 
     privates.accountLogout = function () {
-        $(".account-logout-button").click(function () {
+        $(".account-logout-button").click(function (e) {
             if (!website.isEditable) {
+                e.preventDefault();
+
+                $(this).addClass("loading");
+
                 website.socket.emit('account-logout', {});
             }
         });

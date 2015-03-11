@@ -1,17 +1,12 @@
-				<!--<form class="form-upload-avatar" action="./upload/" method="POST" enctype="multipart/form-data">
-					<img src="" class="img-upload-avatar" alt="<%= common.articles.uploadAvatar.alt %>">
-					<input type="file" id="file-upload-avatar" name="file-upload-avatar" class="file-upload-avatar">
-					<input type="text" id="file-upload-text" name="file-upload-text" class="file-upload-text" value="Toto">
-					<input type="button" class="button-upload-avatar" value="<%= common.articles.uploadAvatar.button %>">
-				</form>-->
+
 
 				<% if (backend && backend.article) { %>
 
 					<% if (session.account) { %>
 					<form class="form-account-logout" action="" method="post">
 						<div class="submit">
-							<label><input type="button" class="update-article-button" value="<%= specific.article.updateArticle.button %>"></label>
-							<label><input data-prompt="<%= specific.article.updateArticle.prompt %>" type="button" class="delete-article-button" value="<%= specific.article.updateArticle.delete %>"></label>
+							<label><button class="update-article-button"><%= specific.article.updateArticle.button %></button></label>
+							<label><button data-prompt="<%= specific.article.updateArticle.prompt %>" class="delete-article-button"><%= specific.article.updateArticle.delete %></button></label>
 						</div>
 					</form>
 					<% } %>
@@ -49,7 +44,7 @@
 										</div>
 									</div>
 									<div class="submit">
-										<input type="button" class="create-article-button" value="<%= specific.noArticle.createArticle.button %>">
+										<button class="create-article-button"><%= specific.noArticle.createArticle.button %></button>
 									</div>
 								</form>
 							<% } %>

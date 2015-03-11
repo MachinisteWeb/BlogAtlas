@@ -4,8 +4,8 @@
  	"commonController": "common.js",
  	"controllersRelativePath": "controllers/",
  	"pageNotFound": "/page-inexistante/",
-	"routes": "routes.json",
 	"bundles": "bundles.json",
+	"routes": "routes.json",
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
 	"_passwordAccountAuth": "bépo"
 }

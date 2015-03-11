@@ -30,7 +30,7 @@
 						<div class="errors">
 							<div class="empty"><%- specific.formLogin.submit.errors.badAuth %></div>
 						</div>
-						<label><input type="button" class="account-login-button" value="<%= specific.formLogin.submit.label %>"></label>
+						<label><button class="account-login-button"><%= specific.formLogin.submit.label %></button></label>
 					</div>
 				</form>
 			<% } else { %>
@@ -38,7 +38,7 @@
 					<h1><%- specific.titleConnected %></h1>
 					
 					<div class="submit">
-						<label><input type="button" class="account-logout-button" value="<%- specific.formLogout.submit.label %>"></label>
+						<label><button class="account-logout-button"><%- specific.formLogout.submit.label %></button></label>
 					</div>
 				</form>
 			<% } %>
