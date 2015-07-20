@@ -9,13 +9,15 @@ website.components = {};
 	website.components.mongoose = require('../components/controllers/mongoose');
 
 	publics.loadModules = function (NA) {
+		var path = NA.modules.path;
+
 		NA.modules.cookie = require('cookie');
 		NA.modules.socketio = require('socket.io');
 		NA.modules.marked = require('marked');
 		NA.modules.mongoose = require('mongoose');
 		NA.modules.RedisStore = require('connect-redis');
 		NA.modules.rss = require('rss');
-		NA.modules.common = require(NA.websitePhysicalPath + NA.webconfig.variationsRelativePath + 'common.json');
+		NA.modules.common = require(path.join(NA.websitePhysicalPath, NA.webconfig.variationsRelativePath, 'common.json'));
 
 		return NA;
 	};

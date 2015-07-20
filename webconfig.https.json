@@ -3,7 +3,7 @@
 	"httpSecure": "security/server",
  	"commonVariation": "common.json",
  	"commonController": "common.js",
- 	"controllersRelativePath": "controllers/",
+ 	"controllersRelativePath": "controllers",
  	"pageNotFound": "/page-inexistante/",
 	"bundles": "bundles.json",
 	"routes": "routes.json",
