@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 (function (publics) {

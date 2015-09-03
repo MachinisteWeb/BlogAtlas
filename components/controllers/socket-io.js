@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 (function (publics) {
@@ -33,7 +34,7 @@ var website = {};
                 if (error || !session) {
                     return next(new Error('Aucune session récupérée.'));
                 } else {
-                    handshakeData.session = session;                    
+                    handshakeData.session = session;
                     next();
                 }
             });

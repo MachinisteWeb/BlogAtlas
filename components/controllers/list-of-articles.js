@@ -1,3 +1,4 @@
+/* jslint node: true */
 module.exports = function listOfArticles(params, callback) {
 	var categoryId = params.categoryId,
 		marked = params.marked,
@@ -16,13 +17,13 @@ module.exports = function listOfArticles(params, callback) {
 	    maxMonth;
 
 	if (typeof date !== 'undefined' &&
-		typeof date.year !== 'undefined') 
+		typeof date.year !== 'undefined')
 	{
 
 		minMonth = 0;
 		maxMonth = 0;
 		minYear = date.year;
-		maxYear = parseInt(date.year, 10) + 1
+		maxYear = parseInt(date.year, 10) + 1;
 
 		if (typeof date.month !== 'undefined') {
 			minMonth = parseInt(date.month, 10) - 1;
@@ -38,7 +39,7 @@ module.exports = function listOfArticles(params, callback) {
 				$gte: min,
 				$lt: max
 			}
-		}
+		};
 	}
 
 	Article
@@ -49,7 +50,7 @@ module.exports = function listOfArticles(params, callback) {
 		var results = [],
 			hasCategory = false;
 
-		if (error) { 
+		if (error) {
 			throw error;
 		}
 
@@ -63,12 +64,12 @@ module.exports = function listOfArticles(params, callback) {
 						hasCategory = true;
 						break;
 					}
-				};
+				}
 			}
 
 			// Maybe no filter, depend of preceding matching.
 			if (typeof categoryId === 'undefined' || hasCategory) {
-				
+
 				if (temp[i].others && temp[i].others.markdown) {
 					temp[i].content = markdownRender(temp[i].content, marked);
 				}

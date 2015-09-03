@@ -1,3 +1,4 @@
+/* jslint node: true */
 module.exports = function treeOfDates(variation, callback) {
 	var startingYear = variation.common.archives.startingYear,
 		startingMonth = variation.common.archives.startingMonth,
@@ -20,8 +21,8 @@ module.exports = function treeOfDates(variation, callback) {
 		for (var j = min; j < max; j++) {
 			str = "" + parseInt(j + 1, 10);
 			years[i].months.push( pad.substring(0, pad.length - str.length) + str );
-		};
-	};
+		}
+	}
 
 	callback(years);
 };

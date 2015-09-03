@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 website.components = {};
@@ -10,11 +11,12 @@ website.components = {};
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
-			mongoose = params.NA.modules.mongoose,
-			marked = params.NA.modules.marked,
+		var NA = this,
+			variation = params.variation,
+			mongoose = NA.modules.mongoose,
+			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
-			sessionID = params.request.sessionID,
+			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
 		variation.backend = {};
@@ -53,7 +55,7 @@ website.components = {};
 			} else {
 				variation.currentRouteParameters.statusCode = 404;
 			}
-			
+
 			variation.specific.breadcrumb.items[1].href = variation.specific.breadcrumb.items[1].href.replace(/%urn%/g, variation.params.urn);
 
 			mainCallback(variation);
@@ -62,19 +64,18 @@ website.components = {};
 	};
 
 	publics.asynchrones = function (params) {
-		var publics = {},
+		var NA = this,
 			socketio = params.socketio,
 			fs = require('fs'),
-			mongoose = params.NA.modules.mongoose,
-			common = params.NA.modules.common,
-			marked = params.NA.modules.marked,
+			mongoose = NA.modules.mongoose,
+			common = NA.modules.common,
+			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
 			Category = mongoose.model('category'),
-			renderer = new marked.Renderer(),
-			Rss = params.NA.modules.rss;
+			Rss = NA.modules.rss;
 
 		socketio.sockets.on('connection', function (socket) {
-			var sessionID = socket.request.sessionID,
+			var /*sessionID = socket.request.sessionID,*/
 				session = socket.request.session;
 
 			function rss() {
@@ -84,8 +85,8 @@ website.components = {};
 				feedHeader = {
 					title: common.rss.title,
 					description: common.rss.description,
-					feed_url: params.NA.webconfig.urlWithoutFileName + common.rss.feedUrl.replace(/^\//g, ""),
-					site_url: params.NA.webconfig.urlWithoutFileName,
+					feed_url: NA.webconfig.urlWithoutFileName + common.rss.feedUrl.replace(/^\//g, ""),
+					site_url: NA.webconfig.urlWithoutFileName,
 					author: common.rss.author,
 					managingEditor: common.rss.author,
 				    webMaster: common.rss.author,
@@ -110,7 +111,7 @@ website.components = {};
 						content;
 
 					for (var i = 0; i < articles.length; i++) {
-						categories = []; 
+						categories = [];
 
 						if (articles[i].categories) {
 							for (var j = 0; j < articles[i].categories.length; j++) {
@@ -126,17 +127,17 @@ website.components = {};
 						item = {
 						    title: articles[i].title,
 						    description: content,
-						    url: params.NA.webconfig.urlWithoutFileName + common.rss.url.replace(/%urn%/g, articles[i].urn),
+						    url: NA.webconfig.urlWithoutFileName + common.rss.url.replace(/%urn%/g, articles[i].urn),
 						    guid: articles[i]._id.toString(),
 						    categories: categories,
 						    author: common.rss.author,
 						    date: articles[i].dates.published
-						}
+						};
 
 						feed.item(item);
 					}
 
-					fs.writeFile(params.NA.websitePhysicalPath + params.NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    ")); 
+					fs.writeFile(params.NA.websitePhysicalPath + NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    "));
 				});
 			}
 
@@ -144,8 +145,8 @@ website.components = {};
 				if (session.account) {
 
 					Article.update({
-						urn: data.urn 
-					}, { 
+						urn: data.urn
+					}, {
 						$set: {
 							title: data.title,
 							content: data.content,
@@ -157,10 +158,10 @@ website.components = {};
 							'others.markdown': data.markdown,
 							'others.published': data.published
 						}
-					}, function (error, numberAffected, raw) {
+					}, function (error/*, numberAffected, raw*/) {
 						if (error) { throw error; }
 
-						for (var i = 0; i < data.categories.length; i++) {
+						function categoryFindOne (i) {
 							Category.findOne({
 								urn: data.categories[i]
 							}, function (error, document) {
@@ -168,17 +169,21 @@ website.components = {};
 						  			throw error;
 						  		}
 
-								Article.update({ 
-									urn: data.urn 
-								}, { 
+								Article.update({
+									urn: data.urn
+								}, {
 									$addToSet: {
-										'categories': document._id	
+										'categories': document._id
 									}
-								}, function (error, numberAffected, raw) {
+								}, function (error/*, numberAffected, raw*/) {
 									if (error) { throw error; }
 								});
-							})
-						}	
+							});
+						}
+
+						for (var i = 0; i < data.categories.length; i++) {
+							categoryFindOne(i);
+						}
 					});
 
 					if (data.markdown) {
@@ -212,7 +217,7 @@ website.components = {};
 							.find()
 							.sort({ 'urn': 1 })
 							.exec(function (error, categories) {
-								if (error) { 
+								if (error) {
 									throw error;
 								}
 
@@ -239,7 +244,7 @@ website.components = {};
 
 				if (session.account) {
 					article.save(function (error) {
-						if (error) { 
+						if (error) {
 							throw error;
 						}
 
@@ -251,7 +256,7 @@ website.components = {};
 			socket.on('delete-article-button', function (data) {
 				if (session.account) {
 					Article.find({ urn: data.urn }).remove(function (error, documents) {
-						if (error) { 
+						if (error) {
 							throw error;
 						}
 

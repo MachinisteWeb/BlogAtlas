@@ -1,9 +1,10 @@
+/* jslint node: true */
 module.exports = function treeOfCategories(Category, callback) {
 	Category
 	.find()
 	.sort({ type: 'asc', urn: 'asc' })
 	.exec(function (error, results) {
-		if (error) { 
+		if (error) {
 			throw error;
 		}
 
@@ -24,4 +25,4 @@ module.exports = function treeOfCategories(Category, callback) {
 
 		callback(createLeaf(0, {}), results);
 	});
-}
+};

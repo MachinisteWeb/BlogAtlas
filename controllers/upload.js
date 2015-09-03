@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 (function (publics) {
@@ -15,8 +16,8 @@ var website = {};
 
 		   	fs.renameSync(request.files["file-upload-avatar"].path, './asset/media/uploads/' + request.files["file-upload-avatar"].name);
 
-			variables.header["Content-Type"] = "text/plain";
-            /*variables.upload = "./media/tmp/" + module.request.sessionID + "-" + module.request.files["registration-cat-photo"].name*/
+			variation.header["Content-Type"] = "text/plain";
+            /*variation.upload = "./media/tmp/" + module.request.sessionID + "-" + module.request.files["registration-cat-photo"].name*/
 			console.log("Yep !");
 		} else {
 			console.log("Nope...");

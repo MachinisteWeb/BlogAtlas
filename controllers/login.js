@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 (function (publics) {
@@ -5,7 +6,7 @@ var website = {};
 
 	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
-			sessionID = params.request.sessionID,
+			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
 		//console.log("changeVariation");
@@ -28,7 +29,7 @@ var website = {};
 			NA = params.NA;
 
 		socketio.sockets.on('connection', function (socket) {
-			var sessionID = socket.request.sessionID,
+			var /*sessionID = socket.request.sessionID,*/
 				session = socket.request.session;
 
 			socket.on('account-login', function (data) {
@@ -37,7 +38,7 @@ var website = {};
 				if (!session.account) {
 					if (data.email === NA.webconfig._emailAccountAuth &&
 						data.password === NA.webconfig._passwordAccountAuth)
-					{					
+					{
 						session.account = {};
 						session.touch().save();
 

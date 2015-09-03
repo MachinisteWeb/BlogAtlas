@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 website.components = {};
@@ -11,12 +12,13 @@ website.components = {};
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
-			mongoose = params.NA.modules.mongoose,
-			marked = params.NA.modules.marked,
+		var NA = this,
+			variation = params.variation,
+			mongoose = NA.modules.mongoose,
+			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
-			sessionID = params.request.sessionID,
-			session = params.request.session;;
+			/*sessionID = params.request.sessionID,*/
+			session = params.request.session;
 
 		variation.backend = {};
 		variation.session = session;
@@ -27,10 +29,10 @@ website.components = {};
 
 			website.components.listOfArticles({
 				Article: Article,
-				date: { 
+				date: {
 					year: variation.params.year,
-					month: variation.params.month 
-				}, 
+					month: variation.params.month
+				},
 				marked: marked,
 				session: variation.session,
 				markdownRender: website.components.markdownRender,

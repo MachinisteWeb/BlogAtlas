@@ -1,3 +1,4 @@
+/* jslint node: true */
 module.exports = function markdownRender(data, marked) {
 	var renderer = new marked.Renderer();
 
@@ -33,7 +34,7 @@ module.exports = function markdownRender(data, marked) {
 	    + '\n</code></pre>\n';
 	};
 
-	renderer.codespan = function (text) { 
+	renderer.codespan = function (text) {
 		return '<samp>' + text + '</samp>';
 	};
 

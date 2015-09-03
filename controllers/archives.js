@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 website.components = {};
@@ -9,7 +10,7 @@ website.components = {};
 
 	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,
-			sessionID = params.request.sessionID,
+			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
 		variation.backend = {};

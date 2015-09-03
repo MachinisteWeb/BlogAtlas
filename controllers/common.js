@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 website.components = {};
@@ -8,8 +9,9 @@ website.components = {};
 	website.components.socketio = require('../components/controllers/socket-io');
 	website.components.mongoose = require('../components/controllers/mongoose');
 
-	publics.loadModules = function (NA) {
-		var path = NA.modules.path;
+	publics.loadModules = function () {
+		var NA = this,
+			path = NA.modules.path;
 
 		NA.modules.cookie = require('cookie');
 		NA.modules.socketio = require('socket.io');
@@ -18,12 +20,11 @@ website.components = {};
 		NA.modules.RedisStore = require('connect-redis');
 		NA.modules.rss = require('rss');
 		NA.modules.common = require(path.join(NA.websitePhysicalPath, NA.webconfig.variationsRelativePath, 'common.json'));
-
-		return NA;
 	};
 
-	publics.setConfigurations = function (NA, next) {
-		var mongoose = NA.modules.mongoose,
+	publics.setConfigurations = function (next) {
+		var NA = this,
+			mongoose = NA.modules.mongoose,
 			socketio = NA.modules.socketio;
 
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
@@ -34,8 +35,8 @@ website.components = {};
 				website.components.socketio.events(socketio, NA, function (params) {
 
 					website.asynchrones(params);
-					require('./article').asynchrones(params);
-					require('./login').asynchrones(params);
+					require('./article').asynchrones.call(NA, params);
+					require('./login').asynchrones.call(NA, params);
 
 					next(NA);
 				});
@@ -54,23 +55,22 @@ website.components = {};
 		mongoose.model('category', website.schemas.category, 'category');
 	};
 
-	publics.setSessions = function (NA, callback) {
-        var session = NA.modules.session,
+	publics.setSessions = function (callback) {
+        var NA = this,
+        	session = NA.modules.session,
         	RedisStore = NA.modules.RedisStore(session);
-        
+
         NA.sessionStore = new RedisStore();
 
-		callback(NA);
+		callback();
 	};
 
 	publics.asynchrones = function (params) {
-		var socketio = params.socketio,
-			NA = params.NA,
-			fs = NA.modules.fs;
+		var socketio = params.socketio;
 
 		socketio.sockets.on('connection', function (socket) {
-			var sessionID = socket.request.sessionID,
-				session = socket.request.session;
+			/* var sessionID = socket.request.sessionID,
+				session = socket.request.session; */
 
 			socket.on('update-comment-number', function (options) {
 				var http = require('http'),

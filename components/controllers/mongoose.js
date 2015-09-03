@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 (function (publics) {
@@ -12,7 +13,7 @@ var website = {};
 
             callback(mongoose);
         });
-        
+
         mongoose.connection.on('error', function (error) {
             console.log('Erreur pour la connexion par défaut à Mongoose : ' + error);
         });

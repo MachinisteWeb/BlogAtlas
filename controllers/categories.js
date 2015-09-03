@@ -1,3 +1,4 @@
+/* jslint node: true */
 var website = {};
 
 website.components = {};
@@ -8,10 +9,11 @@ website.components = {};
 	website.components.treeOfCategories = require('../components/controllers/tree-of-categories');
 
 	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
-			mongoose = params.NA.modules.mongoose,
+		var NA = this,
+			variation = params.variation,
+			mongoose = NA.modules.mongoose,
 			Category = mongoose.model('category'),
-			sessionID = params.request.sessionID,
+			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
 		variation.backend = {};
