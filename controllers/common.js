@@ -25,21 +25,19 @@ website.components = {};
 	publics.setConfigurations = function (next) {
 		var NA = this,
 			mongoose = NA.modules.mongoose,
-			socketio = NA.modules.socketio;
+			socketio = NA.modules.socketio,
+			params = {};
 
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
 
 			publics.mongooseSchemas(mongoose);
 
-			website.components.socketio.initialisation(socketio, NA, function (socketio, NA) {
-				website.components.socketio.events(socketio, NA, function (params) {
-
-					website.asynchrones(params);
-					require('./article').asynchrones.call(NA, params);
-					require('./login').asynchrones.call(NA, params);
-
-					next(NA);
-				});
+			website.components.socketio.initialisation.call(NA, socketio, function (socketio) {
+				params.socketio = socketio;
+				website.asynchrones.call(NA, params);
+				require('./article').asynchrones.call(NA, params);
+				require('./login').asynchrones.call(NA, params);
+				next();
 			});
 		});
 
