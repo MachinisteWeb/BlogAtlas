@@ -25,8 +25,8 @@ var website = {};
 	};
 
 	publics.asynchrones = function (params) {
-		var socketio = params.socketio,
-			NA = params.NA;
+		var NA = this,
+			socketio = params.socketio;
 
 		socketio.sockets.on('connection', function (socket) {
 			var /*sessionID = socket.request.sessionID,*/
