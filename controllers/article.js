@@ -137,7 +137,7 @@ website.components = {};
 						feed.item(item);
 					}
 
-					fs.writeFile(params.NA.websitePhysicalPath + NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    "));
+					fs.writeFile(NA.websitePhysicalPath + NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    "));
 				});
 			}
 
@@ -204,7 +204,8 @@ website.components = {};
 						stylesheet: data.stylesheet,
 						published: data.published,
 						publishedDate: data.publishedDate,
-						variation: common
+						variation: common,
+						permalink: data.permalink
 					});
 				}
 			});

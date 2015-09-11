@@ -447,7 +447,8 @@ var website = website || {},
                     publishedDate: $fieldDate.val(),
                     categories: fieldsCategory,
                     published: $fieldPublished.prop("checked"),
-                    markdown: $fieldMarkdown.prop("checked")
+                    markdown: $fieldMarkdown.prop("checked"),
+                    permalink: $(".permalink span").text(),
                 });
 
                 $this.data("state", false);
@@ -468,7 +469,8 @@ var website = website || {},
             $script = $(".script"),
             $stylesheet = $(".stylesheet"),
             $article = $("article.article"),
-            $date = $(".published a");
+            $date = $(".published a"),
+            $permalink = $(".permalink span");
 
         website.socket.on('update-article-button-all', function (data) {
             var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+02:00"),
@@ -477,33 +479,35 @@ var website = website || {},
                 newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
                 newDateHref;
 
-            month = ((month.toString().length > 1) ? '' : '0') + month;
-            newDateHref = data.variation.listDate.linkMonth.href.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, month);
+            if ($permalink.text() === data.permalink) {
+                month = ((month.toString().length > 1) ? '' : '0') + month;
+                newDateHref = data.variation.listDate.linkMonth.href.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, month);
 
-            if ($article.length !== 0) {
-                $titlePage.text(data.title.replace(/<\/?span>/g, ""));
-                $title.html(data.title);
-                $content.html(data.content);
+                if ($article.length !== 0) {
+                    $titlePage.text(data.title.replace(/<\/?span>/g, ""));
+                    $title.html(data.title);
+                    $content.html(data.content);
+                }
+
+                $date.find("time").html(formatDate.string);
+                $date.find("time").attr("datetime", formatDate.time);
+                $date.attr("title", newDateTitle);
+                $date.attr("href", newDateHref);
+                $article.attr("data-markdown", data.markdown);
+                $article.attr("data-published", data.published);
+                $stylesheet.html(data.stylesheet);
+                $script.html(data.script);
+
+                if (data.script) {
+                    $script.after(
+                        $('<script class="script" type="text/javascript">').html(data.script)
+                    );
+                    $script.remove();
+                }
+
+                website.prettifyLoad();
+                website.autoTarget();
             }
-
-            $date.find("time").html(formatDate.string);
-            $date.find("time").attr("datetime", formatDate.time);
-            $date.attr("title", newDateTitle);
-            $date.attr("href", newDateHref);
-            $article.attr("data-markdown", data.markdown);
-            $article.attr("data-published", data.published);
-            $stylesheet.html(data.stylesheet);
-            $script.html(data.script);
-
-            if (data.script) {
-                $script.after(
-                    $('<script class="script" type="text/javascript">').html(data.script)
-                );
-                $script.remove();
-            }
-
-            website.prettifyLoad();
-            website.autoTarget();
         });
 
         website.socket.on('update-article-button-others', function (data) {
