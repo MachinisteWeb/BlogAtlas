@@ -59,7 +59,16 @@ var website = website || {},
         });
     };
 
-     publics.prettifyLoad = function () {
+    publics.smartTargetInjection = function () {
+        $(document.links).filter(function() {
+            return !this.target;
+        }).filter(function() {
+            return this.hostname !== window.location.hostname ||
+                /\.(?!html?|php3?|aspx?)([a-z]{0,3}|[a-zt]{0,4})$/.test(this.pathname);
+        }).attr('target', '_blank');
+    };
+
+    publics.prettifyLoad = function () {
         var $sh = $(".prettyprint");
 
         prettyPrint();
@@ -86,7 +95,7 @@ var website = website || {},
             disqus_identifier = $("article.article").data("urn"),
             disqus_url = $(".permalink span").text().split("?")[0];
 
-        if ($("article.article").length !== 0) {   
+        if ($("article.article").length !== 0) {
             Modernizr.load({
                 test: $('script[src="//' + disqus_shortname + '.disqus.com/embed.js"]').length === 0,
                 yep: '//' + disqus_shortname + '.disqus.com/embed.js',
@@ -113,7 +122,7 @@ var website = website || {},
             $listOfArticles.each(function () {
                 chaine = chaine + add + $(this).data("disqus-identifier")
             });
-                
+
             options = {
                 host: 'lesieur.disqus.com',
                 path: chaine.replace(/^\/count-data.js&/g,"/count-data.js?") + "&random=" + (Math.random() * 10000)
@@ -152,7 +161,7 @@ var website = website || {},
     publics.scrollAsideSynchonisation = function () {
         $document.scroll(function () {
             var $toKnow = $(".to-know");
-            
+
             $toKnow.scrollTop($toKnow.scrollTop() + ($document.scrollTop() - privates.lastScrollValue) / 2);
 
             privates.lastScrollValue = $document.scrollTop();
@@ -173,6 +182,7 @@ var website = website || {},
         publics.disqusNumberLoading();
         publics.scrollAsideSynchonisation();
         publics.autoTarget();
+        publics.smartTargetInjection();
     };
 }(website));
 
@@ -200,7 +210,7 @@ var website = website || {},
                 $formAvatar.submit();
             }
         });
- 
+
         $formAvatar.submit(function (event) {
             event.preventDefault();
 
@@ -212,7 +222,7 @@ var website = website || {},
                     $imageAvatar.attr("src", $base.attr("href") + response.url);
                     $fileAvatar.attr("data-url", response.url);
                 }
-            });    
+            });
          });
     };
 
@@ -241,7 +251,7 @@ var website = website || {},
             var prompt = window.prompt($deleteButton.data("prompt"), "Oui");
 
             if (prompt.toLowerCase() === 'oui') {
-                $deleteButton.addClass("loading");        
+                $deleteButton.addClass("loading");
                 website.socket.emit('delete-article-button', {
                     urn: $("article.article").data("urn")
                 });
@@ -335,12 +345,12 @@ var website = website || {},
             $select.find("option").remove();
             $select.append(
                 $('<option value="">').text("----")
-            )
+            );
 
             for (var i = 0; i < data.categories.length; i++) {
                 $select.append(
                     $('<option value="' + data.categories[i].urn + '">').text(data.categories[i].title)
-                )
+                );
             }
             $categoriesTitle.append($select);
 
@@ -558,14 +568,14 @@ var website = website || {},
 
         function nextDepth() {
             if (typeof groups[j] !== 'undefined' &&
-                typeof groups[j].headers !== 'undefined') 
+                typeof groups[j].headers !== 'undefined')
             {
                 groups[j].headers = privates.treeOfHeaders(groups[j].headers, level + 1);
             }
         }
 
         for (var i = 0; i < elements.length; i++) {
-            
+
             if (elements[i][0].nodeName === "H" + level) {
 
                 nextDepth();
@@ -578,12 +588,12 @@ var website = website || {},
                     groups[j] = {};
                 }
 
-                groups[j].header = elements[i];                    
+                groups[j].header = elements[i];
 
             }
 
             if (typeof groups[j] !== 'undefined' &&
-                elements[i][0].nodeName !== "H" + level) 
+                elements[i][0].nodeName !== "H" + level)
             {
 
                 if (typeof groups[j].headers === 'undefined') {
@@ -630,7 +640,7 @@ var website = website || {},
         $("article h1, article h2, article h3, article h4, article h5, article h6").each(function () {
             array.push($(this));
         });
-    
+
         privates.constructSummary(privates.treeOfHeaders(array, 1), $('.summary'));
     };
 
