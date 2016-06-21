@@ -177,12 +177,32 @@ var website = website || {},
         }).attr('target', '_blank');
     };
 
+    publics.kc = function () {
+        var kcScript = document.createElement("script"),
+            body = document.getElementsByTagName("body")[0];
+        kcScript.type = "text/javascript";
+        kcScript.addEventListener("load", function () {
+            new KonamiCode(function () {
+                if (privates.kc)   {
+                    privates.kc = false;
+                    body.style = "overflow-x: hidden;transition: transform 2s ease;transform: rotate(0deg)";
+                } else {
+                    privates.kc = true;
+                    body.style = "overflow-x: hidden;transition: transform 2s ease;transform: rotate(180deg)";
+                }
+            });
+        });
+        kcScript.src = "https://cdn.rawgit.com/Haeresis/konami-code-js/master/src/konami-code.js";
+        body.appendChild(kcScript);
+    };
+
     publics.init = function () {
         publics.googleAnalytics();
         publics.disqusNumberLoading();
         publics.scrollAsideSynchonisation();
         publics.autoTarget();
         publics.smartTargetInjection();
+        publics.kc();
     };
 }(website));
 
