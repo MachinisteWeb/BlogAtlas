@@ -1,6 +1,6 @@
 # BlogAtlas #
 
-Version : 0.3
+Version : 0.4
 
 NodeAtlas Version minimale : 1.0.x
 
@@ -29,24 +29,24 @@ Vous devrez également installer :
 Ensuite remplissez la base de donnée MongoDB local avec les commandes suivantes :
 
 ```
-\> mongoimport -d blog -c article --file </path/to/blog>/databases/article.json
+\> mongoimport -d blog -c article --file </path/to/blog/>databases/article.json
 ```
 
 ```
-\> mongoimport -d blog -c category --file </path/to/blog>/databases/category.json
+\> mongoimport -d blog -c category --file </path/to/blog/>databases/category.json
 ```
 
 Déplacez vous ensuite dans le dossier :
 
 
 ```
-\> cd </path/to/blog>
+\> cd </path/to/blog/>
 ```
 
 et utilisez la commande :
 
 ```
-\> node </path/to/>node-atlas/node-atlas.js --browse
+\> node </path/to/node-atlas/> --browse
 ```
 
 ou lancez `server.na` en double cliquant dessus :
@@ -71,7 +71,7 @@ Vous pouvez voir fonctionner ce repository à l'adresse : [http://blog.lesieur.n
 Pour tester la version HTTPs du site, lancer la commande suivante :
 
 ```
-\> node </path/to/>node-atlas/node-atlas.js --browse --webconfig webconfig.https.json
+\> node </path/to/node-atlas/> --browse --webconfig webconfig.https.json
 ```
 
 Quand « PEM pass phrase: » s'affiche, tapez « jaime ». Votre navigateur vous dira que votre site local n'est pas sur, ignorez le message !
@@ -104,24 +104,24 @@ You will also need to install:
 Then fill the local MongoDB database with the following commands:
 
 ```
-\> mongoimport -d blog -c article --file </path/to/blog>/databases/article.json
+\> mongoimport -d blog -c article --file </path/to/blog/>databases/article.json
 ```
 
 ```
-\> mongoimport -d blog -c category --file </path/to/blog>/databases/category.json
+\> mongoimport -d blog -c category --file </path/to/blog/>databases/category.json
 ```
 
 Then you move into the folder:
 
 
 ```
-\> cd </path/to/blog>
+\> cd </path/to/blog/>
 ```
 
 and use the command:
 
 ```
-\> node </path/to/>node-atlas/node-atlas.js --browse
+\> node </path/to/node-atlas/> --browse
 ```
 
 or run `app.na` by double clicking and:
@@ -146,7 +146,7 @@ You can see this repository running at: [http://blog.lesieur.name/](http://blog.
 For test HTTPs version of website, run the following command :
 
 ```
-\> node </path/to/>node-atlas/node-atlas.js --browse --webconfig webconfig.https.json
+\> node </path/to/node-atlas/> --browse --webconfig webconfig.https.json
 ```
 
 When « PEM pass phrase: » is displayed, enter « jaime ». Your browser will say the local website is not safe, ignore this message !
