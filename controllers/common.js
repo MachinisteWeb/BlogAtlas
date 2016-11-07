@@ -28,6 +28,12 @@ website.components = {};
 			socketio = NA.modules.socketio,
 			params = {};
 
+		NA.httpServer.use(function (request, response, next) {
+			response.setHeader("Content-Security-Policy", "frame-ancestors www.lesieur.name");
+    		//response.removeHeader('X-Frame-Options');
+			next();
+		});
+
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
 
 			publics.mongooseSchemas(mongoose);

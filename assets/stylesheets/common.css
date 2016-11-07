@@ -212,7 +212,7 @@ header h1 {
 .menu {
 	width: 48px;
 	height: 32px;
-	position: absolute;
+	position: fixed;
 	display: inline-block;
 	top: 8px;
 	right: 8px;
