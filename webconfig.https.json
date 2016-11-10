@@ -1,6 +1,6 @@
 {
 	"httpPort": 7777,
-	"httpSecure": "security/server",
+	"httpSecure": true,
  	"commonVariation": "common.json",
  	"commonController": "common.js",
  	"controllersRelativePath": "controllers",
@@ -8,5 +8,5 @@
 	"bundles": "bundles.json",
 	"routes": "routes.json",
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
-	"_passwordAccountAuth": "bépo"
+	"_passwordAccountAuth": "a39e06042c77594c75b534030ec36e2bbc3cdaaa"
 }

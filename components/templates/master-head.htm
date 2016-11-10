@@ -14,12 +14,12 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,500">
-		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<%= urlBasePath %><%= common.rss.feedUrl %>" />
+		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<%= urlBasePathSlice %><%= common.rss.feedUrl %>" />
 
 		<% if (webconfig.bundles) { %>
 		<link rel="stylesheet" type="text/css" href="stylesheets/common.min.css" />
 		<% } else { %>
+		<link rel="stylesheet" type="text/css" href="stylesheets/lato.css">
 		<link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
 		<link rel="stylesheet" type="text/css" href="stylesheets/common-min780.css" media="screen and (min-width: 780px)" />
 		<link rel="stylesheet" type="text/css" href="stylesheets/common-min1160.css" media="screen and (min-width: 1160px)" />

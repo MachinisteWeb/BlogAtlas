@@ -13,6 +13,7 @@
 	},
 	"stylesheets": {
 		"stylesheets/common.min.css": [
+			"stylesheets/lato.css",
 			"stylesheets/common.css",
 			"stylesheets/common-min780.css",
 			"stylesheets/common-min1160.css"

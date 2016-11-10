@@ -59,6 +59,20 @@ var website = website || {},
         });
     };
 
+    publics.jsHashesLoading = function (callback) {
+        Modernizr.load({
+            test: $('script[src="javascript/hashes.min.js"]').length === 0,
+            yep: [
+                'javascript/hashes.min.js'
+            ],
+            complete: function () {
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            }
+        });
+    };
+
     publics.smartTargetInjection = function () {
         $(document.links).filter(function() {
             return !this.target;
@@ -702,12 +716,15 @@ var website = website || {},
 
             $(this).addClass("loading");
 
-            var data = {
-                email: $("#account-login-email").val(),
-                password: $("#account-login-password").val()
-            }
+            website.jsHashesLoading(function () {        
+                var data = {
+                    email: $("#account-login-email").val(),
+                    password: new Hashes.SHA1().hex($("#account-login-password").val())
+                };
 
-            website.socket.emit('account-login', data);
+                website.socket.emit('account-login', data);
+            });
+
         });
     };
 

@@ -19,11 +19,13 @@ website.components = {};
 		NA.modules.mongoose = require('mongoose');
 		NA.modules.RedisStore = require('connect-redis');
 		NA.modules.rss = require('rss');
+		NA.modules.jshashes = require('jshashes');
 		NA.modules.common = require(path.join(NA.websitePhysicalPath, NA.webconfig.variationsRelativePath, 'common.json'));
 	};
 
 	publics.setConfigurations = function (next) {
 		var NA = this,
+			route = NA.webconfig.routes,
 			mongoose = NA.modules.mongoose,
 			socketio = NA.modules.socketio,
 			params = {};
@@ -33,6 +35,13 @@ website.components = {};
     		//response.removeHeader('X-Frame-Options');
 			next();
 		});
+
+	    route["/javascript/hashes.min.js"] = {
+	        "template": "../node_modules/jshashes/hashes.min.js",
+	        "headers": {
+	        	"Content-Type": "text/javascript; charset=utf-8"
+	        }
+	    };
 
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
 

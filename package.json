@@ -1,6 +1,6 @@
 {
   "name": "blog-atlas",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "author": "Bruno Lesieur <bruno.lesieur@gmail.com>",
   "description": "Exemple de développement de site Node.js.",
   "private": false,
@@ -21,7 +21,8 @@
     "marked": "0.3.x",
     "mongoose": "3.8.x",
     "socket.io": "1.2.x",
-    "rss": "1.0.x"
+    "rss": "1.0.x",
+    "jshashes": "1.0.x"
   },
   "engines": {
     "node": ">=0.10.10"
