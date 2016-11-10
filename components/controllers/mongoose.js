@@ -5,6 +5,7 @@ var website = {};
     "use strict";
 
     publics.initialisation = function (mongoose, address, callback) {
+        mongoose.Promise = global.Promise;
         mongoose.connect(address, function (error) {
             if (error) {
                 console.log("La base '" + address + "' n'est pas accessible.");
