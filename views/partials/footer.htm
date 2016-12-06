@@ -1,16 +1,16 @@
 		<footer id="footer" class="footer">
-			<div class="copyright"><%- common.copyright %></div>
-			<div class="engine"><%- common.engine %></div>
+			<div class="copyright"><?- common.copyright ?></div>
+			<div class="engine"><?- common.engine ?></div>
 		</footer>	
 	</div>
 
-	<% if (webconfig.bundles) { %>
+	<? if (webconfig.bundles) { ?>
 	<script type="text/javascript" src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 	<script type="text/javascript" src="javascript/framework.min.js"></script>
-	<% } else { %>
+	<? } else { ?>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="javascript/modernizr.js"></script>
 	<script type="text/javascript" src="javascript/jquery.js"></script>
 	<script type="text/javascript" src="javascript/prettify.js"></script>
 	<script type="text/javascript" src="javascript/prettify/run_prettify.js"></script>
-	<% } %>
+	<? } ?>

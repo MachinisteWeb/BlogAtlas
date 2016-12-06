@@ -1,0 +1,47 @@
+				<section class="articles">
+					<h1><?- specific.articles.title ?></h1>
+
+					<? if (typeof backend.articles !== 'undefined') { ?>
+					<? if (backend.articles.length > 0) { ?>
+						<ul>
+								<? for (var i = 0; i < backend.articles.length; i++) { ?>
+								<li>
+									<h2><a href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) ?>" title="<?- backend.articles[i].title.replace(/<\/?span>/g, '') ?>"><?- backend.articles[i].title ?></a></h2>
+									<div class="published">
+										<? var month = backend.articles[i].dates.published.getMonth() + 1 ?>
+										<? month = ((month.toString().length > 1) ? '' : '0') + month ?>
+										<? var fullMonth = common.dates.months[backend.articles[i].dates.published.getMonth()] ?>
+										<? var fullYear = backend.articles[i].dates.published.getFullYear() ?>
+										<a href="<?- common.listDate.linkMonth.href.replace(/%year%/g, fullYear).replace(/%month%/g, month) ?>" title="<?- common.listDate.linkMonth.title.replace(/%year%/g, fullYear).replace(/%month%/g, fullMonth) ?>"><ins class="icon time"></ins><time datetime="<?= backend.articles[i].dates.format.time ?>">
+											<?- backend.articles[i].dates.format.string ?>
+										</time></a>
+									</div>
+									<div class="comments">
+										<a data-disqus-identifier="<?= backend.articles[i].urn ?>" href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) ?>#disqus_thread" title="<?- backend.articles[i].title.replace(/<\/?span>/g, '') ?>"><ins class="icon comment"></ins><span class="set-number"><?- backend.articles[i].cache.comment.number ?></span> <?- common.comments.commentSimple ?></a>
+									</div>
+									<div class="text">
+										<?- backend.articles[i].content ?>
+									</div>
+									<div class="read-more">
+										<h3><a href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) ?>" title="<?- backend.articles[i].title.replace(/<\/?span>/g, '') ?>"><?- common.articles.readMore.content ?></a></h3>
+									</div>
+									<? if (backend.articles[i].categories) { ?>
+									<div class="categories">
+										<ul>
+										<? for (var j = 0; j < backend.articles[i].categories.length; j++) { ?>
+											<li><a href="<?- common.categories.link.href.replace(/%urn%/g, backend.articles[i].categories[j].urn) ?>" title="<?- common.categories.link.title ?> <?- backend.articles[i].categories[j].title ?>"><?- backend.articles[i].categories[j].title ?></a></li>
+										<? } ?>
+										</ul>
+									</div>
+									<? } ?>
+									<hr>
+								</li>
+								<? } ?>
+							</ul>
+						<? } else { ?>
+							<p class="no-article"><?- specific.articles.noArticle ?></p>
+						<? } ?>
+					<? } else { ?>
+						<p class="no-article"><?- specific.articles.noArticle ?></p>
+					<? } ?>
+				</section>

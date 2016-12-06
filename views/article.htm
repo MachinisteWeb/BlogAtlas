@@ -1,0 +1,58 @@
+<? include partials/master-head.htm ?>
+
+<? include partials/master-content.htm ?>
+
+		<div id="content" class="content">
+
+			<? include partials/article.htm ?>
+
+		</div>
+
+		<? if (backend && backend.article) { ?>
+			<aside class="to-know">
+				<div class="about-author">
+					<div class="dynamic-aside"></div>
+					<figure><img src="<?- common.aboutAuthor.image.src ?>" width="<?- common.aboutAuthor.image.width ?>" height="<?- common.aboutAuthor.image.height ?>" alt="<?- common.aboutAuthor.image.alt ?>"></figure>
+
+					<h2><?- common.aboutAuthor.title ?></h2>
+
+					<p><?- common.aboutAuthor.content ?></p>
+				</div>
+
+				<? if (backend.article.categories) { ?>
+					<div class="categories">
+						<h3><?- common.categories.title2 ?></h3>
+
+						<? if (session.account) { ?>
+						<ul data-url="<?= common.categories.link.href  ?>" data-title="<?= common.categories.link.title ?>">
+						<? } else { ?>
+						<ul>
+						<? } ?>
+
+							<? for (var j = 0; j < backend.article.categories.length; j++) { ?>
+								<li data-urn="<?- backend.article.categories[j].urn ?>"><a href="<?= common.categories.link.href.replace(/%urn%/g, backend.article.categories[j].urn) ?>" title="<?- common.categories.link.title ?> <?- backend.article.categories[j].title ?>"><?- backend.article.categories[j].title ?></a></li>
+							<? } ?>
+						</ul>
+					</div>
+
+					<div class="summary">
+						<h3><?- common.summary.title ?></h3>
+					</div>
+				<? } ?>
+			</aside>
+		<? } ?>
+
+		<? if (backend && backend.article) { ?>
+		<div class="comment">
+			<div class="disqus" id="disqus_thread"></div>
+		</div>
+		<? } ?>
+
+<? include partials/header.htm ?>
+<? include partials/footer.htm ?>
+		<? if (webconfig.bundles) { ?>
+		<script type="text/javascript" src="javascript/jquery/jquery.form.min.js"></script>
+		<? } else { ?>
+		<script type="text/javascript" src="javascript/jquery/jquery.form.js"></script>
+		<? } ?>
+<? include partials/master-foot.htm ?>

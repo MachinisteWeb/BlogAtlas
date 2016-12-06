@@ -1,0 +1,11 @@
+		<? if (webconfig.bundles) { ?>
+		<script type="text/javascript" src="javascript/common.min.js"></script>
+		<? } else { ?>
+		<script type="text/javascript" src="javascript/components/extended-format-date.js"></script>		
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<? } ?>
+		<? if ((typeof backend !== 'undefined' && backend.article && backend.article.script) || (typeof session !== 'undefined' && session.account)) { ?>
+			<script class="script" type="text/javascript"><?- (typeof backend !== 'undefined' && backend.article && backend.article.script) ? backend.article.script : "" ?></script>
+		<? } ?>
+	</body>
+</html>

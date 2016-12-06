@@ -6,8 +6,8 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.listOfArticles = require('../components/controllers/list-of-articles');
-	website.components.markdownRender = require('../components/controllers/markdown-render');
+	website.components.listOfArticles = require('./modules/list-of-articles');
+	website.components.markdownRender = require('./modules/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.changeVariation = function (params, mainCallback) {

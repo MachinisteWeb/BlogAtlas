@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title><![CDATA[Quelques #ID et beaucoup de .CLASS]]></title>
         <description><![CDATA[Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.]]></description>
-        <link>http://localhost:7777/</link>
+        <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 10 Nov 2016 08:01:37 GMT</lastBuildDate>
-        <atom:link href="http://localhost:7777/feeds/articles.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Tue, 06 Dec 2016 17:59:45 GMT</lastBuildDate>
+        <atom:link href="undefinedfeeds/articles.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Bruno Lesieur]]></author>
-        <pubDate>Thu, 10 Nov 2016 08:01:37 GMT</pubDate>
+        <pubDate>Tue, 06 Dec 2016 17:59:45 GMT</pubDate>
         <copyright><![CDATA[2012-2014 Bruno Lesieur]]></copyright>
         <language><![CDATA[fr]]></language>
         <managingEditor><![CDATA[Bruno Lesieur]]></managingEditor>
@@ -159,7 +158,7 @@ document.getElementsByTagName(&quot;div&quot;)[0].addEventListener(&quot;click&q
 };
 </code></pre>
 ]]></description>
-            <link>http://localhost:7777/manager-les-iframes-sortantes-de-votre-site/</link>
+            <link>undefinedmanager-les-iframes-sortantes-de-votre-site/</link>
             <guid isPermaLink="false">58218758e24e70605a985109</guid>
             <category><![CDATA[Node.js]]></category>
             <category><![CDATA[NodeAtlas]]></category>
@@ -304,7 +303,7 @@ et plus particulièrement :</p>
 </ul>
 </blockquote>
 ]]></description>
-            <link>http://localhost:7777/comprendre-et-utiliser-git-avec-vos-projets/</link>
+            <link>undefinedcomprendre-et-utiliser-git-avec-vos-projets/</link>
             <guid isPermaLink="false">5819fd2a99480e4e24e3d0cd</guid>
             <category><![CDATA[Git]]></category>
             <category><![CDATA[Techniques de Dev]]></category>
@@ -3039,7 +3038,7 @@ dist/
 <li>aux développeur Back-end ou JavaScript en étendant le fonctionnement de <em><a href="https://www.npmjs.com/package/node-atlas/" title="Create MVC2 or Front-end-based websites easily.">NodeAtlas</a></em> aux parties <em>Controller</em> et <em>Model</em> avec une implémentation des <em>Websockets</em> pour les actions en temps réel ainsi qu&#39;un tour des accès aux diverses bases de données.</li>
 </ul>
 ]]></description>
-            <link>http://localhost:7777/creer-et-maintenir-des-maquettes-html-avec-node-atlas/</link>
+            <link>undefinedcreer-et-maintenir-des-maquettes-html-avec-node-atlas/</link>
             <guid isPermaLink="false">544a4724ac53204337fa2e0e</guid>
             <category><![CDATA[Ressources]]></category>
             <category><![CDATA[NodeAtlas]]></category>
@@ -4319,7 +4318,7 @@ website.models = website.models || {};
 <p>Par exemple la page « <a href="https://www.lesieur.name/test-case-atlas/homepage.html">Home</a> » possède le composant « <a href="https://www.lesieur.name/test-case-atlas/components/hero.html">Hero</a> » qui est documenter <a href="https://www.lesieur.name/test-case-atlas/documentation/design/hero.html">pour le CSS</a> et <a href="https://www.lesieur.name/test-case-atlas/documentation/behaviors/module-munchkin-ws.ui.Hero.html">pour le JS</a>.</p>
 <p><em>Première parution : le 08 Octobre 2015 à 17h48</em></p>
 ]]></description>
-            <link>http://localhost:7777/conventions-html-css-js-et-architecture-front-end/</link>
+            <link>undefinedconventions-html-css-js-et-architecture-front-end/</link>
             <guid isPermaLink="false">5667eaecd1b7fe136fc2005a</guid>
             <category><![CDATA[HTML]]></category>
             <category><![CDATA[CSS3]]></category>
@@ -4461,7 +4460,7 @@ website.models = website.models || {};
 <h2 id="et-vous-">Et vous ?</h2>
 <p>Si vous aussi vous souhaitez partager vos techniques pour des sites pleinement <a href="https://blog.lesieur.name/les-concepts-autour-du-responsive-web-design/">Responsive Web Design</a>, n&#39;hésitez pas !</p>
 ]]></description>
-            <link>http://localhost:7777/version-mobile-et-version-desktop-ca-n-existe-pas/</link>
+            <link>undefinedversion-mobile-et-version-desktop-ca-n-existe-pas/</link>
             <guid isPermaLink="false">577ca385d1b7fe136fc20061</guid>
             <category><![CDATA[Concept]]></category>
             <category><![CDATA[Front-end]]></category>
@@ -8467,7 +8466,7 @@ website.models = website.models || {};
         </div>
     </div>
 </div>]]></description>
-            <link>http://localhost:7777/liste-des-cartes-munchkin-editions-francaises/</link>
+            <link>undefinedliste-des-cartes-munchkin-editions-francaises/</link>
             <guid isPermaLink="false">577a13cfd1b7fe136fc20060</guid>
             <category><![CDATA[Développement Web]]></category>
             <category><![CDATA[JavaScript]]></category>
@@ -9463,7 +9462,7 @@ body.appendChild(
 <h2 id="et-vous-">Et vous ?</h2>
 <p>Je vous laisse décider lesquels de ces conseils peuvent vous apporter de l&#39;aide et lesquels ne le feront pas et vous donne rendez-vous dans les commentaires pour partager votre expérience sur la question ou éclaircir des zones d&#39;ombre dans cet article.</p>
 ]]></description>
-            <link>http://localhost:7777/coder-proprement-en-javascript-par-l-exemple-upload-d-image/</link>
+            <link>undefinedcoder-proprement-en-javascript-par-l-exemple-upload-d-image/</link>
             <guid isPermaLink="false">575a62fbd1b7fe136fc2005e</guid>
             <category><![CDATA[JavaScript]]></category>
             <category><![CDATA[Techniques de Dev]]></category>
@@ -9803,7 +9802,7 @@ script.src = &quot;https://cdn.rawgit.com/Haeresis/konami-code-js/master/src/kon
 body.appendChild(script);
 </code></pre>
 ]]></description>
-            <link>http://localhost:7777/des-easter-eggs-avec-konami-code-js/</link>
+            <link>undefineddes-easter-eggs-avec-konami-code-js/</link>
             <guid isPermaLink="false">576946cfd1b7fe136fc2005f</guid>
             <category><![CDATA[JavaScript]]></category>
             <category><![CDATA[Outils]]></category>
@@ -10089,7 +10088,7 @@ body.appendChild(script);
 <blockquote>
 <p><em><samp>Exemple :</samp></em> <strong><a href="http://codepen.io/Haeresis/pen/xVpjxV" target="_blank">Vous trouverez un exemple Live de ce code sur ce Codepen !</a></strong></p>
 </blockquote>]]></description>
-            <link>http://localhost:7777/javascript-et-callback-par-nom-de-parametre-comme-dans-angularjs/</link>
+            <link>undefinedjavascript-et-callback-par-nom-de-parametre-comme-dans-angularjs/</link>
             <guid isPermaLink="false">56fb9383d1b7fe136fc2005d</guid>
             <category><![CDATA[JavaScript]]></category>
             <category><![CDATA[Ressources]]></category>
@@ -10663,7 +10662,7 @@ angular.module(&quot;pokemon&quot;, []).controller(&quot;popular&quot;, function
 <p>Il doit exister d&#39;autres situations ou de bonnes pratiques permettraient à du code AngularJS d&#39;être parfaitement référencé aussi j&#39;alimenterai cet article avec d&#39;autres exemples dans le futur.</p>
 <p>Et vous ? Des méthodes à partager ? </p>
 ]]></description>
-            <link>http://localhost:7777/utiliser-angularjs-en-respectant-les-recommandations-w3c-et-seo/</link>
+            <link>undefinedutiliser-angularjs-en-respectant-les-recommandations-w3c-et-seo/</link>
             <guid isPermaLink="false">56c4274bd1b7fe136fc2005b</guid>
             <category><![CDATA[Techniques de Dev]]></category>
             <category><![CDATA[JavaScript]]></category>
@@ -10844,7 +10843,7 @@ divider.divide(4, 2).divide(4, 0);
 </code></pre>
 <p>À vous de jouer !</p>
 ]]></description>
-            <link>http://localhost:7777/gerer-les-erreurs-et-les-exceptions-en-javascript/</link>
+            <link>undefinedgerer-les-erreurs-et-les-exceptions-en-javascript/</link>
             <guid isPermaLink="false">5650f0e6d1b7fe136fc20059</guid>
             <category><![CDATA[Bonnes Pratiques]]></category>
             <category><![CDATA[JavaScript]]></category>
@@ -12880,7 +12879,7 @@ serialize(&lt;form&gt;);</code></pre>
 <li>Essayez l&#39;un des nombreux <a href="https://en.wikipedia.org/wiki/Comparison_of_JavaScript_frameworks">plugins</a> <span class="vanillajs">Vanilla JS</span>.</li>
 </ul>
 ]]></description>
-            <link>http://localhost:7777/vanilla-js-france/</link>
+            <link>undefinedvanilla-js-france/</link>
             <guid isPermaLink="false">5620ee00d1b7fe136fc20058</guid>
             <category><![CDATA[jQuery]]></category>
             <category><![CDATA[Humour]]></category>
@@ -12992,7 +12991,7 @@ serialize(&lt;form&gt;);</code></pre>
 </li>
 </ul>
 ]]></description>
-            <link>http://localhost:7777/installer-tous-les-modules-npm-node-js-sous-windows/</link>
+            <link>undefinedinstaller-tous-les-modules-npm-node-js-sous-windows/</link>
             <guid isPermaLink="false">5613f26670877cd335a4b897</guid>
             <category><![CDATA[Astuces]]></category>
             <category><![CDATA[Ressources]]></category>
@@ -13599,7 +13598,7 @@ serialize(&lt;form&gt;);</code></pre>
 </code></pre>
 <p>sans <samp>mainTag</samp> de précisé.</p>
 ]]></description>
-            <link>http://localhost:7777/conventions-html-et-css-orientes-composants/</link>
+            <link>undefinedconventions-html-et-css-orientes-composants/</link>
             <guid isPermaLink="false">55df1d924bf5981b0760b95b</guid>
             <category><![CDATA[Bonnes Pratiques]]></category>
             <category><![CDATA[Techniques de Dev]]></category>
@@ -14143,7 +14142,7 @@ website.popupVideo(
 <p>Si vous souhaitez obtenir le code final complet, <a href="http://codepen.io/Haeresis/pen/YXEBbK">c&#39;est par ici</a> !</p>
 </blockquote>
 ]]></description>
-            <link>http://localhost:7777/activer-vos-effets-javascript-en-fonction-de-vos-media-queries/</link>
+            <link>undefinedactiver-vos-effets-javascript-en-fonction-de-vos-media-queries/</link>
             <guid isPermaLink="false">558bf17d6868ca087fbf8649</guid>
             <category><![CDATA[Techniques de Dev]]></category>
             <category><![CDATA[Développement Web]]></category>
@@ -14332,7 +14331,7 @@ width:         calc(50% - 100px);
 <p>Si vous voulez en savoir plus sur <samp>calc()</samp> et ses subtilités <a href="http://caniuse.com/#feat=calc">c&#39;est par ici</a>.</p>
 <p><strong>À vous de jouer !</strong></p>
 ]]></description>
-            <link>http://localhost:7777/la-propriete-css3-calc-pour-arreter-avec-les-balises-html-imbriquees-inutilement/</link>
+            <link>undefinedla-propriete-css3-calc-pour-arreter-avec-les-balises-html-imbriquees-inutilement/</link>
             <guid isPermaLink="false">55894a766868ca087fbf8648</guid>
             <category><![CDATA[CSS3]]></category>
             <category><![CDATA[Bonnes Pratiques]]></category>
@@ -14923,7 +14922,7 @@ html {
 <h2 id="en-bonus">En Bonus</h2>
 <p>Pour développer des sites web avec Less en toute transparence, je ne saurais que trop vous conseiller le module <a href="https://blog.lesieur.name/des-sites-web-nodejs-pour-les-debutants-en-javascript-avec-nodeatlas/">NodeAtlas</a> en <a href="https://nodejs.org/">node.js</a>. Cela vous permettra de développer dans vos feuilles Less et d&#39;appeler les résultats CSS. Un exemple d&#39;implémentation est à votre disposition dans le projet <a href="https://github.com/Haeresis/LessAtlas/">LessAtlas</a>.</p>
 ]]></description>
-            <link>http://localhost:7777/bootstrap-lisibilite-proprete-performance-optimisation-c-est-possible/</link>
+            <link>undefinedbootstrap-lisibilite-proprete-performance-optimisation-c-est-possible/</link>
             <guid isPermaLink="false">5579c7c66868ca087fbf8647</guid>
             <category><![CDATA[Développement Web]]></category>
             <category><![CDATA[Less]]></category>
@@ -14996,7 +14995,7 @@ p {
 }
 </code></pre>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>]]></description>
-            <link>http://localhost:7777/pourquoi-j-utilise-l-unite-rem-et-non-l-unite-pixel/</link>
+            <link>undefinedpourquoi-j-utilise-l-unite-rem-et-non-l-unite-pixel/</link>
             <guid isPermaLink="false">5577e6346868ca087fbf8645</guid>
             <category><![CDATA[Astuces]]></category>
             <category><![CDATA[Bonnes Pratiques]]></category>
@@ -15117,7 +15116,7 @@ p {
 <p>Pour ma part, c&#39;est une explication qui ne me satisfait pas totalement aussi j&#39;estime que laisser le choix entre l&#39;utilisation de <samp>&lt;i class=&quot;icon settings hidden&quot;&gt;Paramètres&lt;/i&gt;</samp> et <samp>&lt;span class=&quot;icon settings hidden&quot;&gt;Paramètres&lt;/span&gt;</samp> au développeur est la moindre des choses pour un Framework CSS monsieur <a href="http://semantic-ui.com/elements/icon.html#/icons">Semantic-UI</a> !</p>
 <p>Et vous ? Que pensez-vous de cette pratique ou de ce « détournement » des spécifications ?</p>
 ]]></description>
-            <link>http://localhost:7777/icon-ou-la-balise-html-semantique-qui-n-existait-pas/</link>
+            <link>undefinedicon-ou-la-balise-html-semantique-qui-n-existait-pas/</link>
             <guid isPermaLink="false">54f8874a8abb243843ee1e77</guid>
             <category><![CDATA[Front-end]]></category>
             <category><![CDATA[Spécifications]]></category>
@@ -15167,7 +15166,7 @@ p {
 <h2 id="le-mot-de-la-fin">Le mot de la fin</h2>
 <p>Ce qui est sûr, c&#39;est que Yopmail n&#39;est peut-être pas la seule solution pour les tests d&#39;inscriptions faciles lors des phases de développement !</p>
 ]]></description>
-            <link>http://localhost:7777/gmail-n-est-pas-sensible-aux-points/</link>
+            <link>undefinedgmail-n-est-pas-sensible-aux-points/</link>
             <guid isPermaLink="false">54f838fb8abb243843ee1e76</guid>
             <category><![CDATA[Astuces]]></category>
             <category><![CDATA[Concept]]></category>

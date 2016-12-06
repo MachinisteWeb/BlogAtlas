@@ -6,7 +6,7 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.treeOfCategories = require('../components/controllers/tree-of-categories');
+	website.components.treeOfCategories = require('./modules/tree-of-categories');
 
 	publics.changeVariation = function (params, mainCallback) {
 		var NA = this,

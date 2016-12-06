@@ -6,8 +6,8 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.oneArticle = require('../components/controllers/article');
-	website.components.markdownRender = require('../components/controllers/markdown-render');
+	website.components.oneArticle = require('./modules/article');
+	website.components.markdownRender = require('./modules/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
 	publics.changeVariation = function (params, mainCallback) {
@@ -137,7 +137,7 @@ website.components = {};
 						feed.item(item);
 					}
 
-					fs.writeFile(NA.websitePhysicalPath + NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    "));
+					fs.writeFile(NA.serverPath + NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    "));
 				});
 			}
 

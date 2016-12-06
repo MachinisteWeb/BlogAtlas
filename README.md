@@ -2,7 +2,7 @@
 
 Version : 0.4
 
-NodeAtlas Version minimale : 1.0.x
+NodeAtlas Version minimale : 2.0.x
 
 **For an international version of this README.md, [see below](#international-version).**
 
@@ -10,7 +10,7 @@ NodeAtlas Version minimale : 1.0.x
 
 ## Avant-propos ##
 
-BlogAtlas est un exemple de site web Node.js développé avec [NodeAtlas](http://haeresis.github.io/NodeAtlas/).
+BlogAtlas est un exemple de site web Node.js développé avec [NodeAtlas](https://node-atlas.js.org/).
 
 Il peut vous servir d'inspiration pour créer vos propres sites !
 
@@ -20,7 +20,7 @@ Pour mieux comprendre l'architecture JavaScript du site, [vous pouvez lire cet a
 
 ## Lancer le site en local ##
 
-Pour faire tourner le site en local, il vous faudra installer [NodeAtlas](http://haeresis.github.io/NodeAtlas/) sur votre poste de développement.
+Pour faire tourner le site en local, il vous faudra installer [NodeAtlas](https://node-atlas.js.org/) sur votre poste de développement.
 
 Vous devrez également installer :
 - une base de donnée MongoDB sur le serveur de l'application.
@@ -85,7 +85,7 @@ Quand « PEM pass phrase: » s'affiche, tapez « jaime ». Votre navigateur vo
 
 ### Overview ###
 
-BlogAtlas is an example of Node.js website running with [NodeAtlas](http://haeresis.github.io/NodeAtlas/).
+BlogAtlas is an example of Node.js website running with [NodeAtlas](https://node-atlas.js.org/).
 
 It used as inspiration to create your own website!
 
@@ -95,7 +95,7 @@ To better understand the JavaScript site architecture, [you can read this articl
 
 ### Run the website in local server ###
 
-To run the website in local, you must install [NodeAtlas](http://haeresis.github.io/NodeAtlas/) on your development machine.
+To run the website in local, you must install [NodeAtlas](https://node-atlas.js.org/) on your development machine.
 
 You will also need to install:
 - a MongoDB database on the application server.

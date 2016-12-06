@@ -6,7 +6,7 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.treeOfDates = require('../components/controllers/tree-of-dates');
+	website.components.treeOfDates = require('./modules/tree-of-dates');
 
 	publics.changeVariation = function (params, mainCallback) {
 		var variation = params.variation,

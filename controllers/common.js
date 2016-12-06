@@ -6,10 +6,10 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.socketio = require('../components/controllers/socket-io');
-	website.components.mongoose = require('../components/controllers/mongoose');
+	website.components.socketio = require('./modules/socket-io');
+	website.components.mongoose = require('./modules/mongoose');
 
-	publics.loadModules = function () {
+	publics.setModules = function () {
 		var NA = this,
 			path = NA.modules.path;
 
@@ -20,7 +20,7 @@ website.components = {};
 		NA.modules.RedisStore = require('connect-redis');
 		NA.modules.rss = require('rss');
 		NA.modules.jshashes = require('jshashes');
-		NA.modules.common = require(path.join(NA.websitePhysicalPath, NA.webconfig.variationsRelativePath, 'common.json'));
+		NA.modules.common = require(path.join(NA.serverPath, NA.webconfig.variationsRelativePath, 'common.json'));
 	};
 
 	publics.setConfigurations = function (next) {
@@ -37,10 +37,8 @@ website.components = {};
 		});
 
 	    route["/javascript/hashes.min.js"] = {
-	        "template": "../node_modules/jshashes/hashes.min.js",
-	        "headers": {
-	        	"Content-Type": "text/javascript; charset=utf-8"
-	        }
+	        "view": "../node_modules/jshashes/hashes.min.js",
+	        "mimeType": "text/javascript"
 	    };
 
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
@@ -137,7 +135,7 @@ website.components = {};
 
 
 
-exports.loadModules = website.loadModules;
+exports.setModules = website.setModules;
 exports.setSessions = website.setSessions;
 exports.setConfigurations = website.setConfigurations;
 exports.changeVariation = website.changeVariation;

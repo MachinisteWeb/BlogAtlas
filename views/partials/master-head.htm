@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html lang="fr" class="<?= (webconfig.bundles) ? "min" : "" ?> ie9"><![endif]-->
+<!--[if gt IE 9]><!--><html lang="fr" class="<?= (webconfig.bundles) ? "min" : "" ?>"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<title><?= specific.titlePage ?></title>
+
+		<base href="<?= urlBasePath ?>/" />
+		
+		<meta name="description" content="<?= specific.description ?>" />
+		<meta name="geo.placename" content="<?= common.placename ?>" />
+		
+		<meta name="robots" content="<?= common.indexFollow ?>" />
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<?= urlBasePath ?><?= common.rss.feedUrl ?>" />
+
+		<? if (webconfig.bundles) { ?>
+		<link rel="stylesheet" type="text/css" href="stylesheets/common.min.css" />
+		<? } else { ?>
+		<link rel="stylesheet" type="text/css" href="stylesheets/lato.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/common-min780.css" media="screen and (min-width: 780px)" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/common-min1160.css" media="screen and (min-width: 1160px)" />
+		<? } ?>
+
+		<? if ((typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) || (typeof session !== 'undefined' && session.account)) { ?>
+			<style class="stylesheet" type="text/css"><?- (typeof backend !== 'undefined' && backend.article && backend.article.stylesheet) ? backend.article.stylesheet : "" ?></style>
+		<? } ?>
