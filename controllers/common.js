@@ -32,7 +32,6 @@ website.components = {};
 
 		NA.httpServer.use(function (request, response, next) {
 			response.setHeader("Content-Security-Policy", "frame-ancestors www.lesieur.name");
-    		//response.removeHeader('X-Frame-Options');
 			next();
 		});
 
