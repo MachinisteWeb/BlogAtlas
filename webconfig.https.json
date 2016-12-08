@@ -1,9 +1,6 @@
 {
 	"httpPort": 7777,
 	"httpSecure": "security/server",
-	"staticOptions": {
-        "maxAge": 0
-    },
  	"bundles": "bundles.json",
  	"optimizations": "optimizations.json",
  	"commonVariation": "common.json",
