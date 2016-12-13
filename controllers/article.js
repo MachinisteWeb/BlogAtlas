@@ -63,7 +63,7 @@ website.components = {};
 
 	};
 
-	publics.setSocket = function () {
+	publics.changeSockets = function () {
 		var NA = this,
 			io = NA.io,
 			fs = require('fs'),
@@ -249,7 +249,7 @@ website.components = {};
 							throw error;
 						}
 
-						socketio.sockets.emit('create-article-button', data);
+						io.sockets.emit('create-article-button', data);
 					});
 				}
 			});
@@ -261,7 +261,7 @@ website.components = {};
 							throw error;
 						}
 
-						socketio.sockets.emit('delete-article-button', data);
+						io.sockets.emit('delete-article-button', data);
 					});
 				}
 			});
@@ -270,5 +270,6 @@ website.components = {};
 
 }(website));
 
+exports.changeSockets = website.changeSockets;
 exports.changeVariation = website.changeVariation;
 exports.asynchrones = website.asynchrones;

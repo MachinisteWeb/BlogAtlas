@@ -35,15 +35,9 @@ website.components = {};
 	        "mimeType": "text/javascript"
 	    };
 
-		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function (mongoose) {
-
-			publics.mongooseSchemas(mongoose);
-
-			website.setSocket.call(NA);
-
+		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function () {
 			next();
 		});
-
 	};
 
 	publics.mongooseSchemas = function (mongoose) {
@@ -56,17 +50,20 @@ website.components = {};
 		mongoose.model('category', website.schemas.category, 'category');
 	};
 
-	publics.setSessions = function (callback) {
+	publics.setSessions = function (next) {
         var NA = this,
+			mongoose = NA.modules.mongoose,
         	session = NA.modules.session,
         	RedisStore = NA.modules.RedisStore(session);
 
         NA.sessionStore = new RedisStore();
 
-		callback();
+        publics.mongooseSchemas(mongoose);
+
+		next();
 	};
 
-	publics.setSocket = function () {
+	publics.setSockets = function () {
 		var NA = this,
 			io = NA.io;
 
@@ -124,6 +121,7 @@ website.components = {};
 
 }(website));
 
+exports.setSockets = website.setSockets;
 exports.setModules = website.setModules;
 exports.setSessions = website.setSessions;
 exports.setConfigurations = website.setConfigurations;

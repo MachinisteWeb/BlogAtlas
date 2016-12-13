@@ -24,7 +24,7 @@ var website = {};
 		mainCallback(variation);
 	};
 
-	publics.setSocket = function () {
+	publics.changeSockets = function () {
 		var NA = this,
 			io = NA.io;
 
@@ -64,5 +64,6 @@ var website = {};
 
 }(website));
 
+exports.changeSockets = website.changeSockets;
 exports.changeVariation = website.changeVariation;
 exports.asynchrones = website.asynchrones;
