@@ -24,11 +24,11 @@ var website = {};
 		mainCallback(variation);
 	};
 
-	publics.asynchrones = function (params) {
+	publics.setSocket = function () {
 		var NA = this,
-			socketio = params.socketio;
+			io = NA.io;
 
-		socketio.sockets.on('connection', function (socket) {
+		io.sockets.on('connection', function (socket) {
 			var /*sessionID = socket.request.sessionID,*/
 				session = socket.request.session;
 

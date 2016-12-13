@@ -6,15 +6,12 @@ website.components = {};
 (function (publics) {
 	"use strict";
 
-	website.components.socketio = require('./modules/socket-io');
 	website.components.mongoose = require('./modules/mongoose');
 
 	publics.setModules = function () {
 		var NA = this,
 			path = NA.modules.path;
 
-		NA.modules.cookie = require('cookie');
-		NA.modules.socketio = require('socket.io');
 		NA.modules.marked = require('marked');
 		NA.modules.mongoose = require('mongoose');
 		NA.modules.RedisStore = require('connect-redis');
@@ -26,9 +23,7 @@ website.components = {};
 	publics.setConfigurations = function (next) {
 		var NA = this,
 			route = NA.webconfig.routes,
-			mongoose = NA.modules.mongoose,
-			socketio = NA.modules.socketio,
-			params = {};
+			mongoose = NA.modules.mongoose;
 
 		NA.httpServer.use(function (request, response, next) {
 			response.setHeader("Content-Security-Policy", "frame-ancestors www.lesieur.name");
@@ -44,13 +39,9 @@ website.components = {};
 
 			publics.mongooseSchemas(mongoose);
 
-			website.components.socketio.initialisation.call(NA, socketio, function (socketio) {
-				params.socketio = socketio;
-				website.asynchrones.call(NA, params);
-				require('./article').asynchrones.call(NA, params);
-				require('./login').asynchrones.call(NA, params);
-				next();
-			});
+			website.setSocket.call(NA);
+
+			next();
 		});
 
 	};
@@ -75,10 +66,11 @@ website.components = {};
 		callback();
 	};
 
-	publics.asynchrones = function (params) {
-		var socketio = params.socketio;
+	publics.setSocket = function () {
+		var NA = this,
+			io = NA.io;
 
-		socketio.sockets.on('connection', function (socket) {
+		io.sockets.on('connection', function (socket) {
 			/* var sessionID = socket.request.sessionID,
 				session = socket.request.session; */
 
@@ -131,8 +123,6 @@ website.components = {};
 	};
 
 }(website));
-
-
 
 exports.setModules = website.setModules;
 exports.setSessions = website.setSessions;

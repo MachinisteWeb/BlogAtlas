@@ -63,9 +63,9 @@ website.components = {};
 
 	};
 
-	publics.asynchrones = function (params) {
+	publics.setSocket = function () {
 		var NA = this,
-			socketio = params.socketio,
+			io = NA.io,
 			fs = require('fs'),
 			mongoose = NA.modules.mongoose,
 			common = NA.modules.common,
@@ -74,7 +74,7 @@ website.components = {};
 			Category = mongoose.model('category'),
 			Rss = NA.modules.rss;
 
-		socketio.sockets.on('connection', function (socket) {
+		io.sockets.on('connection', function (socket) {
 			var /*sessionID = socket.request.sessionID,*/
 				session = socket.request.session;
 
@@ -196,7 +196,7 @@ website.components = {};
 					socket.broadcast.emit('update-article-button-others', {
 						published: data.published
 					});
-					socketio.sockets.emit('update-article-button-all', {
+					io.sockets.emit('update-article-button-all', {
 						title: data.title,
 						content: data.content,
 						markdown: data.markdown,
