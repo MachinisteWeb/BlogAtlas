@@ -63,7 +63,7 @@ website.components = {};
 
 	};
 
-	publics.changeSockets = function () {
+	publics.setSockets = function () {
 		var NA = this,
 			io = NA.io,
 			fs = require('fs'),
@@ -270,6 +270,6 @@ website.components = {};
 
 }(website));
 
-exports.changeSockets = website.changeSockets;
+exports.setSockets = website.setSockets;
 exports.changeVariation = website.changeVariation;
 exports.asynchrones = website.asynchrones;
