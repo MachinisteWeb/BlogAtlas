@@ -7,7 +7,7 @@ module.exports = function listOfArticles(params, callback) {
 		extendedFormatDate = params.extendedFormatDate,
 		Article = params.Article,
 		date = params.date,
-		variation = params.variation,
+		variations = params.variations,
 		query = {},
 	    min,
 	    max,
@@ -77,7 +77,7 @@ module.exports = function listOfArticles(params, callback) {
 				if (temp[i].content) {
 					temp[i].content = temp[i].content.substring(0, temp[i].content.indexOf('<h2'));
 				}
-				temp[i].dates.format = extendedFormatDate(temp[i].dates.published, variation.common.dates);
+				temp[i].dates.format = extendedFormatDate(temp[i].dates.published, variations.common.dates);
 
 				if (temp[i].others.published || session.account) {
 					results.push(temp[i]);

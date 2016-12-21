@@ -8,22 +8,22 @@ website.components = {};
 
 	website.components.treeOfDates = require('./modules/tree-of-dates');
 
-	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
+	publics.changeVariations = function (params, mainCallback) {
+		var variations = params.variations,
 			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
-		variation.backend = {};
-		variation.session = session;
+		variations.backend = {};
+		variations.session = session;
 
-		website.components.treeOfDates(variation, function (treeOfDates) {
+		website.components.treeOfDates(variations, function (treeOfDates) {
 
-			variation.backend.archives = treeOfDates;
+			variations.backend.archives = treeOfDates;
 
-			mainCallback(variation);
+			mainCallback(variations);
 		});
 	};
 
 }(website));
 
-exports.changeVariation = website.changeVariation;
+exports.changeVariations = website.changeVariations;

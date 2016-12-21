@@ -34,12 +34,7 @@ var website = website || {},
 (function (publics) {
     "use strict";
 
-    var privates = {},
-        optionsSocket;
-
-    optionsSocket = ($body.data('subpath') !== '') ? { path: '/' + $body.data('subpath') + (($body.data('subpath')) ? "/" : "") + 'socket.io' } : undefined;
-
-    publics.socket = io.connect(($body.data('subpath') !== '') ? $body.data('hostname') : undefined, optionsSocket);
+    var privates = {};
 
     publics.minified = ($html.attr("class").indexOf("min") > -1) ? ".min" : "";
 
@@ -142,9 +137,9 @@ var website = website || {},
                 path: chaine.replace(/^\/count-data.js&/g,"/count-data.js?") + "&random=" + (Math.random() * 10000)
             }
 
-            website.socket.emit('update-comment-number', options);
+            NA.socket.emit('update-comment-number', options);
 
-            website.socket.on('update-comment-number', function (data) {
+            NA.socket.on('update-comment-number', function (data) {
                 for (var i = 0; i < data.counts.length; i++) {
                     $("a[data-disqus-identifier=" + data.counts[i].id + "]").each(function () {
                         $(this).find(".set-number").text(data.counts[i].comments);
@@ -268,7 +263,7 @@ var website = website || {},
 
             $this.addClass("loading");
 
-            website.socket.emit('create-article-button', {
+            NA.socket.emit('create-article-button', {
                 title: $("#create-article-title").val(),
                 urn: $(".no-article").data("urn")
             });
@@ -286,7 +281,7 @@ var website = website || {},
 
             if (prompt.toLowerCase() === 'oui') {
                 $deleteButton.addClass("loading");
-                website.socket.emit('delete-article-button', {
+                NA.socket.emit('delete-article-button', {
                     urn: $("article.article").data("urn")
                 });
             }
@@ -294,7 +289,7 @@ var website = website || {},
     };
 
     privates.listeningDeleteArticle = function () {
-        website.socket.on('delete-article-button', function (data) {
+        NA.socket.on('delete-article-button', function (data) {
             location.href = $base.attr("href") + data.urn + "/";
         });
     };
@@ -320,7 +315,7 @@ var website = website || {},
             $item.parents("li:first").remove();
         }
 
-        website.socket.on('update-article-load-content', function (data) {
+        NA.socket.on('update-article-load-content', function (data) {
             // Title part.
             $title.after(
                 $('<input type="text" class="field-title like-h1" placeholder="Titre">').val($title.html())
@@ -468,7 +463,7 @@ var website = website || {},
             if (!$this.data("state")) {
                 $this.data("state", true);
 
-                website.socket.emit('update-article-load-content', {
+                NA.socket.emit('update-article-load-content', {
                     urn: $article.data("urn")
                 });
             } else {
@@ -482,7 +477,7 @@ var website = website || {},
                     fieldsCategory.push($categories.eq(i).data("urn"));
                 });
 
-                website.socket.emit('update-article-button', {
+                NA.socket.emit('update-article-button', {
                     urn: $article.data("urn"),
                     title: $fieldTitle.val(),
                     content: $fieldContent.val(),
@@ -501,7 +496,7 @@ var website = website || {},
     };
 
     privates.listeningCreateArticle = function () {
-        website.socket.on('create-article-button', function (data) {
+        NA.socket.on('create-article-button', function (data) {
             location.href = $base.attr("href") + data.urn + "/";
         });
     };
@@ -516,7 +511,7 @@ var website = website || {},
             $date = $(".published a"),
             $permalink = $(".permalink span");
 
-        website.socket.on('update-article-button-all', function (data) {
+        NA.socket.on('update-article-button-all', function (data) {
             var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+02:00"),
                 formatDate = website.module.extendedFormatDate(date, data.variation.dates),
                 month = date.getMonth() + 1,
@@ -554,7 +549,7 @@ var website = website || {},
             }
         });
 
-        website.socket.on('update-article-button-others', function (data) {
+        NA.socket.on('update-article-button-others', function (data) {
             var $article = $("article.article");
 
             if ($article.length !== 0) {
@@ -568,7 +563,7 @@ var website = website || {},
             }
         });
 
-        website.socket.on('update-article-button', function () {
+        NA.socket.on('update-article-button', function () {
             var $fieldTitle = $(".field-title"),
                 $fieldContent = $(".field-content"),
                 $fieldDate = $(".field-date"),
@@ -722,14 +717,14 @@ var website = website || {},
                     password: new Hashes.SHA1().hex($("#account-login-password").val())
                 };
 
-                website.socket.emit('account-login', data);
+                NA.socket.emit('account-login', data);
             });
 
         });
     };
 
     privates.listeningAccountLogin = function () {
-        website.socket.on('account-login', function (data) {
+        NA.socket.on('account-login', function (data) {
             if (data.authSuccess) {
                 location.reload();
             } else {
@@ -746,13 +741,13 @@ var website = website || {},
 
                 $(this).addClass("loading");
 
-                website.socket.emit('account-logout', {});
+                NA.socket.emit('account-logout', {});
             }
         });
     };
 
     privates.listeningAccountLogout = function () {
-        website.socket.on('account-logout', function (data) {
+        NA.socket.on('account-logout', function (data) {
             location.reload();
         });
     };

@@ -4,12 +4,12 @@ var website = {};
 (function (publics) {
 	"use strict";
 
-	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation;
+	publics.changeVariations = function (params, next) {
+		var variations = params.variations;
 
-		mainCallback(variation);
+		next(variations);
 	};
 
 }(website));
 
-exports.changeVariation = website.changeVariation;
+exports.changeVariations = website.changeVariations;

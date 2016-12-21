@@ -1,7 +1,7 @@
 /* jslint node: true */
-module.exports = function treeOfDates(variation, callback) {
-	var startingYear = variation.common.archives.startingYear,
-		startingMonth = variation.common.archives.startingMonth,
+module.exports = function treeOfDates(variations, callback) {
+	var startingYear = variations.common.archives.startingYear,
+		startingMonth = variations.common.archives.startingMonth,
 		currentDate = new Date(),
 		yearNumber = currentDate.getFullYear() - startingYear + 1,
 		years = [],

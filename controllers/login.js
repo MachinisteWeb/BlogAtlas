@@ -4,12 +4,12 @@ var website = {};
 (function (publics) {
 	"use strict";
 
-	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
+	publics.changeVariations = function (params, next) {
+		var variations = params.variations,
 			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
-		//console.log("changeVariation");
+		//console.log("changeVariations");
 		//console.log(sessionID);
 		//console.log(session);
 
@@ -19,9 +19,9 @@ var website = {};
 			console.log("Non loggué !");
 		}*/
 
-		variation.session = session;
+		variations.session = session;
 
-		mainCallback(variation);
+		next(variations);
 	};
 
 	publics.setSockets = function () {
@@ -65,5 +65,5 @@ var website = {};
 }(website));
 
 exports.setSockets = website.setSockets;
-exports.changeVariation = website.changeVariation;
+exports.changeVariations = website.changeVariations;
 exports.asynchrones = website.asynchrones;

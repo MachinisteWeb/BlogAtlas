@@ -1,6 +1,7 @@
 {
 	"javascript": {
 		"javascript/framework.min.js": [
+			"node-atlas/socket.io.js",
 			"javascript/modernizr.js",
 			"javascript/jquery.js",
 			"javascript/prettify.js",

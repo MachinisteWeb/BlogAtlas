@@ -1,9 +1,9 @@
 {
 	"httpPort": 7777,
- 	"bundles": "bundles.json",
  	"optimizations": "optimizations.json",
  	"commonVariation": "common.json",
  	"commonController": "common.js",
+ 	"bundles": "bundles.json",
  	"controllersRelativePath": "controllers",
  	"pageNotFound": "/page-inexistante/",
 	"routes": "routes.json",

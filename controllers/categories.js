@@ -8,25 +8,25 @@ website.components = {};
 
 	website.components.treeOfCategories = require('./modules/tree-of-categories');
 
-	publics.changeVariation = function (params, mainCallback) {
+	publics.changeVariations = function (params, next) {
 		var NA = this,
-			variation = params.variation,
+			variations = params.variations,
 			mongoose = NA.modules.mongoose,
 			Category = mongoose.model('category'),
 			/*sessionID = params.request.sessionID,*/
 			session = params.request.session;
 
-		variation.backend = {};
-		variation.session = session;
+		variations.backend = {};
+		variations.session = session;
 
 		website.components.treeOfCategories(Category, function (treeOfCategories) {
 
-			variation.backend.categories = treeOfCategories;
+			variations.backend.categories = treeOfCategories;
 
-			mainCallback(variation);
+			next(variations);
 		});
 	};
 
 }(website));
 
-exports.changeVariation = website.changeVariation;
+exports.changeVariations = website.changeVariations;

@@ -4,8 +4,8 @@ var website = {};
 (function (publics) {
 	"use strict";
 
-	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
+	publics.changeVariations = function (params, next) {
+		var variations = params.variations,
 			request = params.request,
 			fs = require('fs');
 
@@ -16,20 +16,20 @@ var website = {};
 
 		   	fs.renameSync(request.files["file-upload-avatar"].path, './asset/media/uploads/' + request.files["file-upload-avatar"].name);
 
-			variation.header["Content-Type"] = "text/plain";
-            /*variation.upload = "./media/tmp/" + module.request.sessionID + "-" + module.request.files["registration-cat-photo"].name*/
+			variations.header["Content-Type"] = "text/plain";
+            /*variations.upload = "./media/tmp/" + module.request.sessionID + "-" + module.request.files["registration-cat-photo"].name*/
 			console.log("Yep !");
 		} else {
 			console.log("Nope...");
 		}
 
-		variation.backend = JSON.stringify({
+		variations.backend = JSON.stringify({
 			"test": "test"
 		});
 
-		mainCallback(variation);
+		next(variations);
 	};
 
 }(website));
 
-exports.changeVariation = website.changeVariation;
+exports.changeVariations = website.changeVariations;

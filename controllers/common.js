@@ -103,20 +103,20 @@ website.components = {};
 		});
 	};
 
-	publics.changeVariation = function (params, mainCallback) {
-		var variation = params.variation,
+	publics.changeVariations = function (params, next) {
+		var variations = params.variations,
 			session = params.request.session;
 
-		variation.edit = false;
-		variation.fs = false;
-		variation.fc = false;
+		variations.edit = false;
+		variations.fs = false;
+		variations.fc = false;
 		if (session.account) {
-			variation.edit = variation.currentRouteParameters.variation;
-			variation.fs = variation.edit;
-			variation.fc = variation.webconfig.commonVariation;
+			variations.edit = variations.routeParameters.variation;
+			variations.fs = variations.edit;
+			variations.fc = variations.webconfig.commonVariation;
 		}
 
-		mainCallback(variation);
+		next(variations);
 	};
 
 }(website));
@@ -125,4 +125,4 @@ exports.setSockets = website.setSockets;
 exports.setModules = website.setModules;
 exports.setSessions = website.setSessions;
 exports.setConfigurations = website.setConfigurations;
-exports.changeVariation = website.changeVariation;
+exports.changeVariations = website.changeVariations;
