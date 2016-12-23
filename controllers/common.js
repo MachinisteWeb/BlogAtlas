@@ -103,20 +103,19 @@ website.components = {};
 		});
 	};
 
-	publics.changeVariations = function (params, next) {
-		var variations = params.variations,
-			session = params.request.session;
+	publics.changeVariations = function (next, locals, request) {
+		var session = request.session;
 
-		variations.edit = false;
-		variations.fs = false;
-		variations.fc = false;
+		locals.edit = false;
+		locals.fs = false;
+		locals.fc = false;
 		if (session.account) {
-			variations.edit = variations.routeParameters.variation;
-			variations.fs = variations.edit;
-			variations.fc = variations.webconfig.commonVariation;
+			locals.edit = locals.routeParameters.variation;
+			locals.fs = locals.edit;
+			locals.fc = locals.webconfig.commonVariation;
 		}
 
-		next(variations);
+		next();
 	};
 
 }(website));

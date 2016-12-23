@@ -11,34 +11,33 @@ website.components = {};
 	website.components.markdownRender = require('./modules/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
-	publics.changeVariations = function (params, next) {
+	publics.changeVariations = function (next, locals, request) {
 		var NA = this,
-			variations = params.variations,
 			mongoose = NA.modules.mongoose,
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
 			Category = mongoose.model('category'),
 			/*sessionID = params.request.sessionID,*/
-			session = params.request.session;
+			session = request.session;
 
-		variations.backend = {};
-		variations.session = session;
+		locals.backend = {};
+		locals.session = session;
 
-		/*console.log(variations.params);
-		console.log(variations.params[0]);*/
+		/*console.log(locals.params);
+		console.log(locals.params[0]);*/
 
-		/*if (variations.params && variations.params[0]) { variations.params.category = variations.params[0]; }*/
+		/*if (locals.params && locals.params[0]) { locals.params.category = locals.params[0]; }*/
 
 		website.components.treeOfCategories(Category, function (treeOfCategories, listOfCategories) {
 			var categoryId,
 				categoryUrn,
 				categoryTitle;
 
-			variations.backend.categories = treeOfCategories;
+			locals.backend.categories = treeOfCategories;
 
 
 			for (var i = 0; i < listOfCategories.length; i++) {
-				if (listOfCategories[i].urn === variations.params.category) {
+				if (listOfCategories[i].urn === locals.params.category) {
 					categoryId = listOfCategories[i]._id;
 					categoryUrn = listOfCategories[i].urn;
 					categoryTitle = listOfCategories[i].title;
@@ -49,26 +48,26 @@ website.components = {};
 				Article: Article,
 				categoryId: categoryId, 
 				marked: marked,
-				session: variations.session,
+				session: locals.session,
 				markdownRender: website.components.markdownRender,
 				extendedFormatDate: website.components.extendedFormatDate,
-				variations: variations
+				locals: locals
 			}, function (listOfArticles) {
 				if (typeof categoryId !== 'undefined') {
-					variations.backend.articles = listOfArticles;
-					variations.specific.breadcrumb.items[2].content = categoryTitle;
-					variations.specific.breadcrumb.items[2].title = categoryTitle;
-					variations.specific.titlePage = variations.specific.titlePage.replace(/%title%/g, categoryTitle);
-					variations.specific.breadcrumb.items[2].href = variations.specific.breadcrumb.items[2].href.replace(/%urn%/g, categoryUrn);
-					variations.specific.articles.title = variations.specific.articles.title.replace(/%title%/g, categoryTitle);
-					variations.specific.description = variations.specific.description.replace(/%title%/g, categoryTitle);
+					locals.backend.articles = listOfArticles;
+					locals.specific.breadcrumb.items[2].content = categoryTitle;
+					locals.specific.breadcrumb.items[2].title = categoryTitle;
+					locals.specific.titlePage = locals.specific.titlePage.replace(/%title%/g, categoryTitle);
+					locals.specific.breadcrumb.items[2].href = locals.specific.breadcrumb.items[2].href.replace(/%urn%/g, categoryUrn);
+					locals.specific.articles.title = locals.specific.articles.title.replace(/%title%/g, categoryTitle);
+					locals.specific.description = locals.specific.description.replace(/%title%/g, categoryTitle);
 				} else {
-					variations.specific.breadcrumb.items[2].href = variations.specific.breadcrumb.items[2].href.replace(/%urn%/g, variations.params.category);
-					variations.specific.articles.title = variations.specific.articles.titleNoCategory;
-					variations.specific.description = variations.specific.articles.titleNoCategory;
+					locals.specific.breadcrumb.items[2].href = locals.specific.breadcrumb.items[2].href.replace(/%urn%/g, locals.params.category);
+					locals.specific.articles.title = locals.specific.articles.titleNoCategory;
+					locals.specific.description = locals.specific.articles.titleNoCategory;
 				}
 
-				next(variations);
+				next();
 			});
 		});
 	};

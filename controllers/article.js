@@ -10,55 +10,54 @@ website.components = {};
 	website.components.markdownRender = require('./modules/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
-	publics.changeVariations = function (params, mainCallback) {
+	publics.changeVariations = function (next, locals, request) {
 		var NA = this,
-			variations = params.variations,
 			mongoose = NA.modules.mongoose,
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
 			/*sessionID = params.request.sessionID,*/
-			session = params.request.session;
+			session = request.session;
 
-		variations.backend = {};
-		variations.session = session;
+		locals.backend = {};
+		locals.session = session;
 
-		//console.log(variations.params);
-		//console.log(variations.params[0]);
+		//console.log(locals.params);
+		//console.log(locals.params[0]);
 
-		if (variations.params && variations.params[0]) { variations.params.urn = variations.params[0]; }
+		if (locals.params && locals.params[0]) { locals.params.urn = locals.params[0]; }
 
-		website.components.oneArticle(Article, variations.params.urn, function (oneArticle) {
+		website.components.oneArticle(Article, locals.params.urn, function (oneArticle) {
 			var title;
 
 			if (oneArticle) {
 				title = oneArticle.title.replace(/<\/?span>/g, '');
 
-				variations.specific.titlePage = variations.specific.titlePage = title;
-				variations.specific.description = title;
-				variations.specific.breadcrumb.items[1].content = title;
-				variations.specific.breadcrumb.items[1].title = title;
+				locals.specific.titlePage = locals.specific.titlePage = title;
+				locals.specific.description = title;
+				locals.specific.breadcrumb.items[1].content = title;
+				locals.specific.breadcrumb.items[1].title = title;
 
 				if (oneArticle.others && oneArticle.others.markdown) {
 					oneArticle.content = website.components.markdownRender(oneArticle.content, marked);
 				}
 
-				oneArticle.dates.format = website.components.extendedFormatDate(oneArticle.dates.published, variations.common.dates);
+				oneArticle.dates.format = website.components.extendedFormatDate(oneArticle.dates.published, locals.common.dates);
 
-				variations.backend.article = oneArticle;
+				locals.backend.article = oneArticle;
 
-				variations.routeParameters.statusCode = 200;
+				locals.routeParameters.statusCode = 200;
 
 				if (!session.account && !oneArticle.others.published) {
-					variations.backend.article = undefined;
-					variations.routeParameters.statusCode = 404;
+					locals.backend.article = undefined;
+					locals.routeParameters.statusCode = 404;
 				}
 			} else {
-				variations.routeParameters.statusCode = 404;
+				locals.routeParameters.statusCode = 404;
 			}
 
-			variations.specific.breadcrumb.items[1].href = variations.specific.breadcrumb.items[1].href.replace(/%urn%/g, variations.params.urn);
+			locals.specific.breadcrumb.items[1].href = locals.specific.breadcrumb.items[1].href.replace(/%urn%/g, locals.params.urn);
 
-			mainCallback(variations);
+			next();
 		});
 
 	};

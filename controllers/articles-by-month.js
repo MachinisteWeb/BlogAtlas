@@ -11,48 +11,47 @@ website.components = {};
 	website.components.markdownRender = require('./modules/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
-	publics.changeVariations = function (params, next) {
+	publics.changeVariations = function (next, locals, request) {
 		var NA = this,
-			variations = params.variations,
 			mongoose = NA.modules.mongoose,
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
 			/*sessionID = params.request.sessionID,*/
-			session = params.request.session;
+			session = request.session;
 
-		variations.backend = {};
-		variations.session = session;
+		locals.backend = {};
+		locals.session = session;
 
-		website.components.treeOfDates(variations, function (treeOfDates) {
+		website.components.treeOfDates(locals, function (treeOfDates) {
 
-			variations.backend.archives = treeOfDates;
+			locals.backend.archives = treeOfDates;
 
 			website.components.listOfArticles({
 				Article: Article,
 				date: {
-					year: variations.params.year,
-					month: variations.params.month
+					year: locals.params.year,
+					month: locals.params.month
 				},
 				marked: marked,
-				session: variations.session,
+				session: locals.session,
 				markdownRender: website.components.markdownRender,
 				extendedFormatDate: website.components.extendedFormatDate,
-				variations: variations
+				locals: locals
 			}, function (listOfArticles) {
 
-				variations.backend.articles = listOfArticles;
+				locals.backend.articles = listOfArticles;
 
-				variations.specific.titlePage = variations.specific.titlePage.replace(/%year%/g, variations.params.year).replace(/%month%/g, variations.params.month);
-				variations.specific.articles.title = variations.specific.articles.title.replace(/%year%/g, variations.params.year).replace(/%month%/g, variations.common.dates.months[variations.params.month - 1]);
-				variations.specific.description = variations.specific.description.replace(/%year%/g, variations.params.year).replace(/%month%/g, variations.common.dates.months[variations.params.month - 1]);
-				variations.specific.breadcrumb.items[2].content = variations.params.year;
-				variations.specific.breadcrumb.items[2].title = variations.params.year;
-				variations.specific.breadcrumb.items[2].href = variations.specific.breadcrumb.items[2].href.replace(/%year%/g, variations.params.year);
-				variations.specific.breadcrumb.items[3].content = variations.common.dates.months[variations.params.month - 1];
-				variations.specific.breadcrumb.items[3].title = variations.common.dates.months[variations.params.month - 1];
-				variations.specific.breadcrumb.items[3].href = variations.specific.breadcrumb.items[2].href.replace(/%month%/g, variations.params.month);
+				locals.specific.titlePage = locals.specific.titlePage.replace(/%year%/g, locals.params.year).replace(/%month%/g, locals.params.month);
+				locals.specific.articles.title = locals.specific.articles.title.replace(/%year%/g, locals.params.year).replace(/%month%/g, locals.common.dates.months[locals.params.month - 1]);
+				locals.specific.description = locals.specific.description.replace(/%year%/g, locals.params.year).replace(/%month%/g, locals.common.dates.months[locals.params.month - 1]);
+				locals.specific.breadcrumb.items[2].content = locals.params.year;
+				locals.specific.breadcrumb.items[2].title = locals.params.year;
+				locals.specific.breadcrumb.items[2].href = locals.specific.breadcrumb.items[2].href.replace(/%year%/g, locals.params.year);
+				locals.specific.breadcrumb.items[3].content = locals.common.dates.months[locals.params.month - 1];
+				locals.specific.breadcrumb.items[3].title = locals.common.dates.months[locals.params.month - 1];
+				locals.specific.breadcrumb.items[3].href = locals.specific.breadcrumb.items[2].href.replace(/%month%/g, locals.params.month);
 
-				next(variations);
+				next();
 
 			});
 		});

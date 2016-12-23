@@ -10,30 +10,29 @@ website.components = {};
 	website.components.markdownRender = require('./modules/markdown-render');
 	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
 
-	publics.changeVariations = function (params, next) {
+	publics.changeVariations = function (next, locals, request) {
 		var NA = this,
-			variations = params.variations,
 			mongoose = NA.modules.mongoose,
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
 			/*sessionID = socket.request.sessionID,*/
-			session = params.request.session;
+			session = request.session;
 
-		variations.backend = {};
-		variations.session = session;
+		locals.backend = {};
+		locals.session = session;
 
 		website.components.listOfArticles({
 			Article: Article,
 			marked: marked,
 			markdownRender: website.components.markdownRender,
-			session: variations.session,
+			session: locals.session,
 			extendedFormatDate: website.components.extendedFormatDate,
-			variations: variations
+			locals: locals
 		}, function (listOfArticles) {
 
-			variations.backend.articles = listOfArticles;
+			locals.backend.articles = listOfArticles;
 
-			next(variations);
+			next();
 		});
 	};
 

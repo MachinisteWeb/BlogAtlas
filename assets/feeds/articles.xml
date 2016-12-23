@@ -4,10 +4,10 @@
         <description><![CDATA[Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 21 Dec 2016 16:32:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 23 Dec 2016 11:20:55 GMT</lastBuildDate>
         <atom:link href="undefinedfeeds/articles.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Bruno Lesieur]]></author>
-        <pubDate>Wed, 21 Dec 2016 16:32:00 GMT</pubDate>
+        <pubDate>Fri, 23 Dec 2016 11:20:55 GMT</pubDate>
         <copyright><![CDATA[2012-2014 Bruno Lesieur]]></copyright>
         <language><![CDATA[fr]]></language>
         <managingEditor><![CDATA[Bruno Lesieur]]></managingEditor>
