@@ -25,7 +25,7 @@ website.components = {};
 			route = NA.webconfig.routes,
 			mongoose = NA.modules.mongoose;
 
-		NA.httpServer.use(function (request, response, next) {
+		NA.express.use(function (request, response, next) {
 			response.setHeader("Content-Security-Policy", "frame-ancestors www.lesieur.name");
 			next();
 		});
