@@ -35,7 +35,7 @@
     "aboutAuthor": {
         "title": "À propos de l'auteur",
         "image": {
-            "src": "./media/images/bw-author.png",
+            "src": "./media/images/author-color.png",
             "alt": "Bruno Lesieur",
             "width": "96",
             "height": "96"

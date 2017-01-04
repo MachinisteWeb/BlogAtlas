@@ -1091,6 +1091,8 @@ li.L9 {
 
 .about-author img {
 	margin: 0;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
 }
 
 .popup {
