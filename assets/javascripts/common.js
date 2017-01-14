@@ -40,11 +40,11 @@ var website = website || {},
 
     publics.jQueryUiLoading = function (callback) {
         Modernizr.load({
-            test: $('script[src="javascript/jquery/jquery-ui' + publics.minified + '.js"]').length === 0,
+            test: $('script[src="javascripts/jquery/jquery-ui' + publics.minified + '.js"]').length === 0,
             yep: [
                 'stylesheets/jquery/jquery-ui' + publics.minified + '.css',
-                'javascript/jquery/jquery-ui' + publics.minified + '.js',
-                'javascript/jquery/jquery.timepicker' + publics.minified + '.js'
+                'javascripts/jquery/jquery-ui' + publics.minified + '.js',
+                'javascripts/jquery/jquery.timepicker' + publics.minified + '.js'
             ],
             complete: function () {
                 if (typeof callback === 'function') {
@@ -56,9 +56,9 @@ var website = website || {},
 
     publics.jsHashesLoading = function (callback) {
         Modernizr.load({
-            test: $('script[src="javascript/hashes.min.js"]').length === 0,
+            test: $('script[src="javascripts/hashes.min.js"]').length === 0,
             yep: [
-                'javascript/hashes.min.js'
+                'javascripts/hashes.min.js'
             ],
             complete: function () {
                 if (typeof callback === 'function') {

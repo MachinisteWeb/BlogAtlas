@@ -1162,14 +1162,14 @@ exports.setRoutes = function (next) {
 ┊┉
 ├─ assets/
 │  ┊┉
-│  ├─ javascript/
+│  ├─ javascripts/
 │  │  └─ common.js
 │  ┊┉
 ┊┉
 </code></pre><p>puis l&#39;ajouter dans le pied de page de nos vues :</p>
 <p><strong>views/partials/foot.htm</strong></p>
-<pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Injection du fichier en provenance de `assets/javascript/common.js` --&gt;
-            &lt;script src=&quot;javascript/common.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Injection du fichier en provenance de `assets/javascripts/common.js` --&gt;
+            &lt;script src=&quot;javascripts/common.js&quot;&gt;&lt;/script&gt;
         &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -1238,7 +1238,7 @@ exports.setRoutes = function (next) {
 &lt;?- include(&quot;partials/foot.htm&quot;) ?&gt;
 </code></pre>
 <p>Nous allons enfin ajouter le contenu du fichier JavaScript commun :</p>
-<p><strong>assets/javascript/common.js</strong></p>
+<p><strong>assets/javascripts/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On récupère tous les liens du menu.
 var links = document.querySelectorAll(&quot;.navigation a&quot;),
 
@@ -1336,7 +1336,7 @@ window.addEventListener(&quot;popstate&quot;, function (e) {
 <pre class="prettyprint linenums"><code>&gt; nodeatlas --generate
 </code></pre><p>Et en ouvrant le fichier <samp>dist\index.html</samp> par votre système de fichier, vous vous rendrez compte que les pages ne changent plus. Dans votre console (F12) vous pourrez voir l&#39;erreur suivante (sous Chrome) : « XMLHttpRequest cannot load <filepath>. ». Cela est normal car il faut un serveur web pour répondre aux requêtes AJAX.</p>
 <p>Nous allons donc modifier le script pour qu&#39;il ne génère pas d&#39;erreur et aille sur la page souhaitée normalement (en rechargeant la page) si l&#39;AJAX n&#39;est pas géré.</p>
-<p><strong>assets/javascript/common.js</strong></p>
+<p><strong>assets/javascripts/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">var links = document.querySelectorAll(&quot;.navigation a&quot;),
     xhrRequest = function(url, next) {
         var request = new XMLHttpRequest();
@@ -1425,7 +1425,7 @@ window.addEventListener(&quot;popstate&quot;, function (e) {
 ├─ assets/
 │  ├─ content/
 │  │  └─ english/
-│  └─ javascript/
+│  └─ javascripts/
 │     └─ common.js
 ├─ controllers/
 │  ├─ common.js
@@ -1807,7 +1807,7 @@ exports.setRoutes = function (next) {
             &lt;/nav&gt;
 </code></pre>
 <p>Nous pouvons à présent grâce à <samp>data-content</samp> dans le <samp>&lt;body&gt;</samp> choisir les fragments français ou internationaux dans le JavaScript client grâce à la modification suivante :</p>
-<p><strong>assets/javascript/common.js</strong></p>
+<p><strong>assets/javascripts/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-javascript">// On retire le lien pour changer de version (.navigation--lang)
 // En sélectionnant que la home et le menu.
 var links = document.querySelectorAll(&quot;.navigation--home a, .navigation--menu a&quot;),
@@ -1947,12 +1947,12 @@ versionFrench.init({
 <h2 id="travailler-avec-des-fichiers-less-et-stylus">Travailler avec des fichiers Less et Stylus</h2>
 <p>Nous allons à présent mettre en place tous les fichiers client qui vont permettre d&#39;habiller notre documentation et de permettre à l&#39;utilisateur d&#39;intéragir avec. Nous allons suivre l&#39;<a href="https://blog.lesieur.name/conventions-html-css-js-et-architecture-front-end/">architecture et les normes indiqués ici</a> pour cela. Nous parlons donc ici des fichiers CSS ainsi que des fichiers JavaScript. </p>
 <h3 id="mise-en-place-des-css-et-des-js">Mise en place des CSS et des JS</h3>
-<p>Jusqu&#39;à présent, nous avons travaillé avec le fichier <samp>javascript/common.js</samp>. Nous allons ajouter à cela, un fichier JavaScript par composant effectif dans le HTML. Nous allons également créer un équivalent de chaque composant en CSS et un fichier commun <samp>stylesheets/common.css</samp>. Nous obtenons donc la nouvelle arborescence suivante :</p>
+<p>Jusqu&#39;à présent, nous avons travaillé avec le fichier <samp>javascripts/common.js</samp>. Nous allons ajouter à cela, un fichier JavaScript par composant effectif dans le HTML. Nous allons également créer un équivalent de chaque composant en CSS et un fichier commun <samp>stylesheets/common.css</samp>. Nous obtenons donc la nouvelle arborescence suivante :</p>
 <pre class="prettyprint linenums"><code>nodeatlas-website/
 ┊┉
 ├─ assets/
 │  ┊┉
-│  ├─ javascript/
+│  ├─ javascripts/
 │  │  ├─ common.js
 │  │  ├─ cmpt.header.js
 │  │  ├─ cmpt.navigation.js
@@ -1997,10 +1997,10 @@ versionFrench.init({
 </code></pre>
 <p><strong>views/partials/foot.htm</strong></p>
 <pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Inclusion des fichiers JS --&gt;
-            &lt;script src=&quot;javascript/cmpt.header.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascript/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascript/cmpt.content.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascript/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/cmpt.header.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/cmpt.content.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/common.js&quot;&gt;&lt;/script&gt;
         &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -2029,7 +2029,7 @@ versionFrench.init({
 }
 </code></pre>
 <p>ainsi que le contenu des fichiers JavaScript suivant :</p>
-<p><strong>assets/javascript/common.js</strong></p>
+<p><strong>assets/javascripts/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 // Un namespace globale au site que l&#39;on nomme `website`.
 var website = window.website || {};
@@ -2088,7 +2088,7 @@ website.component = website.component || {};
 
 website.init();
 </code></pre>
-<p><strong>assets/javascript/cmpt.header.js</strong></p>
+<p><strong>assets/javascripts/cmpt.header.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 var website = window.website || {};
 website.component = website.component || {};
@@ -2102,7 +2102,7 @@ website.component.Header = function () {
     publics.init = function () {};
 };
 </code></pre>
-<p><strong>assets/javascript/cmpt.navigation.js</strong></p>
+<p><strong>assets/javascripts/cmpt.navigation.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 var website = window.website || {};
 website.component = website.component || {};
@@ -2116,7 +2116,7 @@ website.component.Navigation = function () {
     publics.init = function () {};
 };
 </code></pre>
-<p><strong>assets/javascript/cmpt.content.js</strong></p>
+<p><strong>assets/javascripts/cmpt.content.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 var website = window.website || {};
 website.component = website.component || {};
@@ -2470,11 +2470,11 @@ website.component.Content = function () {
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascript/common.min.js&quot;: [
-                &quot;javascript/cmpt.header.js&quot;,
-                &quot;javascript/cmpt.navigation.js&quot;,
-                &quot;javascript/cmpt.content.js&quot;,
-                &quot;javascript/common.js&quot;
+            &quot;javascripts/common.min.js&quot;: [
+                &quot;javascripts/cmpt.header.js&quot;,
+                &quot;javascripts/cmpt.navigation.js&quot;,
+                &quot;javascripts/cmpt.content.js&quot;,
+                &quot;javascripts/common.js&quot;
             ]
         }
     },
@@ -2516,11 +2516,11 @@ website.component.Content = function () {
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascript/common.min.js&quot;: [
-                &quot;javascript/cmpt.header.js&quot;,
-                &quot;javascript/cmpt.navigation.js&quot;,
-                &quot;javascript/cmpt.content.js&quot;,
-                &quot;javascript/common.js&quot;
+            &quot;javascripts/common.min.js&quot;: [
+                &quot;javascripts/cmpt.header.js&quot;,
+                &quot;javascripts/cmpt.navigation.js&quot;,
+                &quot;javascripts/cmpt.content.js&quot;,
+                &quot;javascripts/common.js&quot;
             ]
         }
     },
@@ -2552,7 +2552,7 @@ website.component.Content = function () {
 <p>Comme précédemment, grâce à <samp>javascriptBundlesBeforeResponse</samp>, nous allons obtenir des fichiers JavaScript à jour et compilés après chaque chargement de page. Il ne nous reste donc plus qu&#39;à demander la version minifiée des JavaScript plutôt que les fichiers d&#39;origines :</p>
 <p><strong>views/partials/foot.htm</strong></p>
 <pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Inclusion du fichiers minifié de tous les JavaScript. --&gt;
-            &lt;script src=&quot;javascript/common.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/common.min.js&quot;&gt;&lt;/script&gt;
         &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -2576,7 +2576,7 @@ nodeatlas-website/
 │  │     └─ ex-logo-node-atlas.png
 │  ├─ content/
 │  │  └─ english/
-│  ├─ javascript/
+│  ├─ javascripts/
 │  │  ├─ common.js
 │  │  ├─ cmpt.header.js
 │  │  ├─ cmpt.navigation.js
@@ -2753,11 +2753,11 @@ nodeatlas-website/
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascript/common.min.js&quot;: [
-                &quot;javascript/cmpt.header.js&quot;,
-                &quot;javascript/cmpt.navigation.js&quot;,
-                &quot;javascript/cmpt.content.js&quot;,
-                &quot;javascript/common.js&quot;
+            &quot;javascripts/common.min.js&quot;: [
+                &quot;javascripts/cmpt.header.js&quot;,
+                &quot;javascripts/cmpt.navigation.js&quot;,
+                &quot;javascripts/cmpt.content.js&quot;,
+                &quot;javascripts/common.js&quot;
             ]
         }
     },
@@ -2805,11 +2805,11 @@ nodeatlas-website/
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascript/common.min.js&quot;: [
-                &quot;javascript/cmpt.header.js&quot;,
-                &quot;javascript/cmpt.navigation.js&quot;,
-                &quot;javascript/cmpt.content.js&quot;,
-                &quot;javascript/common.js&quot;
+            &quot;javascripts/common.min.js&quot;: [
+                &quot;javascripts/cmpt.header.js&quot;,
+                &quot;javascripts/cmpt.navigation.js&quot;,
+                &quot;javascripts/cmpt.content.js&quot;,
+                &quot;javascripts/common.js&quot;
             ]
         }
     },
@@ -3017,11 +3017,11 @@ nodeatlas-website/
         ]
     },
     &quot;javascript&quot;: {
-        &quot;javascript/common.min.js&quot;: [
-            &quot;javascript/cmpt.header.js&quot;,
-            &quot;javascript/cmpt.navigation.js&quot;,
-            &quot;javascript/cmpt.content.js&quot;,
-            &quot;javascript/common.js&quot;
+        &quot;javascripts/common.min.js&quot;: [
+            &quot;javascripts/cmpt.header.js&quot;,
+            &quot;javascripts/cmpt.navigation.js&quot;,
+            &quot;javascripts/cmpt.content.js&quot;,
+            &quot;javascripts/common.js&quot;
         ]
     }
 }
@@ -3142,14 +3142,14 @@ nodeatlas-website/
 <p><strong>views/partials/foot.htm</strong></p>
 <pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Inclusion du fichiers minifié après génération. --&gt;
             &lt;? if (webconfig._min) { ?&gt;
-            &lt;script src=&quot;javascript/common.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/common.min.js&quot;&gt;&lt;/script&gt;
 
             &lt;!-- Inclusion du fichiers standar pendant le développement. --&gt;
             &lt;? } else { ?&gt;
-            &lt;script src=&quot;javascript/cmpt.header.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascript/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascript/cmpt.content.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascript/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/cmpt.header.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/cmpt.content.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascripts/common.js&quot;&gt;&lt;/script&gt;
             &lt;? }  ?&gt;
         &lt;/div&gt;
     &lt;/body&gt;
@@ -4581,7 +4581,7 @@ website.models = website.models || {};
 }());
 </code></pre>
 <h3 id="g-rer-les-erreurs">Gérer les erreurs</h3>
-<p>Il y a 3 manières de proprement lever les erreurs, pour un code synchrone, un code asynchrone ou un événement : <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascript/">voir par ici</a>.</p>
+<p>Il y a 3 manières de proprement lever les erreurs, pour un code synchrone, un code asynchrone ou un événement : <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascripts/">voir par ici</a>.</p>
 <h3 id="documentation">Documentation</h3>
 <p>De manière à documenter votre code, utilisez le <a href="https://www.npmjs.com/package/jsdoc">JSDoc npm CLI</a>. Vous trouverez tout <a href="http://usejsdoc.org/">ce qu&#39;il vous faut pour la documentation ici</a>.</p>
 <ul>
@@ -9670,7 +9670,7 @@ body.appendChild(
 <p><strong>Erreur ou Exception ?</strong></p>
 <p>En JavaScript les Erreurs sont un type d&#39;objet à elles seules et se créent en utilisant la syntaxe suivante <samp>new Error()</samp>. Elles se manipulent comme un objet et peuvent être return ou mises dans des variables.</p>
 <p>Les Exceptions quant à elles sont des Erreurs qui sont lancées ou jetées avec le mot clé <samp>throw</samp> soit <samp>throw new Error()</samp> et ne peuvent plus être manipulées. Elles mettent ainsi fin aux contextes d&#39;exécution les un après les autres en remontant jusqu&#39;à afficher une erreur dans la console. Elles peuvent être interceptées avec <samp>try</samp> et l&#39;erreur qu&#39;elles remontent peut être manipulée via <samp>catch (exception)</samp>.</p>
-<p>Vous trouverez tout ce qu&#39;il vous faut dans <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascript/">cet article</a> à propos des erreurs.</p>
+<p>Vous trouverez tout ce qu&#39;il vous faut dans <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascripts/">cet article</a> à propos des erreurs.</p>
 </blockquote>
 <h2 id="isoler-son-code">Isoler son code</h2>
 <p>Depuis le début, nous créons tout dans le <strong>champ lexical global</strong> ce qui a pour conséquence d&#39;écraser d&#39;éventuelles variables déjà existantes à travers tous les scripts. Il convient donc d&#39;isoler chaque code dans un <strong>contexte d&#39;exécution</strong> dédié. Cela est possible en utilisant une fonction que nous exécutons immédiatement, ou en créant une <strong>classe</strong> (instantiate object) spécifique pour ranger toutes les fonctions, ou encore en rangeant notre fonction dans un <strong>espace de nom</strong> (namespace) dédié.</p>
@@ -10951,7 +10951,7 @@ angular.module(&quot;pokemon&quot;, []).controller(&quot;popular&quot;, function
             <description><![CDATA[<p>Une étape bien trop souvent oubliée lors de la réalisation de scripts JavaScript est la gestion des erreurs. On se contente de colmater les problèmes à l&#39;aide de <samp>try</samp>/<samp>catch</samp> quand ceux-ci sont remontés par l&#39;interpréteur et... et c&#39;est tout.</p>
 <div style="text-align: center;"><img src="media/images/upload/error-or-exception.jpg" alt="&quot;Erreur ou Exception ?&quot;"></div>
 
-<p>Voici les <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascript/#erreurs-d-finir-retourner-et-utiliser-des-erreurs">3 principaux patterns a utilisés pour gérer vos erreurs JavaScript</a> dans les navigateurs ou dans Node.js et pour ceux qui ont le temps, un petit topo sur la différence entre Erreur et Exception.</p>
+<p>Voici les <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascripts/#erreurs-d-finir-retourner-et-utiliser-des-erreurs">3 principaux patterns a utilisés pour gérer vos erreurs JavaScript</a> dans les navigateurs ou dans Node.js et pour ceux qui ont le temps, un petit topo sur la différence entre Erreur et Exception.</p>
 <h2 id="erreur-ou-exception-">Erreur ou Exception ?</h2>
 <p>En JavaScript les Erreurs sont un type d&#39;objet à elles seules et se créent en utilisant la syntaxe suivante <samp>new Error()</samp>. Elles se manipulent comme un objet et peuvent être <samp>return</samp> ou mises dans des variables.</p>
 <p>Les Exceptions quant à elles sont des Erreurs qui sont lancées ou jetées avec le mot clé <samp>throw</samp> soit <samp>throw new Error()</samp> et ne peuvent plus être manipulées. Elles mettent ainsi fin aux contextes d&#39;exécution les un après les autres en remontant jusqu&#39;à afficher une erreur dans la console. Elles peuvent être interceptées avec <samp>try</samp> et l&#39;erreur qu&#39;elles remontent peut être manipulée via <samp>catch (exception)</samp>.</p>
@@ -11115,7 +11115,7 @@ divider.divide(4, 2).divide(4, 0);
 </code></pre>
 <p>À vous de jouer !</p>
 ]]></description>
-            <link>undefinedgerer-les-erreurs-et-les-exceptions-en-javascript/</link>
+            <link>undefinedgerer-les-erreurs-et-les-exceptions-en-javascripts/</link>
             <guid isPermaLink="false">5650f0e6d1b7fe136fc20059</guid>
             <category><![CDATA[Bonnes Pratiques]]></category>
             <category><![CDATA[JavaScript]]></category>

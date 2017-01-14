@@ -1,15 +1,15 @@
 {
-	"javascript": {
-		"javascript/framework.min.js": [
+	"javascripts": {
+		"javascripts/framework.min.js": [
 			"node-atlas/socket.io.js",
-			"javascript/modernizr.js",
-			"javascript/jquery.js",
-			"javascript/prettify.js",
-			"javascript/prettify/run_prettify.js"
+			"javascripts/modernizr.js",
+			"javascripts/jquery.js",
+			"javascripts/prettify.js",
+			"javascripts/prettify/run_prettify.js"
 		],
-		"javascript/common.min.js": [
-			"javascript/components/extended-format-date.js",
-			"javascript/common.js"
+		"javascripts/common.min.js": [
+			"javascripts/components/extended-format-date.js",
+			"javascripts/common.js"
 		]
 	},
 	"stylesheets": {

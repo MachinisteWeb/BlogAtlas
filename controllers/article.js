@@ -8,7 +8,7 @@ website.components = {};
 
 	website.components.oneArticle = require('./modules/article');
 	website.components.markdownRender = require('./modules/markdown-render');
-	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
+	website.components.extendedFormatDate = require('../assets/javascripts/components/extended-format-date');
 
 	publics.changeVariations = function (next, locals, request) {
 		var NA = this,

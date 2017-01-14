@@ -9,7 +9,7 @@ website.components = {};
 	website.components.treeOfCategories = require('./modules/tree-of-categories');
 	website.components.listOfArticles = require('./modules/list-of-articles');
 	website.components.markdownRender = require('./modules/markdown-render');
-	website.components.extendedFormatDate = require('../assets/javascript/components/extended-format-date');
+	website.components.extendedFormatDate = require('../assets/javascripts/components/extended-format-date');
 
 	publics.changeVariations = function (next, locals, request) {
 		var NA = this,

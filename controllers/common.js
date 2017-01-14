@@ -30,7 +30,7 @@ website.components = {};
 			next();
 		});
 
-	    route["/javascript/hashes.min.js"] = {
+	    route["/javascripts/hashes.min.js"] = {
 	        "view": "../node_modules/jshashes/hashes.min.js",
 	        "mimeType": "text/javascript"
 	    };
