@@ -1,5 +1,5 @@
 {
-	"httpPort": 7777,
+	"httpPort": 7776,
 	"httpSecure": "security/server",
  	"bundles": "bundles.json",
  	"optimizations": "optimizations.json",
