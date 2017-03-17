@@ -187,10 +187,10 @@ body {
 	margin: 0;
 	font-size: 14px;
 	font-size: 1.4rem;
-	line-height: 21px;
+	line-height: 1.6em;
 	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #444;
-	font-weight: 300;
+	font-weight: 400;
 	padding: 8px;
 }
 

@@ -88,11 +88,12 @@ header h1 {
 
 .main {
 	position: fixed;
-	right: 8px;
+	right: 6px;
 	top: 0;	
-	width: 55%;
+	width: calc(55% + 4px);
 	z-index: 3;
 	background-color: #fff;
+	padding: 2px;
 }
 
 .main li {
