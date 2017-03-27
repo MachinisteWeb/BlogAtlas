@@ -46,7 +46,7 @@ Déplacez vous ensuite dans le dossier :
 et utilisez la commande :
 
 ```
-\> node </path/to/node-atlas/> --browse
+\> node-atlas --browse
 ```
 
 ou lancez `server.na` en double cliquant dessus :
@@ -71,7 +71,7 @@ Vous pouvez voir fonctionner ce repository à l'adresse : [http://blog.lesieur.n
 Pour tester la version HTTPs du site, lancer la commande suivante :
 
 ```
-\> node </path/to/>node-atlas/ --browse --webconfig webconfig.https.json
+\> node-atlas --browse --webconfig webconfig.https.json
 ```
 
 Quand « PEM pass phrase: » s'affiche, tapez « jaime ». Votre navigateur vous dira que votre site local n'est pas sur, ignorez le message !
@@ -121,7 +121,7 @@ Then you move into the folder:
 and use the command:
 
 ```
-\> node </path/to/>node-atlas/ --browse
+\> node-atlas --browse
 ```
 
 or run `app.na` by double clicking and:
@@ -146,7 +146,7 @@ You can see this repository running at: [http://blog.lesieur.name/](http://blog.
 For test HTTPs version of website, run the following command :
 
 ```
-\> node </path/to/>node-atlas/ --browse --webconfig webconfig.https.json
+\> node-atlas --browse --webconfig webconfig.https.json
 ```
 
 When « PEM pass phrase: » is displayed, enter « jaime ». Your browser will say the local website is not safe, ignore this message !
