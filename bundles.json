@@ -19,10 +19,5 @@
 			"stylesheets/common-min780.css",
 			"stylesheets/common-min1160.css"
 		]
-	},
-	"optimizations": {
-        "images": {
-            "media/images/upload/*.{gif,jpg,png,svg}": "media/images/upload/"
-        }
-    }
+	}
 }
