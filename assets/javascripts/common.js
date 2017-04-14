@@ -296,9 +296,12 @@ var website = website || {},
 
     privates.updateArticle = function () {
         var $title = $(".content h1"),
+            $image = $("meta[name='og:image']"),
+            $description = $("meta[name='og:description']"),
             $content = $(".text"),
             $categoriesTitle = $(".categories h3"),
             $categoriesList = $(".categories li"),
+            $comment = $(".article .comments"),
             $date = $(".published a"),
             $article = $("article.article"),
             $script = $(".script"),
@@ -316,9 +319,22 @@ var website = website || {},
         }
 
         NA.socket.on('update-article-load-content', function (data) {
+
             // Title part.
             $title.after(
                 $('<input type="text" class="field-title like-h1" placeholder="Titre">').val($title.html())
+            ).css("display", "none");
+
+            // Description part.
+            $comment.before(
+                $('<input type="text" class="field-description like-h1" placeholder="Description">').val($description.attr("content"))
+            ).css("display", "none");
+
+            $comment[0].insertAdjacentHTML("beforebegin", " ");
+
+            // Image part.
+            $comment.before(
+                $('<input type="text" class="field-image like-h1" placeholder="Lien Image">').val($image.attr("content"))
             ).css("display", "none");
 
             // Script part.
@@ -451,6 +467,8 @@ var website = website || {},
 
             var $this = $(this),
                 $fieldTitle,
+                $fieldDescription,
+                $fieldImage,
                 $fieldContent,
                 $fieldDate,
                 $fieldScript,
@@ -468,6 +486,8 @@ var website = website || {},
                 });
             } else {
                 $fieldTitle = $(".field-title");
+                $fieldDescription = $(".field-description");
+                $fieldImage = $(".field-image");
                 $fieldContent = $(".field-content");
                 $fieldDate = $(".field-date");
                 $fieldScript = $(".field-script");
@@ -480,6 +500,8 @@ var website = website || {},
                 NA.socket.emit('update-article-button', {
                     urn: $article.data("urn"),
                     title: $fieldTitle.val(),
+                    description: $fieldDescription.val(),
+                    image: $fieldImage.val(),
                     content: $fieldContent.val(),
                     script: $fieldScript.val(),
                     stylesheet: $fieldStylesheet.val(),
@@ -512,11 +534,14 @@ var website = website || {},
             $permalink = $(".permalink span");
 
         NA.socket.on('update-article-button-all', function (data) {
-            var date = new Date(data.publishedDate.replace(/ /g, "T") + ".000+02:00"),
+            var date = new Date(data.publishedDate),
                 formatDate = website.module.extendedFormatDate(date, data.variation.dates),
                 month = date.getMonth() + 1,
                 newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
                 newDateHref;
+
+            $("meta[name='description'], meta[name='og:description']").attr("content", data.description);
+            $("meta[name='og:image']").attr("content", data.image);
 
             if ($permalink.text() === data.permalink) {
                 month = ((month.toString().length > 1) ? '' : '0') + month;
@@ -565,6 +590,8 @@ var website = website || {},
 
         NA.socket.on('update-article-button', function () {
             var $fieldTitle = $(".field-title"),
+                $fieldDescription = $(".field-description"),
+                $fieldImage = $(".field-image"),
                 $fieldContent = $(".field-content"),
                 $fieldDate = $(".field-date"),
                 $fieldMarkdown = $(".field-markdown"),
@@ -578,6 +605,8 @@ var website = website || {},
             $content.css("display", "");
             $date.css("display", "");
             $fieldTitle.remove();
+            $fieldDescription.remove();
+            $fieldImage.remove();
             $fieldContent.remove();
             $fieldDate.remove();
             $fieldPublished.remove();

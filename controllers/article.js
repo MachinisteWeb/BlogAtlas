@@ -15,25 +15,26 @@ website.components = {};
 			mongoose = NA.modules.mongoose,
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
-			/*sessionID = params.request.sessionID,*/
 			session = request.session;
 
 		locals.backend = {};
 		locals.session = session;
 
-		//console.log(locals.params);
-		//console.log(locals.params[0]);
-
 		if (locals.params && locals.params[0]) { locals.params.urn = locals.params[0]; }
 
 		website.components.oneArticle(Article, locals.params.urn, function (oneArticle) {
-			var title;
+			var title,
+				description,
+				image;
 
 			if (oneArticle) {
 				title = oneArticle.title.replace(/<\/?span>/g, '');
+				description = oneArticle.description;
+				image = oneArticle.image;
 
 				locals.specific.titlePage = locals.specific.titlePage = title;
-				locals.specific.description = title;
+				locals.specific.description = (description) ? description : title;
+				locals.specific.image = (image) ? image : "";
 				locals.specific.breadcrumb.items[1].content = title;
 				locals.specific.breadcrumb.items[1].title = title;
 
@@ -65,7 +66,7 @@ website.components = {};
 	publics.setSockets = function () {
 		var NA = this,
 			io = NA.io,
-			fs = require('fs'),
+			fs =  NA.modules.fs,
 			mongoose = NA.modules.mongoose,
 			common = NA.modules.common,
 			marked = NA.modules.marked,
@@ -74,8 +75,7 @@ website.components = {};
 			Rss = NA.modules.rss;
 
 		io.sockets.on('connection', function (socket) {
-			var /*sessionID = socket.request.sessionID,*/
-				session = socket.request.session;
+			var session = socket.request.session;
 
 			function rss() {
 				var feed,
@@ -84,8 +84,8 @@ website.components = {};
 				feedHeader = {
 					title: common.rss.title,
 					description: common.rss.description,
-					feed_url: NA.webconfig.urlWithoutFileName + common.rss.feedUrl.replace(/^\//g, ""),
-					site_url: NA.webconfig.urlWithoutFileName,
+					feed_url: NA.webconfig.urlRoot + NA.webconfig.urlRelativeSubPath + common.rss.feedUrl,
+					site_url: NA.webconfig.urlRoot + NA.webconfig.urlRelativeSubPath,
 					author: common.rss.author,
 					managingEditor: common.rss.author,
 				    webMaster: common.rss.author,
@@ -126,7 +126,7 @@ website.components = {};
 						item = {
 						    title: articles[i].title,
 						    description: content,
-						    url: NA.webconfig.urlWithoutFileName + common.rss.url.replace(/%urn%/g, articles[i].urn),
+						    url: NA.webconfig.urlRoot + NA.webconfig.urlRelativeSubPath + "/" + common.rss.url.replace(/%urn%/g, articles[i].urn),
 						    guid: articles[i]._id.toString(),
 						    categories: categories,
 						    author: common.rss.author,
@@ -136,7 +136,7 @@ website.components = {};
 						feed.item(item);
 					}
 
-					fs.writeFile(NA.serverPath + NA.webconfig.assetsRelativePath + common.rss.feedUrl, feed.xml("    "));
+					fs.writeFile(NA.serverPath + NA.webconfig.controllersRelativePath + common.rss.feedUrl, feed.xml("    "));
 				});
 			}
 
@@ -148,6 +148,8 @@ website.components = {};
 					}, {
 						$set: {
 							title: data.title,
+							description: data.description,
+							image: data.image,
 							content: data.content,
 							script: data.script,
 							stylesheet: data.stylesheet,
@@ -197,6 +199,8 @@ website.components = {};
 					});
 					io.sockets.emit('update-article-button-all', {
 						title: data.title,
+						description: data.description,
+						image: data.image,
 						content: data.content,
 						markdown: data.markdown,
 						script: data.script,

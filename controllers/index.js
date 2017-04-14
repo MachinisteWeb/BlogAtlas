@@ -27,7 +27,8 @@ website.components = {};
 			markdownRender: website.components.markdownRender,
 			session: locals.session,
 			extendedFormatDate: website.components.extendedFormatDate,
-			locals: locals
+			locals: locals,
+			limit: 10
 		}, function (listOfArticles) {
 
 			locals.backend.articles = listOfArticles;
