@@ -1,0 +1,5 @@
+{
+	"/javascripts/hashes.min.js": "node_modules/jshashes/hashes.min.js",
+	"/javascripts/socket.io.js": "node_modules/socket.io-client/dist/socket.io.min.js",
+	"/feeds/articles.xml": "controllers/feeds/articles.xml"
+}

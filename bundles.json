@@ -1,6 +1,8 @@
 {
 	"javascripts": {
 		"javascripts/framework.min.js": [
+			"../node_modules/jshashes/hashes.min.js",
+			"../node_modules/socket.io-client/dist/socket.io.min.js",
 			"node-atlas/socket.io.js",
 			"javascripts/modernizr.js",
 			"javascripts/jquery.js",

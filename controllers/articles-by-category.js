@@ -17,16 +17,10 @@ website.components = {};
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
 			Category = mongoose.model('category'),
-			/*sessionID = params.request.sessionID,*/
 			session = request.session;
 
 		locals.backend = {};
 		locals.session = session;
-
-		/*console.log(locals.params);
-		console.log(locals.params[0]);*/
-
-		/*if (locals.params && locals.params[0]) { locals.params.category = locals.params[0]; }*/
 
 		website.components.treeOfCategories(Category, function (treeOfCategories, listOfCategories) {
 			var categoryId,

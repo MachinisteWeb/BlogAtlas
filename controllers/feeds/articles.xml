@@ -2,12 +2,12 @@
     <channel>
         <title><![CDATA[Quelques #ID et beaucoup de .CLASS]]></title>
         <description><![CDATA[Ce blog est une compilation d'articles sur le développement JavaScript Front-end jQuery, Back-end Node.js ou développement web en général.]]></description>
-        <link>http://github.com/dylang/node-rss</link>
+        <link>http://localhost:7776</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 31 Dec 2016 18:08:44 GMT</lastBuildDate>
-        <atom:link href="undefinedfeeds/articles.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Mon, 03 Apr 2017 14:28:25 GMT</lastBuildDate>
+        <atom:link href="http://localhost:7776/feeds/articles.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Bruno Lesieur]]></author>
-        <pubDate>Sat, 31 Dec 2016 18:08:44 GMT</pubDate>
+        <pubDate>Mon, 03 Apr 2017 14:28:25 GMT</pubDate>
         <copyright><![CDATA[2012-2014 Bruno Lesieur]]></copyright>
         <language><![CDATA[fr]]></language>
         <managingEditor><![CDATA[Bruno Lesieur]]></managingEditor>
@@ -264,7 +264,7 @@
 <p>Si vous trouvez un contre sens où une mise à jour d&#39;une partie de cette article que vous souhaiteriez partager, n&#39;hésitez pas à le signaler dans les commentaires.</p>
 </blockquote>
 ]]></description>
-            <link>undefinedvuejs-versus-angular-versus-react-versus-les-autres-mvvm/</link>
+            <link>http://localhost:7776vuejs-versus-angular-versus-react-versus-les-autres-mvvm/</link>
             <guid isPermaLink="false">582af36766270c792a24409a</guid>
             <category><![CDATA[Front-end]]></category>
             <category><![CDATA[JavaScript]]></category>
@@ -432,7 +432,7 @@ document.getElementsByTagName(&quot;div&quot;)[0].addEventListener(&quot;click&q
 };
 </code></pre>
 ]]></description>
-            <link>undefinedmanager-les-iframes-sortantes-de-votre-site/</link>
+            <link>http://localhost:7776manager-les-iframes-sortantes-de-votre-site/</link>
             <guid isPermaLink="false">58218758e24e70605a985109</guid>
             <category><![CDATA[NodeAtlas]]></category>
             <category><![CDATA[Développement Web]]></category>
@@ -577,7 +577,7 @@ et plus particulièrement :</p>
 </ul>
 </blockquote>
 ]]></description>
-            <link>undefinedcomprendre-et-utiliser-git-avec-vos-projets/</link>
+            <link>http://localhost:7776comprendre-et-utiliser-git-avec-vos-projets/</link>
             <guid isPermaLink="false">5819fd2a99480e4e24e3d0cd</guid>
             <category><![CDATA[Git]]></category>
             <category><![CDATA[Techniques de Dev]]></category>
@@ -1162,14 +1162,14 @@ exports.setRoutes = function (next) {
 ┊┉
 ├─ assets/
 │  ┊┉
-│  ├─ javascripts/
+│  ├─ javascript/
 │  │  └─ common.js
 │  ┊┉
 ┊┉
 </code></pre><p>puis l&#39;ajouter dans le pied de page de nos vues :</p>
 <p><strong>views/partials/foot.htm</strong></p>
-<pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Injection du fichier en provenance de `assets/javascripts/common.js` --&gt;
-            &lt;script src=&quot;javascripts/common.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Injection du fichier en provenance de `assets/javascript/common.js` --&gt;
+            &lt;script src=&quot;javascript/common.js&quot;&gt;&lt;/script&gt;
         &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -1238,7 +1238,7 @@ exports.setRoutes = function (next) {
 &lt;?- include(&quot;partials/foot.htm&quot;) ?&gt;
 </code></pre>
 <p>Nous allons enfin ajouter le contenu du fichier JavaScript commun :</p>
-<p><strong>assets/javascripts/common.js</strong></p>
+<p><strong>assets/javascript/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On récupère tous les liens du menu.
 var links = document.querySelectorAll(&quot;.navigation a&quot;),
 
@@ -1336,7 +1336,7 @@ window.addEventListener(&quot;popstate&quot;, function (e) {
 <pre class="prettyprint linenums"><code>&gt; nodeatlas --generate
 </code></pre><p>Et en ouvrant le fichier <samp>dist\index.html</samp> par votre système de fichier, vous vous rendrez compte que les pages ne changent plus. Dans votre console (F12) vous pourrez voir l&#39;erreur suivante (sous Chrome) : « XMLHttpRequest cannot load <filepath>. ». Cela est normal car il faut un serveur web pour répondre aux requêtes AJAX.</p>
 <p>Nous allons donc modifier le script pour qu&#39;il ne génère pas d&#39;erreur et aille sur la page souhaitée normalement (en rechargeant la page) si l&#39;AJAX n&#39;est pas géré.</p>
-<p><strong>assets/javascripts/common.js</strong></p>
+<p><strong>assets/javascript/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">var links = document.querySelectorAll(&quot;.navigation a&quot;),
     xhrRequest = function(url, next) {
         var request = new XMLHttpRequest();
@@ -1425,7 +1425,7 @@ window.addEventListener(&quot;popstate&quot;, function (e) {
 ├─ assets/
 │  ├─ content/
 │  │  └─ english/
-│  └─ javascripts/
+│  └─ javascript/
 │     └─ common.js
 ├─ controllers/
 │  ├─ common.js
@@ -1807,7 +1807,7 @@ exports.setRoutes = function (next) {
             &lt;/nav&gt;
 </code></pre>
 <p>Nous pouvons à présent grâce à <samp>data-content</samp> dans le <samp>&lt;body&gt;</samp> choisir les fragments français ou internationaux dans le JavaScript client grâce à la modification suivante :</p>
-<p><strong>assets/javascripts/common.js</strong></p>
+<p><strong>assets/javascript/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-javascript">// On retire le lien pour changer de version (.navigation--lang)
 // En sélectionnant que la home et le menu.
 var links = document.querySelectorAll(&quot;.navigation--home a, .navigation--menu a&quot;),
@@ -1947,12 +1947,12 @@ versionFrench.init({
 <h2 id="travailler-avec-des-fichiers-less-et-stylus">Travailler avec des fichiers Less et Stylus</h2>
 <p>Nous allons à présent mettre en place tous les fichiers client qui vont permettre d&#39;habiller notre documentation et de permettre à l&#39;utilisateur d&#39;intéragir avec. Nous allons suivre l&#39;<a href="https://blog.lesieur.name/conventions-html-css-js-et-architecture-front-end/">architecture et les normes indiqués ici</a> pour cela. Nous parlons donc ici des fichiers CSS ainsi que des fichiers JavaScript. </p>
 <h3 id="mise-en-place-des-css-et-des-js">Mise en place des CSS et des JS</h3>
-<p>Jusqu&#39;à présent, nous avons travaillé avec le fichier <samp>javascripts/common.js</samp>. Nous allons ajouter à cela, un fichier JavaScript par composant effectif dans le HTML. Nous allons également créer un équivalent de chaque composant en CSS et un fichier commun <samp>stylesheets/common.css</samp>. Nous obtenons donc la nouvelle arborescence suivante :</p>
+<p>Jusqu&#39;à présent, nous avons travaillé avec le fichier <samp>javascript/common.js</samp>. Nous allons ajouter à cela, un fichier JavaScript par composant effectif dans le HTML. Nous allons également créer un équivalent de chaque composant en CSS et un fichier commun <samp>stylesheets/common.css</samp>. Nous obtenons donc la nouvelle arborescence suivante :</p>
 <pre class="prettyprint linenums"><code>nodeatlas-website/
 ┊┉
 ├─ assets/
 │  ┊┉
-│  ├─ javascripts/
+│  ├─ javascript/
 │  │  ├─ common.js
 │  │  ├─ cmpt.header.js
 │  │  ├─ cmpt.navigation.js
@@ -1997,10 +1997,10 @@ versionFrench.init({
 </code></pre>
 <p><strong>views/partials/foot.htm</strong></p>
 <pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Inclusion des fichiers JS --&gt;
-            &lt;script src=&quot;javascripts/cmpt.header.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascripts/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascripts/cmpt.content.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascripts/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/cmpt.header.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/cmpt.content.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/common.js&quot;&gt;&lt;/script&gt;
         &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -2029,7 +2029,7 @@ versionFrench.init({
 }
 </code></pre>
 <p>ainsi que le contenu des fichiers JavaScript suivant :</p>
-<p><strong>assets/javascripts/common.js</strong></p>
+<p><strong>assets/javascript/common.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 // Un namespace globale au site que l&#39;on nomme `website`.
 var website = window.website || {};
@@ -2088,7 +2088,7 @@ website.component = website.component || {};
 
 website.init();
 </code></pre>
-<p><strong>assets/javascripts/cmpt.header.js</strong></p>
+<p><strong>assets/javascript/cmpt.header.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 var website = window.website || {};
 website.component = website.component || {};
@@ -2102,7 +2102,7 @@ website.component.Header = function () {
     publics.init = function () {};
 };
 </code></pre>
-<p><strong>assets/javascripts/cmpt.navigation.js</strong></p>
+<p><strong>assets/javascript/cmpt.navigation.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 var website = window.website || {};
 website.component = website.component || {};
@@ -2116,7 +2116,7 @@ website.component.Navigation = function () {
     publics.init = function () {};
 };
 </code></pre>
-<p><strong>assets/javascripts/cmpt.content.js</strong></p>
+<p><strong>assets/javascript/cmpt.content.js</strong></p>
 <pre class="prettyprint linenums"><code class="lang-js">// On se créer (ou surcharge) les namespaces (existant ou non).
 var website = window.website || {};
 website.component = website.component || {};
@@ -2470,11 +2470,11 @@ website.component.Content = function () {
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascripts/common.min.js&quot;: [
-                &quot;javascripts/cmpt.header.js&quot;,
-                &quot;javascripts/cmpt.navigation.js&quot;,
-                &quot;javascripts/cmpt.content.js&quot;,
-                &quot;javascripts/common.js&quot;
+            &quot;javascript/common.min.js&quot;: [
+                &quot;javascript/cmpt.header.js&quot;,
+                &quot;javascript/cmpt.navigation.js&quot;,
+                &quot;javascript/cmpt.content.js&quot;,
+                &quot;javascript/common.js&quot;
             ]
         }
     },
@@ -2516,11 +2516,11 @@ website.component.Content = function () {
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascripts/common.min.js&quot;: [
-                &quot;javascripts/cmpt.header.js&quot;,
-                &quot;javascripts/cmpt.navigation.js&quot;,
-                &quot;javascripts/cmpt.content.js&quot;,
-                &quot;javascripts/common.js&quot;
+            &quot;javascript/common.min.js&quot;: [
+                &quot;javascript/cmpt.header.js&quot;,
+                &quot;javascript/cmpt.navigation.js&quot;,
+                &quot;javascript/cmpt.content.js&quot;,
+                &quot;javascript/common.js&quot;
             ]
         }
     },
@@ -2552,7 +2552,7 @@ website.component.Content = function () {
 <p>Comme précédemment, grâce à <samp>javascriptBundlesBeforeResponse</samp>, nous allons obtenir des fichiers JavaScript à jour et compilés après chaque chargement de page. Il ne nous reste donc plus qu&#39;à demander la version minifiée des JavaScript plutôt que les fichiers d&#39;origines :</p>
 <p><strong>views/partials/foot.htm</strong></p>
 <pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Inclusion du fichiers minifié de tous les JavaScript. --&gt;
-            &lt;script src=&quot;javascripts/common.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/common.min.js&quot;&gt;&lt;/script&gt;
         &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -2576,7 +2576,7 @@ nodeatlas-website/
 │  │     └─ ex-logo-node-atlas.png
 │  ├─ content/
 │  │  └─ english/
-│  ├─ javascripts/
+│  ├─ javascript/
 │  │  ├─ common.js
 │  │  ├─ cmpt.header.js
 │  │  ├─ cmpt.navigation.js
@@ -2753,11 +2753,11 @@ nodeatlas-website/
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascripts/common.min.js&quot;: [
-                &quot;javascripts/cmpt.header.js&quot;,
-                &quot;javascripts/cmpt.navigation.js&quot;,
-                &quot;javascripts/cmpt.content.js&quot;,
-                &quot;javascripts/common.js&quot;
+            &quot;javascript/common.min.js&quot;: [
+                &quot;javascript/cmpt.header.js&quot;,
+                &quot;javascript/cmpt.navigation.js&quot;,
+                &quot;javascript/cmpt.content.js&quot;,
+                &quot;javascript/common.js&quot;
             ]
         }
     },
@@ -2805,11 +2805,11 @@ nodeatlas-website/
             ]
         },
         &quot;javascript&quot;: {
-            &quot;javascripts/common.min.js&quot;: [
-                &quot;javascripts/cmpt.header.js&quot;,
-                &quot;javascripts/cmpt.navigation.js&quot;,
-                &quot;javascripts/cmpt.content.js&quot;,
-                &quot;javascripts/common.js&quot;
+            &quot;javascript/common.min.js&quot;: [
+                &quot;javascript/cmpt.header.js&quot;,
+                &quot;javascript/cmpt.navigation.js&quot;,
+                &quot;javascript/cmpt.content.js&quot;,
+                &quot;javascript/common.js&quot;
             ]
         }
     },
@@ -3017,11 +3017,11 @@ nodeatlas-website/
         ]
     },
     &quot;javascript&quot;: {
-        &quot;javascripts/common.min.js&quot;: [
-            &quot;javascripts/cmpt.header.js&quot;,
-            &quot;javascripts/cmpt.navigation.js&quot;,
-            &quot;javascripts/cmpt.content.js&quot;,
-            &quot;javascripts/common.js&quot;
+        &quot;javascript/common.min.js&quot;: [
+            &quot;javascript/cmpt.header.js&quot;,
+            &quot;javascript/cmpt.navigation.js&quot;,
+            &quot;javascript/cmpt.content.js&quot;,
+            &quot;javascript/common.js&quot;
         ]
     }
 }
@@ -3142,14 +3142,14 @@ nodeatlas-website/
 <p><strong>views/partials/foot.htm</strong></p>
 <pre class="prettyprint linenums"><code class="lang-html">            &lt;!-- Inclusion du fichiers minifié après génération. --&gt;
             &lt;? if (webconfig._min) { ?&gt;
-            &lt;script src=&quot;javascripts/common.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/common.min.js&quot;&gt;&lt;/script&gt;
 
             &lt;!-- Inclusion du fichiers standar pendant le développement. --&gt;
             &lt;? } else { ?&gt;
-            &lt;script src=&quot;javascripts/cmpt.header.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascripts/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascripts/cmpt.content.js&quot;&gt;&lt;/script&gt;
-            &lt;script src=&quot;javascripts/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/cmpt.header.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/cmpt.navigation.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/cmpt.content.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;javascript/common.js&quot;&gt;&lt;/script&gt;
             &lt;? }  ?&gt;
         &lt;/div&gt;
     &lt;/body&gt;
@@ -3310,7 +3310,7 @@ versionFrench.init({
 <li>aux développeur Back-end ou JavaScript en étendant le fonctionnement de <em><a href="https://www.npmjs.com/package/node-atlas/" title="Create MVC2 or Front-end-based websites easily.">NodeAtlas</a></em> aux parties <em>Contrôleur</em> et <em>Modèle</em> avec une utilisations des <em>Websockets</em> pour les actions en temps réel ainsi qu&#39;un tour des accès aux diverses bases de données.</li>
 </ul>
 ]]></description>
-            <link>undefinedcreer-et-maintenir-des-maquettes-html-avec-node-atlas/</link>
+            <link>http://localhost:7776creer-et-maintenir-des-maquettes-html-avec-node-atlas/</link>
             <guid isPermaLink="false">544a4724ac53204337fa2e0e</guid>
             <category><![CDATA[Techniques de Dev]]></category>
             <category><![CDATA[Back-end]]></category>
@@ -4581,7 +4581,7 @@ website.models = website.models || {};
 }());
 </code></pre>
 <h3 id="g-rer-les-erreurs">Gérer les erreurs</h3>
-<p>Il y a 3 manières de proprement lever les erreurs, pour un code synchrone, un code asynchrone ou un événement : <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascripts/">voir par ici</a>.</p>
+<p>Il y a 3 manières de proprement lever les erreurs, pour un code synchrone, un code asynchrone ou un événement : <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascript/">voir par ici</a>.</p>
 <h3 id="documentation">Documentation</h3>
 <p>De manière à documenter votre code, utilisez le <a href="https://www.npmjs.com/package/jsdoc">JSDoc npm CLI</a>. Vous trouverez tout <a href="http://usejsdoc.org/">ce qu&#39;il vous faut pour la documentation ici</a>.</p>
 <ul>
@@ -4590,7 +4590,7 @@ website.models = website.models || {};
 <p>Par exemple la page « <a href="https://www.lesieur.name/test-case-atlas/homepage.html">Home</a> » possède le composant « <a href="https://www.lesieur.name/test-case-atlas/components/hero.html">Hero</a> » qui est documenter <a href="https://www.lesieur.name/test-case-atlas/documentation/design/hero.html">pour le CSS</a> et <a href="https://www.lesieur.name/test-case-atlas/documentation/behaviors/module-munchkin-ws.ui.Hero.html">pour le JS</a>.</p>
 <p><em>Première parution : le 08 Octobre 2015 à 17h48</em></p>
 ]]></description>
-            <link>undefinedconventions-html-css-js-et-architecture-front-end/</link>
+            <link>http://localhost:7776conventions-html-css-js-et-architecture-front-end/</link>
             <guid isPermaLink="false">5667eaecd1b7fe136fc2005a</guid>
             <category><![CDATA[HTML]]></category>
             <category><![CDATA[CSS3]]></category>
@@ -4732,7 +4732,7 @@ website.models = website.models || {};
 <h2 id="et-vous-">Et vous ?</h2>
 <p>Si vous aussi vous souhaitez partager vos techniques pour des sites pleinement <a href="https://blog.lesieur.name/les-concepts-autour-du-responsive-web-design/">Responsive Web Design</a>, n&#39;hésitez pas !</p>
 ]]></description>
-            <link>undefinedversion-mobile-et-version-desktop-ca-n-existe-pas/</link>
+            <link>http://localhost:7776version-mobile-et-version-desktop-ca-n-existe-pas/</link>
             <guid isPermaLink="false">577ca385d1b7fe136fc20061</guid>
             <category><![CDATA[Concept]]></category>
             <category><![CDATA[Front-end]]></category>
@@ -8738,7 +8738,7 @@ website.models = website.models || {};
         </div>
     </div>
 </div>]]></description>
-            <link>undefinedliste-des-cartes-munchkin-editions-francaises/</link>
+            <link>http://localhost:7776liste-des-cartes-munchkin-editions-francaises/</link>
             <guid isPermaLink="false">577a13cfd1b7fe136fc20060</guid>
             <category><![CDATA[Développement Web]]></category>
             <category><![CDATA[Vue.js]]></category>
@@ -9670,7 +9670,7 @@ body.appendChild(
 <p><strong>Erreur ou Exception ?</strong></p>
 <p>En JavaScript les Erreurs sont un type d&#39;objet à elles seules et se créent en utilisant la syntaxe suivante <samp>new Error()</samp>. Elles se manipulent comme un objet et peuvent être return ou mises dans des variables.</p>
 <p>Les Exceptions quant à elles sont des Erreurs qui sont lancées ou jetées avec le mot clé <samp>throw</samp> soit <samp>throw new Error()</samp> et ne peuvent plus être manipulées. Elles mettent ainsi fin aux contextes d&#39;exécution les un après les autres en remontant jusqu&#39;à afficher une erreur dans la console. Elles peuvent être interceptées avec <samp>try</samp> et l&#39;erreur qu&#39;elles remontent peut être manipulée via <samp>catch (exception)</samp>.</p>
-<p>Vous trouverez tout ce qu&#39;il vous faut dans <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascripts/">cet article</a> à propos des erreurs.</p>
+<p>Vous trouverez tout ce qu&#39;il vous faut dans <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascript/">cet article</a> à propos des erreurs.</p>
 </blockquote>
 <h2 id="isoler-son-code">Isoler son code</h2>
 <p>Depuis le début, nous créons tout dans le <strong>champ lexical global</strong> ce qui a pour conséquence d&#39;écraser d&#39;éventuelles variables déjà existantes à travers tous les scripts. Il convient donc d&#39;isoler chaque code dans un <strong>contexte d&#39;exécution</strong> dédié. Cela est possible en utilisant une fonction que nous exécutons immédiatement, ou en créant une <strong>classe</strong> (instantiate object) spécifique pour ranger toutes les fonctions, ou encore en rangeant notre fonction dans un <strong>espace de nom</strong> (namespace) dédié.</p>
@@ -9734,7 +9734,7 @@ body.appendChild(
 <h2 id="et-vous-">Et vous ?</h2>
 <p>Je vous laisse décider lesquels de ces conseils peuvent vous apporter de l&#39;aide et lesquels ne le feront pas et vous donne rendez-vous dans les commentaires pour partager votre expérience sur la question ou éclaircir des zones d&#39;ombre dans cet article.</p>
 ]]></description>
-            <link>undefinedcoder-proprement-en-javascript-par-l-exemple-upload-d-image/</link>
+            <link>http://localhost:7776coder-proprement-en-javascript-par-l-exemple-upload-d-image/</link>
             <guid isPermaLink="false">575a62fbd1b7fe136fc2005e</guid>
             <category><![CDATA[JavaScript]]></category>
             <category><![CDATA[Techniques de Dev]]></category>
@@ -10074,7 +10074,7 @@ script.src = &quot;https://cdn.rawgit.com/Haeresis/konami-code-js/master/src/kon
 body.appendChild(script);
 </code></pre>
 ]]></description>
-            <link>undefineddes-easter-eggs-avec-konami-code-js/</link>
+            <link>http://localhost:7776des-easter-eggs-avec-konami-code-js/</link>
             <guid isPermaLink="false">576946cfd1b7fe136fc2005f</guid>
             <category><![CDATA[JavaScript]]></category>
             <category><![CDATA[Outils]]></category>
@@ -10360,7 +10360,7 @@ body.appendChild(script);
 <blockquote>
 <p><em><samp>Exemple :</samp></em> <strong><a href="http://codepen.io/Haeresis/pen/xVpjxV" target="_blank">Vous trouverez un exemple Live de ce code sur ce Codepen !</a></strong></p>
 </blockquote>]]></description>
-            <link>undefinedjavascript-et-callback-par-nom-de-parametre-comme-dans-angularjs/</link>
+            <link>http://localhost:7776javascript-et-callback-par-nom-de-parametre-comme-dans-angularjs/</link>
             <guid isPermaLink="false">56fb9383d1b7fe136fc2005d</guid>
             <category><![CDATA[JavaScript]]></category>
             <category><![CDATA[Ressources]]></category>
@@ -10934,7 +10934,7 @@ angular.module(&quot;pokemon&quot;, []).controller(&quot;popular&quot;, function
 <p>Il doit exister d&#39;autres situations ou de bonnes pratiques permettraient à du code AngularJS d&#39;être parfaitement référencé aussi j&#39;alimenterai cet article avec d&#39;autres exemples dans le futur.</p>
 <p>Et vous ? Des méthodes à partager ? </p>
 ]]></description>
-            <link>undefinedutiliser-angularjs-en-respectant-les-recommandations-w3c-et-seo/</link>
+            <link>http://localhost:7776utiliser-angularjs-en-respectant-les-recommandations-w3c-et-seo/</link>
             <guid isPermaLink="false">56c4274bd1b7fe136fc2005b</guid>
             <category><![CDATA[Techniques de Dev]]></category>
             <category><![CDATA[JavaScript]]></category>
@@ -10951,7 +10951,7 @@ angular.module(&quot;pokemon&quot;, []).controller(&quot;popular&quot;, function
             <description><![CDATA[<p>Une étape bien trop souvent oubliée lors de la réalisation de scripts JavaScript est la gestion des erreurs. On se contente de colmater les problèmes à l&#39;aide de <samp>try</samp>/<samp>catch</samp> quand ceux-ci sont remontés par l&#39;interpréteur et... et c&#39;est tout.</p>
 <div style="text-align: center;"><img src="media/images/upload/error-or-exception.jpg" alt="&quot;Erreur ou Exception ?&quot;"></div>
 
-<p>Voici les <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascripts/#erreurs-d-finir-retourner-et-utiliser-des-erreurs">3 principaux patterns a utilisés pour gérer vos erreurs JavaScript</a> dans les navigateurs ou dans Node.js et pour ceux qui ont le temps, un petit topo sur la différence entre Erreur et Exception.</p>
+<p>Voici les <a href="https://blog.lesieur.name/gerer-les-erreurs-et-les-exceptions-en-javascript/#erreurs-d-finir-retourner-et-utiliser-des-erreurs">3 principaux patterns a utilisés pour gérer vos erreurs JavaScript</a> dans les navigateurs ou dans Node.js et pour ceux qui ont le temps, un petit topo sur la différence entre Erreur et Exception.</p>
 <h2 id="erreur-ou-exception-">Erreur ou Exception ?</h2>
 <p>En JavaScript les Erreurs sont un type d&#39;objet à elles seules et se créent en utilisant la syntaxe suivante <samp>new Error()</samp>. Elles se manipulent comme un objet et peuvent être <samp>return</samp> ou mises dans des variables.</p>
 <p>Les Exceptions quant à elles sont des Erreurs qui sont lancées ou jetées avec le mot clé <samp>throw</samp> soit <samp>throw new Error()</samp> et ne peuvent plus être manipulées. Elles mettent ainsi fin aux contextes d&#39;exécution les un après les autres en remontant jusqu&#39;à afficher une erreur dans la console. Elles peuvent être interceptées avec <samp>try</samp> et l&#39;erreur qu&#39;elles remontent peut être manipulée via <samp>catch (exception)</samp>.</p>
@@ -11115,7 +11115,7 @@ divider.divide(4, 2).divide(4, 0);
 </code></pre>
 <p>À vous de jouer !</p>
 ]]></description>
-            <link>undefinedgerer-les-erreurs-et-les-exceptions-en-javascripts/</link>
+            <link>http://localhost:7776gerer-les-erreurs-et-les-exceptions-en-javascript/</link>
             <guid isPermaLink="false">5650f0e6d1b7fe136fc20059</guid>
             <category><![CDATA[Bonnes Pratiques]]></category>
             <category><![CDATA[JavaScript]]></category>
@@ -13151,7 +13151,7 @@ serialize(&lt;form&gt;);</code></pre>
 <li>Essayez l&#39;un des nombreux <a href="https://en.wikipedia.org/wiki/Comparison_of_JavaScript_frameworks">plugins</a> <span class="vanillajs">Vanilla JS</span>.</li>
 </ul>
 ]]></description>
-            <link>undefinedvanilla-js-france/</link>
+            <link>http://localhost:7776vanilla-js-france/</link>
             <guid isPermaLink="false">5620ee00d1b7fe136fc20058</guid>
             <category><![CDATA[jQuery]]></category>
             <category><![CDATA[Humour]]></category>
@@ -13263,7 +13263,7 @@ serialize(&lt;form&gt;);</code></pre>
 </li>
 </ul>
 ]]></description>
-            <link>undefinedinstaller-tous-les-modules-npm-node-js-sous-windows/</link>
+            <link>http://localhost:7776installer-tous-les-modules-npm-node-js-sous-windows/</link>
             <guid isPermaLink="false">5613f26670877cd335a4b897</guid>
             <category><![CDATA[Astuces]]></category>
             <category><![CDATA[Ressources]]></category>
@@ -13870,7 +13870,7 @@ serialize(&lt;form&gt;);</code></pre>
 </code></pre>
 <p>sans <samp>mainTag</samp> de précisé.</p>
 ]]></description>
-            <link>undefinedconventions-html-et-css-orientes-composants/</link>
+            <link>http://localhost:7776conventions-html-et-css-orientes-composants/</link>
             <guid isPermaLink="false">55df1d924bf5981b0760b95b</guid>
             <category><![CDATA[Bonnes Pratiques]]></category>
             <category><![CDATA[Techniques de Dev]]></category>
@@ -14414,7 +14414,7 @@ website.popupVideo(
 <p>Si vous souhaitez obtenir le code final complet, <a href="http://codepen.io/Haeresis/pen/YXEBbK">c&#39;est par ici</a> !</p>
 </blockquote>
 ]]></description>
-            <link>undefinedactiver-vos-effets-javascript-en-fonction-de-vos-media-queries/</link>
+            <link>http://localhost:7776activer-vos-effets-javascript-en-fonction-de-vos-media-queries/</link>
             <guid isPermaLink="false">558bf17d6868ca087fbf8649</guid>
             <category><![CDATA[Techniques de Dev]]></category>
             <category><![CDATA[Développement Web]]></category>
@@ -14603,7 +14603,7 @@ width:         calc(50% - 100px);
 <p>Si vous voulez en savoir plus sur <samp>calc()</samp> et ses subtilités <a href="http://caniuse.com/#feat=calc">c&#39;est par ici</a>.</p>
 <p><strong>À vous de jouer !</strong></p>
 ]]></description>
-            <link>undefinedla-propriete-css3-calc-pour-arreter-avec-les-balises-html-imbriquees-inutilement/</link>
+            <link>http://localhost:7776la-propriete-css3-calc-pour-arreter-avec-les-balises-html-imbriquees-inutilement/</link>
             <guid isPermaLink="false">55894a766868ca087fbf8648</guid>
             <category><![CDATA[CSS3]]></category>
             <category><![CDATA[Bonnes Pratiques]]></category>
@@ -15194,7 +15194,7 @@ html {
 <h2 id="en-bonus">En Bonus</h2>
 <p>Pour développer des sites web avec Less en toute transparence, je ne saurais que trop vous conseiller le module <a href="https://blog.lesieur.name/des-sites-web-nodejs-pour-les-debutants-en-javascript-avec-nodeatlas/">NodeAtlas</a> en <a href="https://nodejs.org/">node.js</a>. Cela vous permettra de développer dans vos feuilles Less et d&#39;appeler les résultats CSS. Un exemple d&#39;implémentation est à votre disposition dans le projet <a href="https://github.com/Haeresis/LessAtlas/">LessAtlas</a>.</p>
 ]]></description>
-            <link>undefinedbootstrap-lisibilite-proprete-performance-optimisation-c-est-possible/</link>
+            <link>http://localhost:7776bootstrap-lisibilite-proprete-performance-optimisation-c-est-possible/</link>
             <guid isPermaLink="false">5579c7c66868ca087fbf8647</guid>
             <category><![CDATA[Développement Web]]></category>
             <category><![CDATA[Less]]></category>
@@ -15267,7 +15267,7 @@ p {
 }
 </code></pre>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>]]></description>
-            <link>undefinedpourquoi-j-utilise-l-unite-rem-et-non-l-unite-pixel/</link>
+            <link>http://localhost:7776pourquoi-j-utilise-l-unite-rem-et-non-l-unite-pixel/</link>
             <guid isPermaLink="false">5577e6346868ca087fbf8645</guid>
             <category><![CDATA[Astuces]]></category>
             <category><![CDATA[Bonnes Pratiques]]></category>
@@ -15388,7 +15388,7 @@ p {
 <p>Pour ma part, c&#39;est une explication qui ne me satisfait pas totalement aussi j&#39;estime que laisser le choix entre l&#39;utilisation de <samp>&lt;i class=&quot;icon settings hidden&quot;&gt;Paramètres&lt;/i&gt;</samp> et <samp>&lt;span class=&quot;icon settings hidden&quot;&gt;Paramètres&lt;/span&gt;</samp> au développeur est la moindre des choses pour un Framework CSS monsieur <a href="http://semantic-ui.com/elements/icon.html#/icons">Semantic-UI</a> !</p>
 <p>Et vous ? Que pensez-vous de cette pratique ou de ce « détournement » des spécifications ?</p>
 ]]></description>
-            <link>undefinedicon-ou-la-balise-html-semantique-qui-n-existait-pas/</link>
+            <link>http://localhost:7776icon-ou-la-balise-html-semantique-qui-n-existait-pas/</link>
             <guid isPermaLink="false">54f8874a8abb243843ee1e77</guid>
             <category><![CDATA[Front-end]]></category>
             <category><![CDATA[Spécifications]]></category>

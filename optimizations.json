@@ -90,7 +90,16 @@
 		"media/images/upload/ubism02.png": "media/images/upload/",
 		"media/images/upload/vanillajs.jpg": "media/images/upload/",
 		"media/images/upload/x-frame-options.jpg": "media/images/upload/",
-		"media/images/upload/XapFz.png": "media/images/upload/"
+		"media/images/upload/XapFz.png": "media/images/upload/",
+		"media/images/upload/execution-context-mini.png": "media/images/upload/",
+		"media/images/upload/execution-context.jpg": "media/images/upload/",
+		"media/images/upload/vue.png": "media/images/upload/",
+		"media/images/upload/entree-execution-mini.png": "media/images/upload/",
+		"media/images/upload/entree-execution.jpg": "media/images/upload/",
+		"media/images/upload/what-is-this-mini.png": "media/images/upload/",
+		"media/images/upload/what-is-this.jpg": "media/images/upload/",
+		"media/images/upload/scope-mini.png": "media/images/upload/",
+		"media/images/upload/scope.jpg": "media/images/upload/"
 	}
 }
 

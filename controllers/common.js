@@ -30,11 +30,6 @@ website.components = {};
 			next();
 		});
 
-	    route["/javascripts/hashes.min.js"] = {
-	        "view": "../node_modules/jshashes/hashes.min.js",
-	        "mimeType": "text/javascript"
-	    };
-
 		website.components.mongoose.initialisation(mongoose, 'mongodb://127.0.0.1:27017/blog', function () {
 			next();
 		});

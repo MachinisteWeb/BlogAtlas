@@ -483,6 +483,10 @@ header div,
 	width: 100%;
 	vertical-align: top;
 }
+.article input[type=text].field-description {
+	margin-right: 16px;
+}
+
 
 .article textarea {
 	margin: 0 0 16px 0;

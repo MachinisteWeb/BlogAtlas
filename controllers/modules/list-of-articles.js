@@ -85,6 +85,10 @@ module.exports = function listOfArticles(params, callback) {
 			}
 		}
 
+		if (params.limit) {
+			results.splice(params.limit);
+		}
+
 		callback(results);
 	});
 };

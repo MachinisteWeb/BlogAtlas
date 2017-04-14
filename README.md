@@ -29,11 +29,11 @@ Vous devrez également installer :
 Ensuite remplissez la base de donnée MongoDB local avec les commandes suivantes :
 
 ```
-\> mongoimport -d blog -c article --file </path/to/blog/>databases/article.json
+\> mongoimport -d blog -c article --file </path/to/blog/>databases/mongodb/blog/article.json
 ```
 
 ```
-\> mongoimport -d blog -c category --file </path/to/blog/>databases/category.json
+\> mongoimport -d blog -c category --file </path/to/blog/>databases/mongodb/blog/category.json
 ```
 
 Déplacez vous ensuite dans le dossier :
@@ -104,11 +104,11 @@ You will also need to install:
 Then fill the local MongoDB database with the following commands:
 
 ```
-\> mongoimport -d blog -c article --file </path/to/blog/>databases/article.json
+\> mongoimport -d blog -c article --file </path/to/blog/>databases/mongodb/blog/article.json
 ```
 
 ```
-\> mongoimport -d blog -c category --file </path/to/blog/>databases/category.json
+\> mongoimport -d blog -c category --file </path/to/blog/>databases/mongodb/blog/category.json
 ```
 
 Then you move into the folder:
