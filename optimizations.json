@@ -98,8 +98,10 @@
 		"media/images/upload/entree-execution.jpg": "media/images/upload/",
 		"media/images/upload/what-is-this-mini.png": "media/images/upload/",
 		"media/images/upload/what-is-this.jpg": "media/images/upload/",
-		"media/images/upload/scope-mini.png": "media/images/upload/",
-		"media/images/upload/scope.jpg": "media/images/upload/"
+		"media/images/upload/scope-chain-mini.png": "media/images/upload/",
+		"media/images/upload/scope-chain.jpg": "media/images/upload/",
+		"media/images/upload/functions-mini.png": "media/images/upload/",
+		"media/images/upload/functions.jpg": "media/images/upload/"
 	}
 }
 
