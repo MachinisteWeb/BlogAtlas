@@ -1,11 +1,11 @@
 		<footer id="footer" class="footer">
 			<div class="copyright"><?- common.copyright ?></div>
 			<div class="engine"><?- common.engine ?></div>
-		</footer>	
+		</footer>
 	</div>
 
-	<? if (webconfig.bundles) { ?>
-	<script type="text/javascript" src="javascripts/framework.min.js"></script>
+	<? if (webconfig._min) { ?>
+	<script type="text/javascript" src="javascripts/framework.<?= webconfig.version ?>.min.js"></script>
 	<? } else { ?>
 	<script type="text/javascript" src="javascripts/socket.io.js"></script>
 	<script type="text/javascript" src="node-atlas/socket.io.js"></script>

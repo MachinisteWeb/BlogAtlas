@@ -1,39 +1,40 @@
 {
-    "classLayout": "article",
-    "titlePage": "Cette article n'existe pas",
-    "description": "Cette article n'existe pas.",
-    "breadcrumb": {
-        "title": "Vous êtes ici :",
-        "items": [
-            {
-                "content": "Accueil",
-                "title": "Accueil",
-                "href": "./"
-            },
-            {
-                "content": "Cet article n'existe pas",
-                "title": "Cet article n'existe pas",
-                "href": "./%urn%/"
-            }
-        ]
-    },
-    "noArticle": {
-        "noArticle": "Aucun article à cette adresse",
-        "createArticle": {
-            "title": {
-                "label": "Titre",
-                "errors": {
-                    "empty": "Il manque le titre."
-                }
-            },
-            "button": "Créer"
-        }
-    },
-    "article": {
-        "updateArticle": {
-            "button": "Modifier",
-            "delete": "Supprimer",
-            "prompt": "Oui pour confirmer"
-        }
-    }
+	"classLayout": "article",
+	"titlePage": "Cette article n'existe pas",
+	"description": "Cette article n'existe pas.",
+	"breadcrumb": {
+		"title": "Vous êtes ici :",
+		"items": [
+			{
+				"content": "Accueil",
+				"title": "Accueil",
+				"href": "./"
+			},
+			{
+				"content": "Cet article n'existe pas",
+				"title": "Cet article n'existe pas",
+				"href": "./%urn%/"
+			}
+		]
+	},
+	"noArticle": {
+		"noArticle": "Aucun article à cette adresse",
+		"createOne": "Créez en un en choisissant un titre ci-dessous !",
+		"createArticle": {
+			"title": {
+				"label": "Titre",
+				"errors": {
+					"empty": "Il manque le titre."
+				}
+			},
+			"button": "Créer"
+		}
+	},
+	"article": {
+		"updateArticle": {
+			"button": "Modifier",
+			"delete": "Supprimer",
+			"prompt": "Oui pour confirmer"
+		}
+	}
 }

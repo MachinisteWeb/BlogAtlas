@@ -1,13 +1,14 @@
 {
 	"httpPort": 7776,
- 	"optimizations": "optimizations.json",
- 	"variation": "common.json",
- 	"controller": "common.js",
- 	"controllersRelativePath": "controllers",
- 	"pageNotFound": "/page-inexistante/",
+	"optimizations": "optimizations.json",
+	"variation": "common.json",
+	"controller": "common.js",
+	"controllersRelativePath": "controllers",
+	"pageNotFound": "/page-inexistante/",
 	"bundles": "bundles.json",
 	"statics": "statics.json",
 	"routes": "routes.json",
+	"_min": false,
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
 	"_passwordAccountAuth": "a39e06042c77594c75b534030ec36e2bbc3cdaaa"
 }

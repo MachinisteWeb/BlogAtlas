@@ -259,7 +259,7 @@ website.components = {};
 
 			socket.on('delete-article-button', function (data) {
 				if (session.account) {
-					Article.find({ urn: data.urn }).remove(function (error, documents) {
+					Article.find({ urn: data.urn }).remove(function (error) {
 						if (error) {
 							throw error;
 						}

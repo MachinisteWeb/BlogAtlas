@@ -1,6 +1,6 @@
 {
 	"javascripts": {
-		"javascripts/framework.min.js": [
+		"javascripts/framework.{version}.min.js": [
 			"../node_modules/jshashes/hashes.min.js",
 			"../node_modules/socket.io-client/dist/socket.io.min.js",
 			"node-atlas/socket.io.js",
@@ -9,14 +9,15 @@
 			"javascripts/prettify.js",
 			"javascripts/prettify/run_prettify.js"
 		],
-		"javascripts/common.min.js": [
+		"javascripts/common.{version}.min.js": [
 			"javascripts/components/extended-format-date.js",
 			"javascripts/common.js"
 		]
 	},
 	"stylesheets": {
-		"stylesheets/common.min.css": [
+		"stylesheets/common.{version}.min.css": [
 			"stylesheets/lato.css",
+			"stylesheets/fontawesome.css",
 			"stylesheets/common.css",
 			"stylesheets/common-min780.css",
 			"stylesheets/common-min1160.css"

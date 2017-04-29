@@ -40,7 +40,7 @@ website.components = {};
 
 			website.components.listOfArticles({
 				Article: Article,
-				categoryId: categoryId, 
+				categoryId: categoryId,
 				marked: marked,
 				session: locals.session,
 				markdownRender: website.components.markdownRender,

@@ -8,7 +8,7 @@
 
 				<form class="form-account-login" action="./espace-membres/" method="post">
 					<h1><?- specific.title ?></h1>
-					
+
 					<div class="field email">
 						<label for="account-login-email"><?- specific.formLogin.email.label ?></label>
 						<input type="text" id="account-login-email" class="account-login-email" name="email" placeholder="<?= specific.formLogin.email.placeHolder ?>">
@@ -36,7 +36,7 @@
 			<? } else { ?>
 				<form class="form-account-logout" action="./espace-membres/" method="post">
 					<h1><?- specific.titleConnected ?></h1>
-					
+
 					<div class="submit">
 						<label><button class="account-logout-button"><?- specific.formLogout.submit.label ?></button></label>
 					</div>

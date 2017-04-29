@@ -205,12 +205,35 @@ var website = website || {},
         body.appendChild(kcScript);
     };
 
+    publics.chat = function () {
+        var script = document.createElement("script");
+        window.gitter = {
+            chat: {
+                options: {
+                    room: document.getElementById("channel").getAttribute('data-channel')
+                }
+            }
+        };
+        script.src = "https://sidecar.gitter.im/dist/sidecar.v1.js";
+        document.body.appendChild(script);
+        (function changeOpenChat() {
+            var name = document.getElementsByClassName("gitter-open-chat-button")[0];
+            if (name) {
+                name.innerHTML = '<span class="fa fa-comments" aria-hidden="true"></span> ' + document.getElementById("channel").getAttribute('data-label');
+                name.classList.add("is-displayed");
+            } else {
+                setTimeout(changeOpenChat, 200);
+            }
+        }());
+    };
+
     publics.init = function () {
         publics.googleAnalytics();
         publics.disqusNumberLoading();
         publics.scrollAsideSynchonisation();
         publics.autoTarget();
         publics.smartTargetInjection();
+        publics.chat();
         publics.kc();
     };
 }(website));
@@ -740,7 +763,7 @@ var website = website || {},
 
             $(this).addClass("loading");
 
-            website.jsHashesLoading(function () {        
+            website.jsHashesLoading(function () {
                 var data = {
                     email: $("#account-login-email").val(),
                     password: new Hashes.SHA1().hex($("#account-login-password").val())

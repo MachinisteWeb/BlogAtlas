@@ -5,18 +5,7 @@ var website = {};
 	"use strict";
 
 	publics.changeVariations = function (next, locals, request) {
-		var /*sessionID = params.request.sessionID,*/
-			session = request.session;
-
-		//console.log("changeVariations");
-		//console.log(sessionID);
-		//console.log(session);
-
-		/*if (session.account) {
-			console.log("Loggué !");
-		} else {
-			console.log("Non loggué !");
-		}*/
+		var session = request.session;
 
 		locals.session = session;
 
@@ -28,8 +17,7 @@ var website = {};
 			io = NA.io;
 
 		io.sockets.on('connection', function (socket) {
-			var /*sessionID = socket.request.sessionID,*/
-				session = socket.request.session;
+			var session = socket.request.session;
 
 			socket.on('account-login', function (data) {
 				var dataResponse = {};
@@ -58,7 +46,7 @@ var website = {};
 					socket.emit('account-logout', data);
 				}
 			});
-  		});
+		});
 	};
 
 }(website));

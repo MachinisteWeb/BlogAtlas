@@ -12,7 +12,6 @@ website.components = {};
 		var NA = this,
 			mongoose = NA.modules.mongoose,
 			Category = mongoose.model('category'),
-			/*sessionID = params.request.sessionID,*/
 			session = request.session;
 
 		locals.backend = {};
