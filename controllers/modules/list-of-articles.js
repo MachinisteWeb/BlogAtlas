@@ -9,12 +9,12 @@ module.exports = function listOfArticles(params, callback) {
 		date = params.date,
 		locals = params.locals,
 		query = {},
-	    min,
-	    max,
-	    minYear,
-	    maxYear,
-	    minMonth,
-	    maxMonth;
+		min,
+		max,
+		minYear,
+		maxYear,
+		minMonth,
+		maxMonth;
 
 	if (typeof date !== 'undefined' &&
 		typeof date.year !== 'undefined')

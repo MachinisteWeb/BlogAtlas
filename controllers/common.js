@@ -46,14 +46,14 @@ website.components = {};
 	};
 
 	publics.setSessions = function (next) {
-        var NA = this,
+		var NA = this,
 			mongoose = NA.modules.mongoose,
-        	session = NA.modules.session,
-        	RedisStore = NA.modules.RedisStore(session);
+			session = NA.modules.session,
+			RedisStore = NA.modules.RedisStore(session);
 
-        NA.sessionStore = new RedisStore();
+		NA.sessionStore = new RedisStore();
 
-        publics.mongooseSchemas(mongoose);
+		publics.mongooseSchemas(mongoose);
 
 		next();
 	};
@@ -63,33 +63,30 @@ website.components = {};
 			io = NA.io;
 
 		io.sockets.on('connection', function (socket) {
-			/* var sessionID = socket.request.sessionID,
-				session = socket.request.session; */
-
 			socket.on('update-comment-number', function (options) {
 				var http = require('http'),
 					request;
 
 				request = http.request(options, function (response) {
-				    var data = '';
+					var data = '';
 
-				    response.on('data', function (chunk) {
-				        data += chunk;
-				    });
+					response.on('data', function (chunk) {
+						data += chunk;
+					});
 
-				    response.on('end', function () {
-				    	var interestingPart = data.match(/\"counts\":\[(.+)\]/g),
-				    		json;
+					response.on('end', function () {
+						var interestingPart = data.match(/\"counts\":\[(.+)\]/g),
+							json;
 
-				    	if (interestingPart && interestingPart[0]) {
+						if (interestingPart && interestingPart[0]) {
 							json = JSON.parse("{" + interestingPart[0] + "}");
-				        	socket.emit('update-comment-number', json);
-				    	}
-				    });
+							socket.emit('update-comment-number', json);
+						}
+					});
 				});
 
 				request.on('error', function (e) {
-				    console.log(e.message);
+					console.log(e.message);
 				});
 
 				request.end();

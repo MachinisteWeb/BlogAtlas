@@ -1,6 +1,6 @@
 @media (min-width: 780px) {
 /*------------------------------------*\
-    $SUMMARY
+	$SUMMARY
 \*------------------------------------*/
 
 /**
@@ -15,7 +15,7 @@
 
 
 /*------------------------------------*\
-    $TABLET+ STYLES
+	$TABLET+ STYLES
 \*------------------------------------*/
 
 
@@ -83,13 +83,13 @@ header h1 {
 	bottom: -40px;
 	position: absolute;
 	background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-	
+
 }
 
 .main {
 	position: fixed;
 	right: 6px;
-	top: 0;	
+	top: 0;
 	width: calc(55% + 4px);
 	z-index: 3;
 	background-color: #fff;
@@ -127,9 +127,9 @@ header h1 {
 
 .wrap-content > .comment,
 .wrap-content > .content {
-	width: 56%;
+	width: calc(56% - 40px);
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: 40px;
 	float: right;
 }
 
@@ -147,7 +147,7 @@ header h1 {
 .articles-by-category .wrap-content > .categories,
 .about-author,
 .about-site {
-	margin-top: 88px;	
+	margin-top: 88px;
 }
 
 .articles-by-month .wrap-content > .archives,
@@ -155,7 +155,7 @@ header h1 {
 .articles-by-category .wrap-content > .categories,
 .about-site,
 .wrap-content > .summary {
-	margin-bottom: 96px;	
+	margin-bottom: 96px;
 }
 
 .articles-by-month .archives,
@@ -185,7 +185,6 @@ header h1 {
 	top: -40px;
 	position: absolute;
 	background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-	
 }
 
 .about-author figure {
@@ -207,5 +206,44 @@ header h1 {
 /* $Layout */
 /***********/
 
+
+
+
+/*------------------------------------*\
+	$SHARE
+\*------------------------------------*/
+
+.share-buttons {
+	right: -70px;
+	top: 50%;
+	left: auto;
+	bottom: auto;
+	-webkit-transform: translateY(-50%);
+	   -moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		 -o-transform: translateY(-50%);
+			transform: translateY(-50%);
+}
+
+a.share-btn {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	-webkit-border-top-right-radius: 0;
+			border-top-right-radius: 0;
+	-webkit-border-top-left-radius: .5em;
+			border-top-left-radius: .5em;
+	-webkit-border-bottom-left-radius: .5em;
+			border-bottom-left-radius: .5em;
+}
+
+.share-buttons a:hover {
+	left: -70px;
+}
+
+.share-buttons .share-btn-email,
+.share-buttons .share-btn-branded {
+	display: block;
+}
 
 }

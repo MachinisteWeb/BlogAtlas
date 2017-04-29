@@ -8,6 +8,7 @@
 	"bundles": "bundles.json",
 	"statics": "statics.json",
 	"routes": "routes.json",
+	"_min": false,
 	"_emailAccountAuth": "bruno.lesieur@gmail.com",
 	"_passwordAccountAuth": "a39e06042c77594c75b534030ec36e2bbc3cdaaa"
 }

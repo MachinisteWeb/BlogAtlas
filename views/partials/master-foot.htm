@@ -1,8 +1,8 @@
-		<? if (webconfig.bundles) { ?>
-		<script type="text/javascript" src="javascripts/common.min.js"></script>
+		<? if (webconfig._min) { ?>
+		<script id="channel" data-channel="NodeAtlas/Aide" data-label="Chater en direct" type="text/javascript" src="javascripts/common.<?= webconfig.version ?>.min.js"></script>
 		<? } else { ?>
-		<script type="text/javascript" src="javascripts/components/extended-format-date.js"></script>		
-		<script type="text/javascript" src="javascripts/common.js"></script>
+		<script type="text/javascript" src="javascripts/components/extended-format-date.js"></script>
+		<script id="channel" data-channel="NodeAtlas/Aide" data-label="Chater en direct" type="text/javascript" src="javascripts/common.js"></script>
 		<? } ?>
 		<? if ((typeof backend !== 'undefined' && backend.article && backend.article.script) || (typeof session !== 'undefined' && session.account)) { ?>
 			<script class="script" type="text/javascript"><?- (typeof backend !== 'undefined' && backend.article && backend.article.script) ? backend.article.script : "" ?></script>

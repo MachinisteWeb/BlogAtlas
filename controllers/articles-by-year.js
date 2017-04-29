@@ -16,7 +16,6 @@ website.components = {};
 			mongoose = NA.modules.mongoose,
 			marked = NA.modules.marked,
 			Article = mongoose.model('article'),
-			/*sessionID = params.request.sessionID,*/
 			session = request.session;
 
 		locals.backend = {};

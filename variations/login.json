@@ -1,45 +1,45 @@
 {
-    "classLayout": "login",
-    "titlePage": "Espace membres",
-    "description": "Cet espace est dédié à la connexion aux interfaces de rédaction d'articles.",
-    "breadcrumb": {
-        "title": "Vous êtes ici :",
-        "items": [
-            {
-                "content": "Espace membres",
-                "title": "Espace membres",
-                "href": "./espace-membres/"
-            }
-        ]
-    },
-    "title": "Connectez-vous",
-    "titleConnected": "Vous êtes connecté !",
-    "formLogin": {
-        "email": {
-            "label": "Email",
-            "placeHolder": "Email",
-            "errors": {
-                "empty": "Le champ email est vide.",
-                "notEmailFormat": "Le champ email est incorrecte."
-            }
-        },
-        "password": {
-            "label": "Mot de passe",
-            "placeHolder": "Mot de passe",
-            "errors": {
-                "empty": "Le champ password est vide."
-            }
-        },
-        "submit": {
-            "label": "Connexion",
-            "errors": {
-                "badAuth": "Les email/mot de passe sont invalides."
-            }
-        }
-    },
-    "formLogout": {
-        "submit": {
-            "label": "Déconnexion"
-        }
-    }
+	"classLayout": "login",
+	"titlePage": "Espace membres",
+	"description": "Cet espace est dédié à la connexion aux interfaces de rédaction d'articles.",
+	"breadcrumb": {
+		"title": "Vous êtes ici :",
+		"items": [
+			{
+				"content": "Espace membres",
+				"title": "Espace membres",
+				"href": "./espace-membres/"
+			}
+		]
+	},
+	"title": "Connectez-vous",
+	"titleConnected": "Vous êtes connecté !",
+	"formLogin": {
+		"email": {
+			"label": "Email",
+			"placeHolder": "Email",
+			"errors": {
+				"empty": "Le champ email est vide.",
+				"notEmailFormat": "Le champ email est incorrecte."
+			}
+		},
+		"password": {
+			"label": "Mot de passe",
+			"placeHolder": "Mot de passe",
+			"errors": {
+				"empty": "Le champ password est vide."
+			}
+		},
+		"submit": {
+			"label": "Connexion",
+			"errors": {
+				"badAuth": "Les email/mot de passe sont invalides."
+			}
+		}
+	},
+	"formLogout": {
+		"submit": {
+			"label": "Déconnexion"
+		}
+	}
 }
