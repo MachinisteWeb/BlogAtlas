@@ -34,12 +34,22 @@ body {
 	padding: 48px 8px;
 }
 
+.breadcrumb,
+.header {
+	margin-left: auto;
+	width: 320px;
+}
+
 .header {
 	padding-top: 48px;
 }
 
 .breadcrumb {
 	top: 104px;
+}
+
+.article h1 {
+	margin-top: 0;
 }
 
 .articles-by-month .to-know .archives,
@@ -71,11 +81,25 @@ body {
 	margin-right: auto;
 }
 
+.articles-by-month .archives,
+.articles-by-year .archives,
+.wrap-content > .categories,
+.summary,
+.about-author,
+.about-site {
+	margin-left: auto;
+	width: 320px;
+}
+
 .footer {
 	padding-bottom: 48px;
+	margin-left: auto;
+	width: 320px;
 }
 
 .to-know {
+	margin-left: auto;
+	width: 320px;
 	padding-bottom: 64px;
 }
 

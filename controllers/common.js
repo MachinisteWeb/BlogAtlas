@@ -58,43 +58,6 @@ website.components = {};
 		next();
 	};
 
-	publics.setSockets = function () {
-		var NA = this,
-			io = NA.io;
-
-		io.sockets.on('connection', function (socket) {
-			socket.on('update-comment-number', function (options) {
-				var http = require('http'),
-					request;
-
-				request = http.request(options, function (response) {
-					var data = '';
-
-					response.on('data', function (chunk) {
-						data += chunk;
-					});
-
-					response.on('end', function () {
-						var interestingPart = data.match(/\"counts\":\[(.+)\]/g),
-							json;
-
-						if (interestingPart && interestingPart[0]) {
-							json = JSON.parse("{" + interestingPart[0] + "}");
-							socket.emit('update-comment-number', json);
-						}
-					});
-				});
-
-				request.on('error', function (e) {
-					console.log(e.message);
-				});
-
-				request.end();
-			});
-
-		});
-	};
-
 	publics.changeVariations = function (next, locals, request) {
 		var session = request.session;
 

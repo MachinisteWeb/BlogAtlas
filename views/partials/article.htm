@@ -12,35 +12,35 @@
 					<? } ?>
 
 					<aside class="share-buttons">
-						<a class="share-btn share-btn-branded share-btn-twitter" href="https://www.twitter.com/intent/tweet?text=<?- backend.article.title ?>&amp;url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>&amp;via=MachinisteWeb" title="Partager sur Twitter">
+						<a class="share-btn share-btn-branded share-btn-twitter" href="https://www.twitter.com/intent/tweet?text=<?- backend.article.title ?>&amp;url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>&amp;via=MachinisteWeb" title="<?= common.shareOn.share + ' ' + common.shareOn.on ?> Twitter">
 							<span class="fa fa-twitter"></span>
 							<span class="share-btn-text">Twitter</span>
 						</a>
-						<a class="share-btn share-btn-branded share-btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="Partager sur Facebook">
+						<a class="share-btn share-btn-branded share-btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="<?= common.shareOn.share + ' ' + common.shareOn.on ?> Facebook">
 							<span class="fa fa-facebook"></span>
 							<span class="share-btn-text">Facebook</span>
 						</a>
-						<a class="share-btn share-btn-branded share-btn-googleplus" href="https://plus.google.com/share?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="Partager sur Google+">
+						<a class="share-btn share-btn-branded share-btn-googleplus" href="https://plus.google.com/share?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="<?= common.shareOn.share + ' ' + common.shareOn.on ?> Google+">
 							<span class="fa fa-google-plus"></span>
 							<span class="share-btn-text">Google+</span>
 						</a>
-						<a class="share-btn share-btn-branded share-btn-linkedin" href="https://www.linkedin.com/shareArticle?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="Partager sur LinkedIn">
+						<a class="share-btn share-btn-branded share-btn-linkedin" href="https://www.linkedin.com/shareArticle?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="<?= common.shareOn.share + ' ' + common.shareOn.on ?> LinkedIn">
 							<span class="fa fa-linkedin"></span>
 							<span class="share-btn-text">LinkedIn</span>
 						</a>
-						<a class="share-btn share-btn-branded share-btn-viadeo" href="http://www.viadeo.com/shareit/share/?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="Partager sur Viadeo">
+						<a class="share-btn share-btn-branded share-btn-viadeo" href="http://www.viadeo.com/shareit/share/?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="<?= common.shareOn.share + ' ' + common.shareOn.on ?> Viadeo">
 							<span class="fa fa-viadeo"></span>
 							<span class="share-btn-text">Viadeo</span>
 						</a>
-						<a class="share-btn share-btn-branded share-btn-pinterest" href="https://www.pinterest.com/pin/create/button/?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>&media=<?= specific.image ?>&description=<?- backend.article.title ?>" title="Partager sur Pinterest">
+						<a class="share-btn share-btn-branded share-btn-pinterest" href="https://www.pinterest.com/pin/create/button/?url=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>&media=<?= specific.image ?>&description=<?- backend.article.title ?>" title="<?= common.shareOn.share + ' ' + common.shareOn.on ?> Pinterest">
 							<span class="fa fa-pinterest"></span>
 							<span class="share-btn-text">Pinterest</span>
 						</a>
-						<a class="share-btn share-btn-email" href="mailto:?subject=<?- backend.article.title ?>&amp;body=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="Partager par Email">
+						<a class="share-btn share-btn-email" href="mailto:?subject=<?- backend.article.title ?>&amp;body=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="<?= common.shareOn.share + ' ' + common.shareOn.by ?> Email">
 							<span class="fa fa-envelope"></span>
 							<span class="share-btn-text">Email</span>
 						</a>
-						<a class="share-btn share-btn-more" href="https://www.addtoany.com/share_save?linkurl=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="Plus d'options de partage">
+						<a class="share-btn share-btn-more" href="https://www.addtoany.com/share_save?linkurl=<?- urlBasePath + common.articles.readMore.href.replace(/%urn%/g, backend.article.urn).slice(1) ?>" title="<?= common.shareOn.share ?>">
 							<span class="fa fa-share-alt"></span>
 							<span class="share-btn-text">Partager</span>
 						</a>
@@ -56,7 +56,7 @@
 							<a href="<?- common.listDate.linkMonth.href.replace(/%year%/g, fullYear).replace(/%month%/g, month) ?>" title="<?- common.listDate.linkMonth.title.replace(/%year%/g, fullYear).replace(/%month%/g, fullMonth) ?>"><span class="fa fa-clock-o" aria-hidden="true"></span> <time datetime="<?= backend.article.dates.format.time ?>"><?- backend.article.dates.format.string ?></time></a>
 						</div>
 						<div class="comments">
-							<a href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.article.urn) ?>#disqus_thread" title="<?- backend.article.title.replace(/<\/?span>/g, '') ?>"><span class="fa fa-comment-o"></span> <?- common.comments.commentSentence ?></a>
+							<a href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.article.urn) ?>#disqus" title="<?- backend.article.title.replace(/<\/?span>/g, '') ?>"><span class="fa fa-comment-o"></span> <span class="disqus-comment-count" data-disqus-identifier="<?= backend.article.urn ?>">0 <?- common.comments.commentSimple ?></span></a>
 						</div>
 						<div class="text">
 							<?- backend.article.content ?>
