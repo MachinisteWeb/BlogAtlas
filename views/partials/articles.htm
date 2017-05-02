@@ -17,7 +17,7 @@
 										</time></a>
 									</div>
 									<div class="comments">
-										<a data-disqus-identifier="<?= backend.articles[i].urn ?>" href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) ?>#disqus_thread" title="<?- backend.articles[i].title.replace(/<\/?span>/g, '') ?>"><span class="fa fa-comment-o" aria-hidden="true"></span> <span class="set-number"><?- backend.articles[i].cache.comment.number ?></span> <?- common.comments.commentSimple ?></a>
+										<a href="<?- common.articles.readMore.href.replace(/%urn%/g, backend.articles[i].urn) ?>#disqus" title="<?- backend.articles[i].title.replace(/<\/?span>/g, '') ?>"><span class="fa fa-comment-o" aria-hidden="true"></span> <span class="disqus-comment-count" data-disqus-identifier="<?= backend.articles[i].urn ?>">0 <?- common.comments.commentSimple ?></span></a>
 									</div>
 									<div class="text">
 										<?- backend.articles[i].content ?>

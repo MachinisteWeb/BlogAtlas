@@ -7,19 +7,26 @@
 			</<?= tag ?>>
 		</header>
 
+		<span class="menu">
+			<span class="top"></span>
+			<span class="middle"></span>
+			<span class="bottom"></span>
+		</span>
 		<nav class="main" id="menu">
-			<h3><?- common.mainMenu.mainTitle ?></h3>
-			<a class="menu" href="<?= urlPath ?>#menu"></a>
-			<ul>
-				<? for (var i = 0; i < common.mainMenu.section.length; i++) { ?>
-				<li class="<?- common.mainMenu.section[i].class ?>">
-					<a href="<?- common.mainMenu.section[i].href ?>" title="<?- common.mainMenu.section[i].title ?>"><?- common.mainMenu.section[i].content ?></a>
-				</li>
-				<? } ?>
-			</ul>
+			<div class="main--inner">
+				<h3><?- common.mainMenu.mainTitle ?></h3>
+				<ul>
+					<? for (var i = 0; i < common.mainMenu.section.length; i++) { ?>
+					<li class="<?- common.mainMenu.section[i].class ?>">
+						<a href="<?- common.mainMenu.section[i].href ?>" title="<?- common.mainMenu.section[i].title ?>"><?- common.mainMenu.section[i].content ?></a>
+					</li>
+					<? } ?>
+				</ul>
+			</div>
 		</nav>
 
 		<nav class="breadcrumb">
+			<h3><?- common.breadcrumb.title ?></h3>
 			<ol>
 				<? for (var i = 0; i < specific.breadcrumb.items.length; i++) { ?>
 				<li>
