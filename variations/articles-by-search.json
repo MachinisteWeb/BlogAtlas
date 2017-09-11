@@ -1,0 +1,39 @@
+{
+	"classLayout": "search",
+	"titlePage": "Recherche par mots-clés",
+	"description": "Liste des résultats de la recherche pour les mots-clés.",
+	"breadcrumb": {
+		"title": "Vous êtes ici :",
+		"items": [{
+			"content": "Accueil",
+			"title": "Accueil",
+			"href": "./"
+		}, {
+			"content": "Recherche",
+			"title": "Recherche",
+			"href": "./recherche/"
+		},
+		{
+			"content": "Aucun résultats",
+			"title": "Aucun résultats",
+			"href": "./recherche/?query=%search%"
+		}]
+	},
+	"formSearch": {
+		"query": {
+			"label": "Recherche",
+			"placeHolder": "Vos mots-clés",
+			"errors": {
+				"empty": "Le champ recherche est vide."
+			}
+		},
+		"submit": {
+			"label": "Rechercher"
+		}
+	},
+	"articles": {
+		"title": "%nbr% résultat%moreOne% trouvé%moreOne% pour la recherche « %search% »",
+		"titleNoSearch": "Aucun résultats trouvés",
+		"noArticle": "Aucun résultats trouvé pour la recherche « %search% »."
+	}
+}

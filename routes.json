@@ -3,6 +3,20 @@
 		"redirect": "/feeds/articles.xml",
 		"statusCode": 301
 	},
+	"/recherche/": {
+		"view": "articles-by-search.htm",
+		"controller": "articles-by-search.js",
+		"variation": "articles-by-search.json"
+	},
+	"/recherche": {
+		"redirect": "/recherche/",
+		"statusCode": 301
+	},
+	"/categories/:category/": {
+		"view": "articles-by-category.htm",
+		"controller": "articles-by-category.js",
+		"variation": "articles-by-category.json"
+	},
 	"/categories/:category/": {
 		"view": "articles-by-category.htm",
 		"controller": "articles-by-category.js",

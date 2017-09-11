@@ -60,6 +60,12 @@
 		"mainTitle": "Menu",
 		"section": [
 			{
+				"content": "Recherche",
+				"title": "Tous les billets par mots-clés",
+				"href": "./recherche/",
+				"class": "search"
+			},
+			{
 				"content": "Catégories",
 				"title": "Tous les billets par catégories",
 				"href": "./categories/",
@@ -90,7 +96,7 @@
 		"content": "Cette page n'existe pas."
 	},
 	"copyright": "©2012-2017 <a href=\"http://www.lesieur.name/\" title=\"Site de Bruno Lesieur, Développeur web spécialiste Front-End / Node.js\">Lesieur.name</a>",
-	"engine": "Site développé en <a href=\"http://nodejs.org/\" title=\"Node.js, le moteur JavaScript côté serveur\">node.js</a> avec <a href=\"https://node-atlas.js.org/\" title=\"Le Framework node.js NodeAtlas\">NodeAtlas</a>",
+	"engine": "Site développé en <a href=\"http://nodejs.org/\" title=\"Node.js, le moteur JavaScript côté serveur\">Node.js</a> avec <a href=\"https://node-atlas.js.org/\" title=\"Le Framework node.js NodeAtlas\">NodeAtlas</a>",
 	"listDate": {
 		"startingYear": "2012",
 		"titleYear": "Année",
@@ -135,6 +141,14 @@
 		"link": {
 			"title": "Tous les articles de la categorie",
 			"href": "./categories/%urn%/"
+		}
+	},
+	"search": {
+		"title": "Recherche par mots-clés",
+		"title2": "Recherché dans",
+		"link": {
+			"title": "Tous les articles de la recherche",
+			"href": "./recherche/%urn%/"
 		}
 	},
 	"summary": {
