@@ -1,0 +1,17 @@
+<? include partials/master-head.htm ?>
+
+<? include partials/master-content.htm ?>
+
+		<div id="content" class="content">
+
+			<? include partials/search.htm ?>
+			<? if (query.query) { ?>
+			<? include partials/articles.htm ?>
+			<? } ?>
+
+		</div>
+
+<? include partials/header.htm ?>
+<? include partials/footer.htm ?>
+
+<? include partials/master-foot.htm ?>

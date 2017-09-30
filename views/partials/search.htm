@@ -1,0 +1,18 @@
+				<section class="search">
+					<h1><?- common.search.title ?></h1>
+
+					<form class="form-search" action="./recherche/" method="get">
+						<div class="field query">
+							<label for="search-query"><?- specific.formSearch.query.label ?></label>
+							<input type="text" id="search-query" class="search-query" name="query" placeholder="<?= specific.formSearch.query.placeHolder ?>" value="<?= query.query ?>">
+							<div class="errors">
+								<div class="empty"><?- specific.formSearch.query.errors.empty ?></div>
+							</div>
+						</div>
+
+						<div class="submit">
+							<label><button class="search-button"><?= specific.formSearch.submit.label ?></button></label>
+						</div>
+					</form>
+
+				</section>

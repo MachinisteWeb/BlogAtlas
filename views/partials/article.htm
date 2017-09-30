@@ -3,7 +3,7 @@
 				<? if (backend && backend.article) { ?>
 
 					<? if (session.account) { ?>
-					<form class="form-account-logout" action="" method="post">
+					<form class="form-update-article" action="" method="post">
 						<div class="submit">
 							<label><button class="update-article-button"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> <?= specific.article.updateArticle.button ?></button></label>
 							<label><button data-prompt="<?= specific.article.updateArticle.prompt ?>" class="delete-article-button"><span class="fa fa-trash" aria-hidden="true"></span> <?= specific.article.updateArticle.delete ?></button></label>

@@ -1,6 +1,7 @@
 /* jslint node: true */
 module.exports = function listOfArticles(params, callback) {
 	var categoryId = params.categoryId,
+		search = params.search,
 		marked = params.marked,
 		session = params.session,
 		markdownRender = params.markdownRender,
@@ -9,6 +10,8 @@ module.exports = function listOfArticles(params, callback) {
 		date = params.date,
 		locals = params.locals,
 		query = {},
+		options = {},
+		sort = { 'dates.published': -1 },
 		min,
 		max,
 		minYear,
@@ -34,17 +37,29 @@ module.exports = function listOfArticles(params, callback) {
 		min = new Date(minYear, minMonth, 1);
 		max = new Date(maxYear, maxMonth, 1);
 
-		query = {
-			'dates.published': {
-				$gte: min,
-				$lt: max
+		query['dates.published'] = {
+			$gte: min,
+			$lt: max
+		};
+	}
+
+	if (typeof search !== 'undefined') {
+		query.$text = {
+			$search: search
+		};
+		options.score = {
+			$meta: "textScore"
+		};
+		sort = {
+			score: {
+				$meta:"textScore"
 			}
 		};
 	}
 
 	Article
-	.find(query)
-	.sort({ 'dates.published': -1 })
+	.find(query, options)
+	.sort(sort)
 	.populate('categories')
 	.exec(function (error, temp) {
 		var results = [],

@@ -58,6 +58,7 @@ website.components = {};
 				} else {
 					locals.specific.breadcrumb.items[2].href = locals.specific.breadcrumb.items[2].href.replace(/%urn%/g, locals.params.category);
 					locals.specific.articles.title = locals.specific.articles.titleNoCategory;
+					locals.specific.titlePage = locals.specific.articles.titleNoCategory;
 					locals.specific.description = locals.specific.articles.titleNoCategory;
 				}
 
