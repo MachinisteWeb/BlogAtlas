@@ -112,7 +112,24 @@
 		"media/images/upload/prototypes.jpg": "media/images/upload/",
 		"media/images/upload/evaliation-strategy-mini.png": "media/images/upload/",
 		"media/images/upload/evaliation-strategy.jpg": "media/images/upload/",
-		"media/images/404.png": "media/images/"
+		"media/images/404.png": "media/images/",
+		"media/images/angular_js_2.jpg": "media/images/",
+		"media/images/git-case-001.jpg": "media/images/",
+		"media/images/git-case-002.jpg": "media/images/",
+		"media/images/git-case-003.jpg": "media/images/",
+		"media/images/git-case-004.jpg": "media/images/",
+		"media/images/git-case-005.jpg": "media/images/",
+		"media/images/git-case-006.jpg": "media/images/",
+		"media/images/git-case-007.jpg": "media/images/",
+		"media/images/git-case-008.jpg": "media/images/",
+		"media/images/understand-js.png": "media/images/",
+		"media/images/understand-js-min.jpg": "media/images/",
+		"media/images/vue-router.jpg": "media/images/",
+		"media/images/vue-router.png": "media/images/",
+		"media/images/vue-joke-qui-a-vu-verra.jpg": "media/images/",
+		"media/images/i-know-javascript.jpg": "media/images/",
+		"media/images/hqdefault.jpg": "media/images/",
+		"media/images/1ajapg.jpg": "media/images/"
 	}
 }
 

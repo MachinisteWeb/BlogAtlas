@@ -7,7 +7,8 @@
  * GLOBAL..............Define global variables.
  * COMMON..............This functions are used on more one page, and execute on each pages.
  * ARTICLE.............This functions are used only on associate template.
- * LOGIN.............This functions are used only on associate template.
+ * LOGIN...............This functions are used only on associate template.
+ * SEARCH..............This functions are used only on associate template.
  * START PROCESS.......Run all JavaScript common / specific.
  */
 
@@ -805,6 +806,44 @@ var website = website || {},
 		privates.listeningAccountLogout();
 	};
 }(website.login = {}));
+
+
+
+
+
+/*------------------------------------*\
+	$%SEARCH
+\*------------------------------------*/
+
+(function (publics) {
+	"use strict";
+
+	var privates = {};
+
+	privates.search = function () {
+		$(".search-button").click(function (e) {
+			var $form = $(".form-search"),
+				$query = $(".search-query"),
+				$error = $(".form-search .errors");
+
+			e.preventDefault();
+
+			console.log("haha");
+
+			if ($query.val() === '') {
+				$error.show();
+			} else {
+				$error.hide();
+				$(this).addClass("loading");
+				$form.submit();
+			}
+		});
+	};
+
+	publics.init = function () {
+		privates.search();
+	};
+}(website.search = {}));
 
 
 

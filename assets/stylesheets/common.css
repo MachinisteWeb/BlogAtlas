@@ -61,6 +61,8 @@
 
 .errors {
 	color: #CC0000;
+	position: relative;
+	bottom: 16px;
 }
 
 .wrap-content:after {
@@ -551,6 +553,12 @@ header div,
 	width: 50%;
 	padding-right: 8px;
 }
+.login .submit {
+	clear: left;
+}
+.search .submit {
+	margin-top: 0;
+}
 .field + .field {
 	padding-left: 8px;
 	padding-right: 0;
@@ -651,6 +659,7 @@ header div,
 }
 
 .loading.loading.loading.loading.loading.loading.create-article-button,
+.loading.loading.loading.loading.loading.loading.search-button,
 .loading.loading.loading.loading.loading.loading.account-login-button,
 .loading.loading.loading.loading.loading.loading.account-logout-button,
 .loading.loading.loading.loading.loading.loading.delete-article-button,
@@ -669,6 +678,7 @@ header div,
 }
 
 .loading.create-article-button:before,
+.loading.search-button:before,
 .loading.account-login-button:before,
 .loading.account-logout-button:before,
 .loading.delete-article-button:before,
@@ -685,6 +695,7 @@ header div,
 }
 
 .loading.create-article-button:after,
+.loading.search-button:after,
 .loading.account-login-button:after,
 .loading.account-logout-button:after,
 .loading.delete-article-button:after,
