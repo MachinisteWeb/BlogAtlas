@@ -7,5 +7,9 @@
 		<? if ((typeof backend !== 'undefined' && backend.article && backend.article.script) || (typeof session !== 'undefined' && session.account)) { ?>
 			<script class="script" type="text/javascript"><?- (typeof backend !== 'undefined' && backend.article && backend.article.script) ? backend.article.script : "" ?></script>
 		<? } ?>
+		<div class="language-selection">
+			<p>Lire dans une autre langue</p>
+			<div id="google_translate_element"></div>
+		</div>
 	</body>
 </html>

@@ -27,6 +27,9 @@ var website = website || {},
 	$body = $("body"),
 	$base = $("base");
 
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'fr' }, 'google_translate_element');
+}
 
 /*------------------------------------*\
 	$%COMMON
@@ -141,6 +144,14 @@ var website = website || {},
 		  ga('send', 'pageview');
 	};
 
+	publics.googleTranslate = function () {
+		var gt = document.createElement('script');
+
+		gt.setAttribute('src','//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
+
+		document.head.appendChild(gt);
+	};
+
 	privates.lastScrollValue = 0;
 
 	publics.scrollAsideSynchonisation = function () {
@@ -230,6 +241,7 @@ var website = website || {},
 		publics.toggleMenu();
 		publics.chat();
 		publics.kc();
+		publics.googleTranslate();
 	};
 }(website));
 
