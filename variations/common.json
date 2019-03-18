@@ -35,7 +35,7 @@
 	},
 	"aboutSite": {
 		"title": "Bienvenue",
-		"content": "Ce blog est majoritairement consacré au JavaScript que ce soit côté client avec Vanilla.js ou côté serveur avec Node.js. Côté Front, on parle d'astuces et réflexions autour des bonnes pratiques HTML5, CSS3, et JavaScript. Côté serveur, on parle de Node.js et de son écosystème NPM. Le site traite également de tous types d'articles touchant de près ou de loin à la webosphère."
+		"content": "Ce blog est majoritairement consacré au JavaScript que ce soit côté client avec Vanilla.js ou côté serveur avec Node.js. Côté Front, on parle d'astuces et réflexions autour des bonnes pratiques HTML5, CSS3, et JavaScript. Côté serveur, on parle de Node.js et de son écosystème npm. Le site traite également de tous types d'articles touchant de près ou de loin à la webosphère avec esprit critique !"
 	},
 	"aboutAuthor": {
 		"title": "À propos de l'auteur",
@@ -45,7 +45,7 @@
 			"width": "96",
 			"height": "96"
 		},
-		"content": "Bonjour, je suis Bruno Lesieur, architecte web basé sur Annecy. Intégrateur JavaScript (HTML / CSS / ES / Vue) ou encore développeur Node.js ; appelez moi comme vous le voulez mais sachez que je suis très friand de performance web, de Responsive Web Design, d'accessibilité web, de bonnes pratiques, de techniques et d'outils de gestion web, de factorisation et d'automatisation, de partage et casse-tête en tout genre ainsi que de zététique."
+		"content": "Bonjour, je suis Bruno Lesieur, sceptique rationnel et architecte web. Intégrateur JavaScript (HTML / CSS / ES / Vue.js) ou encore développeur Node.js ; appelez moi comme vous le voulez mais sachez que je suis très friand de performance web, de Responsive Web Design, d'accessibilité web, de bonnes pratiques, de techniques et d'outils de gestion web, de factorisation et d'automatisation, de partage et casse-tête en tout genre ainsi que de la méthode zététique !"
 	},
 	"breadcrumb": {
 		"title": "Où êtes-vous ?"
