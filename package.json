@@ -8,12 +8,16 @@
     "type": "git",
     "url": "https://github.com/Haeresis/BlogAtlas.git"
   },
+  "scripts": {
+    "start": "node blog.lesieur.name.na"
+  },
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/Haeresis/BlogAtlas/issues"
   },
   "dependencies": {
     "socket.io": "1.7.x",
+    "node-atlas": "2.0.6",
     "connect-redis": "2.1.x",
     "marked": "0.3.x",
     "mongoose": "4.6.x",
