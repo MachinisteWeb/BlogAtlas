@@ -26,3 +26,4 @@ node_modules
 /webconfig.lesieur.json
 /assets/rss.xml
 /assets/feeds/articles.xml
+/webconfig.production.json
