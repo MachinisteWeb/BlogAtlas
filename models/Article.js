@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 		script: String,
 		stylesheet: String,
 		urn: { type : String, match: /^[a-zA-Z0-9-_]+$/ },
-		dates : {
+		dates: {
 			published: { type : Date, default : Date.now },
 			format: { 
 				string: String,
@@ -26,6 +26,9 @@ var mongoose = require('mongoose'),
 			markdown: Boolean,
 			published: Boolean
 		}
-	});
+	}),
+	index = { title: 'text', description: 'text', urn: 'text', categories: 'text', content: 'text', dates: 'text' };
+
+articleSchema.index(index);
 
 module.exports = articleSchema;

@@ -2,7 +2,6 @@
 	"httpPort": 7776,
 	"httpSecure": "security/server",
  	"bundles": "bundles.json",
- 	"optimizations": "optimizations.json",
  	"variation": "common.json",
  	"controller": "common.js",
  	"controllersRelativePath": "controllers",
