@@ -136,14 +136,14 @@ website.components = {};
 						feed.item(item);
 					}
 
-					fs.writeFile(NA.serverPath + NA.webconfig.controllersRelativePath + common.rss.feedUrl, feed.xml("    "));
+					fs.writeFile(NA.serverPath + NA.webconfig.controllersRelativePath + common.rss.feedUrl, feed.xml("    "), function () {});
 				});
 			}
 
 			socket.on('update-article-button', function (data) {
 				if (session.account) {
 
-					Article.update({
+					Article.updateOne({
 						urn: data.urn
 					}, {
 						$set: {
@@ -170,7 +170,7 @@ website.components = {};
 						  			throw error;
 						  		}
 
-								Article.update({
+								Article.updateOne({
 									urn: data.urn
 								}, {
 									$addToSet: {

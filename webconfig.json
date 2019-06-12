@@ -1,6 +1,5 @@
 {
 	"httpPort": 7776,
-	"optimizations": "optimizations.json",
 	"variation": "common.json",
 	"controller": "common.js",
 	"controllersRelativePath": "controllers",

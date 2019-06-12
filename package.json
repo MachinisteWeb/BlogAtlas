@@ -1,24 +1,28 @@
 {
   "name": "blog-atlas",
-  "version": "0.30.0",
+  "version": "0.32.0",
   "author": "Bruno Lesieur <bruno.lesieur@gmail.com>",
-  "description": "Exemple de développement de site Node.js.",
+  "description": "Exemple de développement d'un blog avec Node.js.",
   "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/Haeresis/BlogAtlas.git"
+  },
+  "scripts": {
+    "start": "node blog.lesieur.name.na"
   },
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/Haeresis/BlogAtlas/issues"
   },
   "dependencies": {
-    "socket.io": "1.7.x",
-    "connect-redis": "2.1.x",
-    "marked": "0.3.x",
-    "mongoose": "4.6.x",
-    "rss": "1.2.x",
-    "jshashes": "1.0.x"
+    "socket.io": "^2.2.0",
+    "node-atlas": "^2.0.7",
+    "connect-redis": "^3.4.1",
+    "marked": "^0.6.2",
+    "mongoose": "^5.5.6",
+    "rss": "^1.2.2",
+    "jshashes": "^1.0.7"
   },
   "engines": {
     "node": ">=4.0.0"

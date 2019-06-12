@@ -1,0 +1,6 @@
+var NA = require('node-atlas');
+
+global.NA = new NA();
+global.NA.run({
+	webconfig: 'webconfig.production.json'
+});

@@ -1,8 +1,8 @@
 # BlogAtlas #
 
-Version : 0.4
+Version : 0.32
 
-NodeAtlas Version minimale : 2.0.x
+NodeAtlas Version minimale : 2.0.7
 
 **For an international version of this README.md, [see below](#international-version).**
 
@@ -23,6 +23,7 @@ Pour mieux comprendre l'architecture JavaScript du site, [vous pouvez lire cet a
 Pour faire tourner le site en local, il vous faudra installer [NodeAtlas](https://node-atlas.js.org/) sur votre poste de développement.
 
 Vous devrez également installer :
+
 - une base de donnée MongoDB sur le serveur de l'application.
 - une base de donnée Redis sur le serveur de l'application.
 
@@ -50,6 +51,7 @@ et utilisez la commande :
 ```
 
 ou lancez `server.na` en double cliquant dessus :
+
 - en expliquant à votre OS que les fichiers `.na` sont lancé par défaut par `node`,
 - en ayant installé `node-atlas` via `npm install -g node-atlas`
 - en étant sur que votre variable d'environnement `NODE_PATH` pointe bien sur le dossier des `node_modules` globaux.
@@ -98,6 +100,7 @@ To better understand the JavaScript site architecture, [you can read this articl
 To run the website in local, you must install [NodeAtlas](https://node-atlas.js.org/) on your development machine.
 
 You will also need to install:
+
 - a MongoDB database on the application server.
 - a Redis database on the application server.
 
@@ -125,6 +128,7 @@ and use the command:
 ```
 
 or run `app.na` by double clicking and:
+
 - explaining your OS that `.na` files are run by default with `node`,
 - Having installed `node-atlas` via `npm install -g node-atlas`
 - Being on your environment variable `NODE_PATH` is pointing to the global `node_modules` folder.

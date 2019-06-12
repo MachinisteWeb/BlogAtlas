@@ -61,6 +61,8 @@
 
 .errors {
 	color: #CC0000;
+	position: relative;
+	bottom: 16px;
 }
 
 .wrap-content:after {
@@ -551,6 +553,12 @@ header div,
 	width: 50%;
 	padding-right: 8px;
 }
+.login .submit {
+	clear: left;
+}
+.search .submit {
+	margin-top: 0;
+}
 .field + .field {
 	padding-left: 8px;
 	padding-right: 0;
@@ -651,6 +659,7 @@ header div,
 }
 
 .loading.loading.loading.loading.loading.loading.create-article-button,
+.loading.loading.loading.loading.loading.loading.search-button,
 .loading.loading.loading.loading.loading.loading.account-login-button,
 .loading.loading.loading.loading.loading.loading.account-logout-button,
 .loading.loading.loading.loading.loading.loading.delete-article-button,
@@ -669,6 +678,7 @@ header div,
 }
 
 .loading.create-article-button:before,
+.loading.search-button:before,
 .loading.account-login-button:before,
 .loading.account-logout-button:before,
 .loading.delete-article-button:before,
@@ -685,6 +695,7 @@ header div,
 }
 
 .loading.create-article-button:after,
+.loading.search-button:after,
 .loading.account-login-button:after,
 .loading.account-logout-button:after,
 .loading.delete-article-button:after,
@@ -1316,10 +1327,6 @@ a.share-btn.share-btn-branded.share-btn-facebook:hover {
 	color: #fff;
 	background: #3b5998;
 }
-a.share-btn.share-btn-branded.share-btn-googleplus:hover {
-	color: #fff;
-	background: #d73925;
-}
 a.share-btn.share-btn-branded.share-btn-viadeo:hover {
 	color: #fff;
 	background: #F4982B;
@@ -1345,4 +1352,33 @@ a.share-btn.share-btn-email:hover {
 
 .breadcrumb .fa {
 	font-size: .8em;
+}
+
+.language-selection {
+	display: none;
+	position: fixed;
+	bottom: -30px;
+	left: 0;
+	padding-left: 4px;
+	padding-right: 4px;
+	background-color: white;
+	z-index: 1000;
+}
+@media (min-width: 1160px) {
+	.language-selection {
+		display: block;
+	}
+}
+.language-selection::before {
+	content: ''
+	display: block;
+	position: absolute;
+	top: -20px;
+	left: 0;
+	height: 20px;
+	background: linear-gradient(180deg,rgba(255,255,255,0) 0,rgba(255,255,255,1) 100%);
+	width: 100%;
+}
+.language-selection p {
+	margin-top: 0;
 }
