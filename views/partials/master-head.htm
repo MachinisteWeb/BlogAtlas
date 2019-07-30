@@ -10,12 +10,18 @@
 		<meta name="geo.placename" content="<?= common.placename ?>" />
 		<meta name="robots" content="<?= common.indexFollow ?>" />
 
-		<meta name="og:url" content="<?= urlBasePath ?>/">
-		<meta name="og:locale" content="fr-fr">
-		<meta name="og:type" content="<?= (routeParameters.view !== 'article.htm') ? 'website' : 'article' ?>">
-		<meta name="og:title" content="<?= specific.titlePage ?>">
-		<meta name="og:description" content="<?= specific.description ?>">
-		<? if (specific.image) { ?><meta name="og:image" content="<?= specific.image ?>"><? } ?>
+		<meta property="og:locale" content="fr-fr">
+		<meta property="og:type" content="<?= (routeParameters.view !== 'article.htm') ? 'website' : 'article' ?>">
+		<meta property="og:title" content="<?= specific.titlePage ?>">
+		<meta property="og:description" content="<?= specific.description ?>">
+		<meta property="og:author" content="https://www.lesieur.name/">
+		<? if (specific.image) { ?><meta property="og:image" content="<?= specific.image ?>"><? } ?>
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@ZetesEthique" />
+		<meta name="twitter:title" content="<?= specific.titlePage ?>" />
+		<meta name="twitter:description" content="<?= specific.description ?>" />
+		<? if (specific.image) { ?><meta name="twitter:image" content="<?= specific.image ?>"><? } ?>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<?= urlBasePath ?><?= common.rss.feedUrl ?>" />
