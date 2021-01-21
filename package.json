@@ -16,7 +16,7 @@
     "url": "https://github.com/Haeresis/BlogAtlas/issues"
   },
   "dependencies": {
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.4.0",
     "node-atlas": "^2.0.7",
     "connect-redis": "^3.4.1",
     "marked": "^0.6.2",
