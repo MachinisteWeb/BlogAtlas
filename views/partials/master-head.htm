@@ -18,7 +18,7 @@
 		<meta property="og:author" content="Bruno J. S. Lesieur">
 		<meta property="og:url" content="<?= urlPath ?>">
 		<meta property="og:site_name" content="Quelques #ID et beaucoup de .CLASS">
-		<? if (backend && backend.article && backend.article.dates && backend.article.dates.format && backend.article.dates.format.time) { ?><meta property="og:article:published_time" content="<?= backend.article.dates.format.time.replace(/\.000/g, '-0000') ?>"><? } ?>
+		<? if (typeof backend !== 'undefined' && backend.article && backend.article.dates && backend.article.dates.format && backend.article.dates.format.time) { ?><meta property="og:article:published_time" content="<?= backend.article.dates.format.time.replace(/\.000/g, '-0000') ?>"><? } ?>
 		<? if (specific.image) { ?><meta property="og:image" content="<?= specific.image ?>"><? } ?>
 
 		<meta name="twitter:card" content="summary" />
