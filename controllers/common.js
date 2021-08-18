@@ -64,7 +64,7 @@ website.components = {};
 		locals.edit = false;
 		locals.fs = false;
 		locals.fc = false;
-		if (session.account) {
+		if (session && session.account) {
 			locals.edit = locals.routeParameters.variation;
 			locals.fs = locals.edit;
 			locals.fc = locals.webconfig.commonVariation;
