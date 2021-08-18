@@ -539,7 +539,7 @@ function googleTranslateElementInit() {
 					categories: fieldsCategory,
 					published: $fieldPublished.prop("checked"),
 					markdown: $fieldMarkdown.prop("checked"),
-					permalink: $(".permalink span").text(),
+					permalink: $(".permalink span").first().text(),
 				});
 
 				$this.data("state", false);
