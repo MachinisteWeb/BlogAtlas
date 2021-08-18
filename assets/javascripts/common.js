@@ -326,8 +326,8 @@ function googleTranslateElementInit() {
 
 	privates.updateArticle = function () {
 		var $title = $(".content h1"),
-			$image = $("meta[name='og:image']"),
-			$description = $("meta[name='og:description']"),
+			$image = $("meta[property='og:image']"),
+			$description = $("meta[property='og:description']"),
 			$content = $(".text"),
 			$categoriesTitle = $(".categories h3"),
 			$categoriesList = $(".categories li"),
@@ -539,7 +539,7 @@ function googleTranslateElementInit() {
 					categories: fieldsCategory,
 					published: $fieldPublished.prop("checked"),
 					markdown: $fieldMarkdown.prop("checked"),
-					permalink: $(".permalink span").text(),
+					permalink: $(".permalink span").first().text(),
 				});
 
 				$this.data("state", false);
@@ -570,8 +570,8 @@ function googleTranslateElementInit() {
 				newDateTitle = data.variation.listDate.linkMonth.title.replace(/%year%/g, date.getFullYear()).replace(/%month%/g, data.variation.dates.months[date.getMonth()]),
 				newDateHref;
 
-			$("meta[name='description'], meta[name='og:description']").attr("content", data.description);
-			$("meta[name='og:image']").attr("content", data.image);
+			$("meta[name='description'], meta[property='og:description']").attr("content", data.description);
+			$("meta[property='og:image']").attr("content", data.image);
 
 			if ($permalink.text() === data.permalink) {
 				month = ((month.toString().length > 1) ? '' : '0') + month;

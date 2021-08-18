@@ -9,14 +9,25 @@
 		<meta name="description" content="<?= specific.description ?>" />
 		<meta name="geo.placename" content="<?= common.placename ?>" />
 		<meta name="robots" content="<?= common.indexFollow ?>" />
+		<meta name="author" content="Bruno J. S. Lesieur">
 
-		<meta name="og:url" content="<?= urlBasePath ?>/">
-		<meta name="og:locale" content="fr-fr">
-		<meta name="og:type" content="<?= (routeParameters.view !== 'article.htm') ? 'website' : 'article' ?>">
-		<meta name="og:title" content="<?= specific.titlePage ?>">
-		<meta name="og:description" content="<?= specific.description ?>">
-		<? if (specific.image) { ?><meta name="og:image" content="<?= specific.image ?>"><? } ?>
+		<meta property="og:locale" content="fr-fr">
+		<meta property="og:type" content="<?= (routeParameters.view !== 'article.htm') ? 'website' : 'article' ?>">
+		<meta property="og:title" content="<?= specific.titlePage ?>">
+		<meta property="og:description" content="<?= specific.description ?>">
+		<meta property="og:author" content="Bruno J. S. Lesieur">
+		<meta property="og:url" content="<?= urlPath ?>">
+		<meta property="og:site_name" content="Quelques #ID et beaucoup de .CLASS">
+		<? if (typeof backend !== 'undefined' && backend.article && backend.article.dates && backend.article.dates.format && backend.article.dates.format.time) { ?><meta property="og:article:published_time" content="<?= backend.article.dates.format.time.replace(/\.000/g, '-0000') ?>"><? } ?>
+		<? if (specific.image) { ?><meta property="og:image" content="<?= specific.image ?>"><? } ?>
 
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@ZetesEthique" />
+		<meta name="twitter:title" content="<?= specific.titlePage ?>" />
+		<meta name="twitter:description" content="<?= specific.description ?>" />
+		<? if (specific.image) { ?><meta name="twitter:image" content="<?= specific.image ?>"><? } ?>
+
+		<link rel="canonical" href="<?= urlPath ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="alternate" type="application/rss+xml" title="Quelques #ID et beaucoup de .CLASS" href="<?= urlBasePath ?><?= common.rss.feedUrl ?>" />
 

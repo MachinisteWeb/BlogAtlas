@@ -1,8 +1,8 @@
 # BlogAtlas #
 
-Version : 0.32
+Version : 0.33
 
-NodeAtlas Version minimale : 2.0.7
+NodeAtlas Version minimale : 2.0.8
 
 **For an international version of this README.md, [see below](#international-version).**
 

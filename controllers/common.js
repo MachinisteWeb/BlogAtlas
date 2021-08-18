@@ -14,6 +14,7 @@ website.components = {};
 
 		NA.modules.marked = require('marked');
 		NA.modules.mongoose = require('mongoose');
+		NA.modules.redis = require('redis');
 		NA.modules.RedisStore = require('connect-redis');
 		NA.modules.rss = require('rss');
 		NA.modules.jshashes = require('jshashes');
@@ -49,9 +50,14 @@ website.components = {};
 		var NA = this,
 			mongoose = NA.modules.mongoose,
 			session = NA.modules.session,
+			redis = NA.modules.redis,
 			RedisStore = NA.modules.RedisStore(session);
 
-		NA.sessionStore = new RedisStore();
+		var redisClient = redis.createClient()
+		redisClient.unref()
+		redisClient.on('error', console.log)
+
+		NA.sessionStore = new RedisStore({ client: redisClient });
 
 		publics.mongooseSchemas(mongoose);
 
@@ -64,7 +70,7 @@ website.components = {};
 		locals.edit = false;
 		locals.fs = false;
 		locals.fc = false;
-		if (session.account) {
+		if (session && session.account) {
 			locals.edit = locals.routeParameters.variation;
 			locals.fs = locals.edit;
 			locals.fc = locals.webconfig.commonVariation;

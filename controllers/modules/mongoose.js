@@ -6,7 +6,7 @@ var website = {};
 
 	publics.initialisation = function (mongoose, address, callback) {
 		mongoose.Promise = global.Promise;
-		mongoose.connect(address, { useNewUrlParser: true }, function (error) {
+		mongoose.connect(address, { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
 			if (error) {
 				console.log("La base '" + address + "' n'est pas accessible.");
 				process.kill(process.pid);
