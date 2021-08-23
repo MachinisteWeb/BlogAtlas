@@ -1,6 +1,6 @@
 {
   "name": "blog-atlas",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "author": "Bruno Lesieur <bruno.lesieur@gmail.com>",
   "description": "Exemple de développement d'un blog avec Node.js.",
   "private": false,
