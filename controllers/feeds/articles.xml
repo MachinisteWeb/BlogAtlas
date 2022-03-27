@@ -45,7 +45,7 @@
 <li>Etc.</li>
 </ul>
 <blockquote>
-<p>Si vous êtes développeur front-end et que vous cherchez un exemple d&#39;utilisation de <a href="https://vuejs.org/">Vue.js</a> qui est SEO compliant avec aucun autre outil supplémentaire, je peux vous conseiller de jeter un œil au code source de cet outil derrière ce CodePen : <a href="http://codepen.io/Haeresis/pen/zBzWgQ">http://codepen.io/Haeresis/pen/zBzWgQ</a></p>
+<p>Si vous êtes développeur front-end et que vous cherchez un exemple d&#39;utilisation de <a href="https://vuejs.org/">Vue.js</a> qui est SEO compliant avec aucun autre outil supplémentaire, je peux vous conseiller de jeter un œil au code source de cet outil derrière ce CodePen : <a href="http://codepen.io/MachinisteWeb/pen/zBzWgQ">http://codepen.io/MachinisteWeb/pen/zBzWgQ</a></p>
 </blockquote>
 <h2 id="comment-trier-vos-cartes-munchkin">Comment <strong>trier</strong> vos cartes Munchkin</h2>
 <p>Il n&#39;est pas facile de s&#39;y repérer dans les différents types de cartes dans le Munchkin. Beaucoup ont la même couleur, et les versions dérivées du Munchkin original n&#39;ont pas de distinctions colorées. Il est également possible de souhaiter jouer avec des règles en moins.</p>
@@ -6661,7 +6661,7 @@
 </ul>
 <p>On finira bien entendu par le moyen de vous procurrer le d120 !</p>
 <blockquote>
-<p>Si vous êtes développeur JavaScript et que vous cherchez des exemples d&#39;utilisation de <a href="https://vuejs.org/">Vue.js</a> à la volée (comme on utiliserait simplement jQuery), ou que vou souhaitez vérifier les fonctions utilisées dans cet article, vous pouvez jeter un œil au code source de cet article derrière le CodePen suivant : <a href="https://codepen.io/Haeresis/pen/qGQLvp">https://codepen.io/Haeresis/pen/qGQLvp</a></p>
+<p>Si vous êtes développeur JavaScript et que vous cherchez des exemples d&#39;utilisation de <a href="https://vuejs.org/">Vue.js</a> à la volée (comme on utiliserait simplement jQuery), ou que vou souhaitez vérifier les fonctions utilisées dans cet article, vous pouvez jeter un œil au code source de cet article derrière le CodePen suivant : <a href="https://codepen.io/MachinisteWeb/pen/qGQLvp">https://codepen.io/MachinisteWeb/pen/qGQLvp</a></p>
 </blockquote>
 <h2 id="pourquoi-le-d120-est-le-dé-ultime-">Pourquoi le d120 est le dé ultime ?</h2>
 <p>Saviez-vous que la sommes de chacun des côtés opposés d&#39;un d6 fait 7 ? En effet <samp>1 + 6 = 7</samp>, <samp>2 + 5 = 7</samp> et <samp>3 + 4 = 7</samp> ! Intuitivement, on pourrait se dire que c&#39;est une manière de répartir correctement les valeurs du dé pour que celui-ci ne soit pas pipé. Et bien en réalité, pas tout à fait.</p>
@@ -9159,7 +9159,7 @@ for (var i in t) {
 &lt;!-- Specific JS file declaration --&gt;
 </code></pre>
 <p><strong>Les <samp>--</samp> indique une sous-partie du même composant. Il est possible de créer autant de sous-partie que souhaité.</strong></p>
-<p><em>Note : un composant doit avoir au moins deux balises HTML imbriquées pour le représenter afin de pouvoir être totalement habillé avec du CSS de toutes les manières possibles. <a href="https://codepen.io/Haeresis/pen/bdXymY">Voir ce CodePen</a>.</em></p>
+<p><em>Note : un composant doit avoir au moins deux balises HTML imbriquées pour le représenter afin de pouvoir être totalement habillé avec du CSS de toutes les manières possibles. <a href="https://codepen.io/MachinisteWeb/pen/bdXymY">Voir ce CodePen</a>.</em></p>
 <h4 id="boucler-sur-eux-même">Boucler sur eux même</h4>
 <p>Un composant peut boucler sur lui même afin d&#39;apparaître comme une liste ou de lier son contenu à une liste d&#39;élément en base de donnée. Un <samp>&lt;ul&gt;</samp> est grandement recommandé dans ce cas puisque chaque item est censé être identique dans sa structure de composant (mais pas forcément avec un contenu identique).</p>
 <p>Exemple de composant</p>
@@ -9247,9 +9247,9 @@ for (var i in t) {
 </li>
 <li><p><samp>for-*</samp> : défini un id sur un composant parce que si un composant est utilisé plus d&#39;une fois dans la même zone d&#39;atterrissage, il est important d&#39;avoir une classe différente pour les différencier au besoin. <em>Exemple: <samp>class=&quot;cmpt-&lt;name-of-component&gt; for-article&quot;</samp> peut signifier que le composant est utilisé pour afficher du texte faisant office de contenu principale et <samp>class=&quot;cmpt-&lt;name-of-component&gt; for-aside&quot;</samp> peut signifier tout autre chose.</em></p>
 </li>
-<li><p><samp>to-*</samp> : défini une étape d&#39;attente en début de changement d&#39;état pour gérer une animation. <em>Exemple: <samp>class=&quot;cmpt-&lt;name-of-component&gt; to-open&quot;</samp> peut signifier que <samp>cmpt-&lt;name-of-component&gt;</samp> est en état d&#39;ouverture depuis son état fermé vers son état ouvert et qu&#39;il faut démarrer une augmentation de l&#39;opacité. Quand l&#39;animation est finie, le <samp>is-*</samp> peut-être mis.</em> <a href="http://codepen.io/Haeresis/pen/OyoOEV">Un exemple ici</a>.</p>
+<li><p><samp>to-*</samp> : défini une étape d&#39;attente en début de changement d&#39;état pour gérer une animation. <em>Exemple: <samp>class=&quot;cmpt-&lt;name-of-component&gt; to-open&quot;</samp> peut signifier que <samp>cmpt-&lt;name-of-component&gt;</samp> est en état d&#39;ouverture depuis son état fermé vers son état ouvert et qu&#39;il faut démarrer une augmentation de l&#39;opacité. Quand l&#39;animation est finie, le <samp>is-*</samp> peut-être mis.</em> <a href="http://codepen.io/MachinisteWeb/pen/OyoOEV">Un exemple ici</a>.</p>
 </li>
-<li><p><samp>from-*</samp> : défini une étape d&#39;attente pour gérer une animation du retour à l&#39;état initial. <em>Exemple: <samp>class=&quot;cmpt-&lt;name-of-component&gt; from-open&quot;</samp> peut signifier que le composant <samp>cmpt-&lt;name-of-component&gt;</samp> va être fermé et qu&#39;il est temps de diminuer l&#39;opacité de l&#39;élément. Quand l&#39;animation est finie, les classes <samp>is-*</samp> et <samp>from-*</samp> sont retirées.</em> <a href="http://codepen.io/Haeresis/pen/OyoOEV">Un exemple ici</a>.</p>
+<li><p><samp>from-*</samp> : défini une étape d&#39;attente pour gérer une animation du retour à l&#39;état initial. <em>Exemple: <samp>class=&quot;cmpt-&lt;name-of-component&gt; from-open&quot;</samp> peut signifier que le composant <samp>cmpt-&lt;name-of-component&gt;</samp> va être fermé et qu&#39;il est temps de diminuer l&#39;opacité de l&#39;élément. Quand l&#39;animation est finie, les classes <samp>is-*</samp> et <samp>from-*</samp> sont retirées.</em> <a href="http://codepen.io/MachinisteWeb/pen/OyoOEV">Un exemple ici</a>.</p>
 </li>
 </ul>
 <p><strong>Toutes les variations de classe doivent être documentées pour être utilisable par les développeurs back-end.</strong></p>
@@ -9420,8 +9420,8 @@ for (var i in t) {
 <td><strong>inline</strong> . id . .</td>
 </tr>
 </tbody></table>
-<p><a href="https://codepen.io/Haeresis/pen/oLzdaR">Voir des exemples live</a></p>
-<p>Et si le mot clé <samp>!important</samp> est ajouté à la fin de n&#39;importe quelle valeur de propriété elle passe devant toute autre. Soyez prudent en l&#39;utilisant (<a href="https://codepen.io/Haeresis/pen/JYRLgr">voici un cas d&#39;utilisation justifié</a>).</p>
+<p><a href="https://codepen.io/MachinisteWeb/pen/oLzdaR">Voir des exemples live</a></p>
+<p>Et si le mot clé <samp>!important</samp> est ajouté à la fin de n&#39;importe quelle valeur de propriété elle passe devant toute autre. Soyez prudent en l&#39;utilisant (<a href="https://codepen.io/MachinisteWeb/pen/JYRLgr">voici un cas d&#39;utilisation justifié</a>).</p>
 <p>Vous pouvez <a href="https://specificity.keegan.st/">voir la spécificité des sélecteurs grâce à cet outil</a>.</p>
 <h3 id="deux-approches-dutilisation-du-css">Deux approches d&#39;utilisation du CSS</h3>
 <p>Il y a deux façons d&#39;appliquer des styles CSS sur du HTML. La manière CSS-Driven ou pilotée par la feuille de style ou la manière HTML-Driven ou pilotée par les classes dans les balises HTML.</p>
@@ -9945,7 +9945,7 @@ publics.loadComponents = function () {
 </ul>
 <p><em>Exemple :</em></p>
 <ul>
-<li>Trouvez dans cet exemple comment permettre un changement d&#39;état animé : <a href="https://codepen.io/Haeresis/pen/OyoOEV">Change Element State</a>.</li>
+<li>Trouvez dans cet exemple comment permettre un changement d&#39;état animé : <a href="https://codepen.io/MachinisteWeb/pen/OyoOEV">Change Element State</a>.</li>
 </ul>
 <h4 id="avec-animations-complexes">Avec animations complexes</h4>
 <p>Utilisez six classes de transitions,</p>
@@ -9973,7 +9973,7 @@ publics.loadComponents = function () {
 <li><a href="https://www.nuget.org/packages/jQuery.Validation.Unobtrusive/">jQuery Validation Unobstrusive Plugin</a> <a href="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js">//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js</a> (Applique automatiquement les règles en ciblant les éléments avec l&#39;attribut <samp>data-*</samp>).</li>
 </ul>
 <p><em>Note: ce couple de fichier fonctionne ensemble mais si vous utilisez la dernière version pour l&#39;un, en cas de problème, utilisez la dernière version pour les deux autres.</em></p>
-<p>Vous trouverez ici un cas d&#39;usage complet de l&#39;utilisation de chaque champ : <a href="http://codepen.io/Haeresis/pen/AzJgF/">Exemple d&#39;utilisation avec chaque champ</a></p>
+<p>Vous trouverez ici un cas d&#39;usage complet de l&#39;utilisation de chaque champ : <a href="http://codepen.io/MachinisteWeb/pen/AzJgF/">Exemple d&#39;utilisation avec chaque champ</a></p>
 <p>Et si un champ est injecté plus tard dans le DOM, <strong>après</strong> l&#39;inclusion du fichier unobstrusive, utilisez <samp>$.validator.unobtrusive.parse(&lt;selectorForm&gt;);</samp> pour faire fonctionner les nouveaux formulaires/champs avec unobstrusive.</p>
 <p>Si une validation est plus complexe, vous pouvez trouver <a href="http://jqueryvalidation.org/documentation/">la documentation de jQuery Validate ici</a> ou vous tourner vers un lieur de valeur réactive comme <a href="https://fr.vuejs.org/">Vue.js</a>.</p>
 <h3 id="étendre-une-classe">Étendre une classe</h3>
@@ -10243,7 +10243,7 @@ website.models = website.models || {};
 <h3 id="documentation">Documentation</h3>
 <p>De manière à documenter votre code, utilisez le <a href="https://www.npmjs.com/package/jsdoc">JSDoc npm CLI</a>. Vous trouverez tout <a href="http://usejsdoc.org/">ce qu&#39;il vous faut pour la documentation ici</a>.</p>
 <ul>
-<li><a href="https://www.lesieur.name/doc-atlas/">Un exemple avec ce faux site Munchkin</a> et <a href="https://github.com/Haeresis/TestCaseAtlas">son code source</a>.</li>
+<li><a href="https://www.lesieur.name/doc-atlas/">Un exemple avec ce faux site Munchkin</a> et <a href="https://github.com/MachinisteWeb/TestCaseAtlas">son code source</a>.</li>
 </ul>
 <p>Par exemple la page « <a href="https://www.lesieur.name/doc-atlas/homepage.html">Home</a> » possède le composant « <a href="https://www.lesieur.name/doc-atlas/components/hero.html">Hero</a> » qui est documenté <a href="https://www.lesieur.name/doc-atlas/documentation/design/hero.html">pour le CSS</a> et <a href="https://www.lesieur.name/doc-atlas/documentation/behaviors/module-munchkin-ws.ui.Hero.html">pour le JS</a>.</p>
 ]]></description>
@@ -10322,14 +10322,14 @@ website.models = website.models || {};
 <p>Je vais vous laisser voir cela à travers les divers exemples d&#39;affichages réalisables sans gabarit complexe (pas de grille) et <strong>à partir du même code HTML</strong>.</p>
 </blockquote>
 <ul>
-<li><a href="https://codepen.io/Haeresis/pen/pJMBEg">Toute la place en alternance : type « One Page »</a>,</li>
-<li><a href="https://codepen.io/Haeresis/pen/NqQVXv">inclus dans une page : type « Page Standard »</a>,</li>
-<li><a href="https://codepen.io/Haeresis/pen/PqMvQW">les deux exemples précédents en alternance : type « Design »</a>,</li>
-<li><a href="https://codepen.io/Haeresis/pen/mJNYxE">sur toute la page : type « BackOffice »</a>,</li>
-<li><a href="https://codepen.io/Haeresis/pen/vOowjL">grille de composant : type « Bootstrap »</a>,</li>
-<li><a href="https://codepen.io/Haeresis/pen/KpOLeR">un affichage hors flux : type « Popup »</a>,</li>
-<li><a href="https://codepen.io/Haeresis/pen/jPgopz">un affichage en absolue : type « App Mobile »</a> ou encore</li>
-<li><strong><a href="https://codepen.io/Haeresis/pen/bdXymY">la totalité en une page</a></strong>.</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/pJMBEg">Toute la place en alternance : type « One Page »</a>,</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/NqQVXv">inclus dans une page : type « Page Standard »</a>,</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/PqMvQW">les deux exemples précédents en alternance : type « Design »</a>,</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/mJNYxE">sur toute la page : type « BackOffice »</a>,</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/vOowjL">grille de composant : type « Bootstrap »</a>,</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/KpOLeR">un affichage hors flux : type « Popup »</a>,</li>
+<li><a href="https://codepen.io/MachinisteWeb/pen/jPgopz">un affichage en absolue : type « App Mobile »</a> ou encore</li>
+<li><strong><a href="https://codepen.io/MachinisteWeb/pen/bdXymY">la totalité en une page</a></strong>.</li>
 </ul>
 <h4 id="nommage">Nommage</h4>
 <p>Dans le <a href="https://guidecss.davidl.fr">Guide CSS Fr</a>, il est expliqué que si le nom du composant est : <samp>my-component</samp>, alors celui d&#39;un sous composant serait <samp>my-component__text</samp> et une version alternative de se composant serait permise avec la classe <samp>my-component--alternative</samp> à la place. Pour ma part j&#39;ai opté pour quelque chose de différent pour des questions de lisibilité du <samp>__</samp> ce qui nous permet de ne pas se soucier de séparer les classes par deux espaces.</p>
@@ -10825,7 +10825,7 @@ website.models = website.models || {};
 <p>...on pourrait parvenir à nos fins. Pendant la réalisation de nos composants on utilise toujours une <samp>&lt;section&gt;</samp>. C&#39;est au moment d&#39;injecter le composant que l&#39;on décide grâce à mainTag quelle balise globale va remplacer <samp>&lt;section&gt;</samp>. On s&#39;assurerait également de transformer tous les <samp>&lt;header&gt;</samp> en <samp>&lt;div class=&quot;header-like&quot;&gt;</samp> (etc.) dans le cas où le mainTag serait <samp>div</samp>, <samp>header</samp> ou <samp>footer</samp>.</p>
 <p>Voici pour les petits curieux le code <a href="https://node-atlas.js.org/">NodeAtlas</a> de <samp>controllers/common.js</samp> qu&#39;il faut pour faire fonctionner tout ça.</p>
 <ul>
-<li><a href="http://codepen.io/Haeresis/pen/jbNVYa/?editors=001">Contenu du fichier <samp>controller/common.js</samp></a></li>
+<li><a href="http://codepen.io/MachinisteWeb/pen/jbNVYa/?editors=001">Contenu du fichier <samp>controller/common.js</samp></a></li>
 </ul>
 <h4 id="de-la-sémantique-automatique">De la sémantique automatique</h4>
 <p>Bon, <strong>vous conviendrez que notre composant est assez laid</strong>, et ça rend la chose faussement complexe. Je vous propose de plutôt maintenir un fichier <samp>views/components/component.htm</samp> comme celui-ci :</p>
@@ -10845,7 +10845,7 @@ website.models = website.models || {};
     &lt;/div&gt;
 &lt;/section$&gt;
 </code></pre>
-<p>grâce au projet <a href="https://github.com/Haeresis/ComponentAtlas">ComponentAtlas</a> qui est un module additionnel de <a href="https://node-atlas.js.org/">NodeAtlas</a>. Il permet l&#39;inclusion de composant en cascade, ne touchera à aucunes balises sans $ et permettra de transformer ceci :</p>
+<p>grâce au projet <a href="https://github.com/MachinisteWeb/ComponentAtlas">ComponentAtlas</a> qui est un module additionnel de <a href="https://node-atlas.js.org/">NodeAtlas</a>. Il permet l&#39;inclusion de composant en cascade, ne touchera à aucunes balises sans $ et permettra de transformer ceci :</p>
 <pre class="prettyprint linenums"><code class="language-html">&lt;section$ class=&quot;cmpt-component&quot;&gt;
     &lt;header$ id=&quot;test&quot;&gt;header&lt;/header$&gt;
     &lt;footer$ class=&quot;test&quot;&gt;footer&lt;/footer$&gt;
@@ -11816,7 +11816,7 @@ focusProperty = {
 └─ es6.htm
 </code></pre>
 <p>Nous allons donc remplir le fichier <samp>es6.htm</samp> avec le contenu suivant :</p>
-<p><em>es6.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/es6.htm">code source</a>)</em></p>
+<p><em>es6.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/es6.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
@@ -11837,7 +11837,7 @@ focusProperty = {
 &lt;/html&gt;
 </code></pre>
 <p>Nous allons ensuite nous créer un module JavaScript dans le fichier <samp>operation.js</samp> :</p>
-<p><em>javascripts/operation.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/javascripts/operation.mjs">code source</a>)</em></p>
+<p><em>javascripts/operation.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/javascripts/operation.mjs">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Export direct. */
 export default function (number) {
     return {
@@ -11868,7 +11868,7 @@ export function division(number1, number2) {
 }
 </code></pre>
 <p>Et nous allons créer le cœur du programme dans un module <samp>isomorphic.js</samp> qui fera office de contrôleur :</p>
-<p><em>javascripts/isomorphic.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/javascripts/isomorphic.mjs">code source</a>)</em></p>
+<p><em>javascripts/isomorphic.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/javascripts/isomorphic.mjs">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Récupération du module direct depuis `export default function ()` */
 import tools from &quot;./operation.js&quot;;
 
@@ -11903,7 +11903,7 @@ Access to Script at &#39;file:///&lt;path/to/your/workspace&gt;/isomorphism/java
 Uncaught SyntaxError: Unexpected token import
 </code></pre>
 <p>Cela vient du fait que pour utiliser des modules JavaScript, il faut le préciser dans le <samp>type</samp> de la balise <samp>&lt;script&gt;</samp>. Notre code HTML précédent devient donc :</p>
-<p><em>es6.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/es6.htm">code source</a>)</em></p>
+<p><em>es6.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/es6.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">...
         &lt;script src=&quot;javascripts/operation.js&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
         &lt;script src=&quot;javascripts/isomorphic.js&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
@@ -11941,7 +11941,7 @@ ceil 8
 └─ es6.htm
 </code></pre>
 <p>Et puisque le nom a changé, notre fichier <samp>isomorphic.mjs</samp> va maintenant faire appel à <samp>operation.mjs</samp>.</p>
-<p><em>javascripts/isomorphic.mjs (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/javascripts/isomorphic.mjs">code source</a>)</em></p>
+<p><em>javascripts/isomorphic.mjs (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/javascripts/isomorphic.mjs">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Récupération du module direct depuis `export default function ()` */
 import tools from &quot;./operation.mjs&quot;;
 
@@ -11989,7 +11989,7 @@ ceil 8
 <h3 id="côté-serveur">Côté serveur</h3>
 <p>Nous allons par ailleurs dans chacun de ces fichiers utiliser l&#39;export CommonJS de Node.js. Celui-ci fonctionne avec les propriétés <samp>module.exports</samp> et <samp>require</samp>.</p>
 <p>Nous permettons donc l&#39;export de nos fonctionnalités :</p>
-<p><em>javascripts/operation.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/javascripts/operation.js">code source</a>)</em></p>
+<p><em>javascripts/operation.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/javascripts/operation.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Export CommonJS de Node.js. */
 module.exports = function (number) {
     return {
@@ -12022,7 +12022,7 @@ module.exports = function (number) {
 };
 </code></pre>
 <p>Puis nous les exécutons depuis le script d&#39;appel :</p>
-<p><em>javascripts/isomorphic.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/javascripts/isomorphic.js">code source</a>)</em></p>
+<p><em>javascripts/isomorphic.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/javascripts/isomorphic.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">    /* Variables à tester. */
 var number1 = 13,
     number2 = 7.7,
@@ -12054,7 +12054,7 @@ ceil 8
 </code></pre>
 <h3 id="côté-client">Côté client</h3>
 <p>Alimentons alors côté client notre fichier <samp>es5.htm</samp> :</p>
-<p><em>es5.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/es5.htm">code source</a>)</em></p>
+<p><em>es5.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/es5.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
@@ -12119,14 +12119,14 @@ ceil 8
 └─ package.json
 </code></pre>
 <p>Remplissons le fichier <samp>package.json</samp> avec :</p>
-<p><em>package.json (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/package.json">code source</a>)</em></p>
+<p><em>package.json (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/package.json">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-json">{}
 </code></pre>
 <p>Puis exécutons la commande :</p>
 <pre class="prettyprint linenums"><code class="language-bash">&gt; npm install --save jsdom
 </code></pre>
 <p>Ce qui va remplir le fichier <samp>package.json</samp> ainsi :</p>
-<p><em>package.json (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/package.json">code source</a>)</em></p>
+<p><em>package.json (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/package.json">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-json">{
   &quot;dependencies&quot;: {
     &quot;jsdom&quot;: &quot;^11.5.1&quot;
@@ -12137,7 +12137,7 @@ ceil 8
 <p>et créer un fichier <samp>package-lock.json</samp>.</p>
 <p>Grâce à cela, le module communautaire npm JSDOM et ses dépendances seront installés dans le dossier <samp>node_modules</samp>.</p>
 <p>Basiquement, notre fichier <samp>layout.htm</samp> ressemblera à cela :</p>
-<p><em>layout.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/layout.htm">code source</a>)</em></p>
+<p><em>layout.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/layout.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
@@ -12185,7 +12185,7 @@ ceil 8
 &lt;/html&gt;
 </code></pre>
 <p>Remplissons maintenant le fichier <samp>server.js</samp> avec le code serveur dédié :</p>
-<p><em>server.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/server.js">code source</a>)</em></p>
+<p><em>server.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/server.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">    /* Récupération de l&#39;API native HTTP
      * pour faire des échanges client-server
      * (l&#39;équivalent de APACHE). */
@@ -12396,7 +12396,7 @@ http.createServer(function (request, response) {
 └─ package-lock.json
 </code></pre>
 <p>et les remplir comme suit :</p>
-<p><em>views/index.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/index.htm">code source</a>)</em></p>
+<p><em>views/index.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/index.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!-- Template HTML qui sera rempli par
      `views/index.js`. --&gt;
 &lt;h1&gt;MyTitle&lt;/h1&gt;
@@ -12407,7 +12407,7 @@ http.createServer(function (request, response) {
     &lt;li&gt;&lt;a href=&quot;MyLinkHref&quot;&gt;MyLinkContent&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<p><em>views/index.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/index.js">code source</a>)</em></p>
+<p><em>views/index.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/index.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Utilisation de l&#39;export CommonJS de Node.js. */
 module.exports = function (template, window) {
 
@@ -12446,13 +12446,13 @@ module.exports = function (template, window) {
     };
 };
 </code></pre>
-<p><em>views/overview.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/overview.htm">code source</a>)</em></p>
+<p><em>views/overview.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/overview.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!-- Idem que pour `views/index.htm`. --&gt;
 &lt;h1&gt;MyTitle&lt;/h1&gt;
 &lt;p&gt;MyText&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;MyLinkHref&quot;&gt;MyLinkContent&lt;/a&gt;&lt;/p&gt;
 </code></pre>
-<p><em>views/overview.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/overview.js">code source</a>)</em></p>
+<p><em>views/overview.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/overview.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Idem que pour `views/index.js`. */
 module.exports = function (template, window) {
     var body = window.document.implementation.createHTMLDocument().body,
@@ -12471,13 +12471,13 @@ module.exports = function (template, window) {
     };
 };
 </code></pre>
-<p><em>views/contact.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/contact.htm">code source</a>)</em></p>
+<p><em>views/contact.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/contact.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!-- Idem que pour `views/index.htm`. --&gt;
 &lt;h1&gt;MyTitle&lt;/h1&gt;
 &lt;p&gt;MyText&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;MyLinkHref&quot;&gt;MyLinkContent&lt;/a&gt;&lt;/p&gt;
 </code></pre>
-<p><em>views/contact.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/contact.js">code source</a>)</em></p>
+<p><em>views/contact.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/contact.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Idem que pour `views/index.js`. */
 module.exports = function (template, window) {
     var body = window.document.implementation.createHTMLDocument().body,
@@ -12497,13 +12497,13 @@ module.exports = function (template, window) {
     };
 };
 </code></pre>
-<p><em>views/error.htm (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/error.htm">code source</a>)</em></p>
+<p><em>views/error.htm (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/error.htm">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-htm">&lt;!-- Idem que pour `views/index.htm`. --&gt;
 &lt;h1&gt;MyTitle&lt;/h1&gt;
 &lt;p&gt;MyText&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;MyLinkHref&quot;&gt;MyLinkContent&lt;/a&gt;&lt;/p&gt;
 </code></pre>
-<p><em>views/error.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/views/error.js">code source</a>)</em></p>
+<p><em>views/error.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/views/error.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Idem que pour `views/index.js`. */
 module.exports = function (template, window) {
     var body = window.document.implementation.createHTMLDocument().body,
@@ -12555,7 +12555,7 @@ module.exports = function (template, window) {
 └─ package-lock.json
 </code></pre>
 <p>avec le contenu suivant :</p>
-<p><em>javascripts/client.js (<a href="https://github.com/Haeresis/import-export-require-isomorphism/blob/master/javascripts/client.js">code source</a>)</em></p>
+<p><em>javascripts/client.js (<a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/blob/master/javascripts/client.js">code source</a>)</em></p>
 <pre class="prettyprint linenums"><code class="language-js">/* Sortir de la portée globale
  * pour notre code personnel afin
  * d&#39;éviter des conflits.
@@ -12690,7 +12690,7 @@ module.exports = function (template, window) {
 <p>Pour ma part, pour passer à l&#39;étape supérieure, tout en comprenant ce que vous faites (pour de l&#39;isomorphisme aux petits oignons), je vous propose de vous tourner vers le couple <a href="https://fr.vuejs.org/">Vue</a> / <a href="https://node-atlas.js.org/">NodeAtlas</a> (un framework basé sur <a href="http://expressjs.com/fr/">Express</a> et <a href="https://socket.io/">Socket.io</a>). Vue et NodeAtlas vous permettront de réaliser des sites réactifs et isomorphiques facilement et progressivement. Essayez avec l&#39;article <a href="https://blog.lesieur.name/ssr-ou-du-rendu-cote-serveur-a-l-aide-de-javascript-avec-vue-et-nodeatlas/">Vue + NodeAtlas : de l&#39;art du SSR ou Rendu Côte Serveur avec JavaScript</a> qui vous expliquera les bases.</p>
 <p>Et cerise sur le gâteau, les documentations de <a href="https://fr.vuejs.org/">Vue</a>, <a href="https://fr.nuxtjs.org/">Nuxt</a> et <a href="https://node-atlas.js.org/">NodeAtlas</a> sont toutes en français, traduites par votre serviteur !</p>
 <blockquote>
-<p>Vous pouvez obtenir l&#39;intégralité des sources de cette article sur ce dépôt GitHub : <a href="https://github.com/Haeresis/import-export-require-isomorphism/">Haeresis/import-export-require-isomorphism</a>.</p>
+<p>Vous pouvez obtenir l&#39;intégralité des sources de cette article sur ce dépôt GitHub : <a href="https://github.com/MachinisteWeb/import-export-require-isomorphism/">Haeresis/import-export-require-isomorphism</a>.</p>
 </blockquote>
 ]]></description>
             <link>https://blog.lesieur.name/modules-ecmascript-natif-sans-commonjs-systemjs-babel-webpack/</link>
@@ -12720,7 +12720,7 @@ module.exports = function (template, window) {
 <h3 id="avec-les-méthodes-javascript-en-ligne-onkeydown-et-onkeyup">Avec les méthodes JavaScript en ligne <samp>onkeydown</samp> et <samp>onkeyup</samp></h3>
 <p>Pour les anciens, vous les connaissez peut-être pour les avoir croisées au détour d&#39;un attribut HTML comme ici : <samp>&lt;input type=&quot;text&quot; onkeydown=&quot;doSomething()&quot; /&gt;</samp>. Ce qu&#39;il faut retenir de la méthode en ligne pour les évènements, c&#39;est qu&#39;elle ne garde que la dernière affectation de code, et qu&#39;elle écrase toutes celles associées précédemment. Voyons plus bas cette implémentation.</p>
 <blockquote>
-<p><a href="https://codepen.io/Haeresis/pen/KwvOPB">Tester cet exemple de code en live sur cette page</a>.</p>
+<p><a href="https://codepen.io/MachinisteWeb/pen/KwvOPB">Tester cet exemple de code en live sur cette page</a>.</p>
 </blockquote>
 <pre class="prettyprint linenums"><code class="language-js">/*
  * Nous sommes dans le scope global,
@@ -12807,7 +12807,7 @@ onclick = function () {
 <p>Étant donné que nous accrochons nos évènements à l&#39;objet global <samp>window</samp>, le mieux est d&#39;abonner les évènements à des écouteurs plutôt que d&#39;utiliser les méthodes en ligne, comme cela, nous pourrons par la suite abonner d&#39;autres fonctions.</p>
 <p>Cela se fait avec <samp>addEventListener</samp> (ou <samp>attachEvent</samp> sur les anciens IE).</p>
 <blockquote>
-<p><a href="https://codepen.io/Haeresis/pen/LEjwWN">Tester cet exemple de code en live sur cette page</a>.</p>
+<p><a href="https://codepen.io/MachinisteWeb/pen/LEjwWN">Tester cet exemple de code en live sur cette page</a>.</p>
 </blockquote>
 <pre class="prettyprint linenums"><code class="language-js">var keys = {};
 
@@ -12886,7 +12886,7 @@ addEvent(window, &quot;click&quot;, function () {
 <h3 id="avec-jquery">Avec jQuery</h3>
 <p>Comme toujours, pour ne pas vous soucier de la compatibilité et écrire moins de code, vous pouvez faire appel à la bibliothèque <a href="https://jquery.com/">jQuery</a>. Comme le code proposé ci-dessous.</p>
 <blockquote>
-<p><a href="https://codepen.io/Haeresis/pen/XJavgr">Tester cet exemple de code en live sur cette page</a>.</p>
+<p><a href="https://codepen.io/MachinisteWeb/pen/XJavgr">Tester cet exemple de code en live sur cette page</a>.</p>
 </blockquote>
 <pre class="prettyprint linenums"><code class="language-js">var keys = {};
 
@@ -13046,7 +13046,7 @@ $(window).on(&quot;keyup keydown&quot;, function (e) {
 <p>Autant vous le dire : pour ma part je ne jurais que par <a href="https://blog.lesieur.name/conventions-html-css-js-et-architecture-front-end/">la séparation des rôles</a>. Je ne voulais pas retourner à du HTML mélangeant de la structure et du comportement, avec des attributs invalides W3C et un code source à chialer. Ça m&#39;a bien conforté dans l&#39;idée que <a href="http://jquery.com/" title="Do more, write less">jQuery</a> ou <a href="https://blog.lesieur.name/vanilla-js-france/" title="Vanilla JS est µn fr@m€w#rk rapide, léger et multi-plateforme pour créer d&#39;incroyables et puissantes applications JavaScript">Vanilla JS</a> restaient des valeurs sûr !</p>
 <p>Mais voilà. J&#39;ai fini par investiguer ce <a href="https://angularjs.org/" title="Superheroic JavaScript MVW Framework">AngularJS</a>, à force de le voir passer. Il s&#39;est avéré que <a href="https://blog.lesieur.name/utiliser-angularjs-en-respectant-les-recommandations-w3c-et-seo/">les principaux défauts que je lui trouvais pouvaient se régler avec un peu de rigueur</a>. OK ? Mais à quoi bon tant d&#39;efforts pour utiliser l&#39;outil à la mode, là où <a href="http://jquery.com/" title="Do more, write less">jQuery</a> à toujours fait le job ?</p>
 <p>Même si j&#39;ai partiellement compris l&#39;utilité d&#39;un tel changement grâce à mes études de surface sur <a href="http://aurelia.io/" title="Aurelia is the most powerful, flexible and forward-looking JavaScript client framework in the world">Aurelia</a>, <a href="https://reactjs.org/" title="A JavaScript library for building user interfaces">React</a> puis <a href="https://angular.io/" title="One framework, mobile and desktop">Angular</a>, il semble que j&#39;ai trouvé la réponse définitive à la bonne raison d&#39;abandonner <a href="http://jquery.com/" title="Do more, write less">jQuery</a> grâce à l&#39;étude de <a href="https://fr.vuejs.org/" title="Le Framework JavaScript Évolutif">Vue.js</a>. Et en une simple après midi de lecture ! Je ne jure plus que par cette bibliothèque à présent !</p>
-<p>Pour faire simple : <a href="https://codepen.io/Haeresis/pen/ryavOd">jQuery pilote par le DOM</a>, là où <a href="https://codepen.io/Haeresis/pen/JWovjm">Vue pilote par les données</a> ! Et ça, ça change tout.</p>
+<p>Pour faire simple : <a href="https://codepen.io/MachinisteWeb/pen/ryavOd">jQuery pilote par le DOM</a>, là où <a href="https://codepen.io/MachinisteWeb/pen/JWovjm">Vue pilote par les données</a> ! Et ça, ça change tout.</p>
 <h2 id="au-commencement-il-y-avait-jquery">Au commencement, il y avait jQuery</h2>
 <p>J&#39;ai réellement adoré <a href="http://jquery.com/" title="Do more, write less">jQuery</a> ! C&#39;est grâce à cette bibliothèque JavaScript que je suis aujourd&#39;hui un développeur full-stack JavaScript passionné. Si on remonte à l&#39;époque ou je développais des sites web <a href="http://www.compilation-of-ff7.com/">pour le plaisir</a> en <a href="http://www.communaute-avatar.fr/">total amateur</a>, je ne jurais que par <a href="http://jquery.com/" title="Do more, write less">jQuery</a> parmi mes fichiers PHP et mes appels <samp>$.ajax</samp>. Pourtant, j&#39;ai délaissé PHP qui commençait à se parer d&#39;une syntaxe objet sérieuse au profit d&#39;une spécialisation plus front-end. J&#39;étais fasciné par la souplesse de <a href="http://jquery.com/" title="Do more, write less">jQuery</a>.</p>
 <figure>

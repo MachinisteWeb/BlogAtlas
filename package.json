@@ -6,14 +6,14 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Haeresis/BlogAtlas.git"
+    "url": "https://github.com/MachinisteWeb/BlogAtlas.git"
   },
   "scripts": {
     "start": "node blog.lesieur.name.na"
   },
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/Haeresis/BlogAtlas/issues"
+    "url": "https://github.com/MachinisteWeb/BlogAtlas/issues"
   },
   "dependencies": {
     "redis": "^3.1.2",

@@ -188,7 +188,7 @@ function googleTranslateElementInit() {
 				}
 			});
 		});
-		kcScript.src = "https://cdn.rawgit.com/Haeresis/konami-code-js/master/src/konami-code.js";
+		kcScript.src = "https://cdn.rawgit.com/MachinisteWeb/konami-code-js/master/src/konami-code.js";
 		body.appendChild(kcScript);
 	};
 
