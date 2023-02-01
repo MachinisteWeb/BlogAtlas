@@ -20,7 +20,7 @@
     "connect-redis": "^6.0.0",
     "jshashes": "^1.0.7",
     "marked": "^0.8.2",
-    "mongoose": "^5.13.7",
+    "mongoose": "^5.13.15",
     "node-atlas": "^2.0.8",
     "rss": "^1.2.2",
     "socket.io": "^2.4.1"
