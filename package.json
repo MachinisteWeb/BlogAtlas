@@ -19,7 +19,7 @@
     "redis": "^3.1.2",
     "connect-redis": "^6.0.0",
     "jshashes": "^1.0.7",
-    "marked": "^0.8.2",
+    "marked": "^4.0.10",
     "mongoose": "^5.13.7",
     "node-atlas": "^2.0.8",
     "rss": "^1.2.2",
